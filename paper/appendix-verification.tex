@@ -1,0 +1,153 @@
+% Appendix A: the inventory behind section 1.1 (article-kit WRITING.md section 4). It adds detail
+% to what 1.1 says and holds no caveat that 1.1 does not state. The table is read from the
+% boundary harness's pins (Formalization/CIAxiomGuard.lean, the #guard_msgs blocks of the
+% headline declarations of linkage.toml's [boundary] list), each axiom mapped to its cited fact
+% through blueprint/AXIOMS.md's **Lean:** lines. The map of the fourteen axioms is
+% blueprint/trust-boundary.txt's list of admitted names. The per-statement table's rows,
+% appendix-axioms-table.tex, are generated from `#print axioms` over every declaration a printed
+% statement names, by scripts/theory_axioms_table.py (its docstring has the commands; run where the
+% Lean project is built). Regenerate them after any change to a statement's declarations.
+\section{Verification}
+\label{app:verification}
+
+The formal development is in Lean~4 (\texttt{v4.31.0}) on Mathlib at its tag \texttt{v4.31.0}
+(commit \texttt{fabf563}). The script \texttt{scripts/theory\_axioms\_table.py} of the
+accompanying repository regenerates Table~\ref{tab:statements} from Lean's \texttt{\#print
+axioms}, and its header gives the commands.
+% The export carries the scripts the paper names by path through the module table's extra_files
+% (linkage.toml), since by itself it copies only scripts/make-fig-*.py.
+The development imports the formal
+developments of the author's earlier papers at their releases: the shared core first released with
+the line paper \progpaper{V-line v0.1}, \texttt{ScaleSpaceCore}, here at its later tag
+\texttt{v0.5.0}, which declares no axiom, and
+the export \texttt{AffineHemigroup} of the affine paper \progpaper{affine v0.1}, at \texttt{v0.1}.
+
+Table~\ref{tab:axioms} maps the fourteen axioms of the development to the nine admitted cited
+facts of Section~\ref{sec:trust}. Six of them carry the namespace \texttt{AffineHemigroup}, the
+affine paper's export, and eight the namespace \texttt{Pyramids}, this development. A name
+\texttt{cited\_A}$n$ refers to entry $n$ of the project's ledger of cited facts, which the paper
+prints as a numbered theorem of Section~\ref{ch:cited}: \texttt{cited\_A48} is
+Theorem~\ref{thm:cited-A48}, and the table gives the theorem of every axiom. The supplement's
+Section~\ref{supp:axioms} adds the definitions the axioms name.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{ll}
+\toprule
+Axiom & Cited fact \\
+\midrule
+\texttt{levy\_khintchine\_exists}, \texttt{\_unique}, \texttt{\_converse} & \ledger{A39} \\
+\texttt{khintchine\_null\_array} & \ledger{A41} \\
+\texttt{selfDecomposable\_infinitelyDivisible} & \ledger{A43}, first clause \\
+\texttt{cited\_A43\_residual\_infinitelyDivisible} & \ledger{A43}, the residual \\
+\texttt{cited\_A43\_semi\_infinitelyDivisible} & \ledger{A43}, the semi-selfdecomposable law \\
+\texttt{sato\_polar\_criterion} & \ledger{A45} \\
+\texttt{cited\_A46} & \ledger{A46} \\
+\texttt{cited\_A48} & \ledger{A48} \\
+\texttt{cited\_A49} & \ledger{A49} \\
+\texttt{cited\_A22\_polya}, \texttt{cited\_A22\_variation} & \ledger{A22} \\
+\texttt{cited\_A24} & \ledger{A24} \\
+\bottomrule
+\end{tabular}
+\caption{The fourteen axioms of the formal development and the cited facts they state. Six are
+axioms of \texttt{AffineHemigroup}: the four of the first two rows,
+\texttt{selfDecomposable\_infinitelyDivisible} and \texttt{sato\_polar\_criterion}. The other eight
+are axioms of \texttt{Pyramids}.}
+\label{tab:axioms}
+\end{table}
+
+Table~\ref{tab:headline} lists the headline declarations, the statement each one formalizes and the
+cited facts that Lean's \texttt{\#print axioms} reports for it beyond its three logical axioms, read
+through Table~\ref{tab:axioms}. They are formal counterparts of main results of
+Sections~\ref{ch:pyramid}, \ref{ch:matern} and~\ref{ch:price} and of two statements of the
+supplement, and their lists
+of axioms are fixed in the build: a Lean file prints the axioms of each and compares them with a
+stored copy, so that the build fails when a list changes.
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.36\textwidth}l>{\raggedright\arraybackslash}p{0.27\textwidth}}
+\toprule
+Declaration & Statement & Cited facts \\
+\midrule
+\texttt{lattice\_strata\_1}, \texttt{\_2}, \texttt{\_3} & Theorem~\ref{thm:lattice-strata}(1)--(3) & \ledger{A39}, \ledger{A41} \\
+\texttt{lattice\_strata\_strict} & Theorem~\ref{thm:lattice-strata-strict} & \ledger{A39}, \ledger{A41}, \ledger{A45} \\
+\texttt{what\_does\_not\_lift\_chain\_strict} & Proposition~\ref{prop:what-does-not-lift-chain} & \ledger{A39}, \ledger{A43} \\
+\texttt{ladder\_knot\_kernel\_1}, \texttt{\_2} & Proposition~\ref{prop:ladder-knot-kernel}(1), (2) & \ledger{A39}, \ledger{A41} \\
+\texttt{ladder\_knot\_kernel\_2\_moments} & Proposition~\ref{prop:ladder-knot-kernel}(2), moments & \ledger{A49} \\
+\texttt{ladder\_knot\_kernel\_2\_unique\_iff}, \texttt{\_rot} & Proposition~\ref{prop:ladder-knot-kernel}(2), uniqueness & \ledger{A39}, \ledger{A41} \\
+\texttt{no\_bounded\_step} & Proposition~\ref{prop:no-bounded-step} & \ledger{A41}, \ledger{A46} \\
+\texttt{matern\_pyramid\_1\_family} & Theorem~\ref{thm:matern-pyramid}(1) & \ledger{A39}, \ledger{A43}, \ledger{A45} \\
+\texttt{creation\_plane\_1} & Proposition~\ref{prop:creation-plane}(1) & none \\
+\texttt{stage\_lemma\_3} & Proposition~\ref{prop:stage-lemma}(3) & none \\
+\texttt{selection\_stratum\_two\_2}, \texttt{\_converse} & Theorem~\ref{thm:selection-stratum-two}(2) & none \\
+\texttt{grid\_pyramid\_not\_isotropic\_2} & Proposition~\ref{prop:grid-pyramid-not-isotropic}(2) & \ledger{A39}, \ledger{A41}, \ledger{A48} \\
+\texttt{exact\_masks\_1} & Proposition~\ref{prop:exact-masks}(1), the criterion & \ledger{A39}, \ledger{A41}, \ledger{A49} \\
+\texttt{exact\_masks\_2} & Proposition~\ref{prop:exact-masks}(2) & \ledger{A39}, \ledger{A41}, \ledger{A48} \\
+\texttt{discrete\_helmholtz\_kernel}, \texttt{\_cascade} & Proposition~\ref{prop:discrete-helmholtz}(1), (2) & none \\
+\texttt{lattice\_line\_1}, \texttt{\_2}, \texttt{\_3} & Theorem~\ref{thm:lattice-line} & \ledger{A39}, \ledger{A41} \\
+\texttt{lattice\_line\_strict} & Theorem~\ref{cor:lattice-line-strict} & \ledger{A39}, \ledger{A41} \\
+\bottomrule
+\end{tabular}
+\caption{The headline declarations (namespace \texttt{Pyramids}) and the cited facts Lean reports
+for them. The last two rows are statements of the supplement.}
+\label{tab:headline}
+\end{table}
+\clearpage
+
+Table~\ref{tab:statements} gives, for every numbered statement of the paper and of the supplement,
+the cited facts that Lean's \texttt{\#print axioms} reports for its declarations, read through
+Table~\ref{tab:axioms}. Each row is one section and one set of cited facts, and it lists the
+statements whose declarations read exactly that set; ``none'' means Lean's three logical axioms
+only. A definition is listed with the statements of its section. It has nothing to prove: its row
+says only that its formal counterpart reads no axiom, and that counterpart was compared with the
+printed definition. Section~\ref{sec:trust} names what is proved in print only: one step of
+Proposition~\ref{prop:grid-pyramids-infinitely-divisible}(4), whose row lists the cited facts of
+its declarations; clause (3) of Proposition~\ref{prop:grid-pyramid-singular-kernels}; and
+Propositions~\ref{prop:expanding-grid-pyramid-not-isotropic}
+and~\ref{prop:band-limited-refinable-mask}. Seven cited facts have no row:
+Theorems~\ref{thm:cited-A30}, \ref{thm:cited-A13}, \ref{thm:cited-A15}, \ref{thm:cited-A19},
+\ref{thm:cited-A20}, \ref{thm:cited-A55} and~\ref{thm:cited-A57} are stated for the reader and read
+by no formal proof. Their statements are typed, without proof, in a skeleton library that the formal
+development does not import. Propositions~\ref{prop:expanding-grid-pyramid-not-isotropic},
+\ref{prop:grid-pyramid-singular-kernels} and~\ref{prop:band-limited-refinable-mask} have no row
+either, since each has a clause without a formal proof. Those clauses are typed in the same skeleton
+library without a proof, and no formal proof reads them. The first two clauses of
+Proposition~\ref{prop:grid-pyramid-singular-kernels} are proved, by the declarations
+\texttt{grid\_pyramid\_singular\_kernels\_1} and \texttt{\_2}, for which Lean reports
+\ledger{A39} and \ledger{A41}: the printed proof reads \ledger{A40}, which the development proves
+from \ledger{A39}.
+
+A row lists the cited facts of a statement's own formal proof. Some formal statements take as a
+hypothesis an object that an earlier statement builds. Theorem~\ref{thm:lattice-strata} takes the
+data $(a(t)I, \nu_t)$ of an isotropic family, and Propositions~\ref{prop:matern-generator-octave}
+and~\ref{prop:creation-plane} and Theorem~\ref{thm:matern-pyramid-line-noncreation} take a family
+with the transforms of the \Matern{} pyramid. Theorem~\ref{thm:knot-atom-cascades},
+Propositions~\ref{prop:strata-cylinder-coordinates} and~\ref{prop:phase-entropy-scale-unit} and
+Lemma~\ref{lem:phase-disintegration-exists} take the pair of Theorem~\ref{thm:surface-measure}.
+Such a statement is quantified over every object with the defining property, and its row lists only
+its own cited facts. The facts that build the object are in the row of the statement that builds
+it. A cited fact that the development proves with no cited fact, such as
+Theorem~\ref{thm:cited-A51}, adds nothing to a row, and Lemma~\ref{lem:bessel-k}, whose printed
+proof reads it, has the row ``none''.
+
+{\small
+\begin{longtable}{l>{\raggedright\arraybackslash}p{0.24\textwidth}>{\raggedright\arraybackslash}p{0.58\textwidth}}
+\caption{The cited facts Lean reports for each numbered statement, by section (S1 and S2 are
+the supplement's).}
+\label{tab:statements}\\
+\toprule
+Section & Cited facts & Statements \\
+\midrule
+\endfirsthead
+\toprule
+Section & Cited facts & Statements \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\input{appendix-axioms-table}
+\end{longtable}
+}

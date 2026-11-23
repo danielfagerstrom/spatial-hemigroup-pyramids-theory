@@ -1,0 +1,2309 @@
+% !TEX root = ../print.tex
+% Chapter 3: the draft's section 3, "A pyramid in R^d" (lines 352-522 of
+% draft/spatial-hemigroup-pyramids.md), with the draft's Lemma 5.3 (lem:lattice-infinitely-divisible)
+% moved to the end of section 3.1 with its proof (adr/0004, decision 3). Chapter 5 cites it behind.
+%
+% Renames (BLUEPRINT-INPUTS): the marginal laws kappa_{s,t} := pi_* mu_{s,t} of Lemma 3.10 are m_{s,t};
+% the running dimension of Proposition 3.11(2) was n (REFEREE-draft-new-results, item 1, finding 4),
+% and is d again since the blueprint round of the theory paper (blind review of section 3, flag 25);
+% the step of a family is varrho, as in the draft.
+%
+% Splits: Theorem 3.7's last sentence (the strictness of the strata) is thm:lattice-strata-strict,
+% after the examples it rests on; Proposition 3.11(2) is prop:what-does-not-lift-chain. New labels:
+% def:knots-and-ladder (the paragraph after Lemma 3.3), prop:ladder-not-every-frequency (the
+% example after Proposition 3.13), thm:lattice-strata-strict, prop:what-does-not-lift-chain.
+%
+% Stays prose, and why (one line each):
+% - the chapter's lead and map: say what the chapter proves;
+% - the paragraph after Lemma 3.2 (the normalization of the Levy data): notation;
+% - the paragraph after Lemma 3.2 on marginals: explains why the proof runs in R^d;
+% - the sentence on operator families (now in "The line", blind review flag 26): points chapter 2 to
+%   clause (4) of Lemma 3.3;
+% - the paragraph before Definition 3.4 (self-decomposability, Maejima-Naito): positions the literature;
+% - the paragraph after Definition 3.4 (the two cited facts, refinable laws, Loeve's name): cites
+%   the entries A43 and A44 and explains;
+% - the paragraph on the class A_d before Theorem 3.7: recalls chapter 2's class and the origin data;
+% - the sentence after Theorem 3.7 on the polar form: reads clause (3) in the data of clause (1);
+% - the sentence after Proposition 3.8 on Lindeberg's discrete scale space and a preferred length:
+%   a pointer to chapter 2, argued "in the same way";
+% - the list of the line's families that Proposition 3.11(1) excludes: moved out of the statement,
+%   since each needs its own family's Levy measure, stated where the family is;
+% - the paragraph after Proposition 3.11(2): positions it against the isotropic paper;
+% - the paragraph after Proposition 3.12 (lattice steps, the pyramid principle): explains;
+% - the paragraph before Proposition 3.13 (Burt's equivalent and characteristic kernels): literature;
+% - the paragraph after Proposition 3.13: relation to the line and to chapter 5;
+% - the paragraph after Proposition 3.15 and Remark 3.16: the chapter's relation to the line.
+
+\chapter{A pyramid in $\RR^d$}
+\label{ch:pyramid}
+
+A pyramid is a family of kernels that is covariant under one dilation ratio $q > 1$: the kernel at
+scale $q^nt$ is the kernel at $t$ dilated by $q^n$. This chapter says what that axiom gives in
+$\RR^d$, $d \ge 1$, before any family is chosen. Two things follow from it, and a third holds
+without it. The dilations under which a symmetric family is covariant form a closed group.
+Covariance then sorts the families into three nested \emph{strata}: all families, those covariant
+under the powers of one ratio, and those covariant under every dilation. In the middle stratum the \emph{ladder}, the sequence of octave steps from one level
+to the next, fixes the kernel at every level. The kernel at a level is the limit of the octave step
+convolved with its dilates toward finer and finer scales. And, with or without covariance, a law of
+bounded support other than a point mass is a step of no family that is continuous in scale. This excludes the finite masks of the classical
+pyramids.
+
+On the line these statements are in chapter~2 and Appendix~A. The isotropic paper classifies the
+fully covariant isotropic families by reduction to the line along marginals
+\prog{iso v0.1}{Thm.~3.6, p.~13}. Under one dilation the reduction still holds and keeps the
+stratum. The classification of the line does not transfer. In $d \ge 2$ no line exponent with an
+atom in its \Levy{} measure is the marginal of a rotation-invariant infinitely divisible law
+(Proposition~\ref{prop:what-does-not-lift}). So the statements here
+are proved in $\RR^d$ directly.
+
+The path has five steps. Section~\ref{sec:pyramid-families} fixes the families, shows that their
+dilations form a closed group, and puts the \Levy{} measure of a lattice law on the lattice.
+Section~\ref{sec:pyramid-strata} gives the three strata in \Levy{} coordinates, with an example
+strictly inside each of the lower two. Section~\ref{sec:pyramid-reduction} says what the reduction
+to the line keeps and what it loses. Section~\ref{sec:pyramid-ladder} shows that the ladder
+determines the kernels at the levels and says which steps have a pyramid.
+Section~\ref{sec:pyramid-bounded} excludes the steps of bounded support.
+
+% ---------------------------------------------------------------------------------------------------
+\section{Families and their dilations}
+\label{sec:pyramid-families}
+
+The axioms are those of the isotropic paper, with rotation invariance kept apart and covariance
+required at one dilation. The transform $\widehat\mu$, the image $A_*\mu$ and the dilation $D_c$ are
+those of chapter~2. Definition~\ref{def:family-dimension-d} takes three of the axioms of
+\prog{iso v0.1}{Def.~3.2, p.~11}, (I1), (I2) and (ND). Isotropy is (I3) of that definition, and
+$\lambda$-covariance is its (I4) required at the one dilation $\lambda$. An isotropic family is
+symmetric (Lemma~\ref{lem:isotropic-symmetric}).
+
+% draft: Definition 3.1 (§ 3.1), lines 362–368 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the transform, D_c and ell := log q are chapter 2's notation (BLUEPRINT-BRIEF) and are
+% not redefined in the node.
+\begin{definition}[families in dimension $d$, and covariance under one dilation]
+\label{def:family-dimension-d}
+\lean{Pyramids.IsLawHemigroup, Pyramids.IsNondegenerateLaws, Pyramids.IsFamily,
+Pyramids.IsSymmetricLaws, Pyramids.IsSymmetricFamily, Pyramids.IsRotationInvariantLaws,
+Pyramids.IsIsotropicFamily, Pyramids.IsCovariantAt, Pyramids.IsLamCovariant}\leanok
+\uses{def:isotropic-cascade-family}
+Let $d \ge 1$. A \emph{family in dimension $d$} is a family $(\mu_{s,t})_{0 \le s \le t}$ of
+probability measures on $\RR^d$ with
+\begin{itemize}
+\item[(I1)] $\mu_{t,t} = \delta_0$, and $\mu_{r,t} = \mu_{s,t} * \mu_{r,s}$ for $r \le s \le t$
+(cascade);
+\item[(I2)] $(s,t) \mapsto \widehat\mu_{s,t}(\omega)$ continuous on $\{0 \le s \le t\}$ for each
+$\omega \in \RR^d$ (continuity);
+\item[(ND)] $\mu_{s,t} \ne \delta_0$ for $s < t$ (nondegeneracy).
+\end{itemize}
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 23):
+% the two provenance sentences ("three of the axioms of [iso, Def. 3.2]", "(I4) ... required at the one
+% dilation") and the pointer to lem:isotropic-symmetric moved to the lead-in before the node; (I3)
+% is written out, so the definition no longer reads "of that definition". Nothing defined changed.
+The family is \emph{isotropic} if it also has
+\begin{itemize}
+\item[(I3)] $Q_*\mu_{s,t} = \mu_{s,t}$ for every $Q \in \Orth(d)$ and every pair,
+\end{itemize}
+and \emph{symmetric} if every $\mu_{s,t}$ is invariant under $x \mapsto -x$. For $\lambda > 0$ the
+family is \emph{$\lambda$-covariant} if some increasing bijection $S_\lambda$ of $[0,\infty)$ has
+$D_\lambda\mu_{s,t} = \mu_{S_\lambda s, S_\lambda t}$ for all $s \le t$. Write
+$\mu_t := \mu_{0,t}$, the \emph{kernel} at scale $t$.
+% CHANGED (fidelity review, 2026-11-15, R8): the status line says which range hypotheses of the
+% definition are not fields of its declarations, and that every consumer carries them.
+\statusT\quad\emph{(A definition. The ranges are not fields of the declarations:
+\texttt{IsCovariantAt $\mu$ $\lambda$ S} has no $\lambda > 0$, and no declaration requires $d \ge 1$, the
+dimension being any natural number; every statement that uses them carries the range it reads.)}
+\end{definition}
+
+% CHANGED (skeleton review 03-04, F4): the sentence "An isotropic family is symmetric" of
+% def:family-dimension-d split out as a lemma, so that the claim has a typed statement.
+\begin{lemma}[an isotropic family is symmetric]
+\label{lem:isotropic-symmetric}
+\lean{Pyramids.isotropicFamily_isSymmetricFamily}\leanok
+\uses{def:family-dimension-d}
+An isotropic family in dimension $d$ is symmetric.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(\textbf{Hypotheses} (the node's, each with what its declarations require):
+$d \ge 1$: absent, \texttt{isotropicFamily\_isSymmetricFamily} holds in every dimension; isotropic
+family: same, \texttt{IsIsotropicFamily}, that is (I1), (I2), (ND) and (I3).)}
+\end{lemma}
+
+\begin{proof}
+\leanok
+The map $x \mapsto -x$ is $-I$, which lies in $\Orth(d)$. So (I3) at $Q = -I$ gives
+$(-I)_*\mu_{s,t} = \mu_{s,t}$ for every pair, which is the symmetry of $\mu_{s,t}$.
+
+Every step is machine-checked, with no cited fact.
+\end{proof}
+
+The structure lemma needs no covariance, and the rest of the chapter rests on it. By the cascade, a
+step is the convolution of arbitrarily many short steps. Each of them is close to $\delta_0$, by
+continuity in scale. So every step is infinitely divisible, and its \Levy{} data add along scale.
+The first half needs neither symmetry nor (ND).
+
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 16): new
+% node, split out of the first two paragraphs of the proof of lem:family-structure, which
+% prop:no-bounded-step had cited as part of a proof. Its declaration is the one those two nodes
+% already call; the proof is the two paragraphs, unchanged but for the citation of the interface node.
+\begin{lemma}[the steps of a family are infinitely divisible]
+\label{lem:steps-infinitely-divisible}
+\lean{Pyramids.isLawHemigroup_infinitelyDivisible}\leanok
+\uses{def:family-dimension-d, thm:cited-A41}
+Let $d \ge 1$, and let $(\mu_{s,t})_{0 \le s \le t}$ be probability measures on $\RR^d$ with (I1)
+and (I2). Then every $\mu_{s,t}$ is infinitely divisible.
+\statusA\quad\ledger{A41}\quad\emph{(\textbf{Assignment.} \ledger{A41}, Khintchine's theorem,
+carries the infinite divisibility of the limit in law of the row sums of a null array. Held as
+[T], with the proof below: the weak continuity in $(s,t)$, the uniform smallness of short steps,
+and the null array built from (I1) and (I2). \textbf{Hypotheses} (the node's, each with what
+\texttt{isLawHemigroup\_infinitelyDivisible} requires): $d \ge 1$: same; probability measures with
+(I1) and (I2): same, \texttt{IsLawHemigroup}; symmetry, (ND) and covariance: required by neither.)}
+\end{lemma}
+
+\begin{proof}
+\leanok
+By (I2) and \Levy's continuity theorem, $(s,t) \mapsto \mu_{s,t}$ is weakly continuous on
+$\{0 \le s \le t\}$. Short steps are therefore uniformly close to $\delta_0$ on bounded sets of
+scales: for $T > 0$ and $\varepsilon, \eta > 0$ there is $\delta > 0$ with
+$\mu_{u,v}(\{|x| \ge \varepsilon\}) < \eta$ whenever $u \le v \le T$ and $v - u < \delta$. Otherwise
+there is a sequence $(u_k, v_k)$ with $v_k \le T$, $v_k - u_k \to 0$ and
+$\mu_{u_k,v_k}(\{|x| \ge \varepsilon\}) \ge \eta$. A subsequence converges to some $(u_0, u_0)$, and
+the portmanteau theorem for the closed set $\{|x| \ge \varepsilon\}$ gives
+$\eta \le \mu_{u_0,u_0}(\{|x| \ge \varepsilon\}) = 0$, since $\mu_{u_0,u_0} = \delta_0$ by (I1).
+
+Fix $s < t$, and let $s = t_0 < t_1 < \dots < t_n = t$ be the partition into $n$ equal parts. By
+(I1), $\mu_{s,t} = \mu_{t_{n-1},t} * \dots * \mu_{t_0,t_1}$. Take independent random vectors
+$X_{n,1}, \dots, X_{n,n}$ with the laws $\mu_{t_{j-1},t_j}$. By the previous paragraph
+$\max_jP(|X_{n,j}| \ge \varepsilon) \to 0$ as $n \to \infty$ for every $\varepsilon > 0$, so the
+$X_{n,j}$ form a null array. Each row sum has the law $\mu_{s,t}$. So the row sums converge in law to
+$\mu_{s,t}$, which is infinitely divisible by Khintchine's theorem
+(Theorem~\ref{thm:cited-A41}). For $s = t$ the law $\delta_0$ is infinitely divisible.
+
+Every step is machine-checked, and the cited fact is \ledger{A41}.
+\end{proof}
+
+A symmetric infinitely divisible law has a real exponent, given by a Gaussian part and a symmetric
+\Levy{} measure. This is the symmetric form of the \Levy--Khintchine theorem, and it has a converse.
+It is used for the kernels of a family, for the masks of a pyramid and for their knot kernels.
+
+% CHANGED (review response r1, batch 2b, 2026-11-23, finding B2): new node. The symmetric form of
+% the Levy-Khintchine representation, with its converse and uniqueness, was worked out inside four
+% proofs (lem:family-structure, prop:creation-grid(3), prop:grid-pyramid-not-isotropic and
+% prop:exact-masks); they cite it now. Its declaration assembles the ones those four Lean proofs
+% call (exists_symData, isSymData_unique, SymLevyData.hasTriplet, isInfinitelyDivisible_of_hasTriplet,
+% map_neg_eq_of_charFun_im); linkage reads no dotted name, so the node is bound to the assembly.
+\begin{lemma}[the symmetric \Levy--Khintchine form]
+\label{lem:symmetric-levy-khintchine}
+\lean{Pyramids.symmetric_levy_khintchine}\leanok
+\uses{thm:cited-A39}
+A probability measure $\mu$ on $\RR^d$ is symmetric and infinitely divisible if and only if
+\[
+  \widehat\mu(\omega) = \exp\Bigl(-\langle\omega, A\omega\rangle
+  - \int\bigl(1 - \cos\langle\omega, x\rangle\bigr)\,\nu(dx)\Bigr), \qquad \omega \in \RR^d,
+\]
+for a positive semidefinite $d \times d$ matrix $A$ and a symmetric measure $\nu$ on $\RR^d$ with
+$\nu(\{0\}) = 0$ and $\int\min(|x|^2, 1)\,\nu(dx) < \infty$. The pair $(A, \nu)$ is then unique. It
+is the \emph{\Levy{} data} of $\mu$, with \emph{Gaussian part} $A$ and \emph{\Levy{} measure} $\nu$,
+and $\mu$ has the generating triplet $(2A, \nu, 0)$.
+\statusA\quad\ledger{A39}\quad\emph{(\textbf{Assignment.} \ledger{A39} carries the generating
+triplet (i), its uniqueness (ii), and the law of a given triplet (iii). Held as [T], with the proof
+below: the triplet of the reflected law, the vanishing of the odd part of the integrand, the factor
+two between the Gaussian parts, and the symmetry of a law with a real transform.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $\mu$ a probability
+measure: same, \texttt{IsProbabilityMeasure}; $d$: any natural number, as in the node. The data are
+typed as \texttt{SymLevyData}, with $A$ positive semidefinite, $\nu(\{0\}) = 0$, the integral of
+$\min(|x|^2, 1)$ and the symmetry of $\nu$ as fields, and the displayed transform as
+\texttt{IsSymData}. The three parts of \texttt{symmetric\_levy\_khintchine} are the equivalence,
+the uniqueness and the triplet \texttt{D.triplet} $= (2A, \nu, 0)$.)}
+\end{lemma}
+
+% CHANGED (review response r1, batch 2b, 2026-11-23, finding B2): the proof of the symmetric form
+% moved here from lem:family-structure, with the integrability of the odd part from
+% prop:creation-grid(3); the converse and uniqueness follow SymLevyData.hasTriplet,
+% isInfinitelyDivisible_of_hasTriplet and isSymData_unique.
+\begin{proof}
+\leanok
+\uses{thm:cited-A39}
+\emph{Only if.} Let $\mu$ be symmetric and infinitely divisible. By the \Levy--Khintchine theorem
+(Theorem~\ref{thm:cited-A39}(i)) it has a generating triplet $(A^{\mathrm S}, \nu, \gamma)$, with
+\[
+  \widehat\mu(\omega) = \exp\Bigl[-\tfrac12\langle\omega, A^{\mathrm S}\omega\rangle + i\langle\gamma, \omega\rangle
+  + \int\bigl(e^{i\langle\omega, x\rangle} - 1 - i\langle\omega, x\rangle\mathbf 1_{\{|x| \le 1\}}\bigr)\,\nu(dx)\Bigr],
+\]
+and the triplet is unique (Theorem~\ref{thm:cited-A39}(ii)). The change of variables
+$x \mapsto -x$ in this formula shows that the reflected law has the triplet
+$(A^{\mathrm S}, \nu(-\,\cdot), -\gamma)$, the unit ball being symmetric. A symmetric law equals its
+reflection, so uniqueness gives $\gamma = 0$ and $\nu$ symmetric. The odd part
+$i\sin\langle\omega, x\rangle - i\langle\omega, x\rangle\mathbf 1_{\{|x| \le 1\}}$ of the integrand
+is absolutely integrable against $\nu$, as $|\sin y - y| \le |y|^3/6$ and $\nu$ is finite off the
+unit ball. So it integrates to $0$ against the symmetric $\nu$. What is left is the displayed form,
+with $A := \tfrac12A^{\mathrm S}$, the Gaussian part in the normalization of
+Section~\ref{subsec:cited-notation}.
+
+\emph{If.} Let $\widehat\mu$ have the displayed form. The computation above, read backwards with
+$\gamma = 0$ and $\nu$ symmetric, shows that $\widehat\mu$ is given by the formula of
+Theorem~\ref{thm:cited-A39}(i) with the triplet $(2A, \nu, 0)$. By Theorem~\ref{thm:cited-A39}(iii)
+some infinitely divisible law has that transform. A law is determined by its transform, so $\mu$ is
+that law, and it is infinitely divisible. Its transform is real. The reflection of $\mu$ has the
+conjugate transform, which is the same, so $\mu$ is symmetric.
+
+\emph{Uniqueness.} If $(A, \nu)$ and $(A', \nu')$ are both data of $\mu$, then $(2A, \nu, 0)$ and
+$(2A', \nu', 0)$ are both generating triplets of $\mu$, as in the previous paragraph. So
+Theorem~\ref{thm:cited-A39}(ii) gives $A = A'$ and $\nu = \nu'$.
+
+Every step is machine-checked, and the cited fact is \ledger{A39}.
+\end{proof}
+
+With symmetry the transforms of a family are real and positive, and the steps have \Levy{} data
+that add along scale.
+
+% draft: Lemma 3.2 (§ 3.1), lines 372–378 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the orders in "nondecreasing" named (blind review, flag 21): A_t in the order of positive
+% semidefinite matrices, nu_t setwise.
+\begin{lemma}[structure]
+\label{lem:family-structure}
+\lean{Pyramids.family_structure_id, Pyramids.family_structure_exists,
+Pyramids.family_structure_data, Pyramids.family_structure_monotone,
+Pyramids.family_structure_isotropic}\leanok
+\uses{def:family-dimension-d, lem:steps-infinitely-divisible, lem:symmetric-levy-khintchine,
+thm:cited-A39, thm:cited-A40, thm:cited-A42}
+Let $(\mu_{s,t})$ be a symmetric family in dimension $d$. Each $\mu_{s,t}$ is infinitely divisible
+with $\widehat\mu_{s,t} > 0$. With $\Psi_t := -\log\widehat\mu_t$ one has
+$\widehat\mu_{s,t} = e^{-(\Psi_t - \Psi_s)}$ and
+\[
+  \Psi_t(\omega) = \langle\omega, A_t\omega\rangle + \int\bigl(1 - \cos\langle\omega, x\rangle\bigr)\,\nu_t(dx),
+\]
+with $A_t$ and $\nu_t$ nondecreasing in $t$, $A_t$ in the order of positive semidefinite matrices
+and $\nu_t$ setwise, and $\mu_{s,t}$ has the data $(A_t - A_s, \nu_t - \nu_s)$.
+The map $t \mapsto \mu_t$ is injective, and $t \mapsto \widehat\mu_t(\omega)$ is nonincreasing. If
+the family is isotropic, $A_t = a(t)I$ and $\nu_t$ is rotation invariant.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A41}\quad\ledger{A40}\quad\ledger{A39}\quad\ledger{A42}\quad\emph{(\textbf{Assignment.}
+\ledger{A41}, Khintchine's theorem, carries the infinite divisibility of each $\mu_{s,t}$, through
+Lemma~\ref{lem:steps-infinitely-divisible}, which builds the null array from (I1) and (I2).
+\ledger{A40} carries that the transform of an
+infinitely divisible law has no zero. \ledger{A39} carries the \Levy--Khintchine form of $\Psi_t$
+and the additivity of the data, through Lemma~\ref{lem:symmetric-levy-khintchine}. \ledger{A42} carries the data of
+the image $Q_*\mu_t$, which with (ii) gives the isotropic clause. Held as [T], with the proof below:
+the reality and
+positivity of the transform from symmetry and continuity, the
+monotonicity, the injectivity from (ND), and the reduction of an $\Orth(d)$-invariant matrix to a
+multiple of $I$. \textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$:
+same, in all five; symmetric family: same, \texttt{IsSymmetricFamily}; the data $(A_t, \nu_t)$:
+same, \texttt{family\_structure\_data} and \texttt{\_isotropic} quantify over every $D$ with
+$\mu_t$ having the data $D(t)$, $t \ge 0$, whose existence is \texttt{\_exists}; isotropic (last
+sentence): same, \texttt{\_isotropic} requires the family symmetric with (I3), which for a family is
+being isotropic.)}
+\end{lemma}
+
+% CHANGED (wave 2b, 2026-11-13): the last paragraph follows the machine-checked route: A_t = a(t)I
+% from QA_tQ^T = A_t at the sign changes and the coordinate exchanges, not at a Q with Qe = e'; and
+% the closing sentence says which steps are checked and which are cited interfaces.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 7, 8,
+% 9, 16): the first two paragraphs are lem:steps-infinitely-divisible, cited here; each cited fact
+% is cited by its interface node at the point of use; "read at time 1" dropped, Theorem A42 being
+% stated for laws; the factor two between the Gaussian parts points to chapter 2's notation.
+% CHANGED (review response r1, batch 2b, 2026-11-23, finding B2): the symmetric form of the
+% exponent and the uniqueness of the data are lem:symmetric-levy-khintchine, cited here, where its
+% proof was written out. No step changed.
+\begin{proof}
+\leanok
+\uses{def:family-dimension-d, lem:steps-infinitely-divisible, lem:symmetric-levy-khintchine}
+Each $\mu_{s,t}$ is infinitely divisible by Lemma~\ref{lem:steps-infinitely-divisible}.
+The transform of an infinitely divisible law has no zero (Theorem~\ref{thm:cited-A40}).
+The transform of a symmetric law is real. So $\widehat\mu_{s,t}$ is real, continuous and without
+zeros on the connected set $\RR^d$, with $\widehat\mu_{s,t}(0) = 1$, hence positive. By (I1) with
+$r = 0$, $\widehat\mu_t = \widehat\mu_{s,t}\widehat\mu_s$, so
+$\widehat\mu_{s,t} = e^{-(\Psi_t - \Psi_s)}$.
+
+Each $\mu_t$ and each $\mu_{s,t}$ is symmetric and infinitely divisible, so it has unique
+\Levy{} data by Lemma~\ref{lem:symmetric-levy-khintchine}: $(A_t, \nu_t)$ for $\mu_t$, which gives
+$\Psi_t$ the displayed form, and $(A_{s,t}, \nu_{s,t})$ for $\mu_{s,t}$. The exponent
+$\Psi_t = \Psi_s + (\Psi_t - \Psi_s)$ is the sum of the exponents of $\mu_s$ and $\mu_{s,t}$, so it
+is of the same form with the data $(A_s + A_{s,t}, \nu_s + \nu_{s,t})$. Uniqueness gives
+$A_t = A_s + A_{s,t}$ and $\nu_t = \nu_s + \nu_{s,t}$. So $A_t - A_s = A_{s,t}$ is positive semidefinite,
+$\nu_t - \nu_s = \nu_{s,t}$ is a positive measure, and $\mu_{s,t}$ has the data
+$(A_t - A_s, \nu_t - \nu_s)$. Since $\Psi_t - \Psi_s$ is the exponent of $\mu_{s,t}$, it is
+nonnegative, and $\widehat\mu_t(\omega)$ is nonincreasing in $t$.
+
+If $\mu_t = \mu_{t'}$ with $t < t'$, then $\widehat\mu_{t,t'} = \widehat\mu_{t'}/\widehat\mu_t = 1$,
+so $\mu_{t,t'} = \delta_0$, against (ND).
+
+Let the family be isotropic and $Q \in \Orth(d)$. The image $Q_*\mu_t$ of the infinitely divisible
+law $\mu_t$ has the Gaussian datum $QA_tQ^{\tp}$ and the \Levy{} measure $Q_*\nu_t$
+(Theorem~\ref{thm:cited-A42}). That theorem restricts the image of $\nu_t$ to
+$\RR^d \setminus \{0\}$, which changes nothing here, since $Q$ is injective and $\nu_t\{0\} = 0$.
+Since $Q_*\mu_t = \mu_t$, uniqueness gives $QA_tQ^{\tp} = A_t$ and $Q_*\nu_t = \nu_t$. Take for $Q$
+the diagonal matrix that changes the sign of the $j$-th coordinate. Then
+$(QA_tQ^{\tp})_{jk} = -(A_t)_{jk}$ for $k \ne j$, so the entries of $A_t$ off the diagonal vanish.
+Take for $Q$ the permutation matrix that exchanges the first and the $k$-th coordinate. Then
+$(A_t)_{kk} = (A_t)_{11}$. So $A_t = a(t)I$ with $a(t) := (A_t)_{11}$.
+
+Every step is machine-checked, and the cited facts are \ledger{A40}, \ledger{A39} and
+\ledger{A42}, with \ledger{A41} through Lemma~\ref{lem:steps-infinitely-divisible}.
+\end{proof}
+
+The pair $(A_t, \nu_t)$ is the \emph{\Levy{} data} of $\mu_t$, in the normalization of
+Section~\ref{subsec:cited-notation}. The \Levy{} measure is the rate of the jumps of each size and
+direction [\sscite{sato1999levy}, Thm.~19.2(i), p.~120].
+
+The proof runs in $\RR^d$, not through the marginals of the kernels. A law on the line can be
+infinitely divisible without being the marginal of a rotation-invariant infinitely divisible law on
+$\RR^d$, and Proposition~\ref{prop:what-does-not-lift} shows this for every line law whose folded
+\Levy{} measure has an atom.
+
+% draft: Lemma 3.3 (§ 3.1), lines 382–392 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: clause (4) added. It states clause (3) at d = 1, the canonical discrete gauge on the line,
+% which chapter 2 uses (the draft's Remark 3.16; the cited-facts catalogue, row A80). It is (1) and
+% (3) read at d = 1, so the statement says nothing new.
+% CHANGED: the trichotomy of clause (2) is proved here from the closed subgroups of (R, +), so that
+% the node does not \uses lem:closed-subgroups, whose proof \uses this node.
+\begin{lemma}[the dilations of a family]
+\label{lem:family-dilations}
+\lean{Pyramids.family_dilations_1, Pyramids.family_dilations_2, Pyramids.family_dilations_3_exists,
+Pyramids.family_dilations_3_relabel, Pyramids.family_dilations_3_unique,
+Pyramids.family_dilations_4}
+\leanok
+\uses{def:family-dimension-d}
+Let $(\mu_{s,t})$ be a symmetric family in dimension $d$, and let $G$ be the set of $\lambda > 0$ for
+which it is $\lambda$-covariant.
+\begin{enumerate}
+\item For $\lambda \in G$ the bijection $S_\lambda$ is unique, and $S_\lambda t > t$ for all $t > 0$
+when $\lambda > 1$.
+\item $G$ is a closed subgroup of $(0,\infty)$. So $G$ is $\{1\}$, some $q^{\ZZ}$ with $q > 1$, or
+$(0,\infty)$.
+\item If $q \in G$ with $q > 1$, there is an increasing homeomorphism $\chi$ of $[0,\infty)$ with
+$\chi S_q = q\chi$. The relabelled family $(\mu_{\chi^{-1}s,\chi^{-1}t})$ then has $S_qt = qt$, the
+\emph{canonical discrete gauge}. Two choices of $\chi$ differ by an element of the group
+% CHANGED: G_q is defined on (0,infinity), as in lem:gauge-group (second blind review, M6); each
+% element extends by g(0) := 0 to [0,infinity), so the clause says the same.
+$\mathcal{G}_q$ of increasing homeomorphisms $g$ of $(0,\infty)$ with $g(qt) = q\,g(t)$, each
+extended to $[0,\infty)$ by $g(0) := 0$.
+\item (The line.) In particular, a symmetric family in dimension $1$ that is $q$-covariant for some
+$q > 1$ has a bijection $S_q$ with no fixed point in $(0,\infty)$, and after the relabelling of (3)
+it has the canonical discrete gauge $S_qt = qt$, unique up to $\mathcal{G}_q$.
+\end{enumerate}
+% CHANGED (2026-11-14, a strengthening): unused hypotheses dropped from the Lean; the print keeps
+% the node's common hypotheses, which its other clauses read.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (fidelity review, 2026-11-15, R44): the status line says that family_dilations_4 is stated for laws on R, not on R^1.
+\statusT\quad\emph{(Cites nothing of its own. \textbf{Hypotheses} (the node's, each with what its
+declarations require; the weaker ones dropped from the Lean on 2026-11-14): $d \ge 1$: same in
+\texttt{family\_dilations\_1}, \texttt{\_2} and \texttt{\_3\_exists}; absent in
+\texttt{\_3\_relabel} and \texttt{\_3\_unique}, which hold in every dimension; symmetric family:
+same, and absent in \texttt{\_3\_unique}; (1) $\lambda \in G$: weaker, \texttt{\_1} requires
+$\lambda$-covariance with $S$ and with $S'$ and not $\lambda > 0$; (3) $q \in G$, $q > 1$: same in
+\texttt{\_3\_exists} and \texttt{\_3\_relabel}, as covariance with a bijection $S$ and $1 < q$;
+weaker in \texttt{\_3\_unique}, which requires the covariance and not $q > 1$; $\chi$ an increasing
+homeomorphism with $\chi S_q = q\chi$: weaker, \texttt{\_3\_relabel} requires an increasing bijection
+of $[0,\infty)$ (\texttt{IsGauge}) with an inverse, and not its continuity, which such a bijection
+has, and \texttt{\_3\_unique} requires the continuity of the second choice only; (4) $d = 1$: same up to
+the identification of $\RR^1$ with $\RR$, \texttt{\_4} being stated for laws on $\RR$
+(\texttt{Measure} $\RR$), not on $\RR^1$, the transfer of a symmetric family to $\RR^1$ being
+\texttt{isSymmetricFamily\_lineEmb}; (4) $q > 1$ and $q$-covariance: same.)}
+\end{lemma}
+
+% CHANGED (wave 2c, 2026-11-13): the proof follows the machine-checked route. In (1), the
+% direction is shown at each scale t on its own, with no fixed-point step and no intermediate value
+% theorem. In (2), closedness bounds S_{lambda_n} t from above only and defines S_lambda from the
+% kernels at lambda and lambda^{-1}. In (3), the continuity of chi follows from its being an
+% increasing map of [0,infinity) onto itself. (4) is read on R through x -> x e_1. The closing
+% paragraph says which steps are checked.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+\begin{proof}
+\leanok
+\uses{lem:family-structure}
+(1) Since $S_\lambda$ is an increasing bijection of $[0,\infty)$, $S_\lambda0 = 0$, so
+$D_\lambda\mu_t = \mu_{S_\lambda t}$. If $S$ and $S'$ both serve, then $\mu_{St} = \mu_{S't}$, and
+$St = S't$ by the injectivity of Lemma~\ref{lem:family-structure}. Put
+$\phi_t := \widehat\mu_t > 0$, so that $\phi_{S_\lambda t}(\omega) = \phi_t(\lambda\omega)$. Let
+$\lambda > 1$ and $t > 0$, and suppose that $S_\lambda t \le t$. Since $\phi_t$ is nonincreasing in
+$t$ (Lemma~\ref{lem:family-structure}), $\phi_t(\lambda\omega) = \phi_{S_\lambda t}(\omega) \ge
+\phi_t(\omega)$ for all $\omega$. Applied at $\lambda^{-1}\omega, \lambda^{-2}\omega, \dots$ this
+gives $\phi_t(\omega) \ge \phi_t(\lambda^{-n}\omega)$ for $n \ge 0$, and $n \to \infty$ gives
+$\phi_t(\omega) \ge \phi_t(0) = 1$, by the continuity of $\phi_t$. Since $\phi_t \le 1$, $\phi_t \equiv 1$,
+so $\mu_t = \delta_0$, against (ND). Hence $S_\lambda t > t$.
+
+(2) $G$ contains $1$. If $\lambda, \lambda' \in G$, then
+$D_{\lambda\lambda'}\mu_{s,t} = D_\lambda\mu_{S_{\lambda'}s, S_{\lambda'}t} =
+\mu_{S_\lambda S_{\lambda'}s, S_\lambda S_{\lambda'}t}$, and applying $D_{\lambda^{-1}}$ to
+$D_\lambda\mu_{s,t} = \mu_{S_\lambda s, S_\lambda t}$ gives
+$D_{\lambda^{-1}}\mu_{s',t'} = \mu_{S_\lambda^{-1}s', S_\lambda^{-1}t'}$. So $G$ is a group, with
+$S_{\lambda\lambda'} = S_\lambda S_{\lambda'}$ and $S_{\lambda^{-1}} = S_\lambda^{-1}$.
+
+The bijections increase with the ratio: if $a < b$ lie in $G$, then $S_at \le S_bt$ for $t \ge 0$.
+Indeed $S_{a^{-1}}S_b$ serves $a^{-1}b > 1$, so by (1) $S_{a^{-1}}S_bt > t$ for $t > 0$, and
+applying $S_a$ gives $S_bt > S_at$.
+
+For closedness let $\lambda_n \in G$ with $\lambda_n \to \lambda > 0$. If $G$ has no element
+above $1$, then, being closed under inverses, $G = \{1\}$, so every $\lambda_n$ is $1$ and
+$\lambda = 1 \in G$. Otherwise $G$ contains some $g_0 > 1$ and its powers, so there is $g \in G$ with
+$g > \lambda_n$ for all large $n$. Fix $t \ge 0$. Then $0 \le S_{\lambda_n}t \le S_gt$ for all
+large $n$, and along a subsequence $S_{\lambda_n}t \to \tau \ge 0$. By (I2) and the continuity of
+$\phi_t$,
+\[
+  \phi_\tau(\omega) = \lim_n\phi_{S_{\lambda_n}t}(\omega) = \lim_n\phi_t(\lambda_n\omega) = \phi_t(\lambda\omega).
+\]
+So $D_\lambda\mu_t = \mu_\tau$, and by injectivity $\tau$ is determined by $t$. Put
+$S_\lambda t := \tau$. The same argument for $\lambda_n^{-1} \to \lambda^{-1}$, with
+$\lambda_n^{-1} \in G$, gives $S'$ with $D_{\lambda^{-1}}\mu_t = \mu_{S't}$ for $t \ge 0$. Then
+$\mu_{S_\lambda S't} = D_\lambda\mu_{S't} = \mu_t$ forces $S_\lambda S't = t$, so $S_\lambda$ maps
+$[0,\infty)$ onto itself. It is strictly increasing: if $t < t'$ and $S_\lambda t' \le S_\lambda t$,
+then
+$\phi_t(\lambda\omega) = \phi_{S_\lambda t}(\omega) \le \phi_{S_\lambda t'}(\omega) = \phi_{t'}(\lambda\omega)
+\le \phi_t(\lambda\omega)$ for all $\omega$, so $\phi_t = \phi_{t'}$ and $\mu_t = \mu_{t'}$, against
+injectivity. So $S_\lambda$ is an increasing bijection of $[0,\infty)$. By
+Lemma~\ref{lem:family-structure},
+$\widehat\mu_{s,t} = \phi_t/\phi_s$, so
+$\widehat\mu_{s,t}(\lambda\omega) = \phi_{S_\lambda t}(\omega)/\phi_{S_\lambda s}(\omega) =
+\widehat\mu_{S_\lambda s, S_\lambda t}(\omega)$, and $\lambda \in G$.
+
+The logarithm maps $G$ onto a closed subgroup $H$ of $(\RR, +)$. If $H \ne \{0\}$, let
+$\ell := \inf(H \cap (0,\infty))$. If $\ell > 0$, then $\ell \in H$ since $H$ is closed, and every
+$h \in H$ is an integer multiple of $\ell$, since $h - \lfloor h/\ell\rfloor\ell \in H \cap [0,\ell)$
+is $0$. So $H = \ell\ZZ$ and $G = q^{\ZZ}$ with $q = e^\ell$. If $\ell = 0$, $H$ contains arbitrarily
+small positive elements, so it is dense, and $H = \RR$ since it is closed.
+
+(3) $S_q$ is continuous, being an increasing bijection of $[0,\infty)$, and $S_qt > t$ for $t > 0$
+by (1). The increasing sequence $S_q^n1$ has no
+finite limit, since a finite limit would be a fixed point of $S_q$, so $S_q^n1 \to \infty$. In the
+same way the decreasing sequence $S_q^{-n}1$ tends to $0$. So every $t > 0$ lies in exactly one
+interval $[S_q^n1, S_q^{n+1}1)$, $n \in \ZZ$. Let $\chi_0$ be any increasing bijection of
+$[1, S_q1)$ onto $[1, q)$, for instance the affine one, and put $\chi(t) := q^n\chi_0(S_q^{-n}t)$ for
+$t \in [S_q^n1, S_q^{n+1}1)$ and $\chi(0) := 0$. Then $\chi S_q = q\chi$, since $S_q$ maps
+$[S_q^n1, S_q^{n+1}1)$ onto $[S_q^{n+1}1, S_q^{n+2}1)$. The map $\chi$ takes each interval
+$[S_q^n1, S_q^{n+1}1)$ increasingly onto $[q^n, q^{n+1})$, so it is strictly increasing and maps
+$[0,\infty)$ onto itself. An increasing map of $[0,\infty)$ onto itself has no jump, so $\chi$ is
+continuous, and it is an increasing homeomorphism of $[0,\infty)$. For the relabelled family, $\chi^{-1}(qs) = S_q\chi^{-1}(s)$ gives
+\[
+  D_q\mu_{\chi^{-1}s, \chi^{-1}t} = \mu_{S_q\chi^{-1}s, S_q\chi^{-1}t} = \mu_{\chi^{-1}(qs), \chi^{-1}(qt)},
+\]
+and (I1), (I2) and (ND) pass to it because $\chi$ is an increasing homeomorphism. If $\chi'$ also has
+$\chi'S_q = q\chi'$, then $g := \chi'\chi^{-1}$ is an increasing homeomorphism of $[0,\infty)$
+with $g(0) = 0$, and $g(qt) = \chi'(S_q\chi^{-1}t) = q\chi'(\chi^{-1}t) = q\,g(t)$. So its
+restriction to $(0,\infty)$ lies in $\mathcal{G}_q$, and $\chi' = g\chi$.
+% CHANGED (2026-11-15, the author's decision on wave 2c's open question): the converse that closed
+% (3), that g chi has the property for every g in G_q, is dropped; the statement never claimed it and
+% it was not checked. Was: "Conversely, let g in G_q. As t decreases to 0, g(t) decreases to a limit
+% L >= 0, and g(t/q) = g(t)/q gives L = L/q, so L = 0. So the extension by g(0) := 0 is an increasing
+% homeomorphism of [0, infinity), and g chi has the property."
+
+(4) is (1) and (3) at $d = 1$. A family on $\RR$ is read as one on $\RR^1$ through $x \mapsto xe_1$,
+which keeps (I1), (I2), (ND), symmetry and the transforms, so the facts of
+Lemma~\ref{lem:family-structure} used above hold on $\RR$.
+
+Every step is machine-checked, and the cited facts enter only through
+Lemma~\ref{lem:family-structure}.
+\end{proof}
+
+% draft: the paragraph after Lemma 3.3 (§ 3.1), line 394 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the paragraph's three definitions made a definition node, so that the chapters that use
+% them can \uses it; its last two sentences stay prose after the node.
+% CHANGED: the identity of the ladder's steps with the dilates of the step from 1 to q moved out of
+% the definition to the prose after it (blind review, flag 15): a definition asserts nothing.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 28):
+% "octave" and "octave step" defined in the node, for any ratio q > 1.
+\begin{definition}[knots, knot kernels and the ladder]
+\label{def:knots-and-ladder}
+\lean{Pyramids.qPowers, Pyramids.knotKernel, Pyramids.ladder}\leanok
+\uses{def:family-dimension-d, lem:family-dilations}
+Let $(\mu_{s,t})$ be a symmetric family in dimension $d$ that is $q$-covariant, $q > 1$, in the
+canonical discrete gauge $S_qt = qt$ of Lemma~\ref{lem:family-dilations}(3). The scales $q^n$,
+$n \in \ZZ$, are its \emph{knots}, the scales at which a pyramid stores a level. The kernels
+$\mu_{q^n}$ are its \emph{knot kernels}. An \emph{octave} is a factor $q$ in scale, an interval
+$[t, qt]$ with $t > 0$, and $\mu_{t,qt}$ is the \emph{octave step} across it. The sequence
+$(\mu_{q^n,q^{n+1}})_{n \in \ZZ}$ of the octave steps between consecutive knots is its \emph{ladder}.
+% CHANGED (fidelity review, 2026-11-15, R8): the status line says which range hypotheses of the
+% definition are not fields of its declarations, and that every consumer carries them.
+\statusT\quad\emph{(A definition. The range $q > 1$ is not a field of \texttt{HasLadder $q$ $\varrho$
+$\mu$}, ``the symmetric family $\mu$, $q$-covariant in the canonical gauge, has the step
+$\mu_{1,q} = \varrho$''; every declaration that uses it carries $1 < q$.)}
+\end{definition}
+
+By covariance $\mu_{q^n,q^{n+1}} = D_{q^n}\mu_{1,q}$, so the ladder is the one step $\mu_{1,q}$ applied
+at every level. The same words are used on a grid (Definition~\ref{def:exact-grid-pyramid}). Which
+scale is called $1$ is a choice in $\mathcal{G}_q$. Between its knots a pyramid has more freedom than
+a relabelling in $\mathcal{G}_q$: its ladder fixes the knot kernels and not the laws between them
+(Proposition~\ref{prop:ladder-knot-kernel}(2)).
+
+A pyramid on a grid applies a lattice law at each step. The last lemma of this section says where
+the jumps of an infinitely divisible lattice law lie. Section~\ref{sec:pyramid-ladder} and
+chapter~5 use it.
+
+% draft: Lemma 5.3 (§ 5.2), lines 772–777 of draft/spatial-hemigroup-pyramids.md; moved here with its
+% proof (adr/0004, decision 3).
+\begin{lemma}[lattice-carried infinitely divisible laws in $\RR^d$]
+\label{lem:lattice-infinitely-divisible}
+\lean{Pyramids.lattice_infinitely_divisible}\leanok
+\uses{thm:cited-A42, thm:cited-A48}
+Let $\eta$ be an infinitely divisible law on $\RR^d$ with generating triplet $(A^{\mathrm S}, \nu, \beta)$,
+carried by a full-rank lattice $\Gamma$. Then $A^{\mathrm S} = 0$, and $\nu$ is a finite measure carried by
+$\Gamma \setminus \{0\}$.
+% CHANGED (wave 2b, 2026-11-13): the held steps named for the machine-checked route (the coordinate
+% maps of a basis of Gamma, no reduction to Z^d).
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (2026-11-23, review round 3 batch C, items 1-2): A42 is proved with no axiom, and A48
+% admits the corollary's statement only, the finiteness being proved in its node.
+\statusA\quad\ledger{A42}\quad\ledger{A48}\quad\emph{(\textbf{Assignment.} \ledger{A42} carries the
+triplet of the image of an infinitely divisible law under a linear map (the coordinate maps of a
+basis of $\Gamma$); its node proves it with no admitted fact. \ledger{A48} carries, on $\RR$, that an infinitely divisible
+law whose support lies in $\ZZ$ has $A^{\mathrm S} = 0$ and a \Levy{} measure carried by $\ZZ$, which
+is finite by the proved second sentence of Theorem~\ref{thm:cited-A48}; its drift clause is not used. Held as [T], with
+the proof below: the coordinates of a basis of $\Gamma$, that $\langle v, A^{\mathrm S}v\rangle = 0$ gives
+$A^{\mathrm S}v = 0$ for a positive semidefinite $A^{\mathrm S}$, and the union bound for the total mass.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$ (the chapter's
+range): absent, \texttt{lattice\_infinitely\_divisible} holds in every dimension; $\eta$ an
+infinitely divisible law: same, a probability measure with \texttt{IsInfinitelyDivisible}; its
+generating triplet $(A^{\mathrm S}, \nu, \beta)$: same, any \texttt{LevyTriplet} $T$ (Sato's convention, the
+drift free) with \texttt{HasTriplet $\eta$ $T$}; $\Gamma$ a full-rank lattice: same, a
+$\ZZ$-\texttt{Submodule} with \texttt{DiscreteTopology} and \texttt{IsZLattice}; $\eta$ carried by
+$\Gamma$: same, $\eta(\Gamma^c) = 0$.)}
+\end{lemma}
+
+% CHANGED (wave 2b, 2026-11-13): the proof follows the machine-checked route, through the
+% coordinates of a basis of Gamma; the printed route went through M^{-1} and Z^d.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 8-9):
+% Theorems A42 and A48 cited at the point of use, A48 for all three conclusions (the finiteness is
+% in its statement); "read at time 1" and the sentence on Sato's proof dropped.
+\begin{proof}
+\leanok
+Let $b_1, \dots, b_d$ be a basis of $\Gamma$ over $\ZZ$. It is a basis of $\RR^d$, and $\Gamma$ is the
+set of points whose coordinates $c_1(x), \dots, c_d(x)$ in this basis are integers. Write
+$c_i(x) = \langle v_i, x\rangle$.
+
+Fix $i$. The image $\eta_i$ of $\eta$ under $c_i$ is an infinitely divisible law on $\RR$, with
+Gaussian coefficient $\langle v_i, A^{\mathrm S}v_i\rangle$ and \Levy{} measure $\nu_i$, the image of $\nu$
+under $c_i$ restricted to $\RR \setminus \{0\}$ (Theorem~\ref{thm:cited-A42}). Since $\eta$ is
+carried by $\Gamma$, $\eta_i$ is carried by $\ZZ$, so its support lies in the closed set $\ZZ$. By
+Theorem~\ref{thm:cited-A48}, $\langle v_i, A^{\mathrm S}v_i\rangle = 0$, and $\nu_i$ is finite and carried
+by $\ZZ$.
+
+Since $A^{\mathrm S}$ is positive semidefinite, $\langle v_i, A^{\mathrm S}v_i\rangle = 0$ gives $A^{\mathrm S}v_i = 0$. The vectors
+$v_i$ span $\RR^d$: expanding $e_m$ in the basis gives $\sum_i(b_i)_k\,c_i(e_m) = (e_m)_k$, so
+$e_k = \sum_i(b_i)_kv_i$. So $A^{\mathrm S} = 0$.
+
+The set $\{x : c_i(x) \notin \ZZ\}$ does not contain $0$, so
+$\nu(\{x : c_i(x) \notin \ZZ\}) = \nu_i(\RR \setminus \ZZ) = 0$ for every $i$. A point outside
+$\Gamma$ has a coordinate outside $\ZZ$, so $\nu$ is carried by $\Gamma$, and by
+$\Gamma \setminus \{0\}$, since a \Levy{} measure puts no mass at $0$. Finally, every $x \ne 0$ has
+a nonzero coordinate, so
+$\nu(\RR^d \setminus \{0\}) \le \sum_i\nu(\{x : c_i(x) \ne 0\}) = \sum_i\nu_i(\RR \setminus \{0\}) < \infty$.
+
+Every step is machine-checked, and the cited facts are \ledger{A42} and \ledger{A48}.
+\end{proof}
+
+% ---------------------------------------------------------------------------------------------------
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 18):
+% retitled; "lattice" is kept for point lattices.
+\section{Three nested strata}
+\label{sec:pyramid-strata}
+
+Covariance under $q$ is a condition on the \Levy{} data at the scales $t$ and $qt$. Written that way
+it says that every kernel is semi-selfdecomposable, and it shows the three strata as nested classes
+of data.
+
+A law is \emph{self-decomposable} if, for every $0 < c < 1$, it is the law of $cX + Y$ with $X$ of that
+law and $Y$ independent of $X$ [\sscite{sato1999levy}, Def.~15.1, p.~90]
+(Definition~\ref{def:self-decomposable}). Sato writes the ratio as $b = c^{-1} > 1$, with
+$\widehat\mu(z) = \widehat\mu(b^{-1}z)\,\widehat\rho_b(z)$, and calls $b$ a \emph{span} in the
+semi-selfdecomposable case. The span $q > 1$ below is his $b$. On the line the kernels of the fully
+covariant families are exactly the symmetric self-decomposable laws
+\prog{V-line v0.1}{Thm.~7.3, p.~37}. In $\RR^d$, with rotation invariance, they are exactly the
+rotation-invariant self-decomposable laws \prog{iso v0.1}{Thm.~3.6, p.~13}, whose exponents are
+the $F(|\cdot|)$ with $F \in \mathcal{A}_d$ (Theorem~\ref{thm:cited-A35}(2)). Requiring for the
+decomposition at the one ratio $c = 1/q$ alone, with any residual law, gives Lo\`eve's wider class
+of $b$-decomposable laws. The class of Maejima and Naito requires in addition that the residual be
+infinitely divisible [\sscite{maejima1998semi}, Def.~3.1, p.~19, and Thm.~3.1(i), p.~20]. It is the semi-selfdecomposable
+class of Definition~\ref{def:self-decomposable}: $\widehat\mu = \widehat\mu(q^{-1}\,\cdot)\,\widehat\varrho_q$
+for some infinitely divisible law $\varrho_q$, the residual, with the span written $q$.
+
+% CHANGED (pass 6, the author's review of Section 2, 2026-11-19): the chapter's own definition of
+% semi-selfdecomposable laws (def:semi-selfdecomposable, draft Definition 3.4) is merged into
+% def:self-decomposable, which already states it in R^d with span and residual and binds the same
+% Lean names. Its references point there.
+A semi-selfdecomposable law $\mu$ with span $q$ is infinitely divisible and its residual
+$\varrho_q$ is unique [\sscite{sato1999levy}, Prop.~15.5,
+p.~93] (Theorem~\ref{thm:cited-A43}). The same proposition says that a self-decomposable law is
+infinitely divisible with infinitely divisible residuals, so it is semi-selfdecomposable for every
+span. An infinitely divisible law with \Levy{} measure $\nu$ is semi-selfdecomposable with span $q$
+iff $D_q\nu \ge \nu$, with no condition on its Gaussian part [\sscite{sato1999levy}, Thm.~15.8,
+p.~94] (Theorem~\ref{thm:cited-A44}).
+
+The residual must be infinitely divisible. Without that requirement a \emph{refinable} law would
+qualify, one that satisfies the \emph{knot relation} $D_q\mu = \mu * w$ for some mask $w$, being its
+own dilate smoothed by $w$, as the cubic B-spline is (Proposition~\ref{prop:equivalent-weights}(2)).
+Maejima and Naito separate the two by name: their remark gives the weaker notion Lo\`eve's name,
+$b$-decomposable, and notes that such laws need not be infinitely divisible
+[\sscite{maejima1998semi}, Rem.~3.1, pp.~19--20]. Proposition~\ref{prop:equivalent-weights}(2) is an
+instance.
+
+% draft: Lemma 3.5 (§ 3.2), lines 406–410 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: "in a gauge with S_q t = qt, it is q-covariant" written as "q-covariant with S_q t = qt";
+% "determined by its restriction to the scales t in [1, q)" read as determined by its kernels at
+% those scales, which is what the proof shows.
+\begin{lemma}[discrete covariance in \Levy{} coordinates]
+\label{lem:discrete-covariance-levy}
+\lean{Pyramids.discrete_covariance_levy, Pyramids.discrete_covariance_levy_semi,
+Pyramids.discrete_covariance_levy_determined}
+\leanok
+\uses{def:family-dimension-d, def:self-decomposable, lem:family-structure, thm:cited-A39}
+Let $(\mu_{s,t})$ be a symmetric family in dimension $d$, with the data $(A_t, \nu_t)$ of
+Lemma~\ref{lem:family-structure}, and let $q > 1$. The family is $q$-covariant with $S_qt = qt$ iff
+$\Psi_{qt}(\omega) = \Psi_t(q\omega)$ for all $t \ge 0$ and $\omega \in \RR^d$, iff
+\begin{equation}
+\label{eq:discrete-covariance-levy}
+  A_{qt} = q^2A_t, \qquad \nu_{qt} = D_q\nu_t \qquad \text{for all } t > 0.
+\end{equation}
+Every $\mu_t$ is then semi-selfdecomposable with span $q$, and the family is determined by its
+kernels $\mu_t$, $t \in [1, q)$.
+% CHANGED (wave 2c, 2026-11-13): the annotation names (iii), which the checked proof spends
+% inside isSymData_unique (records/pyramids/WAVE2-report-2c.md).
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A39}\quad\emph{(\textbf{Assignment.} \ledger{A39} (uniqueness, (ii)) carries
+the equivalence of the exponent condition with (\ref{eq:discrete-covariance-levy}), after
+\ledger{A39}(iii) has shown that a law with symmetric data is infinitely divisible. Held as [T],
+with the proof below: the equivalence of covariance with the exponent condition, the exponent of a
+dilate by a change of variables, the residual, and the reconstruction from one octave. The infinite
+divisibility of the steps is Lemma~\ref{lem:family-structure}, used through \texttt{uses}.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$: same, in all
+three; symmetric family: same (in \texttt{\_determined} for both families compared); the data
+$(A_t, \nu_t)$: same, \texttt{discrete\_covariance\_levy} quantifies over every $D$ with $\mu_t$
+having the data $D(t)$, $t \ge 0$, and \texttt{\_semi}, \texttt{\_determined} do not read them;
+$q > 1$: same; ``then'' (covariance with $S_qt = qt$): same, a hypothesis of \texttt{\_semi} and,
+for both families, of \texttt{\_determined}.)}
+\end{lemma}
+
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 9):
+% the cited fact is cited by its interface node at the point of use, here and in the rest of the
+% chapter.
+\begin{proof}
+\leanok
+\uses{lem:family-structure}
+The transform of $D_q\mu$ is $\widehat\mu(q\,\cdot)$. If the family is $q$-covariant with
+$S_qt = qt$, then at the pairs $(0, t)$ it gives $D_q\mu_t = \mu_{qt}$, which is
+$\Psi_{qt}(\omega) = \Psi_t(q\omega)$. Conversely, if this holds, Lemma~\ref{lem:family-structure}
+gives, for every pair,
+$\widehat\mu_{s,t}(q\omega) = e^{-(\Psi_t(q\omega) - \Psi_s(q\omega))} =
+e^{-(\Psi_{qt}(\omega) - \Psi_{qs}(\omega))} = \widehat\mu_{qs,qt}(\omega)$.
+
+The change of variables $y = qx$ gives
+\[
+  \Psi_t(q\omega) = \langle\omega, q^2A_t\omega\rangle + \int\bigl(1 - \cos\langle\omega, y\rangle\bigr)\,D_q\nu_t(dy).
+\]
+Here $D_q\nu_t$ is a symmetric \Levy{} measure, since it puts no mass at $0$ and
+$\int(1 \wedge |y|^2)\,D_q\nu_t(dy) = \int(1 \wedge q^2|x|^2)\,\nu_t(dx) \le q^2\int(1 \wedge |x|^2)\,\nu_t(dx)$.
+So $\Psi_t(q\,\cdot)$ is the exponent with the data $(q^2A_t, D_q\nu_t)$, and by the uniqueness of the
+generating triplet (Theorem~\ref{thm:cited-A39}(ii)) it equals $\Psi_{qt}$ iff
+(\ref{eq:discrete-covariance-levy}) holds at $t$. At $t = 0$ both sides vanish.
+
+Under covariance, $D_q\mu_t = \mu_{qt} = \mu_{t,qt} * \mu_t$, so
+$\widehat\mu_t(q\omega) = \widehat\mu_t(\omega)\widehat\mu_{t,qt}(\omega)$. Replacing $\omega$ by
+$q^{-1}\omega$ gives $\widehat\mu_t = \widehat\mu_t(q^{-1}\,\cdot)\,\widehat\varrho_q$ with the residual
+$\varrho_q := D_{q^{-1}}\mu_{t,qt}$. It is infinitely divisible because $\mu_{t,qt}$ is, by
+Lemma~\ref{lem:family-structure}, and the dilate of an $n$-th convolution root is an $n$-th
+convolution root of the dilate. This is what Definition~\ref{def:self-decomposable} requires.
+Finally, every $t > 0$ is $q^nt'$ with $n \in \ZZ$ and $t' \in [1, q)$, and covariance gives
+$\mu_t = D_{q^n}\mu_{t'}$. Also $\mu_0 = \delta_0$, and every step is determined by
+$\widehat\mu_{s,t} = \widehat\mu_t/\widehat\mu_s$.
+
+% CHANGED (wave 2c, 2026-11-13): a closing sentence says which steps are checked and which cited
+% facts enter; the route is the printed one.
+Every step is machine-checked, and the cited facts are \ledger{A39}(ii)--(iii) and those of
+Lemma~\ref{lem:family-structure}.
+\end{proof}
+
+The converse builds a family from data on one octave of scales.
+Proposition~\ref{prop:ladder-knot-kernel}(2) and Theorem~\ref{thm:selection-stratum-two} use it.
+
+% draft: Lemma 3.6 (§ 3.2), lines 414–416 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the exponent Psi_t of the data and the extension by (3.1) written out in the statement.
+\begin{lemma}[synthesis]
+\label{lem:synthesis}
+\lean{Pyramids.synthesis}
+\leanok
+\uses{def:family-dimension-d, lem:discrete-covariance-levy, thm:cited-A39}
+Let $q > 1$, and let $(A_t, \nu_t)_{t \in [1,q]}$ be \Levy{} data, $A_t$ positive semidefinite and
+$\nu_t$ a symmetric \Levy{} measure, with
+$\Psi_t(\omega) := \langle\omega, A_t\omega\rangle + \int(1 - \cos\langle\omega, x\rangle)\,\nu_t(dx)$.
+Suppose that
+\begin{itemize}
+\item $t \mapsto \Psi_t(\omega)$ is continuous on $[1,q]$ for each $\omega$;
+\item for $1 \le s < t' \le q$ the difference $(A_{t'} - A_s, \nu_{t'} - \nu_s)$ is the data of a law,
+positive semidefinite and a positive measure, and is not zero;
+\item $(A_q, \nu_q) = (q^2A_1, D_q\nu_1)$.
+\end{itemize}
+Extend the data to $(0,\infty)$ by (\ref{eq:discrete-covariance-levy}), that is
+$(A_{q^nt}, \nu_{q^nt}) := (q^{2n}A_t, D_{q^n}\nu_t)$ for $t \in [1, q)$ and $n \in \ZZ$, and put
+$\Psi_0 := 0$. Then the laws $\mu_{s,t}$ with transform $e^{-(\Psi_t - \Psi_s)}$ form a symmetric
+$q$-covariant family in dimension $d$ in the canonical gauge $S_qt = qt$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A39}\quad\emph{(\textbf{Assignment.} \ledger{A39} carries the existence of an
+infinitely divisible law with given data ((iii)), for every step, and the uniqueness ((ii)) behind
+(ND). Held as [T], with the proof below: the consistency of the extension at the knots, the
+monotonicity across octaves, the axioms (I1) and (I2), symmetry and covariance.
+\textbf{Hypotheses} (the node's, each with what \texttt{synthesis} requires): $d \ge 1$ (the
+chapter's range): absent, every dimension; $q > 1$: same; the data on $[1,q]$, $A_t$ positive
+semidefinite and $\nu_t$ a symmetric \Levy{} measure: same, a map $D$ into \texttt{SymLevyData}
+read only on $[1,q]$; continuity of $\Psi_t(\omega)$ on $[1,q]$: same; the differences for
+$1 \le s < t' \le q$: weaker, it requires $A_{t'} - A_s$ positive semidefinite, $\nu_s \le \nu_{t'}$
+and the pair nonzero, and not that the difference be the data of a law, which the proof derives;
+$(A_q, \nu_q) = (q^2A_1, D_q\nu_1)$: same.)}
+\end{lemma}
+
+% CHANGED (wave 2d, 2026-11-13): the proof follows the machine-checked route. It says how the
+% difference of two Levy measures is built and made symmetric, gets the monotonicity of Psi_t from
+% the bound |mu-hat| <= 1, and reads the continuity at 0 through Psi_1 = -log mu-hat_1; a closing
+% paragraph says which steps are checked and which cited facts enter.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 9, 20):
+% Theorem A39 cited at the point of use; the sets S_n renamed E_n, S_lambda being the bijections.
+\begin{proof}
+\leanok
+\uses{lem:discrete-covariance-levy}
+For $t$ in the octave $[q^n, q^{n+1}]$ the extension has the Gaussian part $q^{2n}A_{q^{-n}t}$ and
+the \Levy{} measure $D_{q^n}\nu_{q^{-n}t}$. By the change of variables in the proof of
+Lemma~\ref{lem:discrete-covariance-levy}, its exponent is
+$\Psi_t(\omega) = \Psi_{q^{-n}t}(q^n\omega)$. Each $\nu_t$ is a symmetric \Levy{} measure, also for
+$t < 1$, where $n < 0$ and $D_{q^n}$ contracts. Indeed $D_c$ preserves symmetry and puts no mass at
+$0$, and for every $c > 0$ and every \Levy{} measure $\nu$,
+\[
+  \int\bigl(1 \wedge |y|^2\bigr)\,D_c\nu(dy) = \int\bigl(1 \wedge c^2|x|^2\bigr)\,\nu(dx)
+  \le \max(1, c^2)\int\bigl(1 \wedge |x|^2\bigr)\,\nu(dx),
+\]
+since $1 \wedge c^2u \le 1 \wedge u$ for $c \le 1$ and $1 \wedge c^2u \le c^2(1 \wedge u)$ for
+$c \ge 1$. At the knot $q^{n+1}$ the two octaves give
+$q^{2n}A_q = q^{2n+2}A_1$ and $D_{q^n}\nu_q = D_{q^{n+1}}\nu_1$ by the gluing condition, so the
+extension is consistent. Within an octave the differences of data are $q^{2n}$ times positive
+semidefinite matrices and $D_{q^n}$-images of positive measures, nonzero when $s < t'$, since
+$D_{q^n}$ and multiplication by $q^{2n}$ are injective. Write $(A, \nu) \le (A', \nu')$ when
+$A' - A$ is positive semidefinite and $\nu \le \nu'$ setwise. This order is transitive, and
+antisymmetric in both components. So if $(A_s, \nu_s) \le (A_u, \nu_u) \le (A_t, \nu_t)$ and the
+two ends agree, the middle agrees with them. Chaining the octaves through the knots in between,
+it follows that $(A_s, \nu_s) \le (A_t, \nu_t)$ with the two data different, for $0 < s < t$. For
+$s = 0 < t$ the data $(0, 0)$ lie below $(A_{t/q}, \nu_{t/q})$, which lie below and differ from
+$(A_t, \nu_t)$, so $(A_t, \nu_t) \ne (0, 0)$.
+
+The difference of two ordered \Levy{} measures $\nu_s \le \nu_t$ is a measure: $\nu_s$ is finite
+on each of the disjoint sets $E_n := T_n \setminus (T_0 \cup \dots \cup T_{n-1})$, where
+$T_n := \{0\} \cup \{|x| > 1/(n+1)\}$, which cover $\RR^d$. The sum over $n$ of the differences of
+the restrictions to $E_n$ is a measure $\rho$ with $\rho + \nu_s = \nu_t$. Its reflection
+$\check\rho$ has $\check\rho + \nu_s = \nu_t$ too, as $\nu_s$ and $\nu_t$ are symmetric, so
+$\tfrac12(\rho + \check\rho)$ is a symmetric measure with the same property. It is at most
+$\nu_t$, so it is a \Levy{} measure. With the matrix $A_t - A_s$ it gives symmetric data whose
+exponent is $\Psi_t - \Psi_s$, by the linearity of the exponent in the data.
+
+So every difference of data is the data of an infinitely divisible law, by
+% CHANGED (2026-11-23, review round 3, s1-3.S5): wording.
+Theorem~\ref{thm:cited-A39}(iii). Its transform is $e^{-(\Psi_t - \Psi_s)}$ by the symmetric form of the exponent (Lemma~\ref{lem:symmetric-levy-khintchine}). Let now
+$\mu_{s,t}$ be any laws with these transforms. The transform is even in $\omega$, so the laws are
+symmetric. (I1) is the additivity of exponents, and $\mu_{t,t} = \delta_0$. (ND): if
+$\mu_{s,t} = \delta_0$ for some $s < t$, then $\delta_0$ has the data $(A_t - A_s, \nu_t - \nu_s)$
+and the zero data, and the uniqueness of the triplet (Theorem~\ref{thm:cited-A39}(ii))
+makes them equal, against $(A_s, \nu_s) \ne (A_t, \nu_t)$. Covariance:
+$\Psi_{qt}(\omega) = \Psi_t(q\omega)$ holds by construction, so
+$\widehat\mu_{s,t}(q\omega) = e^{-(\Psi_t(q\omega) - \Psi_s(q\omega))} = e^{-(\Psi_{qt}(\omega) -
+\Psi_{qs}(\omega))} = \widehat\mu_{qs,qt}(\omega)$, that is $D_q\mu_{s,t} = \mu_{qs,qt}$.
+
+For (I2) it suffices that $t \mapsto \Psi_t(\omega)$ is continuous on $[0,\infty)$. On each closed
+octave $[q^n, q^{n+1}]$ it is $t \mapsto \Psi_{q^{-n}t}(q^n\omega)$, continuous by hypothesis, and
+a point $t > 0$ is interior to the union of two adjacent closed octaves. At $t \to 0$: since
+$|\widehat\mu_{s,t}| \le 1$, $e^{-(\Psi_t - \Psi_s)} \le 1$, so $\Psi_t(\omega)$ is nondecreasing
+in $t$ and nonnegative. For $t \le q^{-m}$ it follows that
+$0 \le \Psi_t(\omega) \le \Psi_{q^{-m}}(\omega) = \Psi_1(q^{-m}\omega)$. Since
+$\Psi_1 = -\log\widehat\mu_{0,1}$ and the transform of a law is continuous, this tends to
+$\Psi_1(0) = 0$ as $m \to \infty$.
+
+Every step is machine-checked, and the cited facts are \ledger{A39}(iii), for the existence of the
+laws, and \ledger{A39}(ii), for (ND).
+\end{proof}
+
+The class of the fully covariant families has a name. Recall from chapter~2 that $\mathcal{A}_d$ is
+the set of admissible $F$ for which $F(|\cdot|)$ is the exponent of a self-decomposable law on
+$\RR^d$. By \prog{iso v0.1}{Prop.~3.11(1)--(2), pp.~15--16} these are the exponents of the
+\emph{isotropic origin data} $(a_0, k_d)$ of \prog{iso v0.1}{Def.~3.10, p.~15}
+(Definition~\ref{def:isotropic-origin-data}), the isotropic paper's $(a, k_d)$. These are a Gaussian
+coefficient $a_0 \ge 0$, entering as $\tfrac12a_0|\omega|^2$, and a nonincreasing \emph{polar profile} $k_d$, which gives the \Levy{}
+measure the radial density $k_d(|x|)\bigl(|S^{d-1}|\,|x|^d\bigr)^{-1}$. The profile is chosen so
+that jumps of length between $r_1$ and $r_2$ occur at the rate $\int_{r_1}^{r_2}k_d(r)\,dr/r$, as
+on the line.
+
+By Lemma~\ref{lem:family-dilations}(2) the ratios under which a symmetric family is covariant form
+one of three groups: $\{1\}$, some $q^{\ZZ}$, or $(0,\infty)$. Fixing $q$ and asking whether $q$
+lies in that group sorts the families into three nested classes.
+
+% CHANGED (pass 6 of the theory paper, 2026-11-19; the author's review of section 3): the strata,
+% defined in the prose before Theorem 3.7 until now, are a numbered definition.
+\begin{definition}[the three strata]
+\label{def:strata}
+\lean{Pyramids.IsFullyCovariantLaws}\leanok
+\uses{def:family-dimension-d}
+Let $d \ge 1$ and $q > 1$. \emph{Stratum~1} is the class of the symmetric families in dimension
+$d$, those with (I1), (I2), (ND) and symmetry. \emph{Stratum~2} is the class of those that are
+$q$-covariant. \emph{Stratum~3} is the class of those that are $\lambda$-covariant for every
+$\lambda > 0$, the \emph{fully covariant} families. A family is \emph{strictly} in stratum~$k$ if it
+is in stratum~$k$ and not in stratum~$k + 1$. The same words are used for the isotropic families.
+\statusT\quad\emph{(A definition. Stratum~1 is \texttt{IsSymmetricFamily} at $E = \RR^d$,
+stratum~2 adds \texttt{IsLamCovariant $\mu$ $q$}, and stratum~3 is \texttt{IsFullyCovariantLaws};
+the classes are not declarations of their own, and the range $q > 1$ is carried by every
+declaration that uses them.)}
+\end{definition}
+
+The word stratum is used in this sense only. A family with the group $\{1\}$ is strictly in
+stratum~1 for every $q$. One with the group $q^{\ZZ}$ is strictly in stratum~2 for that $q$.
+Clauses (1), (2) and (3) of the next theorem describe the three strata in \Levy{} coordinates.
+
+% draft: Theorem 3.7 (§ 3.2), lines 420–428 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: split from Theorem 3.7: its last sentence, the strictness of the inclusions, is
+% thm:lattice-strata-strict, after the two examples it rests on (whose proofs use clause (1)).
+% CHANGED: clause (2)'s "in the canonical gauge" written as "with S_q t = qt"; clause (3)'s citation
+% of [iso v0.1, Prop. 3.11] moved to the comment after the theorem, which reads (3) in the data of (1).
+% CHANGED: clause (1)'s direct half spelled out (blind review, flag 20) in place of "the conclusions
+% of Lemma 3.2 hold"; the converse's differences written ((a(t) - a(s))I, ...) and its Psi_t defined.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 4, 18):
+% retitled "the three strata", and clause (1) relabelled "(Every family.)": it covers every
+% isotropic family, covariant or not, the strata being nested (the prose before the node). The
+% clauses are unchanged.
+\begin{theorem}[the three strata in $\RR^d$]
+\label{thm:lattice-strata}
+\lean{Pyramids.lattice_strata_1, Pyramids.lattice_strata_1_converse, Pyramids.lattice_strata_2,
+Pyramids.lattice_strata_3}
+\leanok
+\uses{def:family-dimension-d, def:strata, lem:isotropic-symmetric, lem:family-structure, def:self-decomposable, thm:cited-A39, thm:cited-A31}
+Let $(\mu_{s,t})$ be an isotropic family in dimension $d$, with the data $(a(t)I, \nu_t)$ of
+Lemma~\ref{lem:family-structure}.
+\begin{enumerate}
+\item (Every family.) The data vanish at $t = 0$, $a$ and $\nu_t$ are nondecreasing, the difference
+$((a(t) - a(s))I, \nu_t - \nu_s)$ is nonzero for $s < t$, and $t \mapsto \Psi_t(\omega)$ is
+continuous for each $\omega$. Conversely, let $(a(t)I, \nu_t)_{t \ge 0}$ be rotation-invariant
+\Levy{} data
+% CHANGED (2026-11-14, a strengthening): "zero at t = 0" dropped from the converse; the laws with
+% transform e^{-(Psi_t - Psi_s)} read only the differences of the data, and the check uses neither.
+with $((a(t) - a(s))I, \nu_t - \nu_s)$ the data of a law and nonzero
+for $s < t$, and let $\Psi_t(\omega) := a(t)|\omega|^2 + \int(1 - \cos\langle\omega, x\rangle)\,\nu_t(dx)$
+be continuous in $t$ for each $\omega$. Then the laws with transform $e^{-(\Psi_t - \Psi_s)}$ form an
+isotropic family.
+% CHANGED (fidelity review, 2026-11-16, R50): "Let q > 1." printed in the clause, the ratio that
+% lattice_strata_2 assumes and the span q of def:semi-selfdecomposable needs (the author's decision).
+\item (Covariance under one dilation.) Let $q > 1$. The family is $q$-covariant with $S_qt = qt$ iff
+$a(qt) = q^2a(t)$ and $\nu_{qt} = D_q\nu_t$ for all $t > 0$. Every $\mu_t$ is then
+semi-selfdecomposable with span $q$, and the kernels at the scales $q^nt$, $n \in \ZZ$, are the
+$D_{q^n}$-images of the kernel at $t$.
+% CHANGED: "gauge" defined in the clause, as in thm:cited-A31 (second blind review, M2).
+\item (Full covariance.) The family is $\lambda$-covariant for every $\lambda > 0$ iff, in some gauge
+$\chi$, an increasing bijection of $[0,\infty)$, so that $\chi(0) = 0$, one has
+$\Psi_t = F(\chi(t)|\cdot|)$ with $F \in \mathcal{A}_d$ \prog{iso v0.1}{Thm.~3.6, p.~13}.
+\end{enumerate}
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (fidelity review, 2026-11-16, R50): (2)'s ratio now reads "same", q > 1 being printed.
+\statusA\quad\ledger{A39}\quad\ledger{A31}\quad\emph{(\textbf{Assignment.} \ledger{A39} carries the
+converse of (1): the existence of each step's law ((iii)) and (ND) by uniqueness ((ii)).
+\ledger{A31}, the classification in $\RR^d$, carries (3) in both directions. Held as [T], with the
+proof below: the direct half of (1) from Lemma~\ref{lem:family-structure}, (I1)--(I3) of the
+converse, and (2) from Lemma~\ref{lem:discrete-covariance-levy}. The polar reading of (3), through
+the isotropic paper's Prop.~3.11(3) (A36), is a comment after the theorem and not part of it.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$: same, in all
+four; isotropic family: same, \texttt{IsIsotropicFamily}, in \texttt{lattice\_strata\_1},
+\texttt{\_2} and \texttt{\_3}, the converse building its family; the data $(a(t)I, \nu_t)$ of
+Lemma~\ref{lem:family-structure}: same, \texttt{\_1} and \texttt{\_2} quantify over every $D$
+with $\mu_t$ having the data $D(t)$, $t \ge 0$, and every $a$ with $A_t = a(t)I$, and
+\texttt{\_3} requires $D$ and not $a$ (weaker); (1), converse, rotation-invariant \Levy{} data
+$(a(t)I, \nu_t)_{t \ge 0}$: same, \texttt{SymLevyData} with $A_t = a(t)I$ and $\nu_t$ rotation
+invariant; the difference the data of a law and nonzero for $s < t$: same, read as
+$a(s) \le a(t)$, $\nu_s \le \nu_t$ and the pair nonzero; $\Psi_t(\omega)$ continuous in $t$: same,
+on $[0,\infty)$; (2) $q > 1$: same, \texttt{\_2} requires $1 < q$; (3) no further hypothesis.)}
+\end{theorem}
+
+% CHANGED (wave 2f, 2026-11-14): the proof follows the machine-checked route; (ND) of the converse
+% now compares the data of the two scales, and the converse no longer uses that the data vanish at 0.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 9):
+% Theorems A39 and A31 cited at the point of use, and (3) reads the axioms of the isotropic paper
+% through their interface node def:isotropic-cascade-family.
+\begin{proof}
+\leanok
+\uses{lem:family-structure, lem:discrete-covariance-levy, def:isotropic-cascade-family}
+(1) The direct half is Lemma~\ref{lem:family-structure}. The data vanish at $t = 0$ because
+$\mu_0 = \delta_0$, $t \mapsto \Psi_t(\omega) = -\log\widehat\mu_t(\omega)$ is continuous by (I2),
+and a difference of data is nonzero for $s < t$ by (ND). For the converse, each difference of data is
+the data of an infinitely divisible law (Theorem~\ref{thm:cited-A39}(iii)), with transform
+% CHANGED (2026-11-23, review round 3, s1-3.S5): wording.
+$e^{-(\Psi_t - \Psi_s)}$ by the symmetric form of the exponent (Lemma~\ref{lem:symmetric-levy-khintchine}), since a rotation-invariant measure is symmetric. (I1) is the
+additivity of exponents, and (I2) is the continuity of $\Psi_t(\omega)$. For (I3) let
+$Q \in \Orth(d)$. The data are rotation invariant, so the change of variables $y = Q^{\tp}x$ gives
+$\Psi_t(Q\omega) = \Psi_t(\omega)$, and $\widehat{Q_*\mu_{s,t}}(\omega) = \widehat\mu_{s,t}(Q^{\tp}\omega)
+= \widehat\mu_{s,t}(\omega)$. For (ND), let $s < t$ and suppose $\mu_{s,t} = \delta_0$. Then
+$\Psi_t = \Psi_s$. The law with the data of $t$ (Theorem~\ref{thm:cited-A39}(iii)) then
+also has the data of $s$, so the two data agree by the uniqueness of the triplet
+(Theorem~\ref{thm:cited-A39}(ii)): $a(s) = a(t)$ and $\nu_s = \nu_t$, against the
+hypothesis.
+
+% CHANGED (2026-11-23, review round 3, s1-3.F1): wording.
+(2) is Lemma~\ref{lem:discrete-covariance-levy}, with $A_t = a(t)I$, as the statement assumes. The kernels at $q^nt$ follow by iterating $D_q\mu_t = \mu_{qt}$ and
+its inverse $D_{q^{-1}}\mu_{qt} = \mu_t$.
+
+(3) An isotropic family that is $\lambda$-covariant for every $\lambda > 0$ satisfies (I1)--(I4) and
+(ND) of Definition~\ref{def:isotropic-cascade-family}, (I4) being exactly that. By
+Theorem~\ref{thm:cited-A31} there are a gauge $\chi$ and an $F \in \mathcal{A}_d$,
+$F \not\equiv 0$, with
+$\widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr)$. At $s = 0$,
+where $\chi(0) = 0$ and $F(0) = 0$, this is $\Psi_t = F(\chi(t)|\cdot|)$. Conversely, if
+$\Psi_t = F(\chi(t)|\cdot|)$ with $F \in \mathcal{A}_d$, then $F \not\equiv 0$ by (ND), and
+Lemma~\ref{lem:family-structure} gives
+$\widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr)$. The converse
+half of Theorem~\ref{thm:cited-A31} makes the family satisfy (I4), that is, it is
+$\lambda$-covariant for every $\lambda > 0$.
+\end{proof}
+
+In the data of clause (1), \prog{iso v0.1}{Prop.~3.11(3), p.~16} writes the $F$ of clause (3)
+through isotropic origin data $(a_0, k_d)$ with $k_d$ nonincreasing. The coefficient $a(t)$ of
+clause (1), which multiplies $|\omega|^2$, is then $a(t) = \tfrac12a_0\chi(t)^2$.
+
+Two examples show the strata apart. The first is strictly in stratum~1 for every $q$, and the
+second strictly in stratum~2. Both put the jumps on spheres. Let $\sigma_h$ be the uniform
+probability on the sphere of radius $h$ about $0$, and $\Omega_d(r) := \int\cos(r\eta_1)\,\sigma_1(d\eta)$
+its normalized transform, so that $\widehat\sigma_h(\omega) = \Omega_d(h|\omega|)$.
+
+% draft: Example 3.8 (§ 3.2), line 432 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the example's claims stated as a proposition, with sigma_h and Omega_d recalled in the
+% statement; "in stratum 1" written as "lambda-covariant for no lambda other than 1". Its sentences on
+% Lindeberg's discrete scale space and on a preferred length stay prose after the node.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 4):
+% retitled "strictly in stratum 1", the strata being nested; the statement is unchanged.
+\begin{proposition}[an isotropic family strictly in stratum 1]
+\label{prop:stratum-one-example}
+\lean{Pyramids.stratum_one_example_data, Pyramids.stratum_one_example}
+\leanok
+% CHANGED (wave 3d, 2026-11-14): thm:cited-A39 dropped from the uses and the status line; the
+% checked proof applies Thm. 15.8 to the generating triplet that the data of mu_t give, and reads no
+% uniqueness of the triplet (A39 enters only through thm:lattice-strata and lem:family-structure).
+\uses{thm:lattice-strata, lem:family-structure, lem:family-dilations, lem:discrete-covariance-levy, thm:cited-A44}
+Let $d \ge 1$ and $h > 0$, let $\sigma_h$ be the uniform probability on the sphere of radius $h$ about
+$0$ in $\RR^d$, and $\Omega_d(r) := \int\cos(r\eta_1)\,\sigma_1(d\eta)$. Put $A_t := 0$ and
+$\nu_t := t\,\sigma_h$, so that $\Psi_t(\omega) = t\bigl(1 - \Omega_d(h|\omega|)\bigr)$. These data
+define an isotropic family. Its kernel $\mu_t$ is the law of a random walk with steps of the fixed
+length $h$ in uniform directions, after a Poisson number of steps with mean $t$. No $\mu_t$, $t > 0$,
+is semi-selfdecomposable for any span, and the family is $\lambda$-covariant for no $\lambda \ne 1$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A44}\quad\emph{(\textbf{Assignment.} \ledger{A44} carries the criterion
+$D_q\nu \ge \nu$ for semi-selfdecomposability, applied to the generating triplet $(0, t\sigma_h, 0)$
+that the data of $\mu_t$ give. Held as [T], with the proof below: the data meet
+Theorem~\ref{thm:lattice-strata}(1), the exponent and the random walk, the failure of
+$D_q\nu_t \ge \nu_t$, and the exclusion of every $\lambda \ne 1$ through
+Lemmas~\ref{lem:family-dilations} and~\ref{lem:discrete-covariance-levy}.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$: same, as
+\texttt{NeZero d}; $h > 0$: same; the data $(0, t\sigma_h)$: same, \texttt{stratum\_one\_example\_data}
+at each $t \ge 0$; ``these data define an isotropic family'': same, \texttt{stratum\_one\_example}
+gives laws with the transforms $e^{-(\Psi_t - \Psi_s)}$ and states its clauses of every such family.)}
+\end{proposition}
+
+% CHANGED (wave 3d, 2026-11-14): the proof follows the machine-checked route. Thm. 15.8 is applied
+% to the triplet (0, t sigma_h, 0) that the data of mu_t give, so the uniqueness of the triplet is
+% not read; the infinite divisibility of mu_t, which Thm. 15.8 presupposes, is said.
+% CHANGED (fourth blind pass, 2026-11-15): the differences are said to be Levy measures; the
+% transform is said to determine the law; the symmetry of the family (lem:isotropic-symmetric), the
+% vanishing compensator of the triplet and the relabelled family's axioms are written out; Thm. 15.8
+% is cited through its interface node thm:cited-A44, now in the uses.
+\begin{proof}
+\leanok
+\uses{thm:lattice-strata, lem:isotropic-symmetric, lem:family-structure, lem:family-dilations, lem:discrete-covariance-levy, thm:cited-A44}
+The measure $\sigma_h$ is finite and puts no mass at $0$, so $t\sigma_h$ is a rotation-invariant
+\Levy{} measure. Since $\sigma_h$ is symmetric,
+$\int(1 - \cos\langle\omega, x\rangle)\,t\sigma_h(dx) = t(1 - \widehat\sigma_h(\omega))$. Rotating
+$\omega$ to $|\omega|e_1$, which leaves $\sigma_1$ invariant, gives
+$\widehat\sigma_h(\omega) = \int\cos(h\langle\omega, \eta\rangle)\,\sigma_1(d\eta) = \Omega_d(h|\omega|)$.
+The data vanish at $t = 0$. For $s < t$ their differences $(0, (t - s)\sigma_h)$ are nonzero, and
+they are rotation-invariant \Levy{} data, for the same reason as $t\sigma_h$. The exponent
+$\Psi_t(\omega)$ is linear in $t$. So Theorem~\ref{thm:lattice-strata}(1) gives an isotropic family.
+If $N$ is Poisson with mean $t$ and $Y_1, Y_2, \dots$ are independent with law $\sigma_h$, independent
+of $N$, then $Y_1 + \dots + Y_N$ has the transform
+$\sum_ke^{-t}t^k\widehat\sigma_h^k/k! = e^{-t(1 - \widehat\sigma_h)}$, which is $\widehat\mu_t$. The
+transform determines the law, so $\mu_t$ is the law of $Y_1 + \dots + Y_N$.
+
+Let $t > 0$. The family is isotropic, hence symmetric (Lemma~\ref{lem:isotropic-symmetric}), so
+the kernel $\mu_t$ is infinitely divisible (Lemma~\ref{lem:family-structure}), and its transform is
+$e^{-\Psi_t}$. In the \Levy--Khintchine bracket of the triplet $(0, t\sigma_h, 0)$, the odd part $i\sin\langle\omega, x\rangle - i\langle\omega, x\rangle
+\mathbf 1_{\{|x| \le 1\}}$ of the integrand is integrated against the symmetric finite measure
+$t\sigma_h$ and contributes $0$, so the bracket is $-\Psi_t(\omega)$. Thus $(0, t\sigma_h, 0)$ is a
+generating triplet of $\mu_t$. For $q > 1$ the measure $D_q(t\sigma_h) = t\sigma_{qh}$ puts no mass on
+the sphere of radius $h$, where $t\sigma_h$ puts the mass $t > 0$. So $D_q\nu_t \ge \nu_t$ fails,
+and by Theorem~\ref{thm:cited-A44} $\mu_t$ is semi-selfdecomposable with span $q$ for no $q > 1$.
+
+Suppose the family were $\lambda$-covariant for some $\lambda \ne 1$. It is symmetric, so by
+Lemma~\ref{lem:family-dilations}(2) it is then $q$-covariant for some $q > 1$, and by
+Lemma~\ref{lem:family-dilations}(3) the relabelled family $(\mu_{\chi^{-1}s,\chi^{-1}t})$ has
+$S_qt = qt$. The relabelled family is again a symmetric family. Indeed $\chi^{-1}$ is an increasing
+homeomorphism of $[0,\infty)$, so it keeps the order of the scales, the continuity of (I2) and the
+inequality $s < t$ of (ND), and the laws themselves, with their symmetry, are unchanged. Its
+kernels are the kernels $\mu_{\chi^{-1}t}$ of the original family, since $\chi^{-1}(0) = 0$. By
+Lemma~\ref{lem:discrete-covariance-levy} they are semi-selfdecomposable with span $q$, which they
+are not.
+\end{proof}
+
+Without (I3), Lindeberg's discrete scale space (Proposition~\ref{prop:lindeberg-stratum-one}) on
+$h\ZZ^d$ has $\nu_t$ on the $2d$ axis neighbours and fails in the same way. Both families jump by
+the one length $h$ at every scale, which covariance under any ratio $q > 1$ forbids.
+
+% draft: Example 3.9 (§ 3.2), lines 434–436 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the example's claims stated as a proposition, with A_t := 0 written out; "no gauge makes
+% it fully covariant" written as "not lambda-covariant for every lambda > 0".
+% CHANGED: the reason for "carried by no lattice" replaced: the draft's density of the group
+% generated by the radii does not by itself bear on the support of the law; the node cites
+% Proposition 3.12 (prop:no-lattice-kernel), which holds for every q-covariant family.
+% CHANGED: "w_i >= 0" stated (blind review, flag 16); the draft's weights are nonnegative, which its
+% "nonincreasing" with the summability condition implies, so nothing is narrowed.
+\begin{proposition}[an isotropic family strictly in stratum 2]
+\label{prop:stratum-two-example}
+\lean{Pyramids.stratum_two_example_data, Pyramids.stratum_two_example}
+\leanok
+% CHANGED (wave 2f, 2026-11-14): thm:cited-A39 dropped from the uses and the status line; the
+% checked proof applies Thm. 15.10 to the triplet that the data of mu_1 give, and reads no
+% uniqueness of the triplet (A39 enters only through lem:synthesis and lem:family-dilations).
+\uses{lem:synthesis, lem:family-dilations, def:self-decomposable, thm:cited-A45}
+Let $d \ge 1$, $h > 0$ and $q > 1$, and let $\sigma_r$ be the uniform probability on the sphere of
+radius $r$ about $0$ in $\RR^d$. Take weights $w_i \ge 0$, $i \in \ZZ$, nonincreasing in $i$ and not
+all zero, with $\sum_{i<0}w_iq^{2i} < \infty$ and $\sum_{i \ge 0}w_i < \infty$. For $t = q^\theta$, $\theta \in [0, 1]$, put
+$A_t := 0$ and
+\[
+  \nu_t := \sum_{i \in \ZZ}\bigl[(1 - \theta)\,w_i + \theta\,w_{i-1}\bigr]\,\sigma_{hq^i}.
+\]
+Lemma~\ref{lem:synthesis} applies to these data. It gives an isotropic $q$-covariant family with
+$S_qt = qt$, in which over the octave $[1, q]$ the weight of every sphere $\sigma_{hq^i}$ rises from
+$w_i$ to $w_{i-1}$, and over $[q^n, q^{n+1}]$ from $w_{i-n}$ to $w_{i-n-1}$. The family is not
+$\lambda$-covariant for every $\lambda > 0$, and its kernels $\mu_t$, $t > 0$, are carried by no
+lattice.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A45}\quad\emph{(\textbf{Assignment.} \ledger{A45} carries the polar form of the
+\Levy{} measure of a self-decomposable law, applied to the generating triplet $(0, \nu_1, 0)$ that
+the data of $\mu_1$ give. Held as [T], with the proof below: the hypotheses of
+Lemma~\ref{lem:synthesis}, isotropy, the self-decomposability of a fully covariant kernel through
+Lemma~\ref{lem:family-dilations}(1), the consequence of the polar form that every sphere about $0$
+has mass $0$, and the lattice clause through Proposition~\ref{prop:no-lattice-kernel}.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$, $h > 0$,
+$q > 1$: same; $w_i \ge 0$, nonincreasing, not all zero: same; $\sum_{i<0}w_iq^{2i} < \infty$ and
+$\sum_{i \ge 0}w_i < \infty$: same, as \texttt{Summable} on the two index sets; the data
+$(0, \nu_t)$ at $t = q^\theta$: same, \texttt{stratum\_two\_example} quantifies over every map $D$
+into \texttt{SymLevyData} with these values on $[1,q]$, and \texttt{stratum\_two\_example\_data}
+gives one; the family: same, laws with the transforms of the extended data, the clauses being
+stated of every such family.)}
+\end{proposition}
+
+% CHANGED (wave 2f, 2026-11-14): the proof follows the machine-checked route. The
+% self-decomposability of mu_1 is shown at Sato's letter, for every ratio b > 1, through the
+% bijection of b-covariance; Thm. 15.10 is applied to the triplet of the data of mu_1, which the
+% synthesis gives, so the uniqueness of the triplet is not read; the existence of the data is said.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 9, 20):
+% Theorem A45 cited at the point of use; the exponents Phi_0 and Phi_1 are written Psi_1 and Psi_q,
+% which they are, and the unit sphere S^{d-1}, S_lambda being the bijections.
+\begin{proof}
+\leanok
+\uses{lem:synthesis, lem:family-dilations, prop:no-lattice-kernel}
+Since $\sum_{i \ge 0}w_i < \infty$, $w_i \to 0$ as $i \to \infty$. The weights are not all zero, so
+they are not constant, and $w_{i-1} > w_i$ for some $i$. Each $\nu_t$ is a symmetric,
+rotation-invariant measure with no mass at $0$. It is a \Levy{} measure. Its weights are at most
+$w_{i-1}$, and $\int(1 \wedge |x|^2)\,\sigma_{hq^i}(dx) = 1 \wedge h^2q^{2i}$, so it suffices that
+$\sum_jw_j(1 \wedge h^2q^{2j+2}) < \infty$, with $j = i - 1$. Let $j_0$ be the least $j$ with
+$hq^{j+1} \ge 1$. The terms with $j \ge j_0$ are at most $w_j$, and
+$\sum_{j \ge j_0}w_j$ is finite: it is $\sum_{j \ge 0}w_j$ plus finitely many terms. The terms with
+$j < j_0$ are $h^2q^2\,w_jq^{2j}$, and $\sum_{j < j_0}w_jq^{2j}$ is finite: it is at most
+$\sum_{j<0}w_jq^{2j}$ plus finitely many terms. So for each $\theta \in [0, 1]$ the pair
+$(0, \nu_{q^\theta})$ is symmetric \Levy{} data, and data as in the statement exist.
+
+The exponent is $\Psi_t = (1 - \theta)\Psi_1 + \theta\Psi_q$, with $\Psi_1$ and $\Psi_q$ the finite
+exponents of the \Levy{} measures $\nu_1 = \sum_iw_i\sigma_{hq^i}$ and
+$\nu_q = \sum_iw_{i-1}\sigma_{hq^i}$. So
+$\Psi_t(\omega)$ is continuous in $\theta = \log_qt$. For $\theta < \theta'$ the difference
+$\nu_{t'} - \nu_t = (\theta' - \theta)\sum_i(w_{i-1} - w_i)\sigma_{hq^i}$ is a positive measure,
+nonzero since $w_{i-1} > w_i$ for some $i$. At $\theta = 1$,
+$\nu_q = \sum_iw_{i-1}\sigma_{hq^i} = \sum_jw_j\sigma_{hq^{j+1}} = D_q\nu_1$, since
+$D_q\sigma_r = \sigma_{qr}$. So Lemma~\ref{lem:synthesis} gives a symmetric $q$-covariant family with
+$S_qt = qt$. Its data are rotation invariant at every scale, so every $\Psi_t$ is radial, and every
+transform $e^{-(\Psi_t - \Psi_s)}$ is invariant under $\Orth(d)$. That is (I3).
+
+Suppose the family were $\lambda$-covariant for every $\lambda > 0$. Let $b > 1$, and let $S_b$ be
+the bijection of $b$-covariance. By Lemma~\ref{lem:family-dilations}(1), $S_bu > u$ for every
+$u > 0$. Since $S_b$ is an increasing bijection of $[0,\infty)$ with $S_b0 = 0$, there is $u > 0$ with
+$S_bu = 1$, and then $u < 1$. Covariance at the pair $(0, u)$ gives $D_b\mu_u = \mu_1$, that is,
+$\widehat\mu_u(\omega) = \widehat\mu_1(b^{-1}\omega)$, and the cascade gives
+$\mu_1 = \mu_{u,1} * \mu_u$. So $\widehat\mu_1(\omega) = \widehat\mu_1(b^{-1}\omega)\,\widehat\mu_{u,1}(\omega)$
+for every $b > 1$: the kernel $\mu_1$ is self-decomposable (Definition~\ref{def:self-decomposable}).
+The synthesis gives $\mu_1$ the data $(0, \nu_1)$, that is, the generating triplet
+$(0, \nu_1, 0)$. By Theorem~\ref{thm:cited-A45} applied to this triplet,
+$\nu_1(B) = \int_{S^{d-1}}\Lambda(d\xi)\int_0^\infty\mathbf 1_B(r\xi)\,k_\xi(r)\,dr/r$ for every
+Borel $B$, with $\Lambda$ a finite measure on the unit sphere $S^{d-1}$ (the $\lambda$ of that
+theorem). For a sphere
+$B = \{|x| = \rho\}$ about $0$, and each $\xi$, the set of $r > 0$ with $r\xi \in B$ is the single
+point $\rho$, which is $dr/r$-null. So $\nu_1(B) = 0$. But
+$\nu_1 = \sum_iw_i\sigma_{hq^i}$ gives the sphere of radius $hq^i$ the mass $w_i$, the radii $hq^i$
+being distinct, and $w_i > 0$ for some $i$.
+
+A lattice is a discrete subgroup, so the last clause is Proposition~\ref{prop:no-lattice-kernel}.
+\end{proof}
+
+% draft: Theorem 3.7 (§ 3.2), its last sentence, line 426 (proof: line 428, its last sentence).
+% CHANGED: split from Theorem 3.7, so that the examples, which use Theorem 3.7(1), come before it.
+% CHANGED (fidelity review, 2026-11-15, R58): the tag adds lattice_strata_strict_canonical, the
+% strictness in the canonical gauge S_q t = qt, the draft's stratum (2): the first example is
+% q-covariant with no S, the second is q-covariant with S_q t = qt. The statement is unchanged.
+\begin{theorem}[the strata are distinct]
+\label{thm:lattice-strata-strict}
+\lean{Pyramids.lattice_strata_strict_imp, Pyramids.lattice_strata_strict,
+Pyramids.lattice_strata_strict_canonical}
+\leanok
+\uses{def:strata, thm:lattice-strata}
+Let $d \ge 1$ and $q > 1$. Among the isotropic families in dimension $d$, those of
+Theorem~\ref{thm:lattice-strata}(3), the fully covariant ones, are $q$-covariant, and the
+$q$-covariant ones are among those of Theorem~\ref{thm:lattice-strata}(1). Both inclusions are
+strict.
+% CHANGED (2026-11-14, a strengthening): unused hypotheses dropped from the Lean of the inclusion;
+% the print keeps the setting of the node.
+% CHANGED (wave 3d, 2026-11-14): statement and proof are marked proved.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (fidelity review, 2026-11-15, R64): the status line says that the second inclusion holds by definition and has no declaration.
+\statusT\quad\emph{(Cites nothing of its own; the two examples carry their own citations.
+The second inclusion, of the $q$-covariant isotropic families among those of
+Theorem~\ref{thm:lattice-strata}(1), holds by definition, clause (1) requiring no covariance, and is
+not a declaration; the reader composes it. \textbf{Hypotheses} (the node's, each with what its
+declarations require): $d \ge 1$: same in \texttt{lattice\_strata\_strict} and
+\texttt{\_canonical}; absent in \texttt{\_imp}; $q > 1$: same, in all three; isotropic family
+(first inclusion): absent in \texttt{\_imp}, which holds for any family of laws, a fully
+covariant family being $q$-covariant by definition.)}
+\end{theorem}
+
+% CHANGED (wave 3d, 2026-11-14): the proof names the weights of the second example, which the print
+% left to the reader.
+\begin{proof}
+\leanok
+\uses{prop:stratum-one-example, prop:stratum-two-example}
+% CHANGED (fourth blind pass, 2026-11-15): the second inclusion is said.
+A fully covariant family is $q$-covariant. Every isotropic family, $q$-covariant or not, is one of
+those of Theorem~\ref{thm:lattice-strata}(1), which requires no covariance. The family of
+Proposition~\ref{prop:stratum-one-example}, with $h = 1$, is isotropic and $q$-covariant for no
+$q > 1$. The family of Proposition~\ref{prop:stratum-two-example}, with $h = 1$ and the weights
+$w_i = 1$ for $i < 0$ and $w_i = 0$ for $i \ge 0$, is isotropic and $q$-covariant, and it is not
+fully covariant. These weights are nonnegative, nonincreasing and not all zero, the sum
+$\sum_{i<0}w_iq^{2i} = \sum_{n\ge1}q^{-2n}$ is finite, and $\sum_{i\ge0}w_i = 0$, so the
+proposition applies to them.
+\end{proof}
+
+% ---------------------------------------------------------------------------------------------------
+\section{The reduction to the line}
+\label{sec:pyramid-reduction}
+
+The isotropic paper reduces an isotropic family to its marginal along one line through the origin,
+the image of each kernel under $x \mapsto \langle e, x\rangle$ for a unit vector $e$, the projection
+of tomography \prog{iso v0.1}{\S~3.2, p.~12}. The marginals form a family on the line with the same
+covariance, and the classification on the line gives their transforms. Under one dilation the first
+half survives. The second does not, because a family on the line need not be a marginal.
+
+% draft: Lemma 3.10 (§ 3.3), lines 442–446 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: renamed kappa_{s,t} to m_{s,t} (BLUEPRINT-INPUTS).
+\begin{lemma}[the reduction keeps the stratum]
+\label{lem:reduction-keeps-stratum}
+\lean{Pyramids.reduction_keeps_stratum}\leanok
+\uses{def:family-dimension-d}
+Let $(\mu_{s,t})$ be an isotropic family in dimension $d$, $e$ a unit vector,
+$\pi := \langle e, \cdot\rangle$ and $m_{s,t} := \pi_*\mu_{s,t}$. Then
+$\widehat\mu_{s,t}(\omega) = \widehat m_{s,t}(|\omega|)$, and the laws $m_{s,t}$ form a symmetric
+family in dimension $1$: they satisfy (I1), (I2) and (ND). For each $\lambda > 0$ and each increasing
+bijection $S$ of $[0, \infty)$,
+\[
+  D_\lambda\mu_{s,t} = \mu_{Ss,St}\ \text{ for all } s \le t \qquad\Longleftrightarrow\qquad
+  D_\lambda m_{s,t} = m_{Ss,St}\ \text{ for all } s \le t.
+\]
+So the family and its marginal family are covariant under the same dilations, with the same
+bijections.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(\textbf{Hypotheses} (the node's, each with what its declarations require):
+$d \ge 1$: same; isotropic family: same; $e$ a unit vector: same; $\lambda > 0$ and $S$ an
+increasing bijection of $[0,\infty)$: same. The marginal is the image under
+$x \mapsto \langle e, x\rangle$, a law on $\RR$, read by \texttt{IsSymmetricFamily} on $\RR$.)}
+\end{lemma}
+
+\begin{proof}
+\leanok
+The transform of the marginal is $\widehat m_{s,t}(r) = \int e^{ir\langle e, x\rangle}\,\mu_{s,t}(dx)
+= \widehat\mu_{s,t}(re)$. For $\omega \in \RR^d$ pick $Q \in \Orth(d)$ with $Q^{\tp}\omega = |\omega|e$.
+By (I3), $\widehat\mu_{s,t}(\omega) = \widehat{Q_*\mu_{s,t}}(\omega) = \widehat\mu_{s,t}(Q^{\tp}\omega)
+= \widehat m_{s,t}(|\omega|)$. Each axiom passes to the marginals on its own. (I1): $\pi$ is linear,
+so the image of a convolution is the convolution of the images, and $\pi_*\delta_0 = \delta_0$.
+(I2): $\widehat m_{s,t}(r) = \widehat\mu_{s,t}(re)$ is continuous in $(s,t)$. (ND): if
+$m_{s,t} = \delta_0$, then $\widehat\mu_{s,t}(\omega) = \widehat m_{s,t}(|\omega|) = 1$ for every
+$\omega$, so $\mu_{s,t} = \delta_0$. Symmetry: $\widehat m_{s,t}(r) = \widehat\mu_{s,t}(re)$ is real,
+since $\mu_{s,t}$ is symmetric, $-I$ being in $\Orth(d)$.
+
+For the covariance, $\pi(\lambda x) = \lambda\pi(x)$ gives $\pi_*D_\lambda = D_\lambda\pi_*$. So
+$D_\lambda\mu_{s,t} = \mu_{Ss,St}$ implies $D_\lambda m_{s,t} = m_{Ss,St}$. Conversely, if
+$\widehat m_{s,t}(\lambda r) = \widehat m_{Ss,St}(r)$ for all $r \ge 0$, then at $r = |\omega|$ the
+first paragraph gives $\widehat\mu_{s,t}(\lambda\omega) = \widehat m_{s,t}(\lambda|\omega|) =
+\widehat m_{Ss,St}(|\omega|) = \widehat\mu_{Ss,St}(\omega)$, that is,
+$D_\lambda\mu_{s,t} = \mu_{Ss,St}$.
+
+Every step is machine-checked, with no cited fact.
+\end{proof}
+
+What fails is the classification. \prog{iso v0.1}{Thm.~3.6, p.~13} applies the line's theorem to
+the marginals, and that theorem assumes (A8) for every $\lambda$. Theorem~\ref{thm:lattice-strata}
+replaces it. The next proposition shows why the examples of the line's discrete stratum cannot be
+used instead. They are built from atoms in the \Levy{} measure, and in $d \ge 2$ the \Levy{} measure
+of a marginal has none.
+
+% draft: Proposition 3.11 (§ 3.3), lines 450–457 of draft/spatial-hemigroup-pyramids.md: the display
+% (3.2), its absolute continuity, and clause (1).
+% CHANGED: split from Proposition 3.11: its clause (2), which has its own proof and holds in every
+% dimension, is prop:what-does-not-lift-chain.
+% CHANGED: the list of the line's families that clause (1) excludes (Lindeberg's discrete scale
+% space, the geometric-jump pyramid, the q-Cin rays, the knot-atom cascades, every grid pyramid on
+% the line) moved to the comment after the node: each item needs that family's Levy measure, which
+% is stated where the family is, and the draft's proof does not argue them.
+% CHANGED: the unit vector e and "line exponent" (the exponent of a symmetric infinitely divisible
+% law on R) named in the statement.
+\begin{proposition}[what does not lift]
+\label{prop:what-does-not-lift}
+\lean{Pyramids.what_does_not_lift, Pyramids.what_does_not_lift_atom}\leanok
+\uses{thm:cited-A39, thm:cited-A42}
+Let $d \ge 2$, let $e$ be a unit vector, let $\nu$ be a rotation-invariant \Levy{} measure on
+$\RR^d$, and let $\overline\nu$ be its image under $x \mapsto |x|$. The folded \Levy{} measure of the
+marginal, the image $\varpi$ of $\nu$ under $x \mapsto |\langle e, x\rangle|$ restricted to
+$(0,\infty)$, is
+\[
+  \varpi = \int_{(0,\infty)}D_r\beta_d\ \overline\nu(dr), \qquad
+  \beta_d := \text{the law of } |\eta_1| \text{ for } \eta \text{ uniform on } S^{d-1}.
+\]
+It is absolutely continuous. Hence a line exponent, the exponent of a symmetric infinitely divisible
+% CHANGED (2026-11-23, review round 3, s1-3.S7): wording.
+law on $\RR$, whose folded \Levy{} measure has an atom is the exponent of the marginal of no rotation-invariant
+infinitely divisible law on $\RR^d$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A42}\quad\ledger{A39}\quad\emph{(\textbf{Assignment.} \ledger{A42} carries the
+\Levy{} measure of the marginal (and of the rotated law), the image of $\nu$ off $0$. \ledger{A39} (uniqueness) carries the rotation invariance of the \Levy{} measure of a
+rotation-invariant law and the identification of the folded measures in the last sentence. Held as
+[T], with the proof below: the polar decomposition of a rotation-invariant measure, the display, the
+absolute continuity of $\beta_d$, and the absolute continuity of the mixture.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 2$: same, in both;
+$e$ a unit vector: same, in both; $\nu$ a rotation-invariant \Levy{} measure: same, in
+\texttt{what\_does\_not\_lift}, as $\nu\{0\} = 0$, $\int(|x|^2 \wedge 1)\,d\nu < \infty$ and
+rotation invariance; last sentence, the line exponent of a symmetric infinitely divisible law:
+weaker, \texttt{what\_does\_not\_lift\_atom} requires only folded data (\texttt{SymLevyPair}), not that
+they be the data of a law; its folded \Levy{} measure has an atom: same; the law on $\RR^d$, rotation
+invariant and infinitely divisible: same, a probability measure with both properties.)}
+\end{proposition}
+
+% CHANGED (wave 2b, 2026-11-13): the proof follows the machine-checked route. The polar
+% decomposition is obtained from the determination of a rotation-invariant measure by its radial
+% image, not from an average over the Haar measure of O(d); the absolute continuity of beta_d is
+% obtained from a differentiable image of a null set, not from its density.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 8, 9,
+% 20): Theorems A42 and A39 cited at the point of use, "read at time 1" dropped; the map Phi is
+% Theta, the set S is Y and the kernel Phi_xi is J_xi (Phi is chapter 2's operator family,
+% S_lambda the bijections).
+\begin{proof}
+\leanok
+Write $\sigma_r$ for the uniform probability on the sphere of radius $r$ about $0$; $\sigma_1$ is
+the uniform probability on $S^{d-1}$. The measure $\sigma_1$ of a Borel set $E \subseteq S^{d-1}$ is proportional
+to the volume of the cone $\{s\eta : 0 < s < 1,\ \eta \in E\}$. A linear isometry carries such cones
+to cones of the same volume, so $\sigma_1$, and with it every $\sigma_r$, is invariant under every
+linear isometry.
+
+First, $\sigma_1(\{\eta : \eta_1 \in M\}) = 0$ for every Lebesgue-null set $M \subseteq \RR$. The cone
+over this set lies in $C := \{x \ne 0 : x_1/|x| \in M\}$. Write $x = x_1e_1 + x'$ with $x' \perp e_1$.
+The points of $C$ with $x' = 0$ lie on the line $\RR e_1$, which is null since $d \ge 2$. Every other
+point $x$ of $C$ is $\Theta(y)$ for $y := ue_1 + x'$, $u := x_1/|x|$, where
+\[
+  \Theta(ue_1 + y') := |y'|\,u\,(1 - u^2)^{-1/2}\,e_1 + y' ,
+\]
+because $(1 - u^2)^{1/2} = |x'|/|x|$. These $y$ lie in $Y := \{y : y_1 \in M,\ |y_1| < 1,\ y' \ne 0\}$,
+which is null, being contained in $\{y : y_1 \in M\}$. The map $\Theta$ is differentiable on the open
+set $\{|y_1| < 1,\ y' \ne 0\}$, and a differentiable map carries null sets to null sets. So $C$ is
+null, and so is the cone. For a null set $N \subseteq \RR$ the set $N \cup (-N)$ is null, so
+$\beta_d(N) \le \sigma_1(\{\eta : \eta_1 \in N \cup (-N)\}) = 0$. Thus $\beta_d$ is absolutely
+continuous.
+
+Next the polar decomposition. Let $\nu'(B) := \int_{(0,\infty)}\sigma_r(B)\,\overline\nu(dr)$. Then
+$\nu'$ is invariant under every linear isometry, since each $\sigma_r$ is, and $\nu'\{0\} = 0$. Its
+image under $x \mapsto |x|$ is $\overline\nu$ restricted to $(0,\infty)$, since $\sigma_r$ is carried
+by the sphere of radius $r$; this is the image of $\nu$ under $x \mapsto |x|$, since $\nu\{0\} = 0$. In
+particular $\nu'(\{|x| > \varepsilon\}) = \nu(\{|x| > \varepsilon\})$, which is finite for
+$\varepsilon > 0$. A measure $m$ on $\RR^d$ that is invariant under every linear isometry, null at
+$0$ and finite off every ball about $0$ is determined by its image under $x \mapsto |x|$. Indeed, let
+$m_\varepsilon$ be its restriction to $\{|x| > \varepsilon\}$, a finite invariant measure. By
+invariance $\widehat{m_\varepsilon}(\xi) = \widehat{m_\varepsilon}(|\xi|\eta)$ for every unit vector
+$\eta$. Averaging over $\eta$ against $\sigma_1$ and exchanging the integrals gives
+$\widehat{m_\varepsilon}(\xi) = \int J_\xi(x)\,m_\varepsilon(dx)$ with
+$J_\xi(x) := \int e^{i|\xi|\langle x, \eta\rangle}\,\sigma_1(d\eta)$. By the invariance of
+$\sigma_1$, $J_\xi(x)$ depends on $x$ only through $|x|$. So $\widehat{m_\varepsilon}$, and with it
+$m_\varepsilon$, is determined by the image of $m$ under $x \mapsto |x|$, and $m$ is the increasing
+limit of the $m_\varepsilon$ as $\varepsilon \downarrow 0$, since $m\{0\} = 0$. Applied to $\nu$ and
+$\nu'$, this gives $\nu = \nu'$.
+
+Now the display. Let $B \subseteq \RR$ be Borel and $r > 0$. Take a linear isometry $Q$ with
+$Qe_1 = e$. Then $\langle e, x\rangle = \langle e_1, Q^{-1}x\rangle$, and the invariance of $\sigma_1$
+gives
+\[
+  \sigma_r(\{x : |\langle e, x\rangle| \in B \cap (0,\infty)\})
+  = \sigma_1(\{\eta : r|\eta_1| \in B,\ \eta_1 \ne 0\}) = \beta_d(r^{-1}B) = D_r\beta_d(B) ,
+\]
+where the condition $\eta_1 \ne 0$ may be dropped because $\sigma_1(\{\eta_1 = 0\}) = 0$. So
+$\varpi(B) = \nu'(\{x : |\langle e, x\rangle| \in B \cap (0,\infty)\})
+= \int_{(0,\infty)}D_r\beta_d(B)\,\overline\nu(dr)$, which is the display. For a Lebesgue-null set
+$N$ and every $r > 0$, $D_r\beta_d(N) = \beta_d(r^{-1}N) = 0$, so $\varpi(N) = 0$ by the display.
+Thus $\varpi$ is absolutely continuous.
+
+Let $\mu$ be a rotation-invariant infinitely divisible law on $\RR^d$ with \Levy{} measure $\nu$. For
+$Q \in \Orth(d)$ the law $Q_*\mu = \mu$ has the \Levy{} measure $Q_*\nu$
+(Theorem~\ref{thm:cited-A42}), so $\nu$ is rotation invariant by the
+uniqueness of the triplet (Theorem~\ref{thm:cited-A39}(ii)). The marginal $\pi_*\mu$ is
+infinitely divisible, with \Levy{} measure the image of $\nu$ under $\pi$ restricted to
+$\RR \setminus \{0\}$ (Theorem~\ref{thm:cited-A42}). Its folded \Levy{} measure is the
+$\varpi$ of the display, which has no atom. If the marginal had the exponent of a line law whose folded
+\Levy{} measure has an atom, the uniqueness of the triplet would make the two folded measures equal.
+
+Every step is machine-checked, and the cited facts, \ledger{A42} and \ledger{A39}, enter only in
+the last sentence.
+\end{proof}
+
+Proposition~\ref{prop:what-does-not-lift} excludes the families of the line's discrete stratum that
+are built on atoms. Their folded \Levy{} measures are stated where the families are, and each has an
+atom:
+\begin{itemize}
+\item Lindeberg's discrete scale space (Proposition~\ref{prop:lindeberg-stratum-one}) has the
+exponent $t(1 - \cos h\omega)$, so its folded \Levy{} measure is $t\,\delta_h$;
+\item the geometric-jump pyramid (Proposition~\ref{prop:discrete-gaussian-pyramid}) has the atom
+train $\sum_iw_i(\theta)\,\delta_{hq^i}$;
+\item the $q$-Cin ray $E^{(q)}_\tau$ (Proposition~\ref{prop:strata-cylinder-coordinates}) has the atom
+train $\sum_{i \ge 0}\delta_{\tau q^{-i}}$;
+\item a knot-atom cascade (Theorem~\ref{thm:knot-atom-cascades}) has one atom at $r\theta q^n$ for
+each knot $\theta q^n \le t$;
+\item a grid pyramid on the line (Definition~\ref{def:grid-pyramid-line}), the geometric pyramid of
+Proposition~\ref{prop:grid-pyramids-infinitely-divisible} included, has an infinitely divisible
+mask $w \ne \delta_0$ on $h\ZZ$, whose \Levy{} measure $\nu_w$ is finite, nonzero and carried by
+$h\ZZ \setminus \{0\}$ (Lemma~\ref{lem:lattice-infinitely-divisible} at $d = 1$), so it has an
+atom. Every $t > 0$ has some $n$ with $q^{n+1} \le t$. The \Levy{} measure $\nu_t$ of the kernel at
+$t$ then dominates $\nu_{q^{n+1}} - \nu_{q^n}$ (Lemma~\ref{lem:family-structure}), the \Levy{}
+measure of the step $\mu_{q^n,q^{n+1}} = D_{q^n}w$, which is $D_{q^n}\nu_w$ and has an atom.
+\end{itemize}
+So none of their exponents is a marginal in $d \ge 2$.
+
+The next statement compares the classes of exponents that one dilation admits in successive
+dimensions.
+
+% draft: Proposition 3.11 (§ 3.3), clause (2), line 455, and its proof, line 457 from "Clause 2".
+% CHANGED: split from Proposition 3.11 (prop:what-does-not-lift), as its clause (2), with its own
+% proof; the hypothesis d >= 2 of that node does not apply to it.
+% CHANGED: renamed the running dimension d to n (BLUEPRINT-INPUTS; REFEREE-draft-new-results, item 1,
+% finding 4).
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flag 25): the
+% running dimension is d again, n being the level index everywhere else in the chapter; statement,
+% status line and proof renamed together, nothing else changed.
+\begin{proposition}[the classes of one dilation, dimension by dimension]
+\label{prop:what-does-not-lift-chain}
+\lean{Pyramids.what_does_not_lift_chain_1, Pyramids.what_does_not_lift_chain_2,
+Pyramids.what_does_not_lift_chain_strict}
+% CHANGED (wave 2g, 2026-11-14): proved; the statement and the proof are leanok. The formal
+% inclusions carry neither n >= 1 nor, for the second, q > 1 (a strengthening): the print keeps
+% both, since the classes are defined for n >= 1 and q > 1 and the strictness needs them.
+\leanok
+\uses{def:self-decomposable, thm:cited-A43, thm:cited-A42, thm:cited-A39}
+Let $q > 1$. For $d \ge 1$ let $\mathcal{A}^{(q)}_d$ be the set of $F : [0,\infty) \to [0,\infty)$
+for which $\omega \mapsto F(|\omega|)$, $\omega \in \RR^d$, is the exponent of a
+semi-selfdecomposable law with span $q$ on $\RR^d$. Then, for every $d \ge 1$,
+% CHANGED: the first inclusion compares the restrictions to [0,infinity) of the elements of A_n,
+% which are functions on R (second blind review, M5).
+the restrictions to $[0,\infty)$ of the elements of $\mathcal{A}_d$ lie in $\mathcal{A}^{(q)}_d$,
+and $\mathcal{A}^{(q)}_{d+1} \subsetneq \mathcal{A}^{(q)}_d$.
+% CHANGED (wave 2g, 2026-11-14): the assignment and the summary follow the machine-checked proof.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A43}\quad\ledger{A42}\quad\ledger{A39}\quad\emph{(\textbf{Assignment.} \ledger{A43}
+carries the first inclusion (a self-decomposable law is semi-selfdecomposable for every span, its
+residual being infinitely divisible) and the infinite divisibility of the law on $\RR^{d+1}$ in the
+strictness. \ledger{A42} carries the \Levy{} measure of the projected and of the rotated law.
+\ledger{A39} carries the triplet of the law on $\RR^{d+1}$ (existence), the identification
+of the \Levy{} measures (uniqueness), and the laws of the witness and of its residual (every triplet
+occurs). The second inclusion spends no cited fact. Held as [T], with the proof below: the second
+inclusion by restricting the transform and carrying convolution roots; the witness, a train of
+spheres and its residual; the polar decomposition; and one sphere of $\RR^d$, whose preimage under
+the projection is null on every sphere of $\RR^{d+1}$. \textbf{Hypotheses} (the node's, each with
+what its declarations require, whose dimension variable is named $n$): $q > 1$: same in
+\texttt{what\_does\_not\_lift\_chain\_1} and
+\texttt{\_strict}; absent in \texttt{\_2}, whose hypothesis $F \in \mathcal{A}^{(q)}_{d+1}$
+contains it, a span being $> 1$; $d \ge 1$: same in \texttt{\_strict}; absent in \texttt{\_1} and
+\texttt{\_2}, which hold for every $d$; $F \in \mathcal{A}_d$ (first inclusion): same,
+\texttt{classA}; $F \in \mathcal{A}^{(q)}_{d+1}$ (second): same, \texttt{classAq}, a function on
+$\RR$ read on $[0,\infty)$.)}
+\end{proposition}
+
+% CHANGED (wave 2g, 2026-11-14): the proof follows the machine-checked route. The first inclusion
+% reads F >= 0 from the admissible form, not from a characteristic function; the projection drops
+% the first coordinate. The witness of the strictness is built directly from a train of spheres
+% and its residual, not as a kernel of the family of prop:stratum-two-example through
+% lem:discrete-covariance-levy; the contradiction is read on one sphere, whose preimage meets each
+% sphere of R^{n+1} where the first coordinate takes at most two values, not through the density of
+% a projected sphere.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 8, 9,
+% 20, 25): the dimension is d; Theorems A43, A39 and A42 cited at the point of use, "read at time 1"
+% dropped; the sphere |y| = q is written qS^{d-1}, S_lambda being the bijections.
+\begin{proof}
+\leanok
+\uses{prop:stratum-two-example, prop:what-does-not-lift}
+\emph{The first inclusion.} If $F \in \mathcal{A}_d$, then $F(|\cdot|)$ is the exponent of a
+self-decomposable law on $\RR^d$. A self-decomposable law is semi-selfdecomposable with every span
+$b > 1$, since its residual at $b$ is infinitely divisible (Theorem~\ref{thm:cited-A43}). The
+function $F(|\cdot|)$ reads $F$ only on $[0,\infty)$, and $F \ge 0$ there, since on
+$[0,\infty)$ it has the form (\ref{eq:admissible-exponent}), whose terms are nonnegative. So the
+restriction of $F$ to $[0,\infty)$ lies in $\mathcal{A}^{(q)}_d$.
+
+\emph{The second inclusion.} Let $F \in \mathcal{A}^{(q)}_{d+1}$, with $\mu'$ the law on $\RR^{d+1}$
+with exponent $F(|\cdot|)$ and $\widehat\mu'(\omega) = \widehat\mu'(q^{-1}\omega)\,\widehat\varrho(\omega)$,
+$\varrho$ infinitely divisible. Let $P : \RR^{d+1} \to \RR^d$ drop the first coordinate,
+$P(x_1, \dots, x_{d+1}) = (x_2, \dots, x_{d+1})$. Its transpose $P^{\tp}y = (0, y)$ is an isometric
+embedding, and $\langle Px, \omega\rangle = \langle x, P^{\tp}\omega\rangle$, so
+$\widehat{P_*\mu'}(\omega) = \widehat\mu'(P^{\tp}\omega) = e^{-F(|\omega|)}$, and
+$\widehat{P_*\mu'}(\omega) = \widehat{P_*\mu'}(q^{-1}\omega)\,\widehat{P_*\varrho}(\omega)$. The law
+$P_*\varrho$ is infinitely divisible: $P$ is linear, so $P_*(\alpha * \beta) = P_*\alpha * P_*\beta$,
+and $P_*$ maps a $k$-th convolution root of $\varrho$ to one of $P_*\varrho$. So
+$F \in \mathcal{A}^{(q)}_d$. This step cites nothing.
+
+\emph{The witness.} Fix $d \ge 1$, and write $\sigma_r$ for the uniform probability on the sphere of
+radius $r$ about $0$ in $\RR^d$. Let
+\[
+  \nu_0 := \sum_{i \le 0}\sigma_{q^i} \qquad\text{and}\qquad \nu_1 := \sum_{i \le 1}\sigma_{q^i} .
+\]
+These are the trains of Proposition~\ref{prop:stratum-two-example} with $h = 1$ and the weights
+$w_i = 1$ for $i \le 0$ and $w_i = 0$ for $i > 0$, at the phases $0$ and $1$. The weights meet its
+hypotheses: they are nonnegative, nonincreasing and not all zero,
+$\sum_{i < 0}w_iq^{2i} = \sum_{m \ge 1}q^{-2m} < \infty$ and $\sum_{i \ge 0}w_i = 1$. So
+$(0, \nu_0)$ and $(0, \nu_1)$ are symmetric \Levy{} data, with the exponents
+$\Psi_j(\omega) = \int(1 - \cos\langle\omega, x\rangle)\,\nu_j(dx)$. The image of $\nu_0$ under
+$x \mapsto qx$ is $\nu_1$, so $\Psi_1(\omega) = \Psi_0(q\omega)$, that is,
+$\Psi_0(\omega) = \Psi_1(q^{-1}\omega)$. Also $\nu_1 = \nu_0 + \sigma_q$, and $(0, \sigma_q)$ are
+symmetric \Levy{} data with the exponent $\Psi_\sigma$, so
+\[
+  \Psi_1(\omega) = \Psi_1(q^{-1}\omega) + \Psi_\sigma(\omega), \qquad \omega \in \RR^d .
+\]
+Let $\mu_1$ and $\varrho$ be the infinitely divisible laws with the exponents $\Psi_1$ and $\Psi_\sigma$
+(Theorem~\ref{thm:cited-A39}(iii)). The display gives
+$\widehat\mu_1(\omega) = \widehat\mu_1(q^{-1}\omega)\,\widehat\varrho(\omega)$, so $\mu_1$ is
+semi-selfdecomposable with span $q$. Every $\sigma_r$, and with it $\nu_1$, is invariant under every
+linear isometry, so $\Psi_1$ is too. A linear isometry carries $|\omega|e_1$ to $\omega$, so
+$\Psi_1(\omega) = F(|\omega|)$ with $F(r) := \Psi_1(re_1)$; and $F \ge 0$, since $1 - \cos \ge 0$. So
+$F \in \mathcal{A}^{(q)}_d$. The \Levy{} measure $\nu_1$ gives the sphere
+$qS^{d-1} = \{y \in \RR^d : |y| = q\}$ the mass $1$, which only $\sigma_q$ contributes.
+
+\emph{Strictness.} Suppose $F \in \mathcal{A}^{(q)}_{d+1}$, and let $\mu'$ be the law on $\RR^{d+1}$
+with exponent $F(|\cdot|)$. It is semi-selfdecomposable, hence infinitely divisible
+(Theorem~\ref{thm:cited-A43}), with a triplet whose \Levy{} measure is $\nu'$
+(Theorem~\ref{thm:cited-A39}(i)). Its transform is radial, so $Q_*\mu' = \mu'$ for every
+$Q \in \Orth(d+1)$, and $\nu'$ is rotation invariant by Theorem~\ref{thm:cited-A42} and the
+uniqueness of the triplet (Theorem~\ref{thm:cited-A39}(ii)). As
+in the second inclusion, $P_*\mu'$ has the transform $e^{-F(|\omega|)} = e^{-\Psi_1(\omega)}$, so by
+Theorem~\ref{thm:cited-A42} and the uniqueness of the triplet, $\nu_1$ is the image
+$P_*\nu'$ restricted to $\RR^d \setminus \{0\}$. In particular
+$1 = \nu_1(qS^{d-1}) \le \nu'(P^{-1}(qS^{d-1}))$.
+
+By the polar decomposition in the proof of Proposition~\ref{prop:what-does-not-lift}, in dimension
+$d + 1$, $\nu'(B) = \int_{(0,\infty)}\sigma'_r(B)\,\overline{\nu'}(dr)$ for every Borel set $B$, with
+$\sigma'_r$ the uniform probability on the sphere of radius $r$ in $\RR^{d+1}$ and $\overline{\nu'}$
+the image of $\nu'$ under $x \mapsto |x|$. Let $r > 0$. Then
+$\sigma'_r(P^{-1}(qS^{d-1})) = \sigma'_1(\{\eta : r|P\eta| = q\})$. On the unit sphere
+$|P\eta|^2 = 1 - \eta_1^2$, so a unit vector $\eta$ with $r|P\eta| = q$ has
+$\eta_1^2 = 1 - q^2/r^2$, which leaves at most two values for $\eta_1$. The set of these $\eta$ thus
+lies in $\{\eta : \eta_1 \in M\}$ with $M$ a set of at most two points, and
+$\sigma'_1(\{\eta : \eta_1 \in M\}) = 0$ for a Lebesgue-null set $M$ and $d + 1 \ge 2$, as the proof
+of Proposition~\ref{prop:what-does-not-lift} shows. So $\sigma'_r(P^{-1}(qS^{d-1})) = 0$ for every
+$r > 0$, and $\nu'(P^{-1}(qS^{d-1})) = 0$, against $\nu'(P^{-1}(qS^{d-1})) \ge 1$. So
+$F \notin \mathcal{A}^{(q)}_{d+1}$.
+
+Every step is machine-checked, and the cited facts are \ledger{A43}, \ledger{A42} and \ledger{A39}.
+\end{proof}
+
+The chain of the fully covariant classes, $\mathcal{A}_{d+1} \subsetneq \mathcal{A}_d$, is strict in
+every dimension \prog{iso v0.1}{Prop.~3.22(2), p.~27}, the inclusions being
+\prog{iso v0.1}{Prop.~2.6, p.~8}. Proposition~\ref{prop:what-does-not-lift-chain} is its counterpart
+under one dilation, with a \Levy{} measure carried by spheres in place of the profile with a jump of
+the isotropic paper's witness.
+
+% ---------------------------------------------------------------------------------------------------
+\section{The ladder and the covariant kernel}
+\label{sec:pyramid-ladder}
+
+A grid pyramid applies a lattice law at each step. The axioms allow a step to be carried by a
+lattice and forbid it for a kernel from scale zero, which is carried by no discrete subgroup. The kernel at a
+level is then fixed by the ladder.
+
+% draft: Proposition 3.12 (§ 3.4), lines 465–467 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: "q-covariant" written "q-covariant for some q > 1".
+\begin{proposition}[no kernel from scale zero is a lattice law]
+\label{prop:no-lattice-kernel}
+\lean{Pyramids.no_lattice_kernel}
+\leanok
+% CHANGED (2026-11-14, the author's decision): thm:cited-A42 and thm:cited-A39 dropped from the uses;
+% the machine-checked route reads neither (records/pyramids/WAVE2-report-2d.md, decision 1).
+\uses{def:family-dimension-d}
+Let $(\mu_{s,t})$ be a symmetric family in dimension $d$ that is $q$-covariant for some $q > 1$,
+(I3) not assumed. No kernel $\mu_t$, $t > 0$, is carried by a discrete subgroup of $\RR^d$.
+% CHANGED (2026-11-14, the author's decision): regraded [T], as lem:family-dilations is. The
+% checked proof spends no cited fact of its own; the [A] grade with A42 and A39 described the
+% printed route through the span of the subgroup, which the proof no longer takes.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(No ledger entry. The proof cites no fact of its own: it reads
+Lemma~\ref{lem:family-dilations}(1) and Lemma~\ref{lem:family-structure}, and the cited facts
+enter only through them. \textbf{Hypotheses} (the node's, each with what
+\texttt{no\_lattice\_kernel} requires): $d \ge 1$: same; symmetric family: same; $q$-covariant for
+some $q > 1$: same, $1 < q$ and covariance with some bijection; (I3): not required in either; $t > 0$:
+same; $\Gamma$ a discrete subgroup: same, an \texttt{AddSubgroup} with \texttt{DiscreteTopology}.)}
+\end{proposition}
+
+% CHANGED (wave 2d, 2026-11-13): the proof follows the machine-checked route, which needs no Levy
+% data: the kernels at the scales below t are dilates of mu_t, and a factor of a convolution
+% carried by Gamma is carried by a translate of Gamma. The printed route (the span V, the lattice
+% lemma there, the atoms of nu_t) is replaced.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+\begin{proof}
+\leanok
+\uses{lem:family-structure, lem:family-dilations}
+Let $S$ be the bijection of $q$-covariance and $T$ its inverse, the bijection of
+$q^{-1}$-covariance, so that $D_{q^{-1}}\mu_u = \mu_{Tu}$ for $u \ge 0$. By
+Lemma~\ref{lem:family-dilations}(1), $Su > u$ for $u > 0$, hence $Tu < u$. Iterating, for every
+$n \ge 0$ there is $s \in [0, t]$ with $\mu_s = D_{q^{-n}}\mu_t$.
+
+Let $t > 0$, and suppose that $\mu_t$ is carried by a discrete subgroup $\Gamma$. A discrete subset
+of $\RR^d$ is countable, so $\Gamma$ is. If every point $x \ne 0$ had $\mu_t(\{x\}) = 0$, then
+$\mu_t(\RR^d \setminus \{0\}) \le \mu_t(\Gamma^c) + \mu_t(\Gamma \setminus \{0\}) = 0$, so
+$\mu_t = \delta_0 = \mu_{0,t}$ with $0 < t$, against (ND). So $\mu_t$ has an atom $x_0 \ne 0$, and
+by symmetry $-x_0$ is an atom too.
+
+Fix $n$ and $s$ as above. By (I1), $\mu_t = \mu_{s,t} * \mu_s$, so the product measure
+$\mu_{s,t} \otimes \mu_s$ gives no mass to $\{(x, y) : x + y \notin \Gamma\}$. By Tonelli's theorem
+there is an $x$ with $\mu_s(\{y : x + y \notin \Gamma\}) = 0$, that is, $\mu_s = D_{q^{-n}}\mu_t$ is
+carried by $\Gamma - x$, and $\mu_t$ by $\{z : x + q^{-n}z \in \Gamma\}$. An atom of $\mu_t$ lies in
+every set that carries $\mu_t$. So $x + q^{-n}x_0$ and $x - q^{-n}x_0$ lie in $\Gamma$, and so does
+their difference $2q^{-n}x_0$.
+
+The points $2q^{-n}x_0$, $n \ge 0$, lie in $\Gamma$, are all different from $0$, and tend to $0$.
+In the discrete group $\Gamma$ the point $0$ is isolated, so a sequence of points of $\Gamma$ that
+tends to $0$ is eventually $0$. This is a contradiction.
+
+Every step is machine-checked, and the cited facts enter only through
+Lemma~\ref{lem:family-structure}.
+\end{proof}
+
+A step $\mu_{s,t}$ with $s > 0$ can be a lattice law, as on the line, and that is what a grid
+pyramid is (Definition~\ref{def:exact-grid-pyramid}). With (I3) and $d \ge 2$ the proposition holds
+for every $\mu_{s,t}$ with no covariance at all, since a rotation-invariant law other than $\delta_0$
+is carried by no countable set. The pyramid principle of
+Proposition~\ref{prop:no-lattice-kernel-line}(2) holds in $\RR^d$, with $S_qt = qt$ and the factor
+$q^{nd}$: where $\mu_t$ has a continuous density $f_t$, $q^{nd}f_{q^nt}(q^nhm) = f_t(hm)$ for
+$h > 0$ and $m \in \ZZ^d$.
+
+Burt calls the kernel that takes the image to level $l$ of his hierarchy the \emph{equivalent kernel}
+$h_l$ (his notation), the generating kernel convolved with its dilates up to that level
+[\sscite{burt1981fast}, (2)--(4), pp.~21--23]. Burt and Adelson
+[\sscite{burt1983laplacian}, p.~533] call it the \emph{equivalent weighting function}. Rescaled to unit spacing, $2^lh_l(2^lx)$, it converges
+to a limit that Burt calls the \emph{characteristic kernel} [\sscite{burt1981fast}, Obs.~1, p.~24,
+and (5), p.~25]. For a step $\varrho$ the rescaled equivalent weight is
+$D_{q^{-M}}(\varrho * D_q\varrho * \dots * D_{q^{M-1}}\varrho) = D_{q^{-1}}\varrho * \dots * D_{q^{-M}}\varrho$.
+This is the equivalent weighting function run downward in scale, from a level toward finer scales,
+and its limit is Burt's characteristic kernel of the step. For a step of a family, which is infinitely
+divisible by Lemma~\ref{lem:steps-infinitely-divisible}, the next proposition shows that this limit is the
+kernel at the level. It also says which infinitely divisible steps are steps of a family. For a finite
+mask the limit can still exist, as the cubic B-spline does for the binomial mask, but it is the kernel
+of no family (Propositions~\ref{prop:no-bounded-step} and~\ref{prop:equivalent-weights}(2)).
+
+% draft: Proposition 3.13 (§ 3.4), lines 473–480 (statement) and 488–500 (proof) of
+% draft/spatial-hemigroup-pyramids.md.
+% CHANGED: (1) "in the canonical gauge" written "with S_q t = qt"; the display (3.3) is the display of
+% clause (1), and (3) refers to "the partial products of (1)".
+% CHANGED: (2) "not unique up to the gauge" written "not unique up to a relabelling in G_q", which is
+% what the proof shows.
+% CHANGED: (4)(b) the hypothesis varrho != delta_0, part of the hypotheses of (2) to which "the
+% moment of (2)" refers, made explicit; "-log of the transform of varrho, read radially" written as
+% psi_varrho; the polar profile written out; "nonincreasing for almost every r" read as "agrees for
+% almost every r with a nonincreasing function", the reading the proof uses; the last sentence
+% conditioned on F in A_d, as the draft's "Then" intends.
+% CHANGED (2026-11-14, a strengthening, the author's decision): (4)(b) splits its setting by
+% sub-clause. The equation holds along every vector e, not only a unit vector, and requires neither
+% varrho != delta_0 nor rotation invariance, which the radial data give; the class requires |e| = 1 and
+% not varrho != delta_0; only the family requires both.
+\begin{proposition}[the ladder determines the knot kernel]
+\label{prop:ladder-knot-kernel}
+\lean{Pyramids.ladder_knot_kernel_1, Pyramids.ladder_knot_kernel_2_moments,
+Pyramids.ladder_knot_kernel_2, Pyramids.ladder_knot_kernel_2_not_unique,
+Pyramids.ladder_knot_kernel_2_unique_iff, Pyramids.ladder_knot_kernel_2_unique_iff_rot,
+Pyramids.ladder_knot_kernel_2_split, Pyramids.ladder_knot_kernel_2_split_rot, Pyramids.ladder_knot_kernel_3, Pyramids.ladder_knot_kernel_4a,
+Pyramids.ladder_knot_kernel_4b_equation, Pyramids.ladder_knot_kernel_4b_classA,
+Pyramids.ladder_knot_kernel_4b_family, Pyramids.ladder_knot_kernel_4c}
+\leanok
+\uses{def:family-dimension-d, def:knots-and-ladder, def:isotropic-origin-data, lem:family-structure, lem:discrete-covariance-levy, thm:cited-A39, thm:cited-A49, thm:cited-A50, thm:cited-A45, thm:cited-A35, thm:cited-A34}
+% CHANGED: the ratio and the dimension, which every clause uses, are named once at the head (the
+% first clause had introduced q only through "q-covariant").
+Let $d \ge 1$ and $q > 1$.
+\begin{enumerate}
+\item (The equivalent weighting function, run downward.) Let $(\mu_{s,t})$ be a symmetric
+$q$-covariant family in dimension $d$ with $S_qt = qt$, and let $\varrho := \mu_{1,q}$ have the data
+$(A_\varrho, \nu_\varrho)$. Then
+\[
+  \widehat\mu_1(\omega) = \prod_{m \ge 1}\widehat\varrho\bigl(q^{-m}\omega\bigr), \qquad
+  A_1 = \frac{A_\varrho}{q^2 - 1}, \qquad \nu_1 = \nu^* := \sum_{m \ge 1}D_{q^{-m}}\nu_\varrho,
+\]
+the product being the limit of the transforms of
+$D_{q^{-1}}\varrho * D_{q^{-2}}\varrho * \dots * D_{q^{-M}}\varrho$ as $M \to \infty$. In particular
+$\int\log_+|x|\,\nu_\varrho(dx) < \infty$.
+\item (Every step with a logarithmic moment.) Conversely, let $\varrho \ne \delta_0$ be a symmetric
+infinitely divisible law on $\RR^d$ with $\int\log_+|x|\,\nu_\varrho(dx) < \infty$, equivalently
+$\int\log_+|x|\,\varrho(dx) < \infty$. Then some symmetric $q$-covariant family with $S_qt = qt$ has
+$\mu_{1,q} = \varrho$, its knot kernel $\mu_1$ is that of (1), and it is isotropic if $\varrho$ is
+rotation invariant. The families with this ladder are not unique.
+% CHANGED (2026-11-23, review round 3 batch C, s1-3.F6/S3, a strengthening): the exact condition
+% for uniqueness up to a relabelling in G_q, both directions, for all families and for the
+% isotropic ones; the sufficient condition of the disjoint split is kept as a consequence.
+Any two of them are relabellings of each other by elements of $\mathcal{G}_q$, that is
+$\mu'_{s,t} = \mu_{g(s),g(t)}$ for all $0 \le s \le t$ with $g \in \mathcal{G}_q$ and $g(0) := 0$,
+iff the data $D_\varrho := (A_\varrho, \nu_\varrho)$ span an extreme ray of the cone of the data
+$(A, \nu)$, $A$ positive semidefinite and $\nu$ a symmetric \Levy{} measure; this is the case iff
+$\nu_\varrho = 0$ and $A_\varrho$ has rank one, or $A_\varrho = 0$ and
+$\nu_\varrho = c(\delta_x + \delta_{-x})$ with $c > 0$ and $x \ne 0$. If $\varrho$ is rotation
+invariant, any two isotropic families with this ladder are relabellings of each other iff
+$D_\varrho$ spans an extreme ray of the cone of the data invariant under $\Orth(d)$; this is the
+case iff $\nu_\varrho = 0$, or $A_\varrho = 0$ and $\nu_\varrho = c\,\sigma_r$ with $c, r > 0$ and
+$\sigma_r$ the uniform probability on the sphere $\{|x| = r\}$. In particular, when $\nu_\varrho$ is
+the sum of two nonzero symmetric parts carried by disjoint sets, two families with this ladder are
+not relabellings of each other, and when $\varrho$ and both parts are rotation invariant, two
+isotropic families with this ladder are not.
+\item (Without the moment.) If $\varrho$ is symmetric and infinitely divisible and
+$\int\log_+|x|\,\nu_\varrho(dx) = \infty$, the partial products of (1) have no limit that is a
+characteristic function, and they tend to $0$ at almost every $\omega$.
+\item (Stratum 3.) (a) If $\varrho \ne \delta_0$ is carried by a full-rank lattice, no symmetric
+family that is $\lambda$-covariant for every $\lambda > 0$ has $\varrho$ as a step $\mu_{s,t}$,
+rotation invariant or not. (b) Let $\varrho$ be the symmetric infinitely divisible law
+% CHANGED (2026-11-23, review round 3, s1-3.S4): wording.
+(Lemma~\ref{lem:symmetric-levy-khintchine}) whose exponent has the Gaussian term $\tfrac12a_\varrho|\omega|^2$, with $a_\varrho$ in the normalization of the origin data of Definition~\ref{def:isotropic-origin-data}, and the \Levy{} measure
+$k_\varrho(|x|)\bigl(|S^{d-1}|\,|x|^d\bigr)^{-1}dx$ for a polar profile $k_\varrho \ge 0$, so that
+$\varrho$ is rotation invariant, and let $\int\log_+|x|\,\nu_\varrho(dx) < \infty$. For a vector
+$e \in \RR^d$ write $\psi_\varrho(r) := -\log\widehat\varrho(re)$, $r \ge 0$. Then
+$F := \sum_{m \ge 1}\psi_\varrho(q^{-m}\,\cdot)$ is the unique continuous solution of
+% CHANGED (2026-11-16, wording): "Let now |e| = 1. Then" reads "If |e| = 1, then", so that the
+% unit vector is a hypothesis of the two sentences that require it (a reviewer's flag required for |e| = 1
+% from the start, which would narrow the equation, stated for every vector since 2026-11-14).
+% CHANGED (2026-11-23, review round 3, s1-3.S4): wording.
+$F(qr) - F(r) = \psi_\varrho(r)$, $r \ge 0$, with $F(0) = 0$. If $|e| = 1$, then $F$ is the restriction to $[0,\infty)$ of an element of $\mathcal{A}_d$ iff $k^*(r) := \sum_{m \ge 1}k_\varrho(q^mr)$ agrees for almost every $r > 0$
+% CHANGED (2026-11-23, review round 3, s1-3.S4): wording.
+with a nonincreasing function. If moreover $|e| = 1$, $\varrho \ne \delta_0$ and $F$ is such a restriction, the
+fully covariant family with the exponents $\Psi_t = F(t|\cdot|)$ has the ladder of $\varrho$.
+% CHANGED (2026-11-16, a new clause, a strengthening): (4)(c), the argument of (4)(a) with a sphere
+% about 0 in place of the countable set (the dispositions of the theory paper's blind review,
+% 03-pyramid, the flag on "It says nothing about a rotation-invariant step").
+(c) If $\varrho$ is a symmetric infinitely divisible law whose \Levy{} measure charges a sphere
+$\{|x| = r\}$, $r > 0$, no symmetric family that is $\lambda$-covariant for every $\lambda > 0$ has
+$\varrho$ as a step $\mu_{s,t}$, rotation invariant or not.
+\end{enumerate}
+% CHANGED (wave 2g, 2026-11-14): A34 off the status line; thm:cited-A34 is regraded [T], a theorem
+% with no axiom, so the node spends one cited fact fewer.
+% CHANGED (wave 3a, 2026-11-14): the assignment of A39 follows the checked proof; the "Held as
+% [T]" list names the checked tools.
+% CHANGED (2026-11-14, a strengthening): unused hypotheses dropped from the Lean, listed at the end
+% of the status line; the print keeps the setting of each clause.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (fidelity review, 2026-11-15, R44): the status line names the measurability of the profile that ladder_knot_kernel_4b_classA requires.
+\statusA\quad\ledger{A39}\quad\ledger{A49}\quad\ledger{A50}\quad\ledger{A45}\quad\ledger{A35}\quad\emph{(\textbf{Assignment.}
+\ledger{A39} carries, in (1), the identification of the data of the step and of $\mu_1$ (uniqueness,
+(ii)); in (2), the laws of Lemma~\ref{lem:synthesis} ((iii)) and the uniqueness of the data
+((ii)), which separates the split coupling from the relabellings and, for extreme data, splits the
+data of a step and makes them a multiple of $D_\varrho$; in (4)(b), the continuity of the
+exponent of $(\tfrac12a_\varrho I/(q^2 - 1), \nu^*)$, read through a law with these data ((iii)),
+and the identification of the profile of $F$ ((ii)).
+\ledger{A49} with \ledger{A50} carries, in (2), the equivalence of the two logarithmic moments, read
+for the law at time $1$, with $\vartheta(x) = \log(|x| \vee e)$ submultiplicative and locally bounded.
+\ledger{A45} carries, in (4)(a) and (4)(c), the polar form of the \Levy{} measure of a
+self-decomposable law; \ledger{A39} carries, in (4)(c), the uniqueness of the data of the step ((ii)).
+\ledger{A35} carries, in (4)(b), both its clauses: (1), that $F(|\cdot|)$ is the exponent of a
+self-decomposable law iff it is the exponent of an isotropic origin datum, with the datum unique,
+and (2), that such an $F$ is admissible, so that $\mathcal{A}_d$ is the set of exponents of
+isotropic origin data. The fully covariant family of (4)(b), with $\chi = \mathrm{id}$, is
+Theorem~\ref{thm:cited-A34}, proved with no axiom and cited here as no ledger entry.
+Held as [T], with the proof below: the telescoping, the iteration of the data and Tonelli's theorem
+in (1); the bounds on the bracket, the uniform and split couplings through
+Lemma~\ref{lem:synthesis}, the comparison with the relabellings, and the gauge built from the
+weights of an extreme step in (2); all of (3), whose one
+tool beyond Tonelli's theorem is Steinhaus's theorem, a textbook fact; in (4)(a), the
+self-decomposability of a fully covariant kernel, the consequence of the polar form for countable
+sets, and Lemma~\ref{lem:lattice-infinitely-divisible}; in (4)(b), the equation, its uniqueness,
+the profile of $\nu^*$ in polar coordinates, and the finiteness and integrability of the
+nonincreasing profile that replaces it; in (4)(c), the consequence of the polar form for spheres.
+The description of the extreme rays in (2) (rank one, $c(\delta_x + \delta_{-x})$, $c\,\sigma_r$)
+is proved in print only: the declarations state the condition as the extreme ray itself
+(\texttt{SymLevyData.IsExtremeIn}), and the description reads the spectral theorem, supports of
+measures and the determination of an invariant measure by its radial image from the proof of
+Proposition~\ref{prop:what-does-not-lift}.
+\textbf{Hypotheses} (the node's, each with what its
+declarations require; the weaker ones dropped from the Lean on 2026-11-14): $d \ge 1$: same in
+\texttt{ladder\_knot\_kernel\_1}, \texttt{\_2}, \texttt{\_2\_split}, \texttt{\_4a},
+\texttt{\_4b\_classA} and \texttt{\_4b\_family}; absent in \texttt{\_2\_moments},
+\texttt{\_2\_not\_unique}, \texttt{\_3} and \texttt{\_4b\_equation}, which hold in every dimension;
+$q > 1$: same wherever $q$ is read, absent in \texttt{\_2\_moments} and \texttt{\_4a}, which do
+not read it. (1) symmetric $q$-covariant family with $S_qt = qt$: same; the data of
+$\varrho = \mu_{1,q}$ and of $\mu_1$: same, any $D_\varrho$, $D_1$ with \texttt{IsSymData}.
+(2) $\varrho$ a law: same; $\varrho \ne \delta_0$: same in \texttt{\_2} and
+\texttt{\_2\_not\_unique}; absent in \texttt{\_2\_moments}, and in \texttt{\_2\_split}, where
+$\nu_a \ne 0$ gives it; $\varrho$ symmetric infinitely divisible with data
+$(A_\varrho, \nu_\varrho)$: same in substance, \texttt{\_2}, \texttt{\_2\_not\_unique} and
+\texttt{\_2\_split} requiring only the data (\texttt{IsSymData}), which carry symmetry and, through
+\ledger{A39}(iii), infinite divisibility, and \texttt{\_2\_moments} the data and infinite
+divisibility; the logarithmic moment: same, \texttt{\_2\_moments} requiring none, the equivalence
+being its conclusion; rotation invariance of $\varrho$: same, a hypothesis inside the conclusion of
+\texttt{\_2}; $\nu_\varrho = \nu_a + \nu_b$, both nonzero and symmetric, carried by disjoint sets:
+same, except that \texttt{\_2\_split} requires $B_b$ Borel (stronger, harmless: a set carrying $\nu_b$
+contains a Borel set carrying it) and not $B_a$ Borel (weaker). The uniqueness up to
+$\mathcal{G}_q$, \texttt{\_2\_unique\_iff} and \texttt{\_2\_unique\_iff\_rot}: $d \ge 1$, $q > 1$,
+$\varrho \ne \delta_0$ with its data and the moment: same, the data as in \texttt{\_2}; $\varrho$
+rotation invariant: same in \texttt{\_rot}; the relabelling: same, $g \in \mathcal{G}_q$ extended by
+$g(0) := 0$; the cone of data: same, \texttt{IsExtremeIn} with no condition on the parts; the cone
+of invariant data: the data whose exponent is invariant under $\Orth(d)$
+(\texttt{IsOrthInvariant}), which by \ledger{A39}(ii) are the invariant data. (3) $\varrho$ symmetric
+infinitely divisible: same in substance, the data only, as in (2); the moment infinite: same.
+(4)(a) $\varrho \ne \delta_0$: same; $\varrho$ a law: weaker, \texttt{\_4a} requires any measure;
+$\Gamma$ a full-rank lattice: same, $\ZZ$-\texttt{Submodule} with \texttt{DiscreteTopology} and
+\texttt{IsZLattice}; symmetric fully covariant family: same. (4)(b) $\varrho$ a law: weaker in
+\texttt{\_4b\_equation} and \texttt{\_4b\_classA}, any measure with the transform; same in
+\texttt{\_4b\_family}; Gaussian part $\tfrac12a_\varrho|\omega|^2$: same ($a \ge 0$) in
+\texttt{\_4b\_equation} and \texttt{\_4b\_classA}, weaker in \texttt{\_4b\_family}, which does not
+require $a \ge 0$; the \Levy{} measure with the profile $k_\varrho \ge 0$: weaker in
+\texttt{\_4b\_equation}, $k_\varrho$ neither nonnegative nor measurable, and in
+\texttt{\_4b\_family}, which reads only the form of the transform and requires neither the
+integrability of a \Levy{} measure nor the moment; in \texttt{\_4b\_classA} weaker on
+$k_\varrho \ge 0$, not required, and \emph{stronger} on measurability: it requires $k_\varrho$
+measurable, which the node does not state; harmless, a density being read as measurable, and
+only $k_\varrho$ on $[0,\infty)$ entering; $\varrho$ rotation invariant: a consequence in the node,
+stronger in \texttt{\_4b\_family}, which requires it; harmless, the transform being radial and
+determining the law; the moment: same in \texttt{\_4b\_equation} and \texttt{\_4b\_classA}; $e$ a
+vector: same; $|e| = 1$: same in \texttt{\_4b\_classA} and \texttt{\_4b\_family}; $F$ the series:
+same in \texttt{\_4b\_classA}, which reads any continuous solution with $F(0) = 0$, the series by
+the uniqueness in \texttt{\_4b\_equation}; weaker in \texttt{\_4b\_family}, any solution of the
+equation in $\mathcal{A}_d$, neither continuity nor $F(0) = 0$ required; $\varrho \ne \delta_0$ and
+$F \in \mathcal{A}_d$ in the last sentence: same. (4)(c), \texttt{ladder\_knot\_kernel\_4c}:
+$d \ge 1$: same; $\varrho$ a symmetric infinitely divisible law with \Levy{} measure $\nu_\varrho$:
+same in substance, any measure with data $(A_\varrho, \nu_\varrho)$ (\texttt{IsSymData}), as in
+(2); $\nu_\varrho$ charges $\{|x| = r\}$: same; $r > 0$: weaker, not required, as $\nu_\varrho$ does
+not charge $\{0\}$; symmetric fully covariant family: same.)}
+\end{proposition}
+
+% CHANGED (wave 3a, 2026-11-14): the proof follows the machine-checked route. In (1) the product is
+% telescoped on the transforms and nu_1 = nu^* is read set by set from the iterated equation, with no
+% Tonelli identity of exponents; in (3) Step 1 averages along the coordinate axes (no
+% Riemann-Lebesgue lemma) and Step 3 uses 1 - cos(a + b) <= 2(1 - cos a) + 2(1 - cos b) and Steinhaus
+% on a sublevel set (no Minkowski inequality, no subgroup); in (4)(b) the equation is solved by the
+% exponent of the knot data, Psi^*(q w) = Psi^*(w) + Psi_rho(w).
+% CHANGED (length take (b), 2026-11-16): wording tightened, route and steps unchanged.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+\begin{proof}
+\leanok
+\uses{lem:family-structure, lem:steps-infinitely-divisible, lem:discrete-covariance-levy, lem:synthesis, lem:family-dilations, lem:lattice-infinitely-divisible}
+(1) (I1) and covariance at the pair $(0, 1)$ (Lemma~\ref{lem:discrete-covariance-levy}) give
+$\widehat\varrho(\omega)\,\widehat\mu_1(\omega) = \widehat\mu_q(\omega) = \widehat\mu_1(q\omega)$, and by
+induction on $M$
+\[
+  \prod_{m=1}^{M}\widehat\varrho\bigl(q^{-m}\omega\bigr)\cdot\widehat\mu_1\bigl(q^{-M}\omega\bigr)
+  = \widehat\mu_1(\omega).
+\]
+As $\widehat\mu_1$ is continuous with no zero and $\widehat\mu_1(0) = 1$
+(Lemma~\ref{lem:family-structure}), the partial products tend to $\widehat\mu_1(\omega)$. They are the
+transforms of the partial convolutions, $D_c\varrho$ having the transform $\widehat\varrho(c\,\cdot)$.
+For the data, (\ref{eq:discrete-covariance-levy}) and Lemma~\ref{lem:family-structure} give
+$q^2A_1 = A_q = A_1 + A_\varrho$, so $A_1 = A_\varrho/(q^2 - 1)$, and
+$D_q\nu_1 = \nu_q = \nu_\varrho + \nu_1$. Applying $D_{q^{-1}}$
+to the second and iterating,
+\[
+  \nu_1 = \sum_{m=1}^{M}D_{q^{-m}}\nu_\varrho + D_{q^{-M}}\nu_1 \qquad\text{for every } M.
+\]
+On a Borel set $B \subseteq \{|x| > \varepsilon\}$ the last term is at most
+$\nu_1(\{|x| > q^M\varepsilon\}) \to 0$, as $\nu_1$ is finite off every ball about $0$. So
+$\nu_1 = \nu^*$ on every set $\{|x| > 1/n\}$, and both put no mass at $0$. For the moment,
+Tonelli's theorem gives
+\begin{equation}
+\label{eq:ladder-tonelli}
+  \int\bigl(1 \wedge |x|^2\bigr)\,\nu^*(dx) = \int\Bigl[\sum_{m \ge 1}\bigl(1 \wedge q^{-2m}|v|^2\bigr)\Bigr]\,\nu_\varrho(dv).
+\end{equation}
+For $|v| > 1$ the bracket is at least $\lfloor\log_q|v|\rfloor > \log_q|v| - 1$, its terms with
+$q^m \le |v|$ being $1$. The left side is finite, $\nu^* = \nu_1$ being a \Levy{} measure, and
+$\nu_\varrho(\{|v| > 1\}) < \infty$, so $\int_{\{|v| > 1\}}\log_q|v|\,\nu_\varrho(dv) < \infty$.
+
+(2) The law $\varrho$ has the exponent
+$\psi_\varrho := -\log\widehat\varrho$, $\psi_\varrho(\omega) = \langle\omega, A_\varrho\omega\rangle + \int(1 - \cos\langle\omega, x\rangle)\,\nu_\varrho(dx)$,
+with $\nu_\varrho$ symmetric, and $\psi_\varrho \not\equiv 0$ as $\varrho \ne \delta_0$.
+In (\ref{eq:ladder-tonelli}) let $N := \lfloor\log_q|v|\rfloor$ for $|v| \ge 1$ and $N := 0$
+otherwise. The terms with $m \le N$ are at most $1$ and number $N \le \log_+|v|/\log q$. The others
+are $q^{-2m}|v|^2 = q^{-2(m - N - 1)}(q^{-N-1}|v|)^2$ with $(q^{-N-1}|v|)^2 \le 1 \wedge |v|^2$, a
+geometric series of ratio $q^{-2}$. So the bracket is at most
+$\log_+|v|/\log q + q^2(q^2 - 1)^{-1}(1 \wedge |v|^2)$, $\nu^*$ is a symmetric \Levy{} measure, and
+$D_q\nu^* = \sum_{m \ge 1}D_{q^{1-m}}\nu_\varrho = \nu_\varrho + \nu^*$. On $[1, q]$ put
+\[
+  A_t := \frac{A_\varrho}{q^2 - 1} + (\log_qt)\,A_\varrho, \qquad \nu_t := \nu^* + (\log_qt)\,\nu_\varrho,
+\]
+the \emph{uniform coupling}, which switches each jump of the step on linearly in $\log t$ across the
+octave. Its exponent is $\Psi_t = \Psi_1 + (\log_qt)\psi_\varrho$, with $\Psi_1$ the finite exponent
+of $(A_\varrho/(q^2 - 1), \nu^*)$, so it is continuous in $t$. Its differences for $s < t'$ are
+$(\log_qt' - \log_qs)(A_\varrho, \nu_\varrho)$, positive and nonzero. It glues:
+$A_q = q^2A_\varrho/(q^2 - 1) = q^2A_1$ and $\nu_q = \nu^* + \nu_\varrho = D_q\nu^* = D_q\nu_1$.
+Lemma~\ref{lem:synthesis} gives a symmetric $q$-covariant family with $S_qt = qt$. Its step
+$\mu_{1,q}$ has the exponent $\psi_\varrho$, so it is $\varrho$, and its knot kernel $\mu_1$ has the
+data $(A_\varrho/(q^2 - 1), \nu^*)$ of (1). If $\varrho$ is rotation invariant, so is
+$\psi_\varrho$, and so is $e^{-\Psi_1}$, by (1) the limit of the partial products. Hence every
+$\Psi_t = \Psi_1 + (\log_qt)\psi_\varrho$, $t \in [1,q]$, every $\Psi_{q^nt} = \Psi_t(q^n\,\cdot)$
+and every transform $e^{-(\Psi_t - \Psi_s)}$ is invariant under $\Orth(d)$: the family is isotropic.
+
+Replacing $\log_qt$ by another strictly increasing continuous map $p$ of $[1, q]$ onto $[0, 1]$
+gives in the same way a family with the same ladder and the laws $\mu_{1,t}$ with the data
+$p(t)(A_\varrho, \nu_\varrho)$. With $p = (\log_q)^2$ the kernel at $t = \sqrt q$ has the exponent
+$\Psi_1 + \tfrac14\psi_\varrho$, not $\Psi_1 + \tfrac12\psi_\varrho$, so the families with this
+ladder are not unique. This one is the uniform coupling relabelled by the element $g$ of
+$\mathcal{G}_q$ with $g(t) = q^{p(t)}$ on $[1, q]$.
+
+% CHANGED (2026-11-23, review round 3 batch C, s1-3.F6/S3): the split coupling is built from any
+% split D_varrho = F + G with F no multiple of D_varrho (ladder_split_not_relabel), the disjoint
+% split being one case; the converse for extreme data and the description of the extreme rays are
+% new. The route is the checked one (LadderUnique.lean), except the description of the extreme
+% rays, which is proved in print only.
+The freedom is larger than the relabellings. For data $D = (A, \nu)$ and $D' = (A', \nu')$ write
+$D + D' := (A + A', \nu + \nu')$ and $cD := (cA, c\nu)$ for $c \ge 0$; the exponent of $D + D'$ is
+$\psi_D + \psi_{D'}$, and data with the exponent $c\psi_D$ are $cD$ by the uniqueness of the
+triplet. Let $D_\varrho = F + G$ with data $F$ and $G$ such that $F \ne cD_\varrho$ for every
+$c \ge 0$. Then $F \ne 0$, as $F \ne 0\cdot D_\varrho$, and $G \ne 0$, as $F \ne 1\cdot D_\varrho$; so
+$\psi_F$ and $\psi_G$ are not identically $0$. Keep the knot data $D^* := (A_\varrho/(q^2 - 1),
+\nu^*)$ of the uniform coupling, and put $D_t := D^* + (2\log_qt)F$ on $[1, \sqrt q]$ and
+$D_t := D^* + F + (2\log_qt - 1)G$ on $[\sqrt q, q]$. Lemma~\ref{lem:synthesis} applies again: the
+two pieces agree at $\sqrt q$; the differences are $F$ (on $[1, \sqrt q]$) or $G$ (on
+$[\sqrt q, q]$) times positive factors, with nonzero exponents; the data at $t = q$ are
+$D^* + D_\varrho = (q^2A_1, D_q\nu^*)$. The step $\mu_{1,q}$ has the data $F + G = D_\varrho$, so it is
+$\varrho$, and the knot kernel is that of (1), as for the uniform coupling. Suppose this split
+coupling were the uniform coupling relabelled by some $g \in \mathcal{G}_q$, that is
+$\mu^{\mathrm{split}}_{s,t} = \mu^{\mathrm{unif}}_{g(s),g(t)}$ for all $s \le t$. Then
+$\mu^{\mathrm{unif}}_{g(1)} = \mu^{\mathrm{split}}_1 = \mu^{\mathrm{unif}}_1$, so $g(1) = 1$ by the
+injectivity of Lemma~\ref{lem:family-structure}, hence $g(q) = q$, and $u := g(\sqrt q)$ lies in
+$(1, q)$. The step $\mu^{\mathrm{split}}_{1,\sqrt q}$ has the data $F$, and it is
+$\mu^{\mathrm{unif}}_{1,u}$, which has the data $(\log_qu)D_\varrho$. The uniqueness of the triplet
+gives $F = (\log_qu)D_\varrho$, against the choice of $F$. So the two families are not relabellings
+of each other.
+
+If $\varrho$, $F$ and $G$ are invariant under $\Orth(d)$, the split coupling is isotropic as the
+uniform one is: $\psi_F$, $\psi_G$ and the exponent of $D^*$, the limit of the partial products of
+(1), are invariant, hence so is the exponent of every $D_t$, $t \in [1, q]$, and of its dilates, and
+so is the transform $e^{-(\Psi_t - \Psi_s)}$ of every step.
+
+When $\nu_\varrho = \nu_a + \nu_b$ with $\nu_a$ and $\nu_b$ nonzero, symmetric and carried by
+disjoint sets $B_a$ and $B_b$, take $F := (\tfrac12A_\varrho, \nu_a)$ and
+$G := (\tfrac12A_\varrho, \nu_b)$. If $F = cD_\varrho$, then on $B_b$ the measures give
+$0 = c\,\nu_b(B_b)$, so $c = 0$ and $\nu_a = 0$, a contradiction. If moreover $\varrho$, $\nu_a$ and
+$\nu_b$ are rotation invariant, $A_\varrho$ is a multiple of the identity, and $F$ and $G$ are
+invariant. This is the last sentence of (2).
+
+Now let $D_\varrho$ span an extreme ray of the cone of data, or of the cone of invariant data, and let
+$(\mu_{s,t})$ be a family with this ladder, isotropic in the second case. For $t \in [1, q]$ the
+steps $\mu_{1,t}$ and $\mu_{t,q}$ are symmetric and infinitely divisible
+(Lemma~\ref{lem:family-structure}), with data $E_t$ and $E'_t$, and
+$\mu_{1,q} = \mu_{t,q} * \mu_{1,t}$ gives $\psi_\varrho = \psi_{E_t} + \psi_{E'_t}$, so
+$D_\varrho = E_t + E'_t$ by the uniqueness of the triplet. In the second case $E_t$ and $E'_t$ are
+invariant, the steps being rotation invariant. By extremality $E_t = c(t)D_\varrho$ with
+$c(t) \ge 0$, so $\widehat\mu_{1,t} = e^{-c(t)\psi_\varrho}$. Fix $\omega_0$ with
+$\psi_\varrho(\omega_0) > 0$. Then $c(t) = -\log\widehat\mu_{1,t}(\omega_0)/\psi_\varrho(\omega_0)$
+is continuous on $[1, q]$ by (I2), with $c(1) = 0$ and $c(q) = 1$. It is strictly increasing: for
+$1 \le s < t \le q$, (I1) gives $\widehat\mu_{s,t} = e^{-(c(t) - c(s))\psi_\varrho}$, and
+$c(t) \le c(s)$ would make this transform at least $1$, hence equal to $1$, and
+$\mu_{s,t} = \delta_0$, against (ND). So $\varphi(t) := q^{c(t)}$ is continuous and strictly
+increasing on $[1, q]$, with $\varphi(1) = 1$ and $\varphi(q) = q$. Since $\varphi(q) = q\varphi(1)$,
+$g(q^nt) := q^n\varphi(t)$, $t \in [1, q)$, $n \in \ZZ$, is continuous and strictly increasing
+on $(0, \infty)$, onto by the intermediate value theorem, with $g(qt) = qg(t)$: an element of
+$\mathcal{G}_q$. For $t \in [1, q]$,
+$g(t) \in [1, q]$ and $\log_qg(t) = c(t)$, so $\mu_{1,t}$ and $\mu^{\mathrm{unif}}_{1,g(t)}$ have the
+same transform $e^{-c(t)\psi_\varrho}$. The knot kernels $\mu_1$ and $\mu^{\mathrm{unif}}_1$ have the
+same transform, the limit of the partial products of (1), so (I1) gives
+$\mu_t = \mu^{\mathrm{unif}}_{g(t)}$. For $t = q^{-n}u > 0$ with $u \in [1, q)$, covariance gives
+$\mu_t = D_{q^{-n}}\mu_u = D_{q^{-n}}\mu^{\mathrm{unif}}_{g(u)} = \mu^{\mathrm{unif}}_{q^{-n}g(u)}
+= \mu^{\mathrm{unif}}_{g(t)}$, and at $t = 0$ both kernels are $\delta_0$. The transforms of the
+kernels have no zero (Lemma~\ref{lem:family-structure}), so (I1) gives
+$\widehat\mu_{s,t} = \widehat\mu_t/\widehat\mu_s$ and the same for the uniform coupling at
+$g(s) \le g(t)$, and $\mu_{s,t} = \mu^{\mathrm{unif}}_{g(s),g(t)}$ for $0 \le s \le t$. So every
+family with this ladder, isotropic in the second case, is the uniform coupling relabelled by an
+element of $\mathcal{G}_q$. Two of them, relabelled by $g_1$ and $g_2$, are relabellings of each
+other by $g_1^{-1}g_2 \in \mathcal{G}_q$. With the split coupling, this proves both equivalences of
+(2).
+
+It remains to describe the extreme rays. Let $D = (A, \nu) \ne 0$. If $A \ne 0$ and $\nu \ne 0$,
+then $D = (A, 0) + (0, \nu)$ and $(A, 0)$ is no multiple of $D$, both parts being invariant when $D$
+is. Let $\nu = 0$. If $A$ has rank at least $2$, let $e$ be a unit eigenvector of $A$ with
+eigenvalue $\lambda > 0$; then $A = \lambda ee^\top + (A - \lambda ee^\top)$, both positive
+semidefinite and nonzero, and the first, of rank one, is no multiple of $A$. If $A$ has rank one,
+$A = \lambda ee^\top$, and $D = F + G$, then $F = (A_F, 0)$ with
+$0 \le \langle v, A_Fv\rangle \le \langle v, Av\rangle = 0$ for $v \perp e$, so $A_Fv = 0$ there, $A_F$
+being positive semidefinite, and $A_F$ is a multiple of $A$. Let now $A = 0$, $\nu \ne 0$. In a split
+$D = F + G$ the Gaussian parts vanish, their traces being nonnegative with the sum $0$, and
+$\nu_F \le \nu$. If $\nu = c(\delta_x + \delta_{-x})$, then $\nu_F$ is symmetric and carried by
+$\{x, -x\}$, so it is a multiple of $\nu$. Otherwise the support of $\nu$, which carries $\nu$,
+contains two points $y, z \ne 0$ with $z \ne \pm y$: else $\nu$, null at $0$, would be carried by
+some $\{y, -y\}$, and by symmetry equal to $\nu\{y\}(\delta_y + \delta_{-y})$, with
+$\nu\{y\} < \infty$ as $\nu$ is finite off every ball about $0$. For $\varepsilon > 0$ small, $B := \{|x - y| < \varepsilon\} \cup
+\{|x + y| < \varepsilon\}$ is symmetric, does not meet $\{|x - z| < \varepsilon\}$, and
+$\nu(B) > 0$, $\nu(B^c) > 0$. Then $D = (0, \nu|_B) + (0, \nu|_{B^c})$, and $\nu|_B = c\nu$ would
+give $0 = c\,\nu(B^c)$, so $c = 0$ and $\nu(B) = 0$. So the extreme rays of the cone of data are
+those described in (2).
+
+For the invariant cone, invariant data have $QAQ^\top = A$ for $Q \in \Orth(d)$, so every eigenspace
+of $A$ is invariant under $\Orth(d)$, which acts transitively on the unit sphere, and $A = aI$. If
+$a > 0$ and $\nu \ne 0$, the split above is into invariant data. If $\nu = 0$, the parts of a split
+into invariant data are $(a_FI, 0)$, multiples of $D$. Let $a = 0$, and let $\overline\nu$ be the
+image of $\nu$ under $x \mapsto |x|$, carried by $(0, \infty)$. For a Borel set $E \subseteq (0,
+\infty)$ the set $\{x : |x| \in E\}$ is invariant and symmetric, and restricting $\nu$ to it and to
+its complement splits $D$ into invariant data; if $D$ spans an extreme ray, then
+$\overline\nu(E) = 0$ or $\overline\nu(E^c) = 0$. If the support of $\overline\nu$ in $(0,\infty)$ had
+two points $r_1 < r_2$, the set $E = (0, (r_1 + r_2)/2]$ would contradict this; so it is one point
+$r$, and $\overline\nu = c\,\delta_r$, with $c < \infty$. So $\nu$ and $c\,\sigma_r$ are invariant
+under every linear isometry, null at $0$ and finite, with the same image under $x \mapsto |x|$; such
+a measure is determined by that image (as in the proof of
+Proposition~\ref{prop:what-does-not-lift}), so $\nu = c\,\sigma_r$. Conversely, if
+$\nu = c\,\sigma_r$ and $D = F + G$ with $F$ invariant, then $\nu_F \le \nu$ is invariant and carried
+by the sphere $\{|x| = r\}$, so its image is $c_F\delta_r$ and $\nu_F = c_F\sigma_r$ in the same way.
+So the extreme rays of the cone of invariant data are those described in (2).
+
+The two moments are equivalent by Theorem~\ref{thm:cited-A49}, read for the law at time $1$ with
+$\vartheta(x) = \log(|x| \vee e)$, submultiplicative [\sscite{sato1999levy}, Prop.~25.4(iii),
+p.~159] and continuous, hence locally bounded. As $\vartheta - \log_+|\cdot|$ is bounded, $\varrho$ is
+a probability, $\nu_\varrho(\{|x| > 1\}) < \infty$ and $\log_+|x| = 0$ on $\{|x| \le 1\}$, the two
+finiteness conditions are those of the statement.
+
+(3) Write $P_M := \prod_{m=1}^M\widehat\varrho(q^{-m}\,\cdot)$,
+$\Sigma_M(\omega) := \sum_{m=1}^M\psi_\varrho(q^{-m}\omega)$ and
+$\psi^*(\omega) := \int(1 - \cos\langle\omega, x\rangle)\,\nu^*(dx) \in [0, \infty]$. Then
+$P_M = e^{-\Sigma_M}$, and $\Sigma_M$ is nondecreasing in $M$. Since
+$\psi_\varrho(\omega) \ge \int(1 - \cos\langle\omega, v\rangle)\,\nu_\varrho(dv)$, Tonelli's theorem gives
+$\sum_{m=1}^M\int(1 - \cos\langle q^{-m}\omega, v\rangle)\,\nu_\varrho(dv) \le \Sigma_M(\omega)$, and these
+partial sums increase to $\psi^*(\omega)$. So $\psi^*(\omega) \le \sup_M\Sigma_M(\omega)$, and where
+$\psi^*(\omega) = \infty$, $\Sigma_M(\omega) \to \infty$ and $P_M(\omega) \to 0$.
+
+\emph{Step 1: if $\psi^*$ is bounded on some ball $B_\varepsilon$ about $0$, by $C$, the moment
+holds.} For real $y$, $1 \wedge y^2 \le 3(1 - \cos y) + \int_0^2(1 - \cos sy)\,ds$: for $|y| \le 1$
+because $y^2 \le 3(1 - \cos y)$ there, and for $|y| \ge 1$ because the integral is
+$2 - \sin(2y)/y \ge 1$. Let $c := (\varepsilon \wedge 1)/3$ and let $e_1, \dots, e_d$ be the standard
+basis. At $y = cx_i$ one has $\cos(scx_i) = \cos\langle sce_i, x\rangle$ and $|sce_i| \le 2c < \varepsilon$
+for $s \in [0, 2]$, so Tonelli's theorem gives
+$\int(1 \wedge c^2x_i^2)\,\nu^*(dx) \le 3C + 2C$. Since
+$1 \wedge |x|^2 \le c^{-2}(1 \wedge c^2|x|^2) \le c^{-2}\sum_{i=1}^d(1 \wedge c^2x_i^2)$, $\nu^*$ is a
+\Levy{} measure, and (\ref{eq:ladder-tonelli}) with the lower bound of (1) gives the moment.
+
+\emph{Step 2: no limit is a characteristic function.} A characteristic function $\widehat\eta$ is
+continuous and equal to $1$ at $0$, so its real part exceeds $\tfrac12$ on some ball $B_\varepsilon$.
+If $P_M \to \widehat\eta$ pointwise, the nonincreasing sequence $e^{-\Sigma_M}$ tends there to
+$\operatorname{Re}\widehat\eta > \tfrac12$, so $\Sigma_M < \log 2$ for every $M$ and
+$\psi^* \le \log 2$ on $B_\varepsilon$. Step 1 gives the moment, against the hypothesis.
+
+\emph{Step 3: the limit is $0$ almost everywhere.} From $1 - \cos u = 2\sin^2(u/2)$ and
+$|\sin(a + b)| \le |\sin a| + |\sin b|$ one gets $1 - \cos(a + b) \le 2(1 - \cos a) + 2(1 - \cos b)$,
+so $\psi^*(\omega - \omega') \le 2\psi^*(\omega) + 2\psi^*(\omega')$, $\psi^*$ being even. The
+function $\psi^*$ is measurable by Tonelli's theorem. If $\{\psi^* < \infty\}$ had positive measure,
+some $E_k := \{\psi^* \le k\}$ would, and by Steinhaus's theorem $E_k - E_k$ would contain a ball
+about $0$, on which $\psi^* \le 4k$, and Step 1 would give the moment. So $\psi^* = \infty$ almost
+everywhere, and there the partial products tend to $0$.
+
+(4) (a) Let $\varrho = \mu_{s,t}$ in a symmetric family that is $\lambda$-covariant for every
+$\lambda > 0$, so $s < t$ as $\varrho \ne \delta_0$. Every kernel of the family is
+self-decomposable, as in the proof of Proposition~\ref{prop:stratum-two-example}, with
+Lemma~\ref{lem:family-dilations}(1), the residual for the ratio $0 < c < 1$ being the step from
+$S_ct$ to $t$. By Theorem~\ref{thm:cited-A45} the \Levy{} measure of $\mu_t$ has the
+polar form $\nu_t(B) = \int_{S^{d-1}}\Lambda(d\xi)\int_0^\infty\mathbf 1_B(r\xi)\,k_\xi(r)\,dr/r$, with
+$\Lambda$ a finite measure on the unit sphere $S^{d-1}$ (Sato's $\lambda$). For a countable set $B$ and
+each $\xi$, the $r$ with $r\xi \in B$ are countable, hence $dr/r$-null, so $\nu_t(B) = 0$. But
+$\varrho$ is infinitely divisible (Lemma~\ref{lem:steps-infinitely-divisible}) and carried by a full-rank
+lattice, so by Lemma~\ref{lem:lattice-infinitely-divisible} it has $A_\varrho = 0$ and a \Levy{}
+measure carried by the lattice, a countable set. That measure is not zero, as
+$\varrho \ne \delta_0$, so $\nu_t \ge \nu_t - \nu_s = \nu_\varrho$
+(Lemma~\ref{lem:family-structure}) gives the lattice positive mass, a contradiction.
+
+(b) Here $\varrho$ has the data $(A_\varrho, \nu_\varrho)$, $A_\varrho := \tfrac12a_\varrho I$, with
+the exponent $\Psi_\varrho$, so that $\psi_\varrho(r) = \Psi_\varrho(re)$. The bound in (2) makes
+$\nu^*$ a \Levy{} measure, so $(A^*, \nu^*)$ with $A^* := A_\varrho/(q^2 - 1)$ are data, with the
+Gaussian coefficient $a_\varrho/(q^2 - 1)$ in the normalization of the origin data. Their exponent
+$\Psi^*$ is continuous, being $-\log$ of the transform of a law with these data, and
+$\Psi^*(0) = 0$. As $D_q\nu^* = \nu_\varrho + \nu^*$, the dilate of $(A^*, \nu^*)$ by $q$ is
+$(q^2A^*, D_q\nu^*) = (A_\varrho + A^*, \nu_\varrho + \nu^*)$, so
+$\Psi^*(q\omega) = \Psi^*(\omega) + \Psi_\varrho(\omega)$. Hence $G(r) := \Psi^*(re)$ is continuous
+on $[0,\infty)$, with $G(0) = 0$ and $G(qr) - G(r) = \psi_\varrho(r) \ge 0$. Any continuous solution
+$\tilde F$ with $\tilde F(0) = 0$ telescopes:
+$\tilde F(r) = \tilde F(q^{-N}r) + \sum_{n=1}^N\psi_\varrho(q^{-n}r)$, and the first term tends to
+$0$. So the series converges to $G(r)$ for every $r \ge 0$, and $F = G$ is the only continuous
+solution with $F(0) = 0$.
+
+As $\nu_\varrho(q^mB) = \int_B k_\varrho(q^m|y|)\bigl(|S^{d-1}|\,|y|^d\bigr)^{-1}dy$ for Borel $B$,
+$D_{q^{-m}}\nu_\varrho$ has the profile $k_\varrho(q^m\,\cdot)$, and $\nu^*$ the profile $k^*$. By
+polar coordinates the image of a measure with the profile $\kappa$ under $x \mapsto |x|$ is
+$\kappa(r)\,dr/r$ on $(0,\infty)$, so the measure determines the profile up to a null set and
+conversely. The data $(A^*, \nu^*)$ are invariant under every linear isometry, $A^*$ being a multiple of $I$
+and $\nu^*$ radial, so $\Psi^*$ is radial and, as $|e| = 1$, $F(|\omega|) = \Psi^*(\omega)$.
+
+By Theorem~\ref{thm:cited-A35}, whose clause (2)
+supplies the admissibility the definition of $\mathcal{A}_d$ requires, $F \in \mathcal{A}_d$ iff
+$F(|\cdot|)$ is the exponent of an isotropic origin datum $(a_0, k_d)$. If $F \in \mathcal{A}_d$,
+with $k_d$ nonincreasing, then $F(|\cdot|) = \Psi^*$ and the uniqueness of the triplet
+(Theorem~\ref{thm:cited-A39}(ii)) give the datum the \Levy{} measure $\nu^*$, so
+$k^* = k_d$ almost everywhere on $(0,\infty)$.
+
+Conversely, let $k^* = \tilde k$ almost everywhere, with $\tilde k$ nonincreasing, taken with values
+in $[0, \infty]$ as $k^* \ge 0$. As $\nu^*$ is a \Levy{} measure, polar coordinates give
+\[
+  \int\bigl(1 \wedge |x|^2\bigr)\,\nu^*(dx) = \int_0^\infty\bigl(1 \wedge r^2\bigr)\,k^*(r)\,\frac{dr}{r}
+  = \int_0^1\tilde k(r)\,r\,dr + \int_1^\infty\tilde k(r)\,\frac{dr}{r} < \infty.
+\]
+So $\tilde k$ meets the integrability conditions of Definition~\ref{def:isotropic-origin-data}, and
+it is finite on $(0,\infty)$: $\tilde k(r_0) = \infty$ would give $\tilde k = \infty$ on $(0, r_0)$
+and the display infinite. So $(a_\varrho/(q^2 - 1), \tilde k)$ is an isotropic origin datum, with
+the \Levy{} measure $\nu^*$ and the Gaussian part $\langle\omega, A_\varrho\omega\rangle/(q^2 - 1)$,
+hence the exponent $\Psi^* = F(|\cdot|)$, and $F \in \mathcal{A}_d$.
+
+If $F \in \mathcal{A}_d$, then $F \not\equiv 0$ since $\varrho \ne \delta_0$, and
+Theorem~\ref{thm:cited-A34} with $\chi = \mathrm{id}$ gives an isotropic family with the
+transforms $\exp(-[F(t|\omega|) - F(s|\omega|)])$, fully covariant. It has $S_qt = qt$, and its step
+from $1$ to $q$ has the exponent $F(q|\omega|) - F(|\omega|) = \psi_\varrho(|\omega|)$, so it is
+$\varrho$. By covariance its ladder is $(D_{q^n}\varrho)_{n \in \ZZ}$, the ladder of $\varrho$.
+
+% CHANGED (2026-11-16): the proof of the new clause (4)(c), on the checked route of
+% ladder_knot_kernel_4c.
+(c) Let $\varrho = \mu_{s,t}$ in a symmetric family that is $\lambda$-covariant for every
+$\lambda > 0$, and let $\nu_\varrho$ charge the sphere $rS^{d-1} = \{|x| = r\}$. If $s = t$, then
+$\varrho = \delta_0$, whose data are $(0, 0)$, so by the uniqueness of the data
+(Theorem~\ref{thm:cited-A39}(ii)) $\nu_\varrho = 0$, against the hypothesis. So $s < t$.
+As in (a), the \Levy{} measure $\nu_t$ of $\mu_t$ has the polar form. For each $\xi \in S^{d-1}$ the point
+$u\xi$, $u > 0$, lies on $rS^{d-1}$ only for $u = r$, a $du/u$-null set, so $\nu_t(rS^{d-1}) = 0$. By
+Lemma~\ref{lem:family-structure} the step $\mu_{s,t}$ has data whose \Levy{} measure $\nu_{s,t}$
+satisfies $\nu_{s,t} + \nu_s = \nu_t$, and by the uniqueness of the data $\nu_{s,t} = \nu_\varrho$.
+Hence $\nu_\varrho(rS^{d-1}) \le \nu_t(rS^{d-1}) = 0$, a contradiction.
+
+Every step is machine-checked, and the cited facts are \ledger{A39}, \ledger{A49}, \ledger{A50},
+\ledger{A45}, \ledger{A35}, \ledger{A41}, \ledger{A42} and \ledger{A48}.
+\end{proof}
+
+% CHANGED (2026-11-16): the steps whose Levy measure is carried by spheres are now clause (4)(c).
+Clause (4)(b) is stated for steps whose \Levy{} measure has a radial density. A step whose \Levy{}
+measure charges a sphere about $0$, such as the steps of Proposition~\ref{prop:stratum-two-example},
+is a step of no fully covariant family, by clause (4)(c).
+
+Clause (3) cannot say ``every $\omega \ne 0$''. The next example shows why.
+
+% draft: the example after Proposition 3.13 (§ 3.4), lines 484–486 of draft/spatial-hemigroup-pyramids.md.
+% CHANGED: the example made a proposition (it asserts and argues), with the law varrho written out as
+% a compound Poisson law.
+% CHANGED: its last sentence, on how Proposition 3.13(3) is worded, left to the prose before the node
+% (blind review, flag 23).
+\begin{proposition}[the partial products at one frequency]
+\label{prop:ladder-not-every-frequency}
+\lean{Pyramids.ladder_not_every_frequency}
+\leanok
+\uses{prop:ladder-knot-kernel}
+Let $d = 1$ and $q = 2$, and let $\varrho$ be the compound Poisson law on $\ZZ$ with the \Levy{}
+measure $\nu_\varrho := \sum_{j \ge 1}j^{-2}\cdot\tfrac12(\delta_{2^j} + \delta_{-2^j})$, whose folded
+\Levy{} measure is $\sum_{j \ge 1}j^{-2}\delta_{2^j}$. Then $\int\log_+|x|\,\nu_\varrho(dx) = \infty$,
+and the partial products $\prod_{m=1}^M\widehat\varrho(2^{-m}\omega)$ have a positive limit at
+$\omega = 2\pi$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(\textbf{Hypotheses} (the node's, each with what
+\texttt{ladder\_not\_every\_frequency} requires): $d = 1$: same, laws on $\RR^1$; $q = 2$: same; the
+\Levy{} measure $\nu_\varrho$: same, fixed; $\varrho$ the compound Poisson law: same, the
+declaration gives a law with its transform and states the clauses of every probability measure
+with that transform, which is that law, the transform determining the law.)}
+\end{proposition}
+
+% CHANGED (wave 3a, 2026-11-14): the proof follows the machine-checked route. The law is written as
+% the series e^{-c} sum nu^{*n}/n!, the three properties are derived from it (the transform
+% determines the law, a convolution of laws on Z is carried by Z, the n-th root is the compound
+% Poisson law of nu/n), and the double series is summed over m for each j first.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+\begin{proof}
+\leanok
+The measure $\nu_\varrho$ is symmetric with total mass $c := \sum_jj^{-2} < \infty$. Let
+$\varrho := e^{-c}\sum_{n \ge 0}\nu_\varrho^{*n}/n!$, the law of $Y_1 + \dots + Y_N$ with $N$ Poisson
+of mean $c$ and $Y_1, Y_2, \dots$ independent with law $\nu_\varrho/c$, independent of $N$. It is a
+probability law with $\widehat\varrho = e^{-c}\exp\widehat{\nu_\varrho}$, and since $\nu_\varrho$ is
+symmetric, $\widehat{\nu_\varrho}(\omega) = \int\cos\omega x\,\nu_\varrho(dx)$, so
+$\widehat\varrho(\omega) = \exp\bigl(-\int(1 - \cos\omega x)\,\nu_\varrho(dx)\bigr)
+= \exp\bigl(-\sum_jj^{-2}(1 - \cos(2^j\omega))\bigr)$. A law with this transform is $\varrho$, the
+transform determining the law. It is carried by $\ZZ$: so is $\nu_\varrho$, and a convolution of two
+measures carried by $\ZZ$ is carried by $\ZZ$, so every $\nu_\varrho^{*n}$ is. It is infinitely
+divisible: for $n \ge 1$ the compound Poisson law of $\nu_\varrho/n$ has the transform
+$\widehat\varrho^{1/n}$, so its $n$-th convolution power is $\varrho$. The moment fails:
+$\int\log_+|x|\,\nu_\varrho(dx) = \sum_jj^{-2}\cdot j\log 2 = \infty$, the harmonic series diverging.
+At $\omega = 2\pi$,
+\[
+  -\log\prod_{m=1}^M\widehat\varrho(2^{-m}\cdot2\pi) = \sum_{m=1}^M\sum_{j \ge 1}j^{-2}\bigl(1 - \cos(2\pi2^{j-m})\bigr).
+\]
+The terms with $m \le j$ vanish, since $2^{j-m}$ is an integer. Writing $i := m - j \ge 1$ for the
+others, the double sum increases with $M$ to
+\[
+  \sum_{m \ge 1}\sum_{j \ge 1}j^{-2}\bigl(1 - \cos(2\pi2^{j-m})\bigr) = \Bigl(\sum_{j \ge 1}j^{-2}\Bigr)
+  \sum_{i \ge 1}\bigl(1 - \cos(2\pi2^{-i})\bigr) < \infty,
+\]
+since $1 - \cos u \le u^2/2$ makes the last series at most $\sum_i2\pi^24^{-i}$. (The sums are of
+nonnegative terms, so they may be taken over $m$ for each $j$ first.) So the partial products at
+$2\pi$ decrease to the positive limit $\exp\bigl(-\sum_m\sum_jj^{-2}(1 - \cos(2\pi2^{j-m}))\bigr)$.
+
+Every step is machine-checked, with no cited fact.
+\end{proof}
+
+So the ladder fixes the knot kernels, and the families through it differ only between the knots. For
+a symmetric infinitely divisible step the logarithmic moment is the only condition. A symmetric
+infinitely divisible step $\varrho \ne \delta_0$ on a full-rank lattice with the moment has a pyramid
+in stratum 2 and none in stratum 3, and a finite mask has none at all
+(Proposition~\ref{prop:no-bounded-step}). On a lattice, the product formula of
+Proposition~\ref{prop:ladder-knot-kernel}(1) is that of
+Proposition~\ref{prop:grid-pyramid-not-isotropic}(1), and clause (2) is
+Proposition~\ref{prop:exact-masks}.
+
+% ---------------------------------------------------------------------------------------------------
+\section{Steps of bounded support}
+\label{sec:pyramid-bounded}
+
+The classical pyramids smooth with a finite mask, applied separably [\sscite{burt1983laplacian},
+p.~533]: a five-tap mask of Burt's family, of which the binomial $\tfrac1{16}[1,4,6,4,1]$ is a member
+[\sscite{burt1981fast}, p.~24], or a B-spline mask. No such mask is a step of any family that is
+continuous in scale.
+
+% draft: Proposition 3.14 (§ 3.5), lines 506–508 of draft/spatial-hemigroup-pyramids.md.
+\begin{proposition}[no continuous family has a step of bounded support]
+\label{prop:no-bounded-step}
+\lean{Pyramids.no_bounded_step}\leanok
+\uses{thm:cited-A46, lem:steps-infinitely-divisible}
+Let $w$ be a probability measure on $\RR^d$ with bounded support, not a point mass. Then $w$ is not
+infinitely divisible. So $w$ is no $\mu_{s,t}$ of any family of probability measures on $\RR^d$ with
+(I1) and (I2), with no assumption of symmetry, rotation invariance, covariance or (ND).
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A46}\quad\ledger{A41}\quad\emph{(\textbf{Assignment.} \ledger{A46} carries the
+first sentence: an infinitely divisible law other than a point mass has unbounded support, on
+$\RR^d$. \ledger{A41}, Khintchine's theorem, carries the infinite divisibility of every step of a
+family with (I1) and (I2), through Lemma~\ref{lem:steps-infinitely-divisible}, which builds the
+null array from (I1) and (I2) and requires neither symmetry nor (ND). Held as [T], with the proof
+below: the combination of the two.
+\textbf{Hypotheses} (the node's, each with what \texttt{no\_bounded\_step} requires): $d \ge 1$ (the
+chapter's range): absent, every dimension; $w$ a probability measure: same; bounded support: same,
+$w(\{|x| > R\}) = 0$ for some $R$; not a point mass: same; the family of probability measures with
+(I1) and (I2): same, \texttt{IsLawHemigroup}; symmetry, rotation invariance, covariance, (ND): not
+required in either.)}
+\end{proposition}
+
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (blueprint round of the theory paper, 2026-11-16; blind review of section 3, flags 9,
+% 16): the second sentence cites lem:steps-infinitely-divisible, which states what the first two
+% paragraphs of the proof of lem:family-structure showed; Theorem A46 cited at the point of use.
+\begin{proof}
+\leanok
+\uses{lem:steps-infinitely-divisible}
+By Theorem~\ref{thm:cited-A46}, an infinitely divisible law on $\RR^d$ that is not a point mass
+has unbounded support. This is the first sentence. For the second, let $(\mu_{s,t})$ satisfy (I1)
+and (I2). By Lemma~\ref{lem:steps-infinitely-divisible} every $\mu_{s,t}$ is infinitely
+divisible. So $w$, which is not, is no $\mu_{s,t}$.
+
+Every step is machine-checked, and the cited facts are \ledger{A46} and, through
+Lemma~\ref{lem:steps-infinitely-divisible}, \ledger{A41}.
+\end{proof}
+
+This excludes the binomial mask, its tensor powers, and the B-spline masks, on the continuum and on
+any grid. What is denied is continuity in scale, and the next proposition shows the denial is sharp:
+a finite mask can satisfy the discrete relation between levels.
+
+% draft: Proposition 3.15 (§ 3.5), lines 512–517 of draft/spatial-hemigroup-pyramids.md.
+\begin{proposition}[equivalent weights and the knot relation]
+\label{prop:equivalent-weights}
+\lean{Pyramids.equivalent_weights_1, Pyramids.equivalent_weights_2}\leanok
+% CHANGED (wave 1c, 2026-11-13, approved by the author): widened. Clause (1) no longer assumes w
+% symmetric or q > 1, and holds from n = 1; its proof used none of these.
+% CHANGED (2026-11-23, review round 3, s1-3.S6): wording.
+% CHANGED (2026-11-23, review round 3, s1-3.S6 review): wording.
+Let $w$ be a law on $\RR^d$, $q > 0$, and $W_n := w * D_qw * \dots * D_{q^{n-1}}w$ the equivalent
+weight at level $n$, with $W_0 := \delta_0$.
+\begin{enumerate}
+\item If $w \ne \delta_0$, then $W_n \ne D_qW_{n-1}$ for every $n \ge 1$: no equivalent weight is the
+$q$-dilate of the one before it, for any mask, symmetric or not, infinitely divisible or not.
+% CHANGED: "For instance" at the head of the example (second blind review, L2), and the mask
+% displayed; the clause is unchanged.
+\item A finite mask can satisfy the knot relation. For instance, let $q = 2$ and let $w$ be the
+binomial mask on $h\ZZ$,
+\[
+  w = \tfrac1{16}\bigl(\delta_{-2h} + 4\delta_{-h} + 6\delta_0 + 4\delta_h + \delta_{2h}\bigr).
+\]
+The law $\mu_1$ with
+$\widehat\mu_1(\omega) = \prod_{m \ge 1}\widehat w(2^{-m}\omega) = \bigl(\sin(h\omega/2)/(h\omega/2)\bigr)^4$,
+the cubic B-spline, has $D_2\mu_1 = \mu_1 * w$, and its tensor powers do the same on $h\ZZ^d$.
+\end{enumerate}
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$
+(the chapter's range): absent, both holding in every dimension; $w$ a law on $\RR^d$: same in
+\texttt{equivalent\_weights\_1}; $q > 0$: weaker, \texttt{\_1} holds for every real $q$; (1)
+$w \ne \delta_0$ and $n \ge 1$: same; (2) $q = 2$ and the binomial mask on $h\ZZ$: same, laws on
+$\RR$, with $h > 0$, which $h\ZZ$ presupposes, required by \texttt{equivalent\_weights\_2}; the law
+$\mu_1$ with the stated transform: same, the declaration gives one and states the clauses of every
+probability measure with that transform; the tensor powers: same, for every number of factors.)}
+\end{proposition}
+
+% CHANGED (wave 1c, 2026-11-13): the checked route. In (1) the common factor is the transform of D_q W_{n-1}, and a transform equal to 1 near 0 is shown to be that of delta_0 by the cosines at the fractions of a basis, in place of the null set of hyperplane directions; symmetry and q > 1 are not used. In (2) the product formula is proved by induction on sinc(2t) = sinc(t) cos(t), and the uniqueness of the transform is named.
+\begin{proof}
+\leanok
+(1) Write $P(\omega) := \widehat W_{n-1}(q\omega) = \prod_{k=1}^{n-1}\widehat w(q^k\omega)$, the
+transform of $D_qW_{n-1}$. Since $W_n = w * D_qW_{n-1}$, the equation $W_n = D_qW_{n-1}$ would give
+$\widehat w\,P = P$, that is $(1 - \widehat w)P = 0$. The function $P$ is continuous with
+$P(0) = 1$, so it has no zero on a ball $B_\eta$ about $0$, and $\widehat w = 1$ on $B_\eta$.
+
+A probability measure $w$ with $\widehat w = 1$ on $B_\eta$ is $\delta_0$. Indeed, if
+$\widehat w(\omega) = 1$, then $\int(1 - \cos\langle\omega, x\rangle)\,w(dx) = 0$, and the integrand
+is nonnegative, so $\cos\langle\omega, x\rangle = 1$ for $w$-almost every $x$. Let $b_1, \dots, b_d$
+be a basis and $c > 0$ with $c|b_j| < \eta$ for every $j$. Applying this at the countably many points
+$c\,b_j/m$, $m \ge 1$, gives a $w$-null set off which $\cos(c\langle b_j, x\rangle/m) = 1$ for every
+$j$ and every $m$. A real number $\theta$ with $\cos(\theta/m) = 1$ for every $m \ge 1$ is $0$,
+since $|\theta/m| < 2\pi$ for $m$ large. So $\langle b_j, x\rangle = 0$ for every $j$, that is $x = 0$,
+for $w$-almost every $x$, and $w = \delta_0$. This contradicts $w \ne \delta_0$. At $n = 1$ the
+product $P$ is empty and equals $1$.
+
+(2) The transform of the mask is
+$\widehat w(\omega) = \tfrac1{16}(e^{-ih\omega/2} + e^{ih\omega/2})^4 = \cos^4(h\omega/2)$. Write
+$\operatorname{sinc} x := \sin x/x$, with $\operatorname{sinc} 0 := 1$. Since
+$\sin 2t = 2\sin t\cos t$, $\operatorname{sinc}(2t) = \operatorname{sinc}(t)\cos t$, and induction
+on $M$ gives
+\[
+  \operatorname{sinc} x = \operatorname{sinc}(x2^{-M})\prod_{m=1}^{M}\cos(x2^{-m}) .
+\]
+As $\operatorname{sinc}$ is continuous with $\operatorname{sinc} 0 = 1$, the partial products tend
+to $\operatorname{sinc} x$. At $x = h\omega/2$ this gives
+$\prod_{m \ge 1}\widehat w(2^{-m}\omega) = (\sin(h\omega/2)/(h\omega/2))^4$. The uniform law on
+$[-h/2, h/2]$ has the transform $\operatorname{sinc}(h\omega/2)$, so its fourfold convolution, the
+cubic B-spline, has the transform of $\mu_1$. By the uniqueness of the transform it is the only
+probability measure with that transform. Then
+$\widehat\mu_1(2\omega) = \operatorname{sinc}(h\omega)^4
+= \operatorname{sinc}(h\omega/2)^4\cos^4(h\omega/2) = \widehat\mu_1(\omega)\widehat w(\omega)$,
+which is $D_2\mu_1 = \mu_1 * w$. For the tensor powers on $h\ZZ^d$ the transforms are products over
+the coordinates, and $D_2$ acts on each factor.
+
+Every step is machine-checked, with no cited fact.
+\end{proof}
+
+So the knot relation alone does not make a pyramid. The cubic B-spline is $\tfrac12$-decomposable in
+Lo\`eve's sense: by $D_2\mu_1 = \mu_1 * w$ it is the law of $\tfrac12X + Y$, with $X$ of that law and
+$Y$ of the law $D_{1/2}w$, independent of $X$. Definition~\ref{def:self-decomposable} excludes it. The B-spline has bounded
+support and is not a point mass, so it is not infinitely divisible
+[\sscite{sato1999levy}, Cor.~24.4, p.~149] (Proposition~\ref{prop:no-bounded-step}), while a
+semi-selfdecomposable law is [\sscite{sato1999levy}, Prop.~15.5, p.~93]. The remark after
+Proposition~\ref{prop:exact-masks} reads the same example on a grid.
+
+% draft: Remark 3.16 (§ 3.5), line 521 of draft/spatial-hemigroup-pyramids.md. Stays prose: the
+% chapter's one relation-to-the-line remark. Its d = 1 content that chapter 2 uses, the canonical
+% discrete gauge on the line, is Lemma 3.3(4) (lem:family-dilations).
+\paragraph{The line.} At $d = 1$ the statements of this chapter are those of chapter~2 and
+Appendix~A, with the following changes of scope. Lemma~\ref{lem:family-dilations} is
+Lemma~\ref{lem:closed-subgroups}, its closure step proved from the axioms of a symmetric family, (I1),
+(I2) and (ND), with no continuity of $\lambda \mapsto S_\lambda$ assumed. Its clause (4) is the
+canonical discrete gauge on the line. A family of operators on $L^1(\RR)$ with (A1)--(A7) and (ND)
+acts by convolution with symmetric probability measures \prog{V-line v0.1}{\S~4, p.~22}, and (A8)
+at one $\lambda$ is $\lambda$-covariance of these measures with the same bijection, so clause (4)
+applies to it. Lemma~\ref{lem:discrete-covariance-levy} is
+Lemma~\ref{lem:discrete-covariance-line}, and Theorem~\ref{thm:lattice-strata} is
+Theorem~\ref{thm:lattice-line}, with the examples on spheres in place of
+Propositions~\ref{prop:lindeberg-stratum-one} and~\ref{prop:discrete-gaussian-pyramid}, which do not
+lift (Proposition~\ref{prop:what-does-not-lift}). Proposition~\ref{prop:no-lattice-kernel} at
+$d = 1$ is Proposition~\ref{prop:no-lattice-kernel-line}(1). Proposition~\ref{prop:no-bounded-step} is
+Proposition~\ref{prop:classical-kernels-no-exact-cascade} in $\RR^d$: no continuous family
+interpolates the levels of a finite mask. That the equivalent weights are not dilates holds of every
+mask, which is Proposition~\ref{prop:equivalent-weights}(1). Clauses (1)--(3) of
+Proposition~\ref{prop:ladder-knot-kernel} are Proposition~\ref{prop:grid-pyramids-infinitely-divisible}(2),
+whose clause on the partial products is (3). Its clause (4) is
+Proposition~\ref{prop:grid-pyramids-infinitely-divisible}(3) with the continuum half of the remark
+after it, the logarithmic moment taking the place of the rationality of the step.

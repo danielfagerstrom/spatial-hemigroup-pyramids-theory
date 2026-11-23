@@ -1,0 +1,542 @@
+% Moved from 02-line.tex (the length take, question (a)): the line statements that Section 3
+% proves again at d = 1, with their proofs of record.
+\section{The strata on the line}
+\label{supp:strata}
+
+This section states and proves on the line the statements that Section~\ref{ch:pyramid} of the
+paper proves in $\RR^d$: the closed subgroups of dilations, discrete covariance in \Levy{}
+coordinates, the three strata, the two families that separate them, and the absence of lattice
+kernels. They are written here in the line's own terms, the operator axioms (A1)--(A8) and the
+folded data $(a(t), \varpi_t)$, because Section~\ref{ch:line-appendix} and some proofs of the paper
+read them in that notation. Section~\ref{subsec:line-strata} of the paper says which statement of
+Section~\ref{ch:pyramid} each of them is at $d = 1$.
+
+Write $\mathrm{ND}_s$ for the set of functions
+\[
+  \psi(\omega) = a\,\omega^2 + \int_{(0,\infty)}\bigl(1 - \cos\omega v\bigr)\,\varpi(dv), \qquad
+  a \ge 0, \quad \int(1 \wedge v^2)\,\varpi(dv) < \infty ,
+\]
+and call $(a, \varpi)$ the \emph{data} of $\psi$: a Gaussian coefficient and a folded \Levy{}
+measure. The first lemma is what the supplement uses of the \Levy{}--Khintchine formula.
+
+% shared with blueprint lem:line-exponent-data
+\begin{lemma}[the data of an exponent]
+\label{lem:line-exponent-data}
+
+\begin{enumerate}
+\item Every $\psi \in \mathrm{ND}_s$ is $-\log\widehat\mu$ for exactly one symmetric infinitely
+divisible law $\mu$ on $\RR$, and every such $-\log\widehat\mu$ lies in $\mathrm{ND}_s$. The data of
+$\psi$ are unique.
+\item If $\psi$ has the data $(a, \varpi)$ and $\lambda > 0$, then $\psi(\lambda\,\cdot)$ has the
+data $(\lambda^2a, T_\lambda\varpi)$.
+\item If $\psi, \psi' \in \mathrm{ND}_s$ have the data $(a, \varpi)$ and $(a', \varpi')$, then
+$\psi' - \psi \in \mathrm{ND}_s$ iff $a' \ge a$ and $\varpi' \ge \varpi$, and then $\psi' - \psi$
+has the data $(a' - a, \varpi' - \varpi)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Let $\nu$ be a symmetric \Levy{} measure on $\RR$. The imaginary part of the integrand,
+$\sin\omega x - \omega x\mathbf 1_{|x| \le 1}$, is odd and $\nu$-integrable, so its integral
+vanishes, and
+\[
+  \int\bigl(e^{i\omega x} - 1 - i\omega x\mathbf 1_{|x| \le 1}\bigr)\,\nu(dx)
+  = -\int(1 - \cos\omega x)\,\nu(dx).
+\]
+So the law with the triplet $(2a, \nu, 0)$, $\nu$ the symmetrization $\tfrac12(\varpi + \varpi(-\,\cdot))$
+of $\varpi$, has the exponent $\psi$. It exists by [\sscite{sato1999levy}, Thm.~8.1(iii),
+p.~38]. It is symmetric because its transform $e^{-\psi}$ is real and even. A symmetric law
+has a symmetric triplet, by the uniqueness of the triplet [\sscite{sato1999levy}, Thm.~8.1(ii),
+p.~38] applied to the law and its
+reflection, so its exponent is of this form. The law with exponent $\psi$ is unique because the
+transform determines the law. The data are unique because the triplet is.
+
+(2) $\int(1 - \cos\lambda\omega v)\,\varpi(dv) = \int(1 - \cos\omega u)\,(T_\lambda\varpi)(du)$ by
+the substitution $u = \lambda v$, and $a(\lambda\omega)^2 = \lambda^2a\,\omega^2$. Then (1) gives
+the uniqueness.
+
+(3) Let $a' \ge a$ and $\varpi' \ge \varpi$. The difference $\varpi' - \varpi$ is a measure: $\varpi$
+is finite on each of the disjoint sets $\{v \le 0\} \cup \{v > 1\}$ and
+$\{1/(n+1) < v \le 1/n\}$, $n \ge 1$, which cover $\RR$, and $\varpi' - \varpi$ is the sum of the
+differences of the restrictions to these sets. It is at most $\varpi'$, so it is a \Levy{} measure
+on $(0,\infty)$, and $\psi' - \psi$ has the data $(a' - a, \varpi' - \varpi)$ by linearity of the
+formula. Conversely, if $\psi' - \psi$ has data $(a'', \varpi'')$, then $\psi' = \psi + (\psi' - \psi)$
+has the data $(a + a'', \varpi + \varpi'')$, which are $(a', \varpi')$ by (1).
+
+Every step is machine-checked, and the cited fact is \ledger{A39}, read on $\RR$ inside $\RR^1$
+through $x \mapsto xe_1$.
+\end{proof}
+
+% shared with blueprint lem:closed-subgroups
+\begin{lemma}[closed subgroups]
+\label{lem:closed-subgroups}
+
+The closed subgroups of $\bigl((0,\infty), \times\bigr)$ are $\{1\}$, the cyclic groups
+$q^{\ZZ}$ with $q > 1$, and $(0,\infty)$. A family satisfying (A1)--(A7), (ND), and (A8) for
+every dilation in a set $\Lambda \subset (0,\infty)$, satisfies (A8) for every dilation in the
+closed subgroup that $\Lambda$ generates.
+\end{lemma}
+
+\begin{proof}
+The logarithm is an isomorphism of $\bigl((0,\infty),\times\bigr)$ onto $(\RR,+)$ and a
+homeomorphism. Let $H \ne \{0\}$ be a closed subgroup of $\RR$. Since $H = -H$, it has positive
+elements; let $\ell$ be the infimum of its positive elements. Suppose $\ell > 0$. Since $H$ is
+closed, $\ell \in H$, so $\ell$ is the least positive element of $H$. For $x \in H$ let $k$ be
+the integer with
+$k\ell \le x < (k+1)\ell$. Then $x - k\ell \in H$ lies in $[0, \ell)$, so it is $0$, and
+$H = \ell\ZZ$. Suppose $\ell = 0$. Then for every $\delta > 0$ the group $H$ has an element in
+$(0,\delta)$, whose multiples meet every interval of length $\delta$. So $H$ is dense and, being
+closed, equal to $\RR$. With $q := e^\ell$ this gives the three groups. Conversely $\{1\}$ and
+$(0,\infty)$ are closed subgroups, and so is $q^{\ZZ}$ for $q > 1$: its logarithms are the
+multiples of $\log q$, a discrete and hence closed subgroup of $\RR$.
+
+For the second clause, the kernels $\mu_{s,t}$ of the family are a symmetric family in dimension
+$1$, and (A8) at a dilation $\lambda$ is $\lambda$-covariance of the kernels
+(Lemma~\ref{lem:line-axioms-kernels}). By Lemma~\ref{lem:family-dilations}(2) the set $G$ of
+$\lambda$ at which the kernels are $\lambda$-covariant is a closed subgroup of $(0,\infty)$. It
+contains $\Lambda$, so it contains the closed subgroup that $\Lambda$ generates, and at each of
+its elements Lemma~\ref{lem:line-axioms-kernels}(3) turns $\lambda$-covariance back into (A8).
+
+Every step is machine-checked, and the cited facts enter only through
+Lemma~\ref{lem:family-dilations}(2).
+\end{proof}
+
+So the dilations under which a family is covariant form $\{1\}$, some $q^{\ZZ}$ or $(0,\infty)$.
+The strata of Theorem~\ref{thm:lattice-line} below are nested: the first is every family with
+(A1)--(A7) and (ND), the second those covariant under the powers of one ratio $q$, the third the
+fully covariant ones. In the second, Lemma~\ref{lem:family-dilations}(3) at $d = 1$ relabels the scales so that $S_qt = qt$, the
+canonical discrete gauge. That gauge is unique only up to the group $\mathcal{G}_q$ of
+Lemma~\ref{lem:gauge-group}.
+
+% shared with blueprint lem:discrete-covariance-line
+\begin{lemma}[discrete covariance in \Levy{} coordinates]
+\label{lem:discrete-covariance-line}
+
+Let $(\Phi_{s,t})$ satisfy (A1)--(A7) and (ND), with kernels $\mu_{s,t}$
+(Lemma~\ref{lem:line-axioms-kernels}). Let $\Psi_t := -\log\widehat\mu_{0,t}$, and let
+$(a(t), \varpi_t)$ be the folded data of $\mu_{0,t}$: with the \Levy{} data $(A_t, \nu_t)$ of
+Lemma~\ref{lem:family-structure} at $d = 1$, $a(t) := A_t$, a number since $d = 1$, and
+$\varpi_t$ is the image of $\nu_t$ under $x \mapsto |x|$, so that
+$\Psi_t(\omega) = a(t)\omega^2 + \int_{(0,\infty)}(1 - \cos\omega v)\,\varpi_t(dv)$. Let $q > 1$.
+Then (A8$|q^{\ZZ}$) holds with $S_qt = qt$ if and only if
+\[
+  \Psi_{qt}(\omega) = \Psi_t(q\omega) \ \text{ for all } t \ge 0,\ \omega \in \RR
+  \qquad\Longleftrightarrow\qquad
+  a(qt) = q^2a(t), \quad \varpi_{qt} = T_q\varpi_t \ \text{ for all } t > 0 .
+\]
+Every kernel is then semi-selfdecomposable with span $q$: $T_q\mu_{0,t} = \mu_{0,qt} =
+\mu_{0,t} * \mu_{t,qt}$, and $T_q\varpi_t \ge \varpi_t$, $q^2a(t) \ge a(t)$. The family is
+determined by its kernels $\mu_{0,t}$ at the scales $t$ of one \emph{fundamental annulus}
+$[1, q)$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:line-axioms-kernels} the kernels are a symmetric family in dimension $1$, and
+(A8) at $q$ with $S_qt = qt$ is $q$-covariance of the kernels with that bijection. Conversely
+$q$-covariance with $S_q t = qt$ gives (A8) at every $q^n$, $n \in \ZZ$, by the last sentence of
+that lemma. So (A8$|q^{\ZZ}$) with $S_qt = qt$ is $q$-covariance of the kernels with
+$S_qt = qt$.
+
+For $0 \le s \le t$, (I1) gives $\widehat\mu_{0,t} = \widehat\mu_{s,t}\,\widehat\mu_{0,s}$, and
+$\widehat\mu_{0,s} = e^{-\Psi_s}$ has no zero, so
+$\widehat\mu_{s,t} = e^{-(\Psi_t - \Psi_s)}$. Covariance at the pairs $(0, t)$ reads
+$\widehat\mu_{0,qt}(\omega) = \widehat\mu_{0,t}(q\omega)$, that is
+$\Psi_{qt}(\omega) = \Psi_t(q\omega)$. Conversely, under this condition
+$\widehat\mu_{qs,qt}(\omega) = e^{-(\Psi_t(q\omega) - \Psi_s(q\omega))} = \widehat\mu_{s,t}(q\omega)$,
+the transform of $T_q\mu_{s,t}$, so $T_q\mu_{s,t} = \mu_{qs,qt}$ for all $s \le t$. For the
+second equivalence, by Lemma~\ref{lem:line-exponent-data}(2) the function $\Psi_t(q\,\cdot)$ has
+the folded data $(q^2a(t), T_q\varpi_t)$, and by (1) of that lemma a folded pair is determined by
+its exponent. So $\Psi_{qt} = \Psi_t(q\,\cdot)$ if and only if $a(qt) = q^2a(t)$ and
+$\varpi_{qt} = T_q\varpi_t$. At $t = 0$ both exponents vanish, since $\mu_{0,0} = \delta_0$.
+
+Under covariance $T_q\mu_{0,t} = \mu_{0,qt}$, and (I1) gives
+$\mu_{0,qt} = \mu_{t,qt} * \mu_{0,t}$. Reading this at $q^{-1}\omega$ gives
+$\widehat\mu_{0,t}(\omega) = \widehat\mu_{0,t}(q^{-1}\omega)\,\widehat\varrho_q(\omega)$ with the
+residual $\varrho_q := T_{q^{-1}}\mu_{t,qt}$. The step $\mu_{t,qt}$ is infinitely divisible by
+Lemma~\ref{lem:family-structure} at $d = 1$, read through the embedding $x \mapsto xe_1$ of $\RR$
+in $\RR^1$, and so is its dilate; so the kernel is semi-selfdecomposable with span $q$. The data
+are nondecreasing: $\Psi_{qt} - \Psi_t$ is the exponent of the symmetric infinitely divisible law
+$\mu_{t,qt}$, so it lies in $\mathrm{ND}_s$ (Lemma~\ref{lem:line-exponent-data}(1)), and
+Lemma~\ref{lem:line-exponent-data}(3) gives $\varpi_t \le \varpi_{qt} = T_q\varpi_t$. Also
+$q^2a(t) \ge a(t)$, since $a(t) \ge 0$ and $q > 1$.
+
+Finally, two such families whose kernels agree on $[1, q)$ have, after the embedding of the line
+in $\RR^1$, symmetric families in dimension $1$ that are $q$-covariant with $S_qt = qt$ and agree
+there; by Lemma~\ref{lem:discrete-covariance-levy} at $d = 1$ they agree at every pair, and so do
+the families on the line, since the embedding is injective on laws. The operators are the
+convolutions with their kernels, so they agree too.
+
+Every step is machine-checked, and the cited facts enter only through
+Lemmas~\ref{lem:family-structure}, \ref{lem:line-exponent-data} and
+\ref{lem:discrete-covariance-levy}.
+\end{proof}
+
+For processes, clause (1) of the next theorem is Sato's description of an additive process in law
+by its triplets, with its converse [\sscite{sato1999levy}, Thms.~9.7--9.8, pp.~51--52], and
+clause (3) is the analogue of his theorem that the marginals of the self-similar additive
+processes are exactly the self-decomposable laws [\sscite{sato1999levy}, Thm.~16.1, pp.~99--100]. The theorem reads them for
+the operator axioms on the line.
+
+% shared with blueprint thm:lattice-line
+\begin{theorem}[the three strata on the line]
+\label{thm:lattice-line}
+
+Let $(\Phi_{s,t})$ satisfy (A1)--(A7) and (ND), with kernels $\mu_{s,t}$, exponents $\Psi_t$ and
+folded data $(a(t), \varpi_t)$ as in Lemma~\ref{lem:discrete-covariance-line}.
+\begin{enumerate}
+\item \emph{(Every family.)} The maps $t \mapsto a(t)$ and $t \mapsto \varpi_t$ are
+nondecreasing, every step $\mu_{s,t}$ is a symmetric infinitely divisible law with the folded
+data $(a(t) - a(s), \varpi_t - \varpi_s)$, and $t \mapsto \Psi_t(\omega)$ is continuous for each
+$\omega$. Conversely, for $t \ge 0$ let numbers $a(t) \ge 0$ and measures $\varpi_t$ on
+$(0,\infty)$ with $\int\min(1, v^2)\,\varpi_t(dv) < \infty$ be given, with $a(0) = 0$ and
+$\varpi_0 = 0$. Suppose that whenever $s < t$, $a(s) \le a(t)$, $\varpi_s \le \varpi_t$ setwise and
+$(a(s), \varpi_s) \ne (a(t), \varpi_t)$, and that
+$t \mapsto a(t)\omega^2 + \int(1 - \cos\omega v)\,\varpi_t(dv)$ is continuous for each $\omega$.
+Then these are the folded data of the kernels of a family with (A1)--(A7) and (ND).
+\item \emph{(Discrete covariance.)} (A8$|q^{\ZZ}$) holds with $S_qt = qt$ if and only if
+$a(qt) = q^2a(t)$ and $\varpi_{qt} = T_q\varpi_t$ for all $t > 0$. Every kernel $\mu_{0,t}$ is
+then semi-selfdecomposable with span $q$, and the family is a \emph{pyramid}: its kernel at the
+scale $q^nt$ is the $T_{q^n}$-image of its kernel at $t$.
+\item \emph{(Full covariance.)} (A8) holds if and only if there is an increasing bijection $\chi$
+of $[0,\infty)$ such that the relabelled family $\mu'_{s,t} := \mu_{\chi^{-1}(s),\chi^{-1}(t)}$ has
+the folded data $a'(t) = \alpha t^2$ and $\varpi'_t(dv) = k(v/t)\,v^{-1}dv$ for all $t > 0$, with
+$\alpha \ge 0$, $k \ge 0$ nonincreasing on $(0,\infty)$ and
+$\int_0^\infty\min(1, x^2)\,k(x)\,x^{-1}dx < \infty$. Then $\Psi'_t(\omega) = F(t\omega)$ with
+$F(\omega) := \alpha\omega^2 + \int_0^\infty(1 - \cos\omega x)\,k(x)\,x^{-1}dx$, the admissible
+exponent (\ref{eq:admissible-exponent}) with data $(\alpha, k)$ of Theorem~\ref{thm:cited-A4}, and the relabelled family satisfies
+(A8) with the bijections $S'_\lambda t = \lambda t$, $\lambda > 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) By Lemma~\ref{lem:line-axioms-kernels}(1) the kernels are a symmetric family in dimension
+$1$. Every step $\mu_{s,t}$ is symmetric, and infinitely divisible by
+Lemma~\ref{lem:family-structure} at $d = 1$, read through the embedding $x \mapsto xe_1$ of $\RR$
+in $\RR^1$. By (I1) its transform is $e^{-(\Psi_t - \Psi_s)}$, so $\Psi_t - \Psi_s$ lies in
+$\mathrm{ND}_s$ (Lemma~\ref{lem:line-exponent-data}(1)), and Lemma~\ref{lem:line-exponent-data}(3)
+gives $a(s) \le a(t)$, $\varpi_s \le \varpi_t$, and the folded data
+$(a(t) - a(s), \varpi_t - \varpi_s)$ of $\Psi_t - \Psi_s$, which are those of $\mu_{s,t}$.
+Continuity of $\Psi_t(\omega) = -\log\widehat\mu_{0,t}(\omega)$ in $t$ is (I2), with
+$\widehat\mu_{0,t} > 0$.
+
+For the converse put $\Psi_t(\omega) := a(t)\omega^2 + \int(1 - \cos\omega v)\,\varpi_t(dv)$. For
+$0 \le s \le t$ the hypotheses give $a(s) \le a(t)$ and $\varpi_s \le \varpi_t$, so
+$\Psi_t - \Psi_s$ lies in $\mathrm{ND}_s$ (Lemma~\ref{lem:line-exponent-data}(3)), and by
+Lemma~\ref{lem:line-exponent-data}(1) it is $-\log\widehat\mu_{s,t}$ for a symmetric law
+$\mu_{s,t}$. These laws satisfy (I1): the transform of $\mu_{t,t}$ is $1$, that of $\delta_0$,
+and $\mu_{s,t} * \mu_{r,s}$ and $\mu_{r,t}$ both have the transform $e^{-(\Psi_t - \Psi_r)}$; a law
+is determined by its transform. They satisfy (I2), since
+$(s,t) \mapsto e^{-(\Psi_t(\omega) - \Psi_s(\omega))}$ is continuous on $0 \le s \le t$ by the
+continuity of $t \mapsto \Psi_t(\omega)$. They satisfy (ND): if $\mu_{s,t} = \delta_0$ for some
+$s < t$, then $\Psi_s = \Psi_t$, and by the uniqueness of the folded pair, Theorem~\ref{thm:cited-A9},
+$(a(s), \varpi_s) = (a(t), \varpi_t)$, against the hypothesis. So they form a symmetric family in
+dimension $1$, and Lemma~\ref{lem:line-axioms-kernels}(2) turns it into a family of operators with
+(A1)--(A7) and (ND) whose kernels are the $\mu_{s,t}$. Since $a(0) = 0$ and $\varpi_0 = 0$,
+$\Psi_0 = 0$, so $\widehat\mu_{0,t} = e^{-\Psi_t}$. Thus $(a(t), \varpi_t)$ is a folded pair of
+the exponent of $\mu_{0,t}$, and by the uniqueness of the data
+(Lemma~\ref{lem:line-exponent-data}(1)) it is the folded data of $\mu_{0,t}$.
+
+(2) The equivalence and the semi-selfdecomposability are
+Lemma~\ref{lem:discrete-covariance-line}, and so is $T_{q^n}\mu_{0,t} = \mu_{0,q^nt}$, by
+iterating $T_q\mu_{0,t} = \mu_{0,qt}$ in both directions.
+
+(3) Suppose (A8). Theorem~\ref{thm:cited-A4}, applied to the family of operators, whose kernels
+are the $\mu_{s,t}$ since an operator determines its kernel, gives an increasing bijection $\chi$
+of $[0,\infty)$ and an exponent $F \not\equiv 0$,
+$F(\omega) = \alpha\omega^2 + \int_0^\infty(1 - \cos\omega x)\,k(x)\,x^{-1}dx$ with $\alpha \ge 0$,
+$k \ge 0$ nonincreasing and $\int\min(1,x^2)\,k(x)\,x^{-1}dx < \infty$, such that
+$\widehat\mu_{s,t}(\omega) = \exp(-[F(\chi(t)\omega) - F(\chi(s)\omega)])$. At $s = 0$, where
+$\chi(0) = 0$, $\chi$ being an increasing bijection of $[0,\infty)$, and $F(0) = 0$, this is
+$\Psi_t(\omega) = F(\chi(t)\omega)$ for $t \ge 0$. So the relabelled family
+$\mu'_{s,t} := \mu_{\chi^{-1}(s),\chi^{-1}(t)}$ has the exponents $\Psi'_t(\omega) = F(t\omega)$.
+For $t > 0$ the substitution $v = tx$, with $dx/x = dv/v$, gives
+\[
+  F(t\omega) = \alpha\,t^2\omega^2 + \int_0^\infty(1 - \cos\omega v)\,k(v/t)\,v^{-1}dv ,
+\]
+and $k(\cdot/t)$ is again nonnegative and nonincreasing. The substitution gives
+\[
+  \int_0^\infty\min(1, v^2)\,k(v/t)\,\frac{dv}{v} = \int_0^\infty\min(1, t^2x^2)\,k(x)\,\frac{dx}{x}
+  \le \max(1, t^2)\int_0^\infty\min(1, x^2)\,k(x)\,\frac{dx}{x} < \infty ,
+\]
+so this is the exponent of a folded pair. By the
+uniqueness of the folded pair, Theorem~\ref{thm:cited-A9}, the data of $\mu'_{0,t}$ are $a'(t) = \alpha t^2$ and
+$\varpi'_t(dv) = k(v/t)\,v^{-1}dv$.
+
+Conversely, suppose that after a relabelling by an increasing bijection $\chi$ the data are of
+this form. The relabelled kernels are again a symmetric family in dimension $1$: $\chi^{-1}$ is an
+increasing bijection of $[0,\infty)$, hence an increasing homeomorphism fixing $0$, so it keeps the
+cascade (I1), the continuity (I2), the inequality $s < t$ of (ND) and the laws themselves. By
+Lemma~\ref{lem:family-structure} their transforms $\widehat\mu'_{0,s}$ are positive, and (I1) gives
+$\widehat\mu'_{s,t} = e^{-(\Psi'_t - \Psi'_s)}$. Then $\Psi'_t(\omega) = F(t\omega)$ for $t > 0$,
+by the substitution above read
+backwards, and for $t = 0$, where both sides vanish since $\chi^{-1}(0) = 0$. So
+$\Psi'_t(\lambda\omega) = \Psi'_{\lambda t}(\omega)$ for every $\lambda > 0$, and
+\[
+  \widehat{T_\lambda\mu'_{s,t}}(\omega) = \widehat\mu'_{s,t}(\lambda\omega)
+  = e^{-(\Psi'_t(\lambda\omega) - \Psi'_s(\lambda\omega))}
+  = e^{-(\Psi'_{\lambda t}(\omega) - \Psi'_{\lambda s}(\omega))}
+  = \widehat\mu'_{\lambda s,\lambda t}(\omega) ,
+\]
+using $\widehat\mu'_{s,t} = e^{-(\Psi'_t - \Psi'_s)}$. So the relabelled kernels are
+$\lambda$-covariant with $S'_\lambda t = \lambda t$ for every $\lambda > 0$, and by
+Lemma~\ref{lem:line-axioms-kernels}(3), applied to the relabelled operators
+$\Phi_{\chi^{-1}(s),\chi^{-1}(t)}$, whose kernels they are, these operators satisfy (A8) with the
+bijections $S'_\lambda$. The original operators then satisfy (A8) with the increasing bijections
+$S_\lambda := \chi^{-1}S'_\lambda\chi$ of $[0,\infty)$.
+
+Every step is machine-checked, and the cited facts are \ledger{A4} and \ledger{A9} and those of
+the lemmas named.
+\end{proof}
+
+Clause (1) is the first stratum, clause (2) the second and clause (3) the third. The two examples
+below show them apart (Theorem~\ref{cor:lattice-line-strict}).
+
+% shared with blueprint prop:lindeberg-stratum-one
+\begin{proposition}[Lindeberg's discrete scale space lies strictly in the first stratum]
+\label{prop:lindeberg-stratum-one}
+
+Fix $h > 0$. For $0 \le s \le t$ let $\mu_{s,t}$ be the law on $h\ZZ$ with
+$\mu_{s,t}(\{hn\}) = e^{-(t-s)}I_n(t-s)$, $n \in \ZZ$, where
+$I_n(u) = \sum_{j \ge 0}(u/2)^{2j+|n|}/\bigl(j!\,(j+|n|)!\bigr)$ is the modified Bessel function of
+the first kind. These are the kernels of the scale space for discrete signals of
+[\sscite{lindeberg1990scalespace}], the semigroup generated on $h\ZZ$ by half the second difference.
+\begin{enumerate}
+\item $\widehat\mu_{s,t}(\omega) = e^{-(t-s)(1 - \cos h\omega)}$. So $\mu_{0,t}$ is compound
+Poisson, with $\Psi_t(\omega) = t(1 - \cos h\omega)$, $a(t) = 0$ and $\varpi_t = t\,\delta_h$.
+\item The operators $\Phi_{s,t}f := \mu_{s,t} * f$ satisfy (A1)--(A7) and (ND).
+\item For no $q > 1$ and no $t > 0$ is $\mu_{0,t}$ semi-selfdecomposable with span $q$. So for no
+$q > 1$ does the family satisfy (A8$|q^{\ZZ}$): it lies in the first stratum of
+Theorem~\ref{thm:lattice-line} and not in the second.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Let $u \ge 0$ and $\theta \in \RR$. The two exponential series give
+\[
+  e^{u\cos\theta} = e^{(u/2)e^{i\theta}}\,e^{(u/2)e^{-i\theta}}
+  = \sum_{a, b \ge 0}\frac{(u/2)^{a+b}}{a!\,b!}\,e^{i(a-b)\theta} ,
+\]
+the double series converging absolutely. The pairs $(a, b)$ with $a - b = n$ are
+$(j + n, j)$, $j \ge 0$, when $n \ge 0$, and $(j, j + |n|)$ when $n < 0$; in both cases
+$a + b = 2j + |n|$ and $a!\,b! = j!\,(j + |n|)!$. Grouping the terms by $n$ gives
+\[
+  \sum_{n \in \ZZ}I_n(u)\,e^{in\theta} = e^{u\cos\theta} .
+\]
+At $\theta = 0$ the masses $e^{-u}I_n(u) \ge 0$ sum to $1$, so each $\mu_{s,t}$ is a probability
+law. At $\theta = h\omega$, with $u = t - s$,
+$\widehat\mu_{s,t}(\omega) = \sum_n e^{-u}I_n(u)\,e^{ihn\omega} = e^{-u(1 - \cos h\omega)}$. So
+$\Psi_t(\omega) = t(1 - \cos h\omega) = \int_{(0,\infty)}(1 - \cos\omega v)\,t\,\delta_h(dv)$.
+The transform is real and even, so $\mu_{0,t}$ is symmetric, and it is the $n$-th power of the
+transform of $\mu_{0,t/n}$ for every $n$, so $\mu_{0,t}$ is infinitely divisible. Its exponent has
+the folded pair $(0, t\,\delta_h)$, and the folded data of a symmetric infinitely divisible law
+are unique (Lemma~\ref{lem:line-exponent-data}(1)). So $\mu_{0,t}$ has the folded data
+$a(t) = 0$ and $\varpi_t = t\,\delta_h$ (Definition~\ref{def:self-decomposable}), a
+finite measure, and is compound Poisson. Once (2) has made the $\mu_{s,t}$ the kernels of a family,
+these are the data $(a(t), \varpi_t)$ of Theorem~\ref{thm:lattice-line}.
+
+(2) From the transforms, $\mu_{t,t} = \delta_0$ and $\mu_{s,t} * \mu_{r,s} = \mu_{r,t}$, which is
+(I1). The transform $e^{-(t-s)(1 - \cos h\omega)}$ is continuous in $(s,t)$, which is (I2). It is
+even in $\omega$, so every $\mu_{s,t}$ is symmetric, and for $s < t$ it is
+$e^{-2(t-s)} \ne 1$ at $\omega = \pi/h$, so $\mu_{s,t} \ne \delta_0$. So the laws form a symmetric
+family in dimension $1$, and Lemma~\ref{lem:line-axioms-kernels}(2) gives (A1)--(A7) and (ND).
+
+(3) Let $q > 1$ and $t > 0$, and read $\mu_{0,t}$ on $\RR^1$ through the embedding
+$x \mapsto xe_1$. Its image $m_t$ is infinitely divisible, by (2) and
+Lemma~\ref{lem:family-structure} at $d = 1$, and has the transform
+$e^{-t(1 - \cos h|\omega|)} = \exp\int(e^{i\langle\omega, x\rangle} - 1)\,t\sigma(dx)$ with
+$\sigma := \tfrac12(\delta_{he_1} + \delta_{-he_1})$; since $\sigma$ is symmetric,
+$(0, t\sigma, 0)$ is a generating triplet of $m_t$. The measure
+$T_q(t\sigma) = \tfrac{t}{2}(\delta_{qhe_1} + \delta_{-qhe_1})$ gives the sphere $|x| = h$ the mass
+$0$, and $t\sigma$ gives it $t > 0$, so $T_q(t\sigma) \ge t\sigma$ fails. By the criterion
+Theorem~\ref{thm:cited-A44} (where $D_q = T_q$), $m_t$ is
+not semi-selfdecomposable with span $q$. Neither is $\mu_{0,t}$: the image in $\RR^1$ of an
+infinitely divisible residual of $\mu_{0,t}$ at $q$ would be one of $m_t$.
+
+Suppose now that the family satisfied (A8$|q^{\ZZ}$) for some $q > 1$, with bijections $S$. By
+Lemma~\ref{lem:line-axioms-kernels}(3) the kernels are $q$-covariant with the bijection $S_q$, and
+so are their images in $\RR^1$, a symmetric family in dimension $1$. By
+Lemma~\ref{lem:family-dilations}(3) an increasing bijection $\chi$ of $[0,\infty)$ relabels the
+image family into one that is $q$-covariant with $S_qt = qt$. The relabelled family is again a
+symmetric family in dimension $1$, $\chi^{-1}$ being an increasing homeomorphism of $[0,\infty)$
+that fixes $0$ and the laws being unchanged. By
+Lemma~\ref{lem:discrete-covariance-levy} its kernel at the scale $1$ is semi-selfdecomposable with
+span $q$. Since $\chi(0) = 0$, that kernel is $m_u$ with $u := \chi^{-1}(1) > 0$, against the first
+sentence. So no $q > 1$ has (A8$|q^{\ZZ}$), and by Theorem~\ref{thm:lattice-line}(1) the family lies
+in the first stratum only.
+
+Every step is machine-checked, and the cited facts are \ledger{A44} and those of the lemmas named.
+\end{proof}
+
+The grid spacing $h$ is a preferred length, which covariance forbids. The end of
+Section~\ref{sec:line-theory} of the paper compares Lindeberg's generator with that of a fully
+covariant family.
+
+The next family is that of Proposition~\ref{prop:stratum-two-example} of the paper at $d = 1$. The
+next proposition writes the position of a scale within its octave as $\zeta$, where
+Section~\ref{ch:pyramid} of the paper writes $\theta$.
+
+% shared with blueprint prop:discrete-gaussian-pyramid
+\begin{proposition}[the geometric-jump pyramid lies strictly in the second stratum]
+\label{prop:discrete-gaussian-pyramid}
+
+Fix $q > 1$, $h > 0$ and weights $w_i \ge 0$, $i \in \ZZ$, nonincreasing in $i$ and not all zero,
+with $\sum_{i < 0}w_iq^{2i} < \infty$ and $\sum_{i \ge 0}w_i < \infty$. For $t = q^{n+\zeta}$
+with $n \in \ZZ$ and $\zeta \in [0,1)$ put $w_i(\zeta) := (1-\zeta)w_i + \zeta w_{i-1}$,
+\[
+  \varpi_t := \sum_{i \in \ZZ}w_i(\zeta)\,\delta_{hq^{i+n}}, \qquad
+  \Psi_t(\omega) := \sum_{i \in \ZZ}w_i(\zeta)\bigl(1 - \cos(hq^{i+n}\omega)\bigr),
+\]
+and $\varpi_0 := 0$, $\Psi_0 := 0$.
+\begin{enumerate}
+\item The laws $\mu_{s,t}$ with $\widehat\mu_{s,t} = e^{-(\Psi_t - \Psi_s)}$ are the kernels of a
+$q^{\ZZ}$-covariant family in the canonical discrete gauge, with the folded data $a(t) = 0$ and
+$\varpi_t$, and $T_q\varpi_t \ge \varpi_t$ for every $t$.
+\item No increasing relabelling of the scales makes the family fully covariant: it lies in the
+second stratum of Theorem~\ref{thm:lattice-line} and not in the third.
+\item No kernel $\mu_{0,t}$, $t > 0$, is carried by a lattice $\xi\ZZ$, $\xi > 0$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) \emph{The pairs.} For $t > 0$ write $t = q^{n+\zeta}$ with $n \in \ZZ$ and $\zeta \in [0,1)$.
+Since $w_{i-1} \ge w_i \ge 0$, the weights satisfy $w_i \le w_i(\zeta) \le w_{i-1}$. With
+$1 - \cos x \le 2\min(x^2, 1)$,
+\[
+  w_i(\zeta)\bigl(1 - \cos(hq^{i+n}\omega)\bigr) \le 2\,w_{i-1}\min\bigl((hq^n\omega)^2q^{2i}, 1\bigr),
+\]
+and for any $c \in \RR$
+\[
+  \sum_{i \in \ZZ}w_{i-1}\min(c^2q^{2i}, 1) \le c^2q^2\sum_{j < 0}w_jq^{2j} + \sum_{j \ge 0}w_j
+  < \infty ,
+\]
+splitting at $j = i - 1 = 0$. So the series $\Psi_t(\omega)$ converges, and, with $c = hq^n$,
+$\int\min(1, v^2)\,\varpi_t(dv) < \infty$. The measure $\varpi_t$ is carried by the points
+$hq^j > 0$, so $(0, \varpi_t)$ is a folded pair with the exponent $\Psi_t$; at $t = 0$ it is
+$(0, 0)$.
+
+\emph{Monotone and distinct.} The weight of $\varpi_t$ on the point $hq^j$ is
+$W_t(j) := w_{j-n}(\zeta)$, the points $hq^j$ being distinct. Let $0 < s \le t$, $s = q^{m+\zeta'}$.
+If $m = n$ then $\zeta' \le \zeta$ and $W_s(j) \le W_t(j)$, since $w_i(\zeta)$ is nondecreasing in
+$\zeta$. If $m < n$ then $W_s(j) \le w_{j-m-1} \le w_{j-n} \le W_t(j)$. So
+$\varpi_s \le \varpi_t$ setwise, and trivially so for $s = 0$. Some step of the weights is strict,
+$w_{i_0} < w_{i_0-1}$: otherwise $w$ is constant, and $\sum_{i \ge 0}w_i < \infty$ makes it zero.
+For $0 < s < t$ the atom $j = i_0 + m$ separates the two measures. If $m = n$ then $\zeta' < \zeta$
+and $W_s(j) = w_{i_0} + \zeta'(w_{i_0-1} - w_{i_0}) < W_t(j)$. If $m < n$ then
+$W_s(j) = (1-\zeta')w_{i_0} + \zeta'w_{i_0-1} < w_{i_0-1} \le w_{i_0+m-n} \le W_t(j)$, since
+$\zeta' < 1$. For $s = 0 < t$, some $w_i > 0$, and $W_t(i + n) \ge w_i > 0$ while $\varpi_0 = 0$.
+So $\varpi_s \ne \varpi_t$ whenever $s < t$.
+
+\emph{Continuity.} Put $g_n(\omega) := \sum_iw_i\bigl(1 - \cos(hq^{i+n}\omega)\bigr)$. On the closed
+octave $[q^n, q^{n+1}]$, with $\zeta := \log_qt - n$,
+\[
+  \Psi_t(\omega) = (1 - \zeta)\,g_n(\omega) + \zeta\,g_{n+1}(\omega) :
+\]
+for $t < q^{n+1}$ split the series along $w_i(\zeta) = (1-\zeta)w_i + \zeta w_{i-1}$ and shift the index
+of the second part by one; at $t = q^{n+1}$ both sides are $g_{n+1}(\omega)$. So
+$t \mapsto \Psi_t(\omega)$ is continuous on each closed octave, hence on $(0,\infty)$. Further
+$g_n(\omega) = G(q^n)$ with $G(c) := \sum_iw_i\bigl(1 - \cos(hq^ic\omega)\bigr)$, a series of
+continuous functions dominated on $[-1,1]$ by the convergent series
+$2\sum_iw_{i-1}\min((h\omega)^2q^{2i}, 1)$, so $G$ is continuous there, with $G(0) = 0$. Hence
+$g_n(\omega) \to 0$ as $n \to -\infty$, and since $0 \le \Psi_t(\omega) \le \max(g_n(\omega),
+g_{n+1}(\omega))$ on the octave of $t$, $\Psi_t(\omega) \to 0 = \Psi_0(\omega)$ as $t \downarrow 0$.
+
+\emph{The family.} The pairs $(0, \varpi_t)$ thus satisfy the hypotheses of the converse in
+Theorem~\ref{thm:lattice-line}(1), which gives a family with (A1)--(A7) and (ND) whose kernels
+$\mu^0_{s,t}$ have the folded data $(0, \varpi_t)$. By (I1) their transforms are
+$\widehat\mu^0_{s,t} = e^{-(\Psi_t - \Psi_s)}$, so laws with these transforms exist, and any such laws
+are the $\mu^0_{s,t}$, a law being determined by its transform. They are therefore the kernels of
+that family, with the folded data $(0, \varpi_t)$. For $t > 0$, $qt = q^{(n+1)+\zeta}$, so
+$\Psi_{qt}(\omega) = \Psi_t(q\omega)$, and $\Psi_0 = 0$. By Lemma~\ref{lem:discrete-covariance-line}
+the family satisfies (A8$|q^{\ZZ}$) with $S_qt = qt$, so it is $q^{\ZZ}$-covariant in the canonical
+discrete gauge (Lemma~\ref{lem:line-axioms-kernels}), and $T_q\varpi_t \ge \varpi_t$. Directly:
+$T_q\varpi_t$ gives the point $hq^{i+n}$ the weight $w_{i-1}(\zeta) \ge w_i(\zeta)$.
+
+(2) Let operators $\Phi_{s,t}$ have the kernels $\mu_{s,t}$. An operator with a kernel is
+convolution by it, so they are the operators of (1). Suppose an increasing bijection $\psi$ of
+$[0,\infty)$ made the relabelled operators $\Phi_{\psi(s),\psi(t)}$ satisfy (A8), with bijections
+$S_\lambda$, and let $\chi := \psi^{-1}$. Then the family itself satisfies (A8), with the increasing
+bijections $\psi \circ S_\lambda \circ \chi$. By Theorem~\ref{thm:lattice-line}(3) there are an
+increasing bijection $\chi'$ of $[0,\infty)$ and data $(\alpha, k)$ such that the relabelled family
+$\mu_{\psi'(s),\psi'(t)}$, $\psi' := \chi'^{-1}$, has the folded data $\varpi_{\psi'(t)}(dv) =
+k(v/t)\,v^{-1}dv$ for $t > 0$, a measure with a density, which gives every point the mass $0$. But
+$u := \psi'(1) > 0$, and $\varpi_u$ gives some point $hq^j$ a positive mass, as shown in (1). So no
+such $\psi$ exists.
+
+(3) The family is $q^{\ZZ}$-covariant, and this is
+Proposition~\ref{prop:no-lattice-kernel-line}(1).
+
+Every step is machine-checked, and the cited facts enter only through
+Theorem~\ref{thm:lattice-line}.
+\end{proof}
+
+The family repairs Lindeberg's discrete scale space for covariance. Lindeberg's kernels, his
+discrete analogue of the Gaussian, jump by the one length $h$. Here each octave adds the jumps of
+the next length $hq^i$. The lengths of the jumps form a geometric sequence, hence the name. The
+family has no Gaussian part, and its \Levy{}
+measures are atomic. In $\RR^d$, $d \ge 2$, no rotation-invariant infinitely divisible law has a
+marginal whose folded \Levy{} measure has an atom (Proposition~\ref{prop:what-does-not-lift}), so
+the examples of Section~\ref{sec:pyramid-strata} of the paper put their jumps on spheres.
+
+% shared with blueprint cor:lattice-line-strict
+\begin{theorem}[the three strata are distinct]
+\label{cor:lattice-line-strict}
+
+Fix $q > 1$. As conditions on families with (A1)--(A7) and (ND), full covariance implies
+(A8$|q^{\ZZ}$), and both implications of the chain
+\emph{fully covariant} $\Rightarrow$ \emph{$q^{\ZZ}$-covariant} $\Rightarrow$ \emph{(A1)--(A7) and
+(ND)} are strict: Lindeberg's discrete scale space
+(Proposition~\ref{prop:lindeberg-stratum-one}) is in the first stratum of
+Theorem~\ref{thm:lattice-line} and not in the second, and the geometric-jump pyramid
+(Proposition~\ref{prop:discrete-gaussian-pyramid}) is in the second and not in the third.
+\end{theorem}
+
+\begin{proof}
+(A8) requires the covariance at every $\lambda > 0$, so in particular at every $\lambda \in q^{\ZZ}$,
+which is (A8$|q^{\ZZ}$). Lindeberg's discrete scale space, at any $h > 0$, satisfies (A1)--(A7)
+and (ND) and not (A8$|q^{\ZZ}$) (Proposition~\ref{prop:lindeberg-stratum-one}(2)--(3)). The
+geometric-jump pyramid satisfies (A8$|q^{\ZZ}$), and no relabelling of its scales makes it fully
+covariant (Proposition~\ref{prop:discrete-gaussian-pyramid}(1)--(2)). It is not fully covariant in
+its own labelling either, the identity being a relabelling. For the given $q$ one instance is
+$h = 1$ with the weights $w_i = 1$ for $i < 0$ and $w_i = 0$ for $i \ge 0$: they are nonnegative,
+nonincreasing and not all zero, $\sum_{i<0}q^{2i} < \infty$, and $\sum_{i \ge 0}w_i = 0$.
+\end{proof}
+
+% shared with blueprint prop:no-lattice-kernel-line
+\begin{proposition}[no kernel from scale zero is a lattice law, and the pyramid principle]
+\label{prop:no-lattice-kernel-line}
+
+Let $q > 1$ and let $(\Phi_{s,t})$ be $q^{\ZZ}$-covariant, with kernels $\mu_{s,t}$.
+\begin{enumerate}
+\item No kernel $\mu_{0,t}$ with $t > 0$ is carried by a lattice $\xi\ZZ$, $\xi > 0$.
+\item Suppose $S_qt = qt$, and that $\mu_{0,t}$ has a continuous density $\phi_t$ for some
+$t > 0$. Then $\mu_{0,q^nt}$ has the continuous density $\phi_{q^nt}(x) = q^{-n}\phi_t(q^{-n}x)$
+for every $n \in \ZZ$, so $q^n\phi_{q^nt}(q^nhm) = \phi_t(hm)$ for every $h > 0$ and $m \in \ZZ$:
+sampled at the scale $q^nt$ on the grid $q^nh\ZZ$, the kernel is the same array at every level,
+up to the factor $q^n$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) By Lemma~\ref{lem:line-axioms-kernels} the kernels form a symmetric family in dimension $1$
+that is $q$-covariant. Its image in $\RR^1$ under $x \mapsto xe_1$ is a symmetric $q$-covariant
+family in the sense of Definition~\ref{def:family-dimension-d}, and the lattice $\xi\ZZ$ goes to
+the subgroup generated by $\xi e_1$, which is discrete: its nonzero points have norm at least
+$\xi$. Proposition~\ref{prop:no-lattice-kernel} at $d = 1$ says that no kernel of the image, at
+$t > 0$, is carried by it, and the image of $\mu_{0,t}$ is carried by it exactly when $\mu_{0,t}$ is
+carried by $\xi\ZZ$.
+
+(2) In the canonical gauge, $T_q\mu_{0,t} = \mu_{0,qt}$ for every $t \ge 0$
+(Lemma~\ref{lem:discrete-covariance-line}), and iterating this and its inverse,
+$\mu_{0,q^nt} = T_{q^n}\mu_{0,t}$ for every $n \in \ZZ$. If $\mu$ has the density $\phi$, then
+$T_c\mu$ has the density $c^{-1}\phi(x/c)$, by the substitution $x = cy$. This density is
+continuous. Two continuous densities of one law agree almost everywhere, hence everywhere, since a
+nonempty open set has positive Lebesgue measure. So it is the continuous density of
+$\mu_{0,q^nt}$, and at $x = q^nhm$ it is $q^{-n}\phi_t(hm)$.
+\end{proof}
+
+A step $\mu_{s,t}$ with $s > 0$ can be a lattice law, and that is what a grid pyramid is
+(Definition~\ref{def:grid-pyramid-line}, Proposition~\ref{prop:grid-pyramids-infinitely-divisible}(4)).
+Clause (2) is the pyramid principle of Section~\ref{subsec:line-strata} of the paper. The kernels
+from scale zero of a $q^{\ZZ}$-covariant family are carried by no lattice, by (1). When such a kernel
+has a continuous density, covariance in the canonical gauge makes its samples on the grids
+$q^nh\ZZ$ one array.

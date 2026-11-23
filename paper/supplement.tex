@@ -1,0 +1,38 @@
+% The supplement of the theory paper (adr/0007; article-kit RELEASE.md, "A paper with a
+% supplement"): blueprint Appendix A, the discrete stratum on the line (supp-line.tex).
+% Its statements, sections and equations are numbered S1, S.1, ...; a number of the paper is read
+% from main.aux through xr-hyper, and the paper reads this document's numbers from
+% supplement.aux, so each is built after the other. The \date line is a copy of that of main.tex.
+\documentclass[11pt]{article}
+\newcommand{\pyrexternal}{main}
+\input{preamble}
+% The section of the admitted facts in Lean (supp-axioms-lean.tex) prints Lean's Unicode.
+\usepackage{newunicodechar}
+\input{supp-axioms-unicode}
+\renewcommand{\thesection}{S\arabic{section}}
+\counterwithout{theorem}{section}
+\renewcommand{\thetheorem}{S.\arabic{theorem}}
+\counterwithout{equation}{section}
+\renewcommand{\theequation}{S.\arabic{equation}}
+
+\title{Supplement to\\
+Spatial scale space from hemigroup axioms:\\
+the theory of image pyramids}
+\author{Daniel Fagerstr\"om}
+% The release pyramids-v0.1, frozen with the paper's date line (RELEASE.md, "A paper with a
+% supplement"). The draft line, restored at the first edit after the release:
+% \date{Working draft --- not yet released}
+\date{November 23, 2026 (v0.1)\\[3pt] {\normalsize \href{https://doi.org/10.5281/zenodo.24480183}{doi:10.5281/zenodo.24480183}}}
+
+\begin{document}
+\maketitle
+
+\input{supp-intro}
+\input{supp-strata}
+\input{supp-line}
+\input{supp-axioms-lean}
+
+\bibliographystyle{plainurl}
+\bibliography{references}
+
+\end{document}

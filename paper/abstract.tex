@@ -1,0 +1,44 @@
+% The abstract: compared with the statements it summarizes before any freeze (the rule that
+% summaries drop hypotheses).
+\begin{abstract}
+An image pyramid smooths and subsamples an image by a fixed ratio $q$ at every level. The classical
+design literature constrains the kernel of one step and follows the equivalent kernels that the
+pyramid builds level by level. Scale-space theory has a kernel at every scale and leaves the
+subsampling outside its treatment. This paper studies kernel
+families on $\RR^d$ under the hemigroup axioms of linear scale space, in which two consecutive
+smoothing steps compose to one, with covariance under the powers of $q$ in place of every dilation.
+It gives a description of the families by their \Levy{} data, a selection theorem and an
+obstruction on the grid. The isotropic
+families form three nested strata: all of them, those covariant under the powers of $q$, and those
+covariant under every dilation. In the middle stratum the kernel from the scale $0$ to each scale
+is semi-selfdecomposable: it is its own contraction by $q$, smoothed by an infinitely divisible law.
+The scales are labelled so that
+dilating the kernel at a scale $t$ by $q$ gives the kernel at $qt$, and an octave step goes from $t$ to $qt$. The ladder of octave steps between the stored levels determines the kernels at
+the knots $q^n$. No law of bounded support other than a point mass is a step of any family that obeys
+the cascade and is continuous in scale. Every octave step of the \Matern{} pyramid is one implicit
+heat step, a Helmholtz resolvent, and the pyramid is covariant under every dilation. Up to a
+relabelling $g$ of the scales with $g(qt) = q\,g(t)$, it is
+the one isotropic family covariant under $q$ whose octave steps from every scale obey the maximum
+principle of an implicit Euler step for every smooth rapidly decreasing input. Among symmetric
+rotation-invariant laws the principle holds exactly for the Helmholtz resolvents, so Gaussian steps
+fail it. The principle is required of the octave steps only. A step of the \Matern{} pyramid has it
+only across a factor $q$ in scale, and no symmetric family has it at every step. A grid pyramid
+applies one mask, a probability law, at every level, and it is called exact when the steps it
+applies from level to level are the octave steps of one family continuous in scale and covariant
+under $q$. On a lattice, a symmetric probability mask other than a point mass has an exact grid
+pyramid if and only if it is infinitely divisible with a logarithmic moment. For laws the
+sufficiency is a theorem of Maejima and Ueda, and continuity in scale gives the necessity. For an
+integer ratio the kernels of an exact grid pyramid on $h\ZZ^d$ are singular. In
+$d \ge 2$ no kernel at a positive scale of an exact grid pyramid whose mask is carried by a lattice
+is rotation invariant. The same holds when the dilation is an invertible matrix, which may also turn
+the lattice. The obstruction needs continuity in scale: some band-limited mask $w$ of infinite
+support has a rotation-invariant law $\mu$ with $D_q\mu = \mu * w$. The lemmas, propositions and
+theorems of Sections 3 to 6 and of the supplement have formal counterparts in Lean~4. All are machine-checked but one step and three
+results proved in print only, in whole or in part: the proposition on matrix dilations, the
+singularity clause on the kernels, and the band-limited example. The formal counterparts rest on
+nine cited facts, taken as fourteen axioms that the supplement prints in Lean, and on two earlier
+formal developments of the author's. One of the nine is a proposition of an earlier paper of the
+author's that restates a theorem of Karlin. Neither the connecting prose nor the
+numerical examples are machine-checked, and the formal statements and definitions were compared
+with the printed ones by AI agents only.
+\end{abstract}

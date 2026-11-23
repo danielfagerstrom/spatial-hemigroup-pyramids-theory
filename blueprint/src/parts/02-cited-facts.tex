@@ -1,0 +1,1808 @@
+% !TEX root = ../print.tex
+% Chapter 2, opening: what is cited. The draft's section 2.0 (lines 43-118 of
+% draft/spatial-hemigroup-pyramids.md): the axioms on the line and in R^d, the two
+% classifications, the generator form and the notation; the definitions this blueprint takes from
+% the released modules and the literature; and one INTERFACE NODE per entry of the axiom ledger
+% blueprint/AXIOMS.md that a node of this blueprint spends or refers to (28 entries; A15 added in
+% review round 3, batch C, decision D3). 02-line.tex
+% continues the chapter with the theory on the line.
+%
+% The interface nodes. thm:cited-A<N> states entry A<N> as the ledger's "Statement as used": the
+% mathematical sentences of the source, at the page's letter as the librarian transcribed them
+% from the page image (blueprint/AXIOMS-verbatim.md, from records/pyramids/VERBATIM-*.md), narrowed
+% where the spending nodes use less. Each is [A] on its one entry and has no proof, except
+% thm:cited-A1, which the author regraded [T] on 2026-11-14: the shared core proves it with no
+% axiom, and the node is \leanok with a proof, on Formalization/Pyramids/Cited/A1.lean; and
+% thm:cited-A34, regraded [T] the same day in wave 2g, as the affine export proves it with no
+% axiom (Formalization/Pyramids/Cited/A34.lean). The author
+% admitted seven entries as Lean axioms on 2026-11-13 (A39, A40, A41, A42, A46, A48, A51); their
+% nodes are \leanok on the declarations of Formalization/Pyramids/Cited/A<N>.lean, which are
+% axioms (A42, A46, A48), the affine export's axioms restated (A39), or theorems proved from them
+% (A40, A41) or from a definition (A51); since review round 3 (batch C, 2026-11-23) A42 is a
+% theorem with no axiom, and A48's axiom no longer carries the finiteness of nu, proved in its
+% node. The author admitted seven more on 2026-11-14 (A31, A34,
+% A35, A43, A45, A49, A50); their nodes are \leanok in the same way: the affine export's theorems
+% (A31, A34, A35), its axioms (A45, and A43's first clause), two axioms of this module and two
+% proofs (A43), an axiom of this module (A49) and a proof with no cited fact (A50).
+% blueprint/trust-boundary.txt lists the twelve axiom names reached. The other twelve (thirteen
+% with A15, review round 3 batch C) are not
+% \leanok: their statements are typed with sorry, as
+% theorems and not as axioms, in Formalization/PyramidsSkeleton/Ch02CitedFacts.lean (phase 4), and
+% they enter no Lean proof. A node that spends an entry names it on
+% its status line and \uses this node (LINKAGE.md rule 14). Inside an interface node's annotation
+% another entry is named by its node (\ref) or in plain text, never by \ledger (LINKAGE.md rule 7).
+% The definition nodes restate definitions of the released modules and of the literature at their
+% printed pages. A definition asserts nothing, so they are [T] and cite no entry.
+%
+% Citations corrected against the librarian's records (each also marked CHANGED where it occurs):
+% V-line "section 4, p. 22" -> Lemma 4.1, pp. 22-23; iso Def. 3.1 p. 10 -> pp. 10-11; iso Lem. 3.4
+% p. 12 -> pp. 12-13; iso Prop. 3.11 p. 15 -> pp. 15-16; V-cone Prop. 3.3 p. 15 -> pp. 15-16; the
+% cone module's Matern kernel at scale t, cited by the draft to Prop. 6.4(3), is Prop. 5.2(2), p. 43.
+%
+% Stays prose, and why (one line each):
+% - the chapter opening and the section leads: they say what is cited and from where;
+% - the stage paragraph (V-line Thm. 5.2, p. 26): orientation; no node spends it, the chapters prove
+%   what they need (lem:family-structure; ledger id A2 was dropped, VERBATIM-V-line.md A2);
+% - the exponents of the symmetric self-decomposable laws (V-line Prop. 2.13, p. 13): orientation;
+%   the line paper states it for orientation too, and the form (2.0) enters through Theorem 2.0;
+% - the gloss "the law of cX + Y_c" after def:self-decomposable: a one-line equivalent reading;
+% - the correspondence of the operator and kernel axioms after thm:cited-A30: a reading of it;
+% - the filtration A_{d+1} in A_d (iso Prop. 2.6, p. 8): orientation; no proof uses it;
+% - the reduction behind Theorem 2.0' (iso Lem. 3.4, 3.5): how the cited theorem is proved; no node
+%   spends it (lem:reduction-keeps-stratum proves the form it needs);
+% - the generator form (2.0''), the Gaussian generator, the Cin ray (V-cone Prop. 6.2, 6.4(1),
+%   Lemma 3.1), and the Matern and Thorin clauses (Prop. 6.4(3)-(4)): the cone's picture for the
+%   reader; no node's status line spends them (the Choquet representation, Prop. 3.3, is the node
+%   thm:cited-A15 since review round 3, batch C, decision D3);
+% - the list of other released statements: an index, each statement stated where it is used;
+% - the paragraph on the Matern ranges: a convention;
+% - the notation.
+
+\chapter{What is cited, the axioms and the line}
+\label{ch:cited}
+
+This paper rests on five releases of the author's earlier work, and this chapter states what it
+takes from them, at the printed number and page. The line paper \progpaper{V-line v0.1} states the
+axioms on the line and classifies the families that satisfy them. Its cone module
+\progpaper{V-cone v0.1} describes these families as a convex cone, with their generators and their
+computation on the line. Its selection module \progpaper{V-selection v0.1} treats locality,
+non-creation of extrema and the jet. The isotropic paper \progpaper{iso v0.1} carries the axioms
+and the classification to $\RR^d$. The affine paper \progpaper{affine v0.1} supplies the frame
+families of chapter~6 and the affine orbits of isotropic laws that chapter~7 uses.
+
+The first section states the axioms, the two classifications and the generator form, with the
+statements of the released modules that the later chapters spend. The second states the facts of
+the literature that the proofs use: the \Levy--Khintchine theory of infinitely divisible laws,
+Bernstein functions, \Polya{} frequency densities and one integral of a Bessel function. Each cited
+fact is a theorem below, numbered by its entry in the axiom ledger, and a proof that uses it refers
+to it. The statements that the theory on the line cites stay with that theory, in the second half
+of the chapter and in Appendix~\ref{ch:line-appendix}.
+
+\section{What is cited, the axioms and the notation}
+\label{sec:cited}
+
+\subsection{The axioms on the line}
+\label{subsec:cited-line}
+
+A scale space keeps a record of a signal at every scale $t \ge 0$, the signal itself at $t = 0$,
+and an operator $\Phi_{s,t}$ takes the record at scale $s$ to the record at the coarser scale $t$.
+The cascade (A6) requires that two such steps compose to one. It replaces the semigroup law
+$\Phi_{t+s} = \Phi_t\Phi_s$ of the classical theory, which ties the scale to a fixed additive
+parametrization, and a family with (A6) is a \emph{hemigroup}. Covariance (A8) requires that a dilation
+of the signal only relabel the scales, and (ND) excludes the identity.
+
+% draft: the axioms on the line (section 2.0), lines 47-57 of draft/spatial-hemigroup-pyramids.md.
+\begin{definition}[symmetric cascade measurement families]
+\label{def:cascade-measurement-family}
+\lean{ScaleSpace.CascadeFamily}\leanok
+A \emph{symmetric cascade measurement family} is a family of linear operators
+$\Phi_{s,t} : L^1(\RR) \to L^1(\RR)$, $0 \le s \le t < \infty$, such that
+\begin{itemize}
+\item[(A1)] each $\Phi_{s,t}$ is a bounded operator on $L^1(\RR)$;
+\item[(A2)] $\Phi_{s,t}$ commutes with every translation $f \mapsto f(\cdot - a)$, $a \in \RR$;
+\item[(A3)] $\Phi_{s,t}$ commutes with the reflection $f \mapsto f(-\,\cdot)$;
+\item[(A4)] $\Phi_{s,t}$ maps nonnegative functions to nonnegative functions;
+\item[(A5)] $\int\Phi_{s,t}f = \int f$ for every nonnegative $f \in L^1(\RR)$;
+\item[(A6)] $\Phi_{t,t} = \Id$, and $\Phi_{s,t}\Phi_{r,s} = \Phi_{r,t}$ for all $r \le s \le t$
+(the cascade);
+\item[(A7)] for every $f \in L^1(\RR)$ the map $(s,t) \mapsto \Phi_{s,t}f$ is continuous from
+$\{0 \le s \le t\}$ to $L^1(\RR)$;
+\item[(A8)] there is a family $(S_\lambda)_{\lambda > 0}$ of increasing bijections of $[0,\infty)$
+with $\mathcal{D}_\lambda\Phi_{s,t} = \Phi_{S_\lambda s, S_\lambda t}\mathcal{D}_\lambda$ for all
+$0 \le s \le t$ and all $\lambda > 0$, where $(\mathcal{D}_\lambda f)(x) := \lambda^{-1}f(x/\lambda)$
+(scale covariance);
+\item[(ND)] $\Phi_{s,t} \ne \Id$ whenever $s < t$ (nondegeneracy).
+\end{itemize}
+\statusT\quad\emph{(A definition, \prog{V-line v0.1}{Def.~3.1, p.~17}\statedin{line:def:cascade-family}, with the actions of
+translation, reflection and dilation as printed on its p.~7. It asserts nothing and cites no
+ledger entry.)}
+\end{definition}
+
+The first consequence of the axioms is that each operator is a convolution.
+
+% draft: the sentence after the axioms (section 2.0), line 59.
+% CHANGED: the citation "[V-line v0.1, section 4, p. 22]" is made precise as Lemma 4.1,
+% pp. 22-23 (the symmetry clause is on p. 23; VERBATIM-V-line.md, A1), and the statement is given at
+% the lemma's letter, with its hypotheses (A1), (A2), (A4), (A5) in place of all of (A1)-(A8).
+\begin{theorem}[each operator is a convolution]
+\label{thm:cited-A1}
+\lean{Pyramids.cited_A1_repr, Pyramids.cited_A1_symm, Pyramids.cited_A1_converse}
+% CHANGED (2026-11-14, the author's decision): proved from the shared core, statement and proof
+% are leanok; the statement is unchanged.
+\leanok
+\uses{def:cascade-measurement-family}
+Let $\Phi_{s,t}$, $0 \le s \le t$, be linear operators on $L^1(\RR)$ with (A1), (A2), (A4) and
+(A5) of Definition~\ref{def:cascade-measurement-family}. Then for each pair $0 \le s \le t$ there
+is a unique probability measure $\mu_{s,t}$ on $\RR$ with
+\[
+  \Phi_{s,t}f = \mu_{s,t} * f, \qquad f \in L^1(\RR);
+\]
+under (A3) it is symmetric, invariant under $x \mapsto -x$. Conversely, every symmetric
+probability measure on $\RR$ defines, by convolution, an operator with (A1)--(A5).
+% CHANGED (2026-11-14, the author's decision): regraded [T]. The shared core proves the lemma with
+% no axiom, so the node is a theorem of the formal development and not an interface; ledger entry
+% A1 keeps the page anchor.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6), and says that the symmetry declaration drops (A2), (A4) and (A5).
+\statusT\quad\emph{(The line paper's representation lemma,\prog{V-line v0.1}{Lemma~4.1,
+pp.~22--23}: existence and uniqueness on p.~22, the symmetry under (A3) and the converse on
+p.~23. Held as [T]: the shared library proves it with no axiom, and ledger entry A1 records the
+page anchor and its transcription. \ref{lem:line-axioms-kernels}(1)--(2) reads it. The node says
+nothing about the families, (A6)--(A8) and (ND), which that lemma translates to the kernels
+itself, nor about the continuity of the transforms of the kernels, the line paper's Lemma~4.2,
+which no node cites.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\Phi_{s,t}$ linear operators
+on $L^1(\RR)$, (A1): same (a bounded operator, the type being that of continuous linear maps of $L^1$); (A2), (A4) and (A5): same in
+\texttt{cited\_A1\_repr}, weaker in \texttt{cited\_A1\_symm}, which requires none of them, so that
+declaration is the stronger statement; (A3): same, required of \texttt{cited\_A1\_symm} only, as the
+symmetry clause needs; the pairs $0 \le s \le t$: same, each hypothesis quantified over all of
+them; the representing measure of the symmetry clause: same, a probability measure with
+$\Phi_{s,t}f = \mu * f$ almost everywhere, taken as given; $\mu$ symmetric, for the converse: same,
+\texttt{IsSymmetric}, $\mu$ equal to its image under $x \mapsto -x$.)}
+\end{theorem}
+
+% CHANGED (2026-11-14, the author's decision): the node is proved; the proof of record is the
+% reduction to the line paper's lemma, as the shared library checks it.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, STATUS): the proof
+% says that the released lemma, whose proof is printed there, is proved again in the formal
+% development, and the closing sentence says so in place of "with no cited fact". No step changed.
+\begin{proof}
+\leanok
+Existence and uniqueness are \prog{V-line v0.1}{Lemma~4.1, p.~22}, with the proof printed there
+and proved again in the formal development:
+under (A1), (A2), (A4) and (A5) each $\Phi_{s,t}$ is the convolution with exactly one probability
+measure $\mu_{s,t}$, the equation $\Phi_{s,t}f = \mu_{s,t} * f$ holding in $L^1(\RR)$, that is,
+almost everywhere.
+
+For the symmetry, write $f^-(x) := f(-x)$ and $\mu^-$ for the image of $\mu = \mu_{s,t}$
+under $x \mapsto -x$. The change of variables $y \mapsto -y$ gives
+$\mu^- * f = (\mu * f^-)^-$ for every $f \in L^1(\RR)$. By (A3),
+$\Phi_{s,t}f^- = (\Phi_{s,t}f)^-$, so $\mu^- * f = (\Phi_{s,t}f^-)^- =
+\Phi_{s,t}f = \mu * f$ for every $f$. A probability measure is determined by its convolution
+operator on $L^1(\RR)$: with $g(x) := (2\pi)^{-1/2}e^{-x^2/2}$, the transform of $\mu * g$ is
+$\widehat\mu\,\widehat g$, and $\widehat g$ has no zero. So $\mu^- = \mu$.
+
+For the converse let $\mu$ be a symmetric probability measure on $\RR$. The map
+$f \mapsto \mu * f$ is linear, and $\|\mu * f\|_1 \le \|f\|_1$ by Tonelli's theorem, so it is a
+bounded operator on $L^1(\RR)$, which is (A1). Since
+$(\mu * f(\cdot - a))(x) = \int f(x - a - y)\,\mu(dy) = (\mu * f)(x - a)$, it commutes with
+translation, which is (A2). Since $\mu^- = \mu$, the identity of the previous paragraph reads
+$\mu * f^- = (\mu * f)^-$, which is (A3). If $f \ge 0$ almost everywhere, then
+$\mu * f \ge 0$ almost everywhere, which is (A4), and Fubini's theorem gives
+$\int \mu * f = \mu(\RR)\int f = \int f$, which is (A5).
+
+Every step is machine-checked, the released lemma's included, and no fact of the literature is
+cited.
+\end{proof}
+
+Under (A1)--(A7) the transform of the kernel is $\widehat\mu_{s,t} = e^{-g_{s,t}}$ with
+\[
+  g_{s,t}(\omega) = a(s,t)\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\varpi_{s,t}(dx),
+  \quad a(s,t) \ge 0, \quad \int_{(0,\infty)}\min(1, x^2)\,\varpi_{s,t}(dx) < \infty
+\]
+\prog{V-line v0.1}{Thm.~5.2, p.~26}. So every increment, the \emph{stage} $\mu_{s,t}$, is a
+symmetric \emph{infinitely divisible} law: for every $n$ it is the $n$-fold convolution power of
+some law. Its exponent has a Gaussian part $a(s,t)\omega^2$ and a jump part, and $\varpi_{s,t}$,
+its \emph{\Levy{} measure} folded onto $(0,\infty)$, counts the jumps by their length. The pair
+$(a, \varpi)$ of such an exponent is determined by the function.
+
+% draft: none as a statement. The draft cites "[V-line v0.1, (2.2)]" and "[Prop. 2.3(3)]" in the
+% proof of Lemma 2.3 (line 140), for the identification of the data from the exponent. Ledger
+% entries A8 and A9 of the plan are one statement on one page (VERBATIM-V-line.md, A8, A9), so the
+% display (2.2) is folded into this node and A8 is not an entry.
+\begin{theorem}[the folded \Levy--Khintchine pair is unique]
+\label{thm:cited-A9}
+\lean{Pyramids.cited_A9}
+% CHANGED (wave 3d, 2026-11-14): proved from A39(ii)-(iii), through the affine module's
+% line_levy_unique; statement and the declaration's type unchanged. The entry is not admitted and
+% needs no axiom of its own.
+\leanok
+Let $a, a' \ge 0$, and let $\nu$ and $\nu'$ be measures on $(0,\infty)$ with
+$\int_{(0,\infty)}\min(1, x^2)\,\nu(dx) < \infty$ and
+$\int_{(0,\infty)}\min(1, x^2)\,\nu'(dx) < \infty$. If
+\[
+  a\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)
+  = a'\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu'(dx)
+  \qquad\text{for every } \omega \in \RR,
+\]
+then $a = a'$ and $\nu = \nu'$.
+% CHANGED (fourth blind pass, 2026-11-15): the derivation from A39 moves out of the annotation into
+% the proof below, which names no declaration, and the statement's \uses{thm:cited-A39} moves with
+% it to the proof; the Assignment lists the spenders as the \uses graph
+% has them (thm:cited-A4 added, prop:discrete-gaussian-pyramid dropped, being [T] and spending
+% nothing), and the sentence on the existence half says where the representation of a stage comes
+% from.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A9}\quad\emph{(Cited from \prog{V-line v0.1}{Prop.~2.3(3), p.~9}, the
+symmetric \Levy--Khintchine clause with its display (2.2): every function of the line paper's
+class of symmetric negative definite functions has the representation
+$\psi(\omega) = a\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)$ with $a \ge 0$ and
+$\int(1 \wedge x^2)\,\nu(dx) < \infty$, ``the pair $(a,\nu)$ being unique''. This citation is the
+node's grounding. Not admitted, and found to need no axiom of its own: the proof below derives the
+statement from clauses (ii) and (iii) of Theorem~\ref{thm:cited-A39} read at $d = 1$.
+\textbf{Assignment.} \ledger{A9} carries the statement,
+which is that uniqueness clause read for two pairs defining the same function.
+\ref{thm:lattice-line}(3) spends it to identify the data of the relabelled kernels, and
+Theorem~\ref{thm:cited-A4} in its ``only if'', where the uniqueness of the folded pair is the one cited
+input of the formal derivation. Not carried: the existence half of the clause and its converse. No
+node cites them from this page. The representation of each stage is part of what
+Theorem~\ref{thm:cited-A4} carries, and the formal development proves it with no cited input; a law with
+given data comes from clause (iii) of A39, through \ref{lem:line-exponent-data}(1). Not carried
+either: any two-sided form, the folded measure being the image of a symmetric \Levy{} measure
+under $x \mapsto |x|$ by the line paper's convention, p.~10. The same uniqueness in $\RR^d$, for
+laws, is Theorem~\ref{thm:cited-A39}(ii).
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $a, a' \ge 0$: same;
+$\nu$, $\nu'$ measures on $(0,\infty)$: same (measures on $\RR$ with no mass on $(-\infty, 0]$);
+$\int\min(1, x^2)\,d\nu < \infty$ and the same for $\nu'$: same (the lower integral finite); the
+equality of the two displayed functions for every $\omega \in \RR$: same, of the real-valued
+exponents, each finite, so it is not an equality of two junk values.)}
+\end{theorem}
+
+% CHANGED (fourth blind pass, 2026-11-15): new proof environment, the derivation formerly sketched
+% in the annotation, with the symmetrization written out.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, PROSE): the lift to
+% R^1 is no longer named in the proof; the identification of R with R^1 is stated once, in the lead
+% of the theory on the line. No step changed.
+\begin{proof}
+\leanok
+\uses{thm:cited-A39}
+For a pair $(a, \nu)$ as in the statement let $\tilde\nu$ be the symmetric measure on $\RR$ with
+$\tilde\nu(\{0\}) = 0$ and $\tilde\nu(B) = \tfrac12\nu(B \cap (0,\infty)) +
+\tfrac12\nu(-B \cap (0,\infty))$. Then $\int\min(x^2, 1)\,\tilde\nu(dx) =
+\int_{(0,\infty)}\min(x^2, 1)\,\nu(dx) < \infty$, so $(2a, \tilde\nu, 0)$ is a generating triplet
+on $\RR$. In its \Levy--Khintchine bracket the imaginary part of the integrand,
+$\sin\omega x - \omega x\mathbf 1_{|x| \le 1}$, is odd and $\tilde\nu$-integrable, so it integrates
+to $0$. The real part $\cos\omega x - 1$ is even, so its $\tilde\nu$-integral is
+$-\int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)$. With the Gaussian term
+$-\tfrac12\cdot 2a\,\omega^2$ the bracket is $-\psi(\omega)$, where $\psi$ is the function of the
+pair, $\psi(\omega) = a\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)$.
+
+By Theorem~\ref{thm:cited-A39}(iii) there is an infinitely divisible law $\mu$ on $\RR$ with the triplet
+$(2a, \tilde\nu, 0)$, so $\widehat\mu = e^{-\psi}$. By hypothesis the pair $(a', \nu')$ has the
+same function $\psi$. So by the first paragraph the triplet $(2a', \tilde\nu', 0)$ also represents
+$\widehat\mu$ by the formula of Theorem~\ref{thm:cited-A39}(i). By Theorem~\ref{thm:cited-A39}(ii) the two triplets
+are equal: $a = a'$ and $\tilde\nu = \tilde\nu'$. On $(0,\infty)$ the measure $\tilde\nu$ is
+$\tfrac12\nu$, so $\nu = 2\tilde\nu|_{(0,\infty)} = 2\tilde\nu'|_{(0,\infty)} = \nu'$.
+
+Every step is machine-checked, and the cited fact is \ledger{A39}(ii)--(iii), at $d = 1$.
+\end{proof}
+
+The class of laws that the full axioms produce is a classical one.
+
+% draft: the definition of self-decomposability (section 2.0), line 61; and the semi-
+% selfdecomposable laws of Definition 3.4 (line 402), whose source is the same definition of Sato's.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, POINTER): the
+% residual is written varrho_b, Sato's rho_b renamed, so that the notion has one residual symbol
+% with def:semi-selfdecomposable-line and def:semi-selfdecomposable. A rename.
+\begin{definition}[self-decomposable and semi-selfdecomposable laws]
+\label{def:self-decomposable}
+\lean{ScaleSpace.IsSelfDecomposable, AffineHemigroup.IsSelfDecomposableSato,
+Pyramids.IsSDResidual, Pyramids.IsSemiSelfDecomposableWithSpan, Pyramids.IsSemiSelfDecomposable}\leanok
+Let $\mu$ be a probability measure on $\RR^d$. It is \emph{self-decomposable} if, for every
+$b > 1$, there is a probability measure $\varrho_b$ on $\RR^d$ such that
+\[
+  \widehat\mu(z) = \widehat\mu(b^{-1}z)\,\widehat\varrho_b(z), \qquad z \in \RR^d.
+\]
+It is \emph{semi-selfdecomposable} if there are some $b > 1$ and some infinitely divisible
+probability measure $\varrho_b$ with the same identity. Then $b$ is called a \emph{span} of $\mu$, and
+$\varrho_b$ its \emph{residual}.
+\statusT\quad\emph{(A definition, [\sscite{sato1999levy}, Def.~15.1, p.~90], formula
+(15.1)\statedin{affine/iso:def:isotropic-kernel-family}; the
+word ``residual'' is this paper's. It asserts nothing and cites no ledger entry. That a
+self-decomposable law is infinitely divisible, with infinitely divisible residuals, is
+Theorem~\ref{thm:cited-A43}.)}
+\end{definition}
+
+Writing $c = b^{-1} \in (0,1)$, a law $\mu$ is self-decomposable if for every $c$ there is a law
+$\varrho_c$ with $\widehat\mu(\omega) = \widehat\mu(c\omega)\,\widehat\varrho_c(\omega)$, that is if $\mu$
+is the law of $cX + Y_c$ with $X \sim \mu$ and $Y_c$ independent of $X$. The exponents of the
+symmetric self-decomposable laws on the line are those of the form
+\begin{equation}
+\label{eq:admissible-exponent}
+\tag{2.0}
+  F(\omega) = a\,\omega^2 + \int_0^\infty(1 - \cos\omega x)\,\frac{k(x)}{x}\,dx
+\end{equation}
+with $a \ge 0$, $k : (0,\infty) \to [0,\infty)$ nonincreasing and
+$\int_0^\infty\min(1, x^2)\,k(x)\,x^{-1}\,dx < \infty$ \prog{V-line v0.1}{Prop.~2.13, p.~13}, the
+integrability being that of a \Levy{} measure. The classification of the line is the following
+theorem.
+
+% draft: Theorem 2.0 (section 2.0), line 65 of draft/spatial-hemigroup-pyramids.md. This node IS
+% the draft's Theorem 2.0.
+% CHANGED: the form (2.0) is written out in the statement, so that the node reads on its own.
+\begin{theorem}[the classification on the line]
+\label{thm:cited-A4}
+\lean{Pyramids.cited_A4, Pyramids.cited_A4_exists, Pyramids.cited_A4_unique}
+% CHANGED (wave 3d, 2026-11-14): proved from A39(ii)-(iii); the three declarations unchanged. The
+% entry is not admitted and needs no axiom of its own.
+\leanok
+\uses{def:cascade-measurement-family, thm:cited-A9, thm:cited-A39, lem:line-exponent-data}
+A family $(\Phi_{s,t})_{0 \le s \le t}$ of linear operators on $L^1(\RR)$ satisfies (A1)--(A8)
+and (ND) of Definition~\ref{def:cascade-measurement-family} if and only if there are an increasing
+bijection $\chi$ of $[0,\infty)$, the \emph{gauge}, and a function $F \not\equiv 0$ of the form
+\[
+  F(\omega) = a\,\omega^2 + \int_0^\infty(1 - \cos\omega x)\,\frac{k(x)}{x}\,dx,
+\]
+with $a \ge 0$, $k \ge 0$ nonincreasing and
+$\int_0^\infty\min(1, x^2)\,k(x)\,x^{-1}\,dx < \infty$, such that $\Phi_{s,t}f = \mu_{s,t} * f$ with
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)\omega) - F(\chi(s)\omega)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR.
+\]
+% CHANGED (skeleton review, M1): the construction clause, which the display presupposes when it
+% names the measures by their transforms and which the page's following text calls the
+% "construction" clause, is written out (VERBATIM-V-line.md, A4; AXIOMS-verbatim.md, A4).
+Conversely, for every such pair $(\chi, F)$ there are probability measures $\mu_{s,t}$ with
+these transforms, and the operators $f \mapsto \mu_{s,t} * f$ satisfy (A1)--(A8) and (ND).
+The pair $(\chi, F)$ is unique once $\chi(1) = 1$.
+% CHANGED (fourth blind pass, 2026-11-15): the annotation says that the printed grounding is the
+% cited theorem, and describes the formal derivation by what it proves and what it cites, without
+% naming declarations; the "one cited input" sentence now says that the representation of each
+% stage is proved inside the shared core's analysis, which is why the uniqueness is its only input.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A4}\quad\emph{(Cited from \prog{V-line v0.1}{Thm.~7.3, p.~37}, the main
+theorem, whose $F$ is ``of the form (2.3)'' of the line paper, p.~13, with the integrability of a
+\Levy{} measure: the form above. The construction sentence is the theorem's ``if'' read for the
+measures its display names: the page's following text calls the three clauses ``construction,
+analysis, uniqueness'' and says that what the axioms leave free is ``exactly the pair $(a,k)$''.
+This citation is the node's printed grounding: the proof is the line paper's and is not reprinted
+here. Not admitted, and found to need no axiom of its own: the formal development
+derives the three clauses from clauses (ii) and (iii) of Theorem~\ref{thm:cited-A39}, through the shared
+library's proved classification on the line. Its ``only if'' is the shared library's proof of the
+line paper's analysis direction. That proof establishes the convolution form, the infinite
+divisibility and the \Levy--Khintchine representation of every stage itself, by a null-array and
+tightness argument with no cited input, so its one cited input is the uniqueness of the folded
+pair, Theorem~\ref{thm:cited-A9}, which Theorem~\ref{thm:cited-A39}(ii)--(iii) give. The uniqueness of the
+normalized pair needs no cited input once the kernels of one operator family are identified, a
+measure being determined by its convolution operator. The construction and the ``if'' follow the shared library's construction,
+which uses a cited fact only to obtain a law with a given symmetric exponent, and take that law from
+clause (iii) (Lemma~\ref{lem:line-exponent-data}(1)) in place of Bochner's theorem.
+\textbf{Assignment.} \ledger{A4} carries the whole statement: both directions and the uniqueness of
+the normalized pair. \ref{thm:lattice-line}(3) spends the ``only if'',
+\ref{thm:annulus-parametrization-phase}(2)--(3) the admissibility of $F$ and the form
+$F(\chi(t)\,\cdot)$, and \ref{thm:matern-pyramid-line}(1) the ``if'', that an admissible
+$F \not\equiv 0$ has a similarity family with the axioms. Not carried: the sentence of the page
+that in the canonical gauge the kernel at scale $t$ has transform $e^{-F(t\,\cdot)}$, which is the
+case $\chi = \mathrm{id}$ of the display; the monotonicity in $t$ of the data of the stages, which
+the line paper's Theorem~5.2 does not state and \ref{lem:family-structure} proves; and the
+identification of the folded \Levy{} measure of a kernel, which is Theorem~\ref{thm:cited-A9} with a change
+of variables.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\Phi$ a family of linear
+operators on $L^1(\RR)$ with (A1)--(A8) and (ND): same for \texttt{cited\_A4}, whose
+\texttt{CascadeFamily} requires (A1)--(A3), (A5)--(A7), positivity, nondegeneracy and (A8) at every
+$\lambda > 0$; weaker for \texttt{cited\_A4\_unique}, which requires only that $\Phi$ have the kernel
+families $\mu_1$, $\mu_2$ and not that it satisfy the axioms; $\chi$ a gauge: same (an increasing
+bijection of $[0,\infty)$ with $\chi(0) = 0$); $F \not\equiv 0$: same for the first pair, weaker for
+the second pair of \texttt{cited\_A4\_unique}, where it is not required; $a \ge 0$, $k \ge 0$
+nonincreasing and the two integrability conditions: same (\texttt{SDProfile}), with one more field,
+$k(0) = 0$, a normalisation that the node leaves free as $k$ is read on $(0,\infty)$, so stronger
+where the profile is given and harmless where it is obtained; the kernels $\mu_{s,t}$ with the
+displayed transforms: same, probability measures with $\Phi_{s,t}f = \mu_{s,t} * f$ almost
+everywhere; $\chi(1) = 1$: same, for both pairs.)}
+\end{theorem}
+
+In the \emph{canonical gauge} $\chi = \mathrm{id}$ the kernel at scale $t$ has transform
+$e^{-F(t\omega)}$. The functions $F$ of the form (\ref{eq:admissible-exponent}) are the
+\emph{admissible exponents}, and $(a, k)$ their \emph{data}. They form a convex cone
+\prog{V-cone v0.1}{Lemma~2.7, p.~12}.
+
+\subsection{The axioms in $\RR^d$}
+\label{subsec:cited-d}
+
+Fix $d \ge 1$. For a measure $\mu$ on $\RR^d$ write
+$\widehat\mu(\omega) = \int e^{i\langle\omega, x\rangle}\,\mu(dx)$, and for a linear map $A$ of
+$\RR^d$ write $A_*\mu$ for the image of $\mu$ under $x \mapsto Ax$.
+
+% draft: the axioms in R^d (section 2.0), lines 69-75; with the operator form of line 77.
+\begin{definition}[isotropic cascade families]
+\label{def:isotropic-cascade-family}
+\lean{AffineHemigroup.IsIsotropicCascadeFamily}\leanok
+Let $d \ge 1$. An \emph{isotropic cascade family in dimension $d$} is a family
+$(\mu_{s,t})_{0 \le s \le t}$ of probability measures on $\RR^d$ such that
+\begin{itemize}
+\item[(I1)] $\mu_{t,t} = \delta_0$, and $\mu_{r,t} = \mu_{s,t} * \mu_{r,s}$ whenever
+$r \le s \le t$ (cascade);
+\item[(I2)] for every $\omega \in \RR^d$ the map $(s,t) \mapsto \widehat\mu_{s,t}(\omega)$ is
+continuous on $\{0 \le s \le t\}$ (continuity);
+\item[(I3)] $Q_*\mu_{s,t} = \mu_{s,t}$ for every $Q \in \Orth(d)$ and every pair (rotation
+invariance);
+\item[(I4)] there is a family $(S_\lambda)_{\lambda > 0}$ of increasing bijections of
+$[0,\infty)$ with $(\lambda I)_*\mu_{s,t} = \mu_{S_\lambda s, S_\lambda t}$ for every $\lambda > 0$
+and every pair (dilation covariance);
+\item[(ND)] $\mu_{s,t} \ne \delta_0$ whenever $s < t$ (nondegeneracy).
+\end{itemize}
+\statusT\quad\emph{(A definition,
+\prog{iso v0.1}{Def.~3.2, p.~11}\statedin{affine/iso:def:isotropic-kernel-family}. The isotropic paper also
+states the axioms on operators on $L^1(\RR^d)$, as (A1)--(A8) and (ND) with the orthogonal group in
+place of the reflection, \prog{iso v0.1}{Def.~3.1, pp.~10--11}, and joins the two forms by its
+Lemma~3.3, which is Theorem~\ref{thm:cited-A30}. This blueprint states the axioms in $\RR^d$ on the kernels
+only. It asserts nothing and cites no ledger entry. The declaration takes the family
+$(S_\lambda)$ of (I4) as an argument, \texttt{IsIsotropicCascadeFamily $\mu$ S}; the definition's
+object is $\exists S$, and every statement that uses it quantifies so. The declaration does not require
+$d \ge 1$; at $d = 0$ (ND) cannot hold.)}
+% CHANGED (fidelity review, 2026-11-15, R2): the status line says that the declaration takes the
+% gauge S as an argument and that the definition's object is the existential.
+\end{definition}
+
+The axioms are stated on the kernels. The isotropic paper also states them on operators on
+$L^1(\RR^d)$, as (A1)--(A8) and (ND) with the rotations in place of the reflection
+\prog{iso v0.1}{Def.~3.1, pp.~10--11}. The two definitions describe the same families, by the
+next theorem.
+
+% draft: the sentences after the axioms in R^d (section 2.0), line 77.
+% CHANGED: the citation of iso Def. 3.1 reads pp. 10-11, not p. 10 (VERBATIM-selection-iso-affine.md).
+\begin{theorem}[operators and kernels in dimension $d$]
+\label{thm:cited-A30}
+\lean{Pyramids.cited_A30_repr, Pyramids.cited_A30_converse, Pyramids.cited_A30_continuity}
+\notready
+Let $d \ge 1$, and for a probability measure $\mu$ on $\RR^d$ and $f \in L^1(\RR^d)$ write
+$(\mu * f)(x) := \int f(x - y)\,\mu(dy)$.
+\begin{enumerate}
+\item Let $\Phi$ be a linear operator on $L^1(\RR^d)$ that is bounded, commutes with every
+translation $f \mapsto f(\cdot - a)$, $a \in \RR^d$, maps nonnegative functions to nonnegative
+functions, and has $\int\Phi f = \int f$ for every nonnegative $f$. Then there is a unique
+probability measure $\mu$ on $\RR^d$ with $\Phi f = \mu * f$ for every $f \in L^1(\RR^d)$.
+Conversely, for every probability measure $\mu$ on $\RR^d$ the operator $f \mapsto \mu * f$ has
+these four properties.
+\item Let $\mu_n$ and $\mu$ be probability measures on $\RR^d$. Then
+$\widehat\mu_n(\xi) \to \widehat\mu(\xi)$ for every $\xi \in \RR^d$ if and only if
+$\mu_n * f \to \mu * f$ in $L^1(\RR^d)$ for every $f \in L^1(\RR^d)$.
+\end{enumerate}
+\statusA\quad\ledger{A30}\quad\emph{(Cited from \prog{iso v0.1}{Lem.~3.3(1)--(2), p.~11}; its
+clause (2) is proved in the isotropic paper's supplement, \S S3.1. Its statement is typed in the skeleton
+(\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; by the author's decision of
+2026-11-15 it is not admitted. \textbf{Assignment.} \ledger{A30} carries the two clauses, for
+every $d \ge 1$.
+% CHANGED (wave 3b, 2026-11-15): prop:line-and-arrays(1) no longer spends A30; it is proved
+% through checked nodes. The entry has no spender.
+No node spends it: \ref{prop:line-and-arrays}(1), which read it at $d = 1$, is proved through
+the line's own bridges between operators and kernels. Not
+carried: the clauses (3)--(4) of the lemma on p.~12, which no node reads.)}
+\end{theorem}
+
+So (I1) is the cascade (A6), (I2) the continuity (A7), (I3) the rotation invariance (A3) and (I4)
+the covariance (A8), with the same bijections. Let $\mathcal{A}_d$ be the set of admissible $F$ for
+which $\omega \mapsto F(|\omega|)$, $\omega \in \RR^d$, is the exponent of a self-decomposable law
+on $\RR^d$. Then $\mathcal{A}_1$ is the whole cone of admissible exponents and
+$\mathcal{A}_{d+1} \subseteq \mathcal{A}_d$ \prog{iso v0.1}{Prop.~2.6, p.~8}. The classification
+in $\RR^d$ is the following theorem.
+
+% draft: Theorem 2.0' (section 2.0), line 79 of draft/spatial-hemigroup-pyramids.md. This node IS
+% the draft's Theorem 2.0'.
+% CHANGED: the class A_d and the word "gauge" are written out in the statement, so that the node
+% reads on its own (the isotropic paper's page refers to its section 2.2 for both).
+\begin{theorem}[the classification in $\RR^d$]
+\label{thm:cited-A31}
+\lean{Pyramids.cited_A31, Pyramids.cited_A31_unique}
+\leanok
+\uses{def:isotropic-cascade-family, def:self-decomposable, thm:cited-A39}
+Let $d \ge 1$, and let $\mathcal{A}_d$ be the set of admissible exponents $F$ (of the form
+(\ref{eq:admissible-exponent})) for which $\omega \mapsto F(|\omega|)$ is the exponent of a
+self-decomposable law on $\RR^d$. A family $(\mu_{s,t})_{0 \le s \le t}$ of probability measures
+on $\RR^d$ is an isotropic cascade family in dimension $d$ if and only if there are a gauge
+$\chi$, an increasing bijection of $[0,\infty)$, and an $F \in \mathcal{A}_d$ with
+$F \not\equiv 0$ such that
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR^d.
+\]
+% CHANGED (fidelity review, 2026-11-16, R72): the sentence names the class of the second pair, $F' \in \mathcal{A}_d$, as the declaration requires; the page's wider class is in the status line.
+The pair is unique against any second such pair $(\chi', F')$ with $F' \in \mathcal{A}_d$, up to
+$(\chi, F) \mapsto (c\chi, F(c^{-1}\,\cdot))$ with $c > 0$, so it is unique once $\chi(1) = 1$.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A31}\quad\emph{(Cited from \prog{iso v0.1}{Thm.~3.6, p.~13}, with the gauge
+and the class $\mathcal{A}_d$ as the isotropic paper defines them in its \S 2.2, p.~6 (a gauge is
+an increasing bijection $\chi$ of $[0,\infty)$, hence continuous, with $\chi(0) = 0$), and
+Prop.~2.6, p.~8. Admitted as a Lean axiom by the author on 2026-11-14, and found to need none of
+its own: the affine module's formal development proves the theorem
+(\texttt{AffineHemigroup.isotropic\_classification} and
+\texttt{isotropic\_classification\_unique}), the equivalence from clauses (ii) and (iii) of
+Theorem~\ref{thm:cited-A39} and the uniqueness with no cited fact; the declarations named above are those
+theorems, the uniqueness read for $F' \in \mathcal{A}_d$, which has $F'(0) = 0$. \textbf{Assignment.}
+% CHANGED (wave 2g, 2026-11-14): what each declaration reaches, as printed; the node stays [A].
+\ledger{A31} carries the whole statement. Of the two declarations, the uniqueness
+(\texttt{cited\_A31\_unique}) rests on no axiom, and the equivalence (\texttt{cited\_A31}) reaches
+clauses (ii) and (iii) of Theorem~\ref{thm:cited-A39}; the node stays [A] for the equivalence. \ref{thm:lattice-strata}(3) spends both directions, and
+\ref{thm:matern-pyramid}(2) the form of a fully covariant family. Not carried: the page's sentence
+on the kernels from scale zero, $\widehat\mu_{0,t}(\omega) = e^{-F(\chi(t)|\omega|)}$, which is
+the case $s = 0$ of the display; and the page's wider uniqueness, against any real $F'$ on
+$[0,\infty)$ with $F'(0) = 0$, which no node uses.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$: same; the family
+of probability measures on $\RR^d$: same, \texttt{IsProbabilityMeasure} for every pair
+$0 \le s \le t$; $\chi$ a gauge: same; $F \in \mathcal{A}_d$: same (\texttt{classA}); $F \not\equiv 0$:
+same, $F(r) \ne 0$ for some $r \ge 0$; the display: same, the transform of $\mu_{s,t}$ at $\xi$ in
+terms of $|\xi|$; for the uniqueness, the second pair $(\chi', F')$ with $\chi'$ a gauge and the
+display: same, with $F' \in \mathcal{A}_d$ required where the page requires only a real $F'$ on $[0,\infty)$
+with $F'(0) = 0$, so stronger.)}
+\end{theorem}
+
+The reduction behind it \prog{iso v0.1}{\S~3.2, p.~12} takes the marginal $\pi_*\mu$,
+$\pi(x) = \langle e, x\rangle$ for a unit vector $e$. The marginal determines a rotation-invariant
+law, $\widehat\mu(\omega) = \widehat{\pi_*\mu}(|\omega|)$, and commutes with convolution and
+dilation \prog{iso v0.1}{Lem.~3.4, pp.~12--13}. The marginals of an isotropic family form a family
+on the line with the same bijections \prog{iso v0.1}{Lem.~3.5, p.~13}. Every admissible pair is
+realized, by the next theorem.
+
+% draft: the sentence "every pair (chi, F) with F in A_d, F not 0, is realised by an isotropic
+% family [iso v0.1, Lem. 3.8, p. 14]" (section 2.0), line 81.
+\begin{theorem}[every pair is realized]
+\label{thm:cited-A34}
+\lean{Pyramids.cited_A34}
+\leanok
+\uses{def:isotropic-cascade-family, def:self-decomposable}
+Let $d \ge 1$, let $\chi$ be a gauge and let $F \in \mathcal{A}_d$ with $F \not\equiv 0$. Then
+there is an isotropic cascade family $(\mu_{s,t})_{0 \le s \le t}$ in dimension $d$ with
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR^d.
+\]
+% CHANGED (wave 2g, 2026-11-14, as thm:cited-A1 was): regraded [T]. The affine module's formal
+% development proves the lemma with no axiom, so the node is a theorem of the formal development
+% and not an interface; ledger entry A34 keeps the page anchor and its transcription.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusT\quad\emph{(The isotropic paper's realization lemma,\prog{iso v0.1}{Lem.~3.8, p.~14}.
+Held as [T]: the affine module's formal development proves it with no axiom
+(\texttt{AffineHemigroup.isotropic\_realisation}), the declaration named above is that theorem, and
+ledger entry A34 records the page anchor and its transcription. \ref{prop:ladder-knot-kernel}(4) and
+\ref{thm:matern-pyramid}(1) read it at $\chi = \mathrm{id}$. The node says nothing about the
+uniqueness of the family, which is Theorem~\ref{thm:cited-A31}.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $d \ge 1$: same; $\chi$ a
+gauge: same; $F \in \mathcal{A}_d$: same (\texttt{classA}); $F \not\equiv 0$: same, $F(r) \ne 0$ for
+some $r \ge 0$.)}
+\end{theorem}
+
+% CHANGED (wave 2g, 2026-11-14): the node is proved; the proof of record is the construction of
+% the isotropic paper's lemma, as the affine module checks it.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+\begin{proof}
+\leanok
+Let $\mu$ be the self-decomposable law on $\RR^d$ with $\widehat\mu(\omega) = e^{-F(|\omega|)}$,
+which $F \in \mathcal{A}_d$ provides. For $0 < c < 1$ it has a residual $\varrho_c$, a probability
+measure with $\widehat\mu(\omega) = \widehat\mu(c\omega)\,\widehat\varrho_c(\omega)$; put
+$\varrho_0 := \mu$ and $\varrho_1 := \delta_0$. Since $\widehat\mu$ has no zero and $F(0) = 0$,
+\[
+  \widehat\varrho_c(\omega) = \exp\bigl(-[F(|\omega|) - F(c|\omega|)]\bigr), \qquad 0 \le c \le 1 .
+\]
+A gauge has $\chi(0) = 0$ and $\chi(t) > 0$ for $t > 0$. For $0 \le s \le t$ with $t > 0$ let
+$\mu_{s,t}$ be the image of $\varrho_{\chi(s)/\chi(t)}$ under $x \mapsto \chi(t)x$, and let
+$\mu_{0,0} := \delta_0$. The transform of $\mu_{s,t}$ at $\omega$ is that of $\varrho_{\chi(s)/\chi(t)}$
+at $\chi(t)\omega$, which is the display.
+
+The display gives the axioms of Definition~\ref{def:isotropic-cascade-family}. (I1): the exponents
+of $\mu_{s,t}$ and $\mu_{r,s}$ add up to that of $\mu_{r,t}$, and a law is determined by its
+transform. (I2): $F$ and $\chi$ are continuous. (I3): the transform depends on $\omega$ only through
+$|\omega|$. (I4): with $S_\lambda := \chi^{-1}(\lambda\chi(\cdot))$, an increasing bijection of
+$[0,\infty)$, the transform of $(\lambda I)_*\mu_{s,t}$ at $\omega$ is the display at
+$(S_\lambda s, S_\lambda t)$. (ND): if $\mu_{s,t} = \delta_0$ with $s < t$, then $F(cr) = F(r)$ for
+every $r \ge 0$, with $c := \chi(s)/\chi(t) < 1$; iterating, $F(r) = F(c^nr) \to F(0) = 0$, against
+$F \not\equiv 0$.
+
+Every step is machine-checked, in the affine paper's formal development, with no cited fact.
+\end{proof}
+
+Chapter~3 keeps (I1), (I2) and (ND), treats the rotation invariance (I3) as an optional property,
+and requires (I4) at one dilation (Definition~\ref{def:family-dimension-d}). The class $\mathcal{A}_d$
+has a polar description, by the \Levy{} measures of its laws.
+
+% draft: the row "[iso v0.1, Def. 3.10] p. 15, the isotropic origin data and the polar profile" of
+% the table in section 2.0 (line 109); the definition as the draft reads it at lines 418 and 553.
+% CHANGED: the two integrability conditions of the definition, which the draft's prose at line 418
+% omits, are stated (the definition has them and the draft uses them at line 553;
+% VERBATIM-selection-iso-affine.md, Def. 3.10). The page's last two sentences (the profile at the
+% origin and subordinated data) are not restated: no node of this blueprint uses them.
+% CHANGED (fidelity review, 2026-11-15, R3): the tag gains OriginDatum.exponentL, the
+% extended-real exponent of which OriginDatum.exponent is the real part, and
+% OriginDatum.exponentL_ne_top, the lemma (for d >= 1) that makes that real part the exponent.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, NOTATION): the
+% Gaussian coefficient a of the isotropic paper, which enters as a|xi|^2/2, is written a_0, as
+% chapter 3 writes the origin datum, apart from the a of (2.0), which enters as a omega^2. A rename.
+\begin{definition}[isotropic origin data]
+\label{def:isotropic-origin-data}
+\lean{AffineHemigroup.OriginDatum, AffineHemigroup.OriginDatum.levyMeasure,
+AffineHemigroup.OriginDatum.exponentL, AffineHemigroup.OriginDatum.exponentL_ne_top,
+AffineHemigroup.OriginDatum.exponent, AffineHemigroup.IsLawOf, AffineHemigroup.sphereArea}\leanok
+\uses{def:self-decomposable}
+Let $d \ge 1$, write $\sigma_{d-1}$ for the surface measure of the unit sphere
+$S^{d-1} \subset \RR^d$ and $|S^{d-1}| := \sigma_{d-1}(S^{d-1})$. An \emph{isotropic origin datum
+in dimension $d$} is a pair $(a_0, k_d)$ with $a_0 \ge 0$ and $k_d : (0,\infty) \to [0,\infty)$
+nonincreasing, subject to
+\[
+  \int_0^1 k_d(r)\,r\,dr < \infty \qquad\text{and}\qquad \int_1^\infty k_d(r)\,\frac{dr}{r} < \infty .
+\]
+Its \emph{\Levy{} measure} is the rotation-invariant measure $\nu_d$ on $\RR^d \setminus \{0\}$
+with radial density $f_d(r) = k_d(r)\bigl(|S^{d-1}|\,r^d\bigr)^{-1}$, so that
+\[
+  \int_{\RR^d} g\,d\nu_d = \frac{1}{|S^{d-1}|}\int_{S^{d-1}}\sigma_{d-1}(d\eta)
+  \int_0^\infty g(r\eta)\,k_d(r)\,\frac{dr}{r}
+\]
+for every nonnegative Borel $g$ vanishing at the origin. Its \emph{exponent} is
+\[
+  F_d(\xi) = \tfrac12 a_0|\xi|^2 + \int_{\RR^d}\bigl(1 - \cos\langle\xi, x\rangle\bigr)\,\nu_d(dx),
+  \qquad \xi \in \RR^d,
+\]
+and its \emph{law} is the symmetric infinitely divisible law $\mu$ on $\RR^d$ with
+$\widehat\mu = e^{-F_d}$. The function $k_d$ is the datum's \emph{polar profile}.
+\statusT\quad\emph{(A definition, \prog{iso v0.1}{Def.~3.10, p.~15}, displays (3.2) and (3.3), whose
+$a$ is written $a_0$ here. Jumps of length between $r_1$ and $r_2$ occur at the rate
+$\int_{r_1}^{r_2}k_d(r)\,dr/r$, as on the line. The Gaussian coefficient $a_0$ enters as
+$\tfrac12 a_0$, in Sato's normalization ($A^{\mathrm S} = a_0I$), against $a$ on the line,
+(\ref{eq:admissible-exponent}); Theorem~\ref{thm:cited-A35}(2) relates the two. That the law exists is
+Theorem~\ref{thm:cited-A39}(iii), the two conditions being the integrability (8.2) of $\nu_d$. It asserts
+nothing further and cites no ledger entry.)}
+\end{definition}
+
+% draft: the row "[iso v0.1, Prop. 3.11] p. 15, the polar form of A_d" of the table in section 2.0
+% (line 110), as the draft reads it at lines 418, 428, 500 and 553.
+% CHANGED: the page is pp. 15-16, clause (1) on p. 15 and clause (2) on p. 16
+% (VERBATIM-selection-iso-affine.md, A35). Clause (3) of the proposition, the classification in
+% polar form (plan id A36), is not an entry: no node spends it.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, NOTATION): the
+% origin data are written (a_0, k_d) and (a_0', k_1), as in def:isotropic-origin-data, and (2) names
+% the coefficient a of (2.0). A rename; the content is the page's.
+\begin{theorem}[the polar form of $\mathcal{A}_d$]
+\label{thm:cited-A35}
+\lean{Pyramids.cited_A35_reading, Pyramids.cited_A35_unique, Pyramids.cited_A35_admissible,
+Pyramids.cited_A35_classA}
+\leanok
+\uses{def:isotropic-origin-data, def:self-decomposable, thm:cited-A39, thm:cited-A43,
+thm:cited-A45}
+Let $d \ge 1$ and $F : [0,\infty) \to [0,\infty)$.
+\begin{enumerate}
+\item $\xi \mapsto F(|\xi|)$ is the exponent of a self-decomposable law on $\RR^d$ if and only if
+it is the exponent $F_d$ of an isotropic origin datum $(a_0, k_d)$ in dimension $d$
+(Definition~\ref{def:isotropic-origin-data}):
+\[
+  F(|\xi|) = \tfrac12 a_0|\xi|^2 + \int_{\RR^d}\bigl(1 - \cos\langle\xi, x\rangle\bigr)\,
+  \frac{k_d(|x|)}{|S^{d-1}|\,|x|^d}\,dx, \qquad \xi \in \RR^d.
+\]
+The datum is then unique, $k_d$ up to modification on a Lebesgue-null set.
+\item If this holds, $F$ is admissible, of the form (\ref{eq:admissible-exponent}) with Gaussian
+coefficient $a = \tfrac12 a_0'$ and profile $k = k_1$ for its datum $(a_0', k_1)$ in dimension $1$. So
+$\mathcal{A}_d$ is the set of $F$ for which $F(|\cdot|)$ is the exponent of an isotropic origin
+datum in dimension $d$.
+\end{enumerate}
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A35}\quad\emph{(Cited from \prog{iso v0.1}{Prop.~3.11(1)--(2), pp.~15--16}:
+clause (1) on p.~15, clause (2) on p.~16. Admitted as a Lean axiom by the author on 2026-11-14,
+and found to need none of its own: the affine module's formal development proves both clauses
+(\texttt{AffineHemigroup.polar\_reading}, \texttt{polar\_reading\_unique},
+\texttt{polar\_reading\_admissible}, \texttt{classA\_iff\_originDatum}) from
+Theorem~\ref{thm:cited-A39}, the first clause of Theorem~\ref{thm:cited-A43} and Theorem~\ref{thm:cited-A45}, and the
+declarations named above are those theorems. \textbf{Assignment.} \ledger{A35} carries both clauses. \ref{thm:matern-pyramid}(1) and (5)
+spend the membership in $\mathcal{A}_d$ of the exponent of an isotropic origin datum, which needs
+both clauses since $\mathcal{A}_d$ is defined among the admissible exponents;
+\ref{prop:ladder-knot-kernel}(4) spends clauses (1) and (2), in (4)(b): the equivalence of (1)
+with the uniqueness of the datum, and the admissibility of (2).
+Not carried: clause (3) of the proposition, the classification in polar form, which no node spends;
+the strict filtration $\mathcal{A}_{d+1} \subsetneq \mathcal{A}_d$ of the isotropic paper's
+Prop.~3.22, which chapter~3 cites in prose.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $d \ge 1$: same, in all four;
+$F : [0,\infty) \to [0,\infty)$: same, $F(r) \ge 0$ for every $r \ge 0$ (the declarations take $F$ on
+$\RR$ and constrain it on $[0,\infty)$ only); for the uniqueness of the datum, two origin data with
+$F(|\xi|)$ their exponent: same; for clause (2), that $F(|\cdot|)$ is the exponent of a
+self-decomposable law: same, a probability measure that is self-decomposable with transform
+$e^{-F(|\xi|)}$.)}
+\end{theorem}
+
+\subsection{The generator form}
+\label{subsec:cited-generator}
+
+Let $F$ be admissible with data $(a, k)$, put $\kappa^{\mathrm C} := -dk$, a measure on
+$(0,\infty)$, and let $u(t,\cdot) = \mu_{0,t} * f$ be the scale space of a Schwartz function
+$f \in \mathcal{S}(\RR)$ in the canonical gauge. Then $\partial_t u = \mathcal{H}_t u$ with
+\begin{equation}
+\label{eq:generator-form}
+\tag{2.0$''$}
+  \mathcal{H}_t g(x) = 2at\,g''(x) + \frac1t\int_{(0,\infty)}\delta^2_{tv}g(x)\,
+  \kappa^{\mathrm C}(dv), \qquad
+  \delta^2_h g(x) := \tfrac12\bigl(g(x - h) + g(x + h)\bigr) - g(x)
+\end{equation}
+\prog{V-cone v0.1}{Prop.~6.2, display (6.2), p.~56}. The Gaussian member has
+$\mathcal{H}_t = 2at\,\partial_x^2$ \prog{V-cone v0.1}{Prop.~6.4(1), p.~58}. Write
+$\Cin(z) := \int_0^z(1 - \cos v)\,dv/v$, the entire cosine integral. The \emph{Cin ray of step
+$\tau$} is the exponent $\Cin(\tau\omega)$, which is (\ref{eq:admissible-exponent}) with $a = 0$ and
+the profile $k = \mathbf{1}_{(0,\tau)}$ \prog{V-cone v0.1}{Lemma~3.1(1), p.~13}. Its generator is a
+single symmetric second difference.
+
+% draft: the sentence "Its generator is a single symmetric second difference, H_t = t^{-1}
+% delta^2_{t tau} [V-cone v0.1, Prop. 6.4(5), p. 58]" (section 2.0), line 85.
+% CHANGED: the statement reads the clause through Prop. 6.2 of the same module, where the generator
+% and its domain are defined; the clause itself prints no domain (VERBATIM-V-cone.md, A13).
+\begin{theorem}[the generator of a Cin ray]
+\label{thm:cited-A13}
+\lean{Pyramids.cited_A13}
+\notready
+Let $\tau > 0$, and let $F$ be the admissible exponent with data $(0, \mathbf{1}_{(0,\tau)})$, the
+Cin ray of step $\tau$. In the canonical gauge its generator is a single symmetric second
+difference: for $f \in \mathcal{S}(\RR)$ the scale space $u(t,\cdot) = \mu_{0,t} * f$ satisfies,
+for every $t > 0$,
+\[
+  \partial_t u(t,\cdot) = \frac1t\,\delta^2_{t\tau}u(t,\cdot), \qquad
+  \delta^2_h g(x) = \tfrac12\bigl(g(x - h) + g(x + h)\bigr) - g(x).
+\]
+\statusA\quad\ledger{A13}\quad\emph{(Cited from \prog{V-cone v0.1}{Prop.~6.4(5), p.~58}, ``Cin
+ray of step $\tau$: $\mathcal{A}_t = \frac1t\delta^2_{t\tau}$'', with the generator $\mathcal{A}_t$
+and the signal class $\mathcal{S}(\RR)$ of the cone module's Prop.~6.2 and Def.~6.1, p.~56. Its statement is typed in the skeleton
+(\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; admitting it is the author's decision at phase~5. \textbf{Assignment.} \ledger{A13}
+carries the whole statement. No node spends it as a step of a proof: the theory on the line refers
+to it (\S\ref{subsec:line-strata}) to say that a grid's second difference is the generator of a Cin
+ray held at a fixed step. Not carried: the generator form (\ref{eq:generator-form}) for other
+admissible exponents, the cone module's Prop.~6.2, which is cited in prose above; and the value
+$F(\omega) = \Cin(\tau\omega)$ of the ray, the cone module's Lemma~3.1(1).)}
+\end{theorem}
+
+So (\ref{eq:generator-form}) writes every admissible evolution as a positive superposition of these
+\emph{atomic generators}, with the weights $(a, \kappa^{\mathrm C})$. The same weights give $F$
+itself, and the Gaussian ray and the Cin rays are the extreme rays of the cone of admissible
+exponents. The cone module proves it, and it is stated here for the reader.
+
+% CHANGED (2026-11-23, review round 3 batch C, item 15, decision D3 of
+% records/pyramids/PLAN-review-response-theory-round3.md): new interface node, ledger entry A15
+% (the plan id the blueprint brief gave V-cone Prop. 3.3, unspent until now). The cone module's
+% Prop. 3.3 was cited in the prose above ("Every admissible exponent is a unique superposition ...
+% its Choquet representation [V-cone v0.1, Prop. 3.3, pp. 15-16]"); it is restated at the page's
+% letter (records/pyramids/VERBATIM-V-cone.md, A15; reviews/LIBRARIAN-r3.md, "For batch C"), as
+% the six other unread facts are. Its statement is typed in the skeleton.
+\begin{theorem}[the Choquet structure of the admissible cone]
+\label{thm:cited-A15}
+\lean{Pyramids.cited_A15_admissible, Pyramids.cited_A15_injective, Pyramids.cited_A15_inverse,
+Pyramids.cited_A15_extreme}
+\notready
+The superposition map $(a, \varpi) \mapsto F$,
+\[
+  F(\omega) = a\omega^2 + \int_{(0,\infty)}\Cin(\tau\omega)\,\varpi(d\tau), \qquad \omega \in \RR,
+\]
+is a bijection from the pairs $(a, \varpi)$, $a \ge 0$ and $\varpi$ a positive Borel measure on
+$(0,\infty)$ with $\int\min\bigl(\tau^2, 1 + \log_+\tau\bigr)\,\varpi(d\tau) < \infty$, onto the
+admissible exponents. Its inverse takes the exponent with data $(a, k)$ to $(a, \varpi)$ with
+$\varpi = -dk$, that is $k(x) = \varpi((x,\infty))$ for almost every $x > 0$. Consequently the
+extreme rays of the cone of admissible exponents are the Gaussian ray $\omega \mapsto \omega^2$
+and the Cin rays $\omega \mapsto \Cin(\tau\omega)$, $\tau > 0$, and every admissible exponent is a
+unique superposition of Cin rays and the Gaussian term $a\omega^2$.
+\statusA\quad\ledger{A15}\quad\emph{(Cited from \prog{V-cone v0.1}{Prop.~3.3, pp.~15--16}: the
+statement opens at the foot of p.~15 and ends on p.~16, the extreme rays inside it. Stated for the
+reader. Its statement is typed in the skeleton (\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is
+not an axiom; admitting it is the author's decision at phase~5. \textbf{Assignment.} \ledger{A15}
+carries the whole statement. No node spends it as a step of a proof: the generator form above and
+the cone of the continuous stratum after Proposition~\ref{prop:strata-cylinder-coordinates} refer
+to it. Not carried: the page's word ``linear'', the additivity and positive homogeneity of the map,
+which the formula shows and no node reads; the folded \Levy{} density
+$x^{-1}\mathbf{1}_{(0,\tau)}(x)$ of the Cin ray of step $\tau$, which the page names and which is
+the cone module's Lemma~3.1(1), cited in the prose above. The page's $k(x) = \varpi((x,\infty))$
+is read for almost every $x$: the exponent fixes the profile $k$ only up to a null set.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $a \ge 0$ and $\varpi$ a
+measure on $(0,\infty)$ with the integrability: same (\texttt{IsChoquetPair}), $\varpi$ typed as a
+measure on $\RR$ with no mass on $(-\infty, 0]$ and $\log_+$ as \texttt{Real.posLog}; the cone: same,
+the functions with \texttt{IsAdmissibleExponent}; the data $(a, k)$: same, an \texttt{SDProfile},
+whose field $k(0) = 0$ is a normalization; the extreme rays: same, \texttt{IsExtremeRayIn} on the
+cone with nonnegative scalars.)}
+\end{theorem}
+
+The theory on the line also uses the \Matern{} and Thorin clauses of the generator proposition, which sum
+(\ref{eq:generator-form}) over Laplace kernels \prog{V-cone v0.1}{Prop.~6.4(3)--(4), p.~58}; the
+Thorin clause holds for $a = 0$, at every $g$ that is twice continuously differentiable with $g$ and
+$g''$ bounded.
+
+\subsection{Other statements of the released modules}
+\label{subsec:cited-released}
+
+The later chapters use the following statements of the released modules. Each is stated where it
+is used, or below when a proof spends it.
+\begin{itemize}
+\item \prog{V-line v0.1}{Lemma~6.1, p.~29}: covariance in Fourier form.
+\item \prog{V-line v0.1}{Remark~6.7, pp.~32--33}: the gauge freedom of the scale coordinate.
+\item \prog{V-cone v0.1}{\S~4, p.~24}: the subordination bridge.
+\item \prog{V-cone v0.1}{Prop.~5.7, p.~48}: the symmetric Thorin subclass.
+\item \prog{V-cone v0.1}{Prop.~7.2, pp.~60--61}: the \Matern{} cascade by forward--backward
+first-order sections (Theorem~\ref{thm:cited-A19}).
+\item \prog{V-cone v0.1}{Prop.~7.5(2), p.~65}: rational increments and the pyramid they
+interpolate (Theorem~\ref{thm:cited-A20}).
+\item \prog{V-cone v0.1}{Remark~7.4, p.~63}: which recursive Gaussians are scale spaces.
+\item \prog{V-cone v0.1}{Prop.~7.8, p.~69}: the closure of the families realized by lag sections.
+\item \prog{V-cone v0.1}{Remarks~7.10 and 7.11, p.~72}: the local equation of the Student-$t$
+corner cannot be marched; the costs on the line, per sample and per knot.
+\item \prog{V-selection v0.1}{Thm.~4.2, pp.~30--31}: non-enhancement at global extrema for every family,
+at local extrema on the Gaussian ray only; and its Cor.~4.4, p.~33: off the Gaussian ray the scale
+space enhances a local maximum.
+\item \prog{V-selection v0.1}{Prop.~4.5, p.~35}: non-creation from the signal; the \Polya{}
+frequency members (Theorems~\ref{thm:cited-A22} and~\ref{thm:cited-A23}).
+\item \prog{V-selection v0.1}{Thm.~4.10, p.~43}: scale-monotone non-creation characterizes the
+Gaussian.
+\item \prog{V-selection v0.1}{Def.~5.1, p.~54}: the spatial jet on the line.
+\item \prog{V-selection v0.1}{Props.~5.6 and 5.7, pp.~60--62}: the \Matern{} jet by subtraction,
+the Helmholtz identity, and the cascade outputs as the jet.
+\item \prog{V-selection v0.1}{Example~5.9 and App.~B, pp.~63--65 and 73--76}: the jet from the
+taps, on one signal.
+\item \prog{V-selection v0.1}{\S~6, p.~69}: diffusion creates extrema in the plane.
+\item \prog{iso v0.1}{Prop.~3.12, pp.~16--17}: the subordination bridge in $\RR^d$; the
+\Matern{}, stable and Student-$t$ kernels.
+\item \prog{iso v0.1}{Prop.~3.22, p.~27}: the polar profile one dimension down;
+$\mathcal{A}_{d+1} \subsetneq \mathcal{A}_d$ for every $d$.
+\item \prog{affine v0.1}{Prop.~4.4, p.~38}: the affine orbits of isotropic laws.
+\item \prog{affine v0.1}{Prop.~F.1, p.~93}: the frame families.
+\end{itemize}
+
+% draft: the row "[V-cone v0.1, Prop. 7.2] p. 60" of the table in section 2.0 (line 95).
+% CHANGED: stated at the kernels of the sections, which do not depend on the sign convention of
+% the transform; the page's complex factorization of (7.1) follows the cone module's convention and
+% is not restated. The cost sentence of the page is not restated (no node uses it).
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, NOTATION): the kernels
+% Exp_+-(t) and Lap_t are written e^+-_t and L_t, the names of prop:recursion-helmholtz(1), so that
+% the continuum Laplace law has one name. A rename.
+\begin{theorem}[the \Matern{} cascade by first-order sections]
+\label{thm:cited-A19}
+\lean{Pyramids.cited_A19_transform, Pyramids.cited_A19_sections, Pyramids.cited_A19_forward,
+Pyramids.cited_A19_backward, Pyramids.cited_A19_gamma_one}
+\notready
+Let $\gamma \ge 1$ be an integer, and consider the \Matern{} family on the line in the canonical
+gauge, $e^{-F(t\omega)} = (1 + t^2\omega^2)^{-\gamma}$. For $t > 0$ let $e^\pm_t$ be
+the one-sided exponential kernels $t^{-1}e^{-|x|/t}$ carried by $\pm(0,\infty)$, and
+$L_t$ the Laplace kernel $(2t)^{-1}e^{-|x|/t}$. Let $0 < t_k < t_{k+1}$ be adjacent knots
+and $r := t_k/t_{k+1} \in (0,1)$. Then the increment has transform
+\[
+  \widehat\mu_{t_k, t_{k+1}}(\omega) = \Bigl(\frac{1 + t_k^2\omega^2}{1 + t_{k+1}^2\omega^2}\Bigr)^{\gamma},
+\]
+and it is a cascade of $\gamma$ identical causal first-order sections and $\gamma$ identical
+anticausal ones. Each causal section is the convolution with
+$r\,\delta_0 + (1 - r)\,e^+_{t_{k+1}}$, a mixture of no displacement and a one-sided
+exponential displacement, with the one-state realization
+\[
+  w' = \frac{y - w}{t_{k+1}}, \qquad v = r\,y + (1 - r)\,w,
+\]
+run forward in $x$ (input $y$, state $w$, output $v$, the prime the derivative in $x$), the
+solution $w$ being the one in $L^1$, with $w(-\infty) = 0$. Each anticausal
+section is its mirror image, run backward. For $\gamma = 1$ the two-sided increment is
+\[
+  r^2\delta_0 + r(1 - r)\bigl(e^+_{t_{k+1}} + e^-_{t_{k+1}}\bigr)
+  + (1 - r)^2\,L_{t_{k+1}} .
+\]
+\statusA\quad\ledger{A19}\quad\emph{(Cited from \prog{V-cone v0.1}{Prop.~7.2, pp.~60--61}: the
+statement opens at the foot of p.~60 with (7.1), and the realization and (7.2) are on p.~61. Its statement is typed in the skeleton
+(\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; admitting it is the author's decision at phase~5. \textbf{Assignment.} \ledger{A19}
+carries the whole statement. No node spends it as a step of a proof: the theory on the line refers
+to it (\S\ref{subsec:sampled-laplace}) for how the \Matern{} family is computed on the line.
+Not carried: the rung from scale zero, $t_k = 0$, whose increment is
+$L_{t_{k+1}} = e^+_{t_{k+1}} * e^-_{t_{k+1}}$; the page states the
+convex-combination clause for $0 < t_k/t_{k+1} < 1$ only, and the identity
+$e^+_t * e^-_t = L_t$ is in its proof, p.~61. Nor the cost of a
+sampled cascade, which the page states and no node uses.)}
+\end{theorem}
+
+% draft: the quotation of Remark 2.22 (section 2.6), line 293, and the row of the table in
+% section 2.0. The draft's quotation is a paraphrase; this node is at the page's words
+% (VERBATIM-V-cone.md, A20).
+% CHANGED: the page is p. 65 (the draft's "pp. 60-72" is wrong; VERBATIM-V-cone.md, A20).
+\begin{theorem}[rational increments and the pyramid they interpolate]
+\label{thm:cited-A20}
+\lean{Pyramids.cited_A20_unique, Pyramids.cited_A20_product, Pyramids.cited_A20_profile,
+Pyramids.cited_A20_admissible, Pyramids.cited_A20_admissible_of_antitone}
+\notready
+Let $R$ be a symmetric rational function that is the transform of an infinitely divisible law on
+$\RR$, with folded \Levy{} profile $k_R$. Then for each $q > 1$ there is exactly one function $F$
+that is continuous with $F(0) = 0$ and satisfies $F(q\omega) - F(\omega) = -\log R(\omega)$,
+namely
+\[
+  e^{-F(\omega)} = \prod_{m \ge 1}R(q^{-m}\omega), \qquad\text{with folded profile}\qquad
+  k(x) = \sum_{m \ge 1}k_R(q^m x);
+\]
+% CHANGED (skeleton review, m2): "is nonincreasing" reads "has a nonincreasing version", the
+% reading of the page's own proof, "the monotonicity is monotonicity of a representative"
+% (VERBATIM-V-cone.md, A20); read pointwise the sentence fails for a profile changed on a null set.
+it is admissible exactly when this $k$ has a nonincreasing version ($k_R$, and with it $k$, being
+fixed only up to a null set), in particular whenever $k_R$ is nonincreasing. The
+\Matern{} pyramid is the case $R(\omega) = (1 + \omega^2)^{-1}$.
+\statusA\quad\ledger{A20}\quad\emph{(Cited from \prog{V-cone v0.1}{Prop.~7.5(2), p.~65}, statement
+and proof on that page. A folded profile $k_R$ is a function with folded \Levy{} measure
+$k_R(x)\,dx/x$ on $(0,\infty)$. The function $F$ has Gaussian coefficient $0$: the proof on the same
+page shows that $-\log R$ has none and that $F$ is of the form (2.3) ``at the pair $(0,k)$''. So
+``with folded profile $k$'' is read as
+$F(\omega) = \int_0^\infty(1 - \cos\omega x)\,k(x)\,x^{-1}\,dx$, the form the typed statement
+asserts. Its statement is typed in the
+skeleton (\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; admitting it is the
+author's decision at phase~5.
+\textbf{Assignment.} \ledger{A20} carries the whole statement. No node spends it as a step of a
+proof: the theory on the line compares it with the lattice statement
+\ref{prop:grid-pyramids-infinitely-divisible} (\S\ref{subsec:grid-pyramids-line}, the lead and the paragraph
+after that proposition), which proves its own. Not carried: the proof's remark that for real poles $k_R$
+is a finite combination of exponentials, which the statement does not print; and clause (1) of the
+proposition.)}
+\end{theorem}
+
+% draft: the row "[V-selection v0.1, Prop. 4.5] p. 35" of the table in section 2.0 (line 102), as
+% the theory on the line uses it (draft lines 229, 235, 243, 247).
+% CHANGED: narrowed to the "if" of the page's equivalence, the direction the nodes spend
+% (VERBATIM-selection-iso-affine.md, A22). The hypothesis "admissible" is kept.
+\begin{theorem}[the \Polya{} frequency members]
+\label{thm:cited-A22}
+\lean{Pyramids.cited_A22_variation, Pyramids.cited_A22_polya}
+\leanok
+For a function $g$ on $\RR$ write $S^-(g)$ for the number of sign changes of $g$, in the essential
+sense.
+% CHANGED (skeleton review, m1): F is not identically zero, the presupposition of "an admissible
+% family" on the page (VERBATIM-selection-iso-affine.md, A22); the kernel of F = 0 is the point
+% mass, which is no Polya frequency density. Every spender's exponent is not identically zero.
+Let $F \not\equiv 0$ be an admissible exponent of the form
+\[
+  F(\omega) = a\,\omega^2 + \sum_i\log\Bigl(1 + \frac{\omega^2}{\theta_i^2}\Bigr), \qquad
+  a \ge 0,\quad \theta_i > 0,\quad \sum_i\theta_i^{-2} < \infty,
+\]
+over countably many $\theta_i$. Then the similarity family of $F$, with kernels
+$\widehat\mu_{0,t} = e^{-F(t\,\cdot)}$, has \Polya{} frequency kernels, so that convolution with
+$\mu_{0,t}$ is variation-diminishing: $S^-(\mu_{0,t} * g) \le S^-(g)$ for every $t > 0$ and every
+integrable or bounded $g$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A22}\quad\emph{(Cited from \prog{V-selection v0.1}{Prop.~4.5(1), p.~35}, the
+``if'' of its equivalence. Admitted as two Lean axioms by the author on 2026-11-15, one per
+clause, both for an admissible $F \not\equiv 0$: the \Polya{} frequency kernels and the variation
+diminution. \textbf{Assignment.} \ledger{A22} carries the statement. \ref{thm:matern-pyramid-line-noncreation}
+spends it for $F_q$ and for $\log(1 + \omega^2)$, and \ref{prop:ladder-non-creation-line}(1) for
+the exponent $G$ of its proof, whose form and admissibility that node proves. Not carried: the
+``only if'' of the page, that no other admissible family has \Polya{} frequency kernels; and the
+page's list of members and non-members.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $F$ admissible: same
+(\texttt{IsAdmissibleExponent}, a profile of the form (\ref{eq:admissible-exponent})); $F \not\equiv 0$:
+same; $a \ge 0$, $\theta_i > 0$, $\sum_i\theta_i^{-2} < \infty$, countably many $\theta_i$ and the
+displayed form: same (a countable index type, the sum a \texttt{tsum} with its summability required);
+the kernels of the similarity family: same, any probability measures $\mu_t$ on $\RR$ with
+$\widehat\mu_t = e^{-F(t\,\cdot)}$ for $t > 0$, the transform determining the law; $t > 0$: same;
+$g$ integrable: same; $g$ bounded: stronger, \texttt{cited\_A22\_variation} also requires it
+(a.e.-strongly) measurable, which the convolution presupposes and the node leaves implicit.)}
+\end{theorem}
+
+% draft: the same row (line 102), the counting clause, as used at lines 243 and 247.
+\begin{theorem}[the counting clause]
+\label{thm:cited-A23}
+\lean{Pyramids.cited_A23}
+% CHANGED (wave 3b, 2026-11-15): proved from A22's variation-diminishing clause by the page's own
+% derivation (p. 39); statement and the declaration's type unchanged. The entry is not admitted
+% and needs no axiom of its own (ADR-0005).
+% CHANGED (fifth blind pass, 2026-11-15, flags 1, 3): the derivation moves out of the annotation into
+% a proof environment below; the Assignment says that A23 grounds the node and that the proof
+% spends the variation-diminishing clause of A22. It read "A23 carries the whole statement",
+% beside "not admitted ... proved from thm:cited-A22".
+\leanok
+\uses{thm:cited-A22}
+For a family as in Theorem~\ref{thm:cited-A22} and $f$ the primitive of an integrable $f'$, the
+scale space $u(t,\cdot) = \mu_{0,t} * f$ has, at every scale $t > 0$, no more crossings of any
+value $c$ than the signal and no more changes of monotonicity:
+% CHANGED (register pass, 2026-11-16): "zero crossings than the signal at every level" read as a
+% pyramid level; the wording now names the value c of the display. The claim is unchanged.
+\[
+  S^-\bigl(u(t,\cdot) - c\bigr) \le S^-(f - c) \quad (c \in \RR), \qquad
+  S^-\bigl(\partial_x u(t,\cdot)\bigr) \le S^-(f').
+\]
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6), and says that the declaration does not require F not identically zero.
+\statusA\quad\ledger{A23}\quad\emph{(Cited from \prog{V-selection v0.1}{Prop.~4.5(2), p.~35}; its
+derivation from clause (1), applied to the bounded $f - c$ and to $f'$ with
+$\partial_x u(t,\cdot) = \mu_{0,t} * f'$, is on p.~39. This citation is the node's grounding. Not
+admitted, and found to need no axiom of its own: the proof below derives the statement from
+Theorem~\ref{thm:cited-A22} by that derivation. \textbf{Assignment.} \ledger{A23} is where the statement
+is printed, and grounds the node; what the proof spends from the literature is the
+variation-diminishing clause of \ledger{A22} (Theorem~\ref{thm:cited-A22}), applied to $f - c$ and to $f'$.
+\ref{prop:ladder-non-creation-line}(2) spends the statement for the similarity family of the exponent $G$ of
+its proof, applied to the signal at the rung. \ref{thm:matern-pyramid}(3) spends it for the
+line's \Matern{} pyramid, $a = 0$ and $\theta_i = q^i/c$, applied to a version of the projected
+signal, for the count from scale zero. Not carried: any statement about a signal that is not
+the primitive of an integrable function.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $F$ admissible, of the form
+of Theorem~\ref{thm:cited-A22} with $a \ge 0$, $\theta_i > 0$, $\sum_i\theta_i^{-2} < \infty$ and countably
+many $\theta_i$: same (as for Theorem~\ref{thm:cited-A22}); $F \not\equiv 0$, which ``a family as in
+Theorem~\ref{thm:cited-A22}'' carries: weaker, \texttt{cited\_A23} does not require it, the case
+$F \equiv 0$, where the kernel is the point mass, being covered by a separate lemma, so the
+declaration is the stronger statement; the kernels of the family: same, probability measures with
+$\widehat\mu_t = e^{-F(t\,\cdot)}$ for $t > 0$; $f'$ integrable: same; $f$ its primitive: same,
+$f = C + \int_0^x f'$ for some constant $C$; $t > 0$: same.)}
+\end{theorem}
+
+% CHANGED (fifth blind pass, 2026-11-15, flags 2, 3): new proof environment, the derivation formerly
+% printed inside the annotation, as thm:cited-A9, thm:cited-A4 and thm:cited-A44 have since the
+% fourth pass. The sentence on F = 0, a case the statement excludes, is dropped.
+\begin{proof}
+\leanok
+\uses{thm:cited-A22}
+The primitive $f = C + \int_0^x f'$ is bounded by $|C| + \|f'\|_1$ and continuous, so
+$f - c$ is a bounded measurable test function and $\mu_{0,t} * f - c = \mu_{0,t} * (f - c)$ at
+every point. By Fubini's theorem on $[0, x] \times \mu_{0,t}$,
+$u(t, x) = u(t, 0) + \int_0^x (\mu_{0,t} * f')(z)\,dz$ at every $x$, with $\mu_{0,t} * f'$ integrable;
+by the Lebesgue differentiation theorem $\partial_x u(t,\cdot) = \mu_{0,t} * f'$ almost everywhere,
+and $S^-$, a count in the essential sense, does not see the null set. The variation-diminishing
+clause of Theorem~\ref{thm:cited-A22}, applied to the bounded $f - c$ and to the integrable $f'$,
+gives the two inequalities.
+\end{proof}
+
+\subsection{Notation}
+\label{subsec:cited-notation}
+
+This paper writes the law with transform $(1 + r^2|\omega|^2)^{-\gamma}$ as the \Matern{} law
+\emph{of index $\gamma$ at range $r$}. The isotropic paper's \Matern{} kernel of index $\gamma$ at
+scale $t$ has transform $(1 + t^2|\omega|^2/2)^{-\gamma}$ \prog{iso v0.1}{Prop.~3.12(2), p.~16},
+so it is the law at range $t/\sqrt2$. The cone module's \Matern{} kernel at scale $t$ has transform
+$(1 + t^2\omega^2)^{-\gamma}$ \prog{V-cone v0.1}{Prop.~5.2(2), p.~43}, the law at range $t$.
+% CHANGED: the draft cites the cone module's Prop. 6.4(3), p. 58, for the transform of its Matern
+% kernel; that clause is the generator, and the transform is Prop. 5.2(2), p. 43 (VERBATIM-V-cone.md,
+% A12 and A17).
+
+The transform of a measure is $\widehat\mu(\omega) = \int e^{i\langle\omega, x\rangle}\mu(dx)$. For
+a linear map $A$ of $\RR^d$, $A_*\mu$ is the image of $\mu$ under $x \mapsto Ax$, and
+$D_c := (cI)_*$ for $c > 0$, so that $\widehat{D_c\mu}(\omega) = \widehat\mu(c\omega)$. On the line
+the dilation of measures is written $T_c$: for a measure $\mu$ on $\RR$ and $c > 0$, $T_c\mu$ is the
+image of $\mu$ under $x \mapsto cx$, $(T_c\mu)(B) = \mu(c^{-1}B)$ for Borel sets $B \subseteq \RR$,
+so $T_c = D_c$ at $d = 1$, as in [\sscite{sato1999levy}]. The same notation is used for a measure on
+$(0,\infty)$, such as a folded \Levy{} measure, since $x \mapsto cx$ maps $(0,\infty)$ onto itself.
+The dilation of functions $\mathcal{D}_\lambda$ is the one of
+(A8), mass-preserving. The ratio of a pyramid is $q > 1$, and $\ell := \log q$. The \Levy{} data of
+a law on $\RR^d$ are a Gaussian part $A$, entering the exponent as $\langle\omega, A\omega\rangle$
+so that at $d = 1$ it is the $a$ of (\ref{eq:admissible-exponent}), and a \Levy{} measure $\nu$
+(Lemma~\ref{lem:family-structure}). Sato's Gaussian covariance matrix, which enters as
+$\tfrac12\langle z, A^{\mathrm S}z\rangle$ (Theorem~\ref{thm:cited-A39}), is written $A^{\mathrm S}$,
+so that $A^{\mathrm S} = 2A$; the Gaussian coefficient $a_0$ of an isotropic origin datum
+(Definition~\ref{def:isotropic-origin-data}) is in Sato's normalization, $A^{\mathrm S} = a_0I$. On
+the line the folded \Levy{} measure is written $\varpi$
+and the measure of (\ref{eq:generator-form}) $\kappa^{\mathrm C}$, the two related by
+$\varpi(dx) = k(x)\,dx/x$ with $k(x) = \kappa^{\mathrm C}((x,\infty))$. The generator of a family
+is $\mathcal{H}_t$, and $\mathcal{A}_d$ is the class of exponents admitted in dimension $d$. The
+knots, the knot kernels and the ladder of a pyramid are defined after
+Lemma~\ref{lem:family-dilations}.
+
+\section{The facts of the literature}
+\label{sec:cited-literature}
+
+The proofs use four pieces of the literature: the \Levy--Khintchine theory of infinitely divisible
+laws, in the book of Sato [\sscite{sato1999levy}]; Bernstein functions, in the book of Schilling, Song
+and Vondra\v{c}ek [\sscite{schilling2012bernstein}]; Schoenberg's representation of \Polya{} frequency
+densities, in Karlin's book [\sscite{karlin1968total}]; and one integral representation of the
+modified Bessel function $K_\nu$ [\sscite{dlmf2026}]. Each fact is stated at its source's letter,
+narrowed to what the proofs spend.
+
+\subsection{Infinitely divisible laws}
+\label{subsec:cited-sato}
+
+A probability measure $\mu$ on $\RR^d$ is \emph{infinitely divisible} if for every $n$ it is the
+$n$-fold convolution power of some probability measure. Write $D := \{x \in \RR^d : |x| \le 1\}$
+for the closed unit ball.
+
+% draft: the citations of [Sato, Thm. 8.1] at lines 255, 376, 378, 416, 428, 490, 794, 796, 798.
+% CHANGED: the uniqueness clause (ii) is on p. 38, where the draft's lines 490, 794, 796, 798 cite
+% p. 37 (VERBATIM-Sato.md, A39).
+% CHANGED (fidelity review, 2026-11-16, F-T3C-4): the spender count is the \uses graph's (24 nodes,
+% where "Sixteen" counted neither it nor the ledger's list), and the "not carried" normalization
+% says it is the spending nodes' convention, not a difference of this node from the page.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, NOTATION): Sato's
+% covariance matrix A is written A^S, as in lem:family-structure, here and in A42, A44, A45 and A48,
+% apart from this paper's Gaussian part A = A^S/2. A rename; the content is the page's.
+\begin{theorem}[the \Levy--Khintchine representation]
+\label{thm:cited-A39}
+\lean{Pyramids.cited_A39_exists, Pyramids.cited_A39_unique, Pyramids.cited_A39_converse}
+\leanok
+\begin{enumerate}
+\item[(i)] If $\mu$ is an infinitely divisible probability measure on $\RR^d$, then
+\[
+  \widehat\mu(z) = \exp\Bigl[-\tfrac12\langle z, A^{\mathrm S}z\rangle + i\langle\gamma, z\rangle
+  + \int_{\RR^d}\bigl(e^{i\langle z, x\rangle} - 1 - i\langle z, x\rangle\mathbf{1}_D(x)\bigr)\,
+  \nu(dx)\Bigr], \qquad z \in \RR^d,
+\]
+where $A^{\mathrm S}$ is a symmetric nonnegative-definite $d \times d$ matrix, $\gamma \in \RR^d$, and $\nu$
+is a measure on $\RR^d$ with $\nu(\{0\}) = 0$ and $\int_{\RR^d}\min(|x|^2, 1)\,\nu(dx) < \infty$.
+\item[(ii)] The representation of $\widehat\mu$ in (i) by $A^{\mathrm S}$, $\nu$ and $\gamma$ is unique.
+\item[(iii)] Conversely, for every symmetric nonnegative-definite $d \times d$ matrix $A^{\mathrm S}$, every
+measure $\nu$ with $\nu(\{0\}) = 0$ and $\int\min(|x|^2, 1)\,\nu(dx) < \infty$, and every
+$\gamma \in \RR^d$, there is an infinitely divisible probability measure $\mu$ whose transform is
+given by the formula of (i).
+\end{enumerate}
+The triple $(A^{\mathrm S}, \nu, \gamma)$ is the \emph{generating triplet} of $\mu$, $A^{\mathrm S}$ its
+\emph{Gaussian covariance matrix} and $\nu$ its \emph{\Levy{} measure}.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A39}\quad\emph{(Cited from [\sscite{sato1999levy}, Thm.~8.1, pp.~37--38]:
+clause (i) with (8.1)--(8.2) at the foot of p.~37, (ii) and (iii) at the head of p.~38; the names
+are Def.~8.2, p.~38. Admitted as a Lean axiom by the author on 2026-11-13. The three clauses are
+already axioms of the affine module's formal development, for the same theorem at the same pages
+(\texttt{AffineHemigroup.levy\_khintchine\_exists}, \texttt{levy\_khintchine\_unique} and
+\texttt{levy\_khintchine\_converse}); the declarations named above are those axioms, and this
+module declares none of its own for the entry.
+\textbf{Assignment.} \ledger{A39} carries the three clauses. Twenty-four nodes name this one in
+their \texttt{\textbackslash uses}, ten interface nodes of this chapter and fourteen nodes of the
+later chapters, each naming the clauses it reads in its own annotation: the representation (i) in
+\ref{lem:family-structure}; the uniqueness (ii) to identify data (the additivity of triplets under
+convolution, the invariance of a \Levy{} measure under a symmetry of the law, the triplet after a
+linear image); the existence (iii) for the laws of given data, as in \ref{lem:synthesis}. Not
+carried: the reductions for a symmetric law, which the spending nodes prove in one line each (the
+compensator integrates an odd function to $0$, so $\gamma = 0$ and the exponent is
+$\int(1 - \cos\langle z, x\rangle)\,\nu(dx)$; a real or radial transform gives a symmetric or
+rotation-invariant law, the transform determining the law); and the convention of the spending
+nodes, which write a Gaussian part of an exponent as $\langle z, Az\rangle$, so that their $A$
+is half the matrix $A^{\mathrm S}$ of (i) (the triplet $(2a, \tilde\nu, 0)$ in the proof of
+Theorem~\ref{thm:cited-A9}). The statement above, and its declarations, keep Sato's
+$\tfrac12\langle z, A^{\mathrm S}z\rangle$, Sato's matrix $A$ being written $A^{\mathrm S}$.
+\textbf{Hypotheses} (the node's, each with what its declarations require): for (i), $\mu$ a probability
+measure on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely
+divisible: same; for (ii), the same two, and the two representations: same (\texttt{HasTriplet}
+twice), the infinite divisibility being implied by them and so redundant; for (iii), $A^{\mathrm S}$ symmetric
+nonnegative-definite, $\nu(\{0\}) = 0$, $\int\min(|x|^2, 1)\,d\nu < \infty$ and $\gamma \in \RR^d$:
+same (the fields of \texttt{LevyTriplet}).)}
+\end{theorem}
+
+% draft: the citations of [Sato, Lemma 7.5, p. 32] at lines 378 and 794.
+% CHANGED: narrowed to "no zero", the lemma's whole statement; "real" and "positive" are the
+% spending nodes' steps (VERBATIM-Sato.md, A40).
+\begin{theorem}[the transform has no zero]
+\label{thm:cited-A40}
+\lean{Pyramids.cited_A40}
+\leanok
+\uses{thm:cited-A39}
+If $\mu$ is an infinitely divisible probability measure on $\RR^d$, then $\widehat\mu(z) \ne 0$ for
+every $z \in \RR^d$.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A40}\quad\emph{(Cited from [\sscite{sato1999levy}, Lemma~7.5, p.~32]. Admitted
+as a Lean axiom by the author on 2026-11-13, and found to need none of its own: the declaration
+named above is proved from clause (i) of Theorem~\ref{thm:cited-A39}, which writes $\widehat\mu$ as an
+exponential, and an exponential has no zero. In the book the lemma comes first and is used to prove
+Theorem~8.1; here that theorem is taken as given, so the order is reversed without circularity.
+\textbf{Assignment.} \ledger{A40}
+carries the statement. \ref{lem:family-structure} and \ref{prop:grid-pyramid-not-isotropic} spend
+it. Not carried: that the transform of a symmetric law is real, and positive by continuity from
+$\widehat\mu(0) = 1$, which the spending nodes prove.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $\mu$ a probability measure
+on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely
+divisible: same; $z \in \RR^d$: same, every $z$.)}
+\end{theorem}
+
+% draft: the citations of [Sato, Thm. 9.3, p. 47] at lines 378 and 788.
+\begin{theorem}[Khintchine's theorem]
+\label{thm:cited-A41}
+\lean{Pyramids.cited_A41}
+\leanok
+Let $\{Z_{nk} : k = 1, \dots, r_n;\ n = 1, 2, \dots\}$ be random variables on $\RR^d$ such that, for
+each $n$, $Z_{n1}, \dots, Z_{nr_n}$ are independent, and, for every $\varepsilon > 0$,
+\[
+  \lim_{n \to \infty}\ \max_{1 \le k \le r_n}\Pr\bigl[|Z_{nk}| > \varepsilon\bigr] = 0
+\]
+(a \emph{null array}), and let $S_n := \sum_{k=1}^{r_n}Z_{nk}$ be its row sums. If, for some
+$b_n \in \RR^d$, the law of $S_n - b_n$ converges to a probability measure $\mu$, then $\mu$ is
+infinitely divisible.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A41}\quad\emph{(Cited from [\sscite{sato1999levy}, Thm.~9.3, p.~47], with
+Def.~9.2 and (9.1) on the same page. Admitted as a Lean axiom by the author on 2026-11-13. The
+affine module's formal development already states the theorem as an axiom, for the laws of the
+rows and with every row nonempty (\texttt{AffineHemigroup.khintchine\_null\_array}); the
+declaration named above is proved from it, since the law of a sum of independent random variables
+is the convolution of their laws, and a point mass at $0$ put in front of each row changes neither
+the law of the row sum nor the maximum in the null condition. This module declares no axiom of its
+own for the entry.
+\textbf{Assignment.} \ledger{A41} carries the statement. \ref{lem:steps-infinitely-divisible}
+spends it with $b_n = 0$ and row sums whose laws are all equal, and the nodes that read the
+infinite divisibility of a step (\ref{lem:family-structure}, \ref{prop:no-bounded-step},
+\ref{prop:grid-pyramid-not-isotropic}, \ref{prop:exact-masks}) spend it through that lemma. Not
+carried: the construction of the null array from (I1) and (I2), and the choice of independent
+realizations of the factor laws, which the lemma supplies.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): the array $Z_{nk}$ of random
+variables on $\RR^d$: stronger, all rows live on one probability space, which the node leaves
+open (a product space transports the general case); each row independent: same; $r_n$: same, any
+$r_n \ge 0$, an empty row allowed; the null condition for every $\varepsilon > 0$: same, with the
+supremum over the row; $b_n \in \RR^d$: same; the law of $S_n - b_n$ converges to a probability
+measure $\mu$: same, against every bounded continuous function.)}
+\end{theorem}
+
+% draft: the citations of [Sato, Prop. 11.10, p. 65] at lines 410, 457, 467, 774, 796 and 798.
+% CHANGED: stated for an infinitely divisible law; the page states it for a Levy process, and the
+% law is the process's at time 1, by the correspondence stated on the same page
+% (VERBATIM-Sato.md, A42).
+\begin{theorem}[the linear image of an infinitely divisible law]
+\label{thm:cited-A42}
+\lean{Pyramids.cited_A42}
+\leanok
+\uses{thm:cited-A39}
+Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$, and let $U$ be an $n \times d$ matrix. Then the image $U_*\mu$ of $\mu$ under
+$x \mapsto Ux$ is infinitely divisible on $\RR^n$, with generating triplet
+\[
+  A^{\mathrm S}_U = UA^{\mathrm S}U^{\tp}, \qquad \nu_U = \bigl[\nu U^{-1}\bigr]_{\RR^n \setminus \{0\}}, \qquad
+  \gamma_U = U\gamma + \int Ux\,\bigl(\mathbf{1}_E(Ux) - \mathbf{1}_D(x)\bigr)\,\nu(dx),
+\]
+where $(\nu U^{-1})(B) = \nu(\{x : Ux \in B\})$, $[\,\cdot\,]_{\RR^n \setminus \{0\}}$ is the
+restriction to $\RR^n \setminus \{0\}$, and $D$ and $E$ are the closed unit balls of $\RR^d$ and
+$\RR^n$.
+% CHANGED (2026-11-14, the author's decision): prop:no-lattice-kernel, regraded [T], no longer
+% spends the entry; the orthogonal projections were its printed route's only use.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (2026-11-23, review round 3 batch C, item 2): proved, Lean core, by the change of
+% variables y = Ux in the formula of thm:cited-A39(i); no longer an admitted axiom. Statement and
+% the declaration's type unchanged.
+\statusA\quad\ledger{A42}\quad\emph{(Cited from [\sscite{sato1999levy}, Prop.~11.10, p.~65],
+formulas (11.8)--(11.10), printed for a \Levy{} process $\{X_t\}$ and read for the law
+$\mu = P_{X_1}$, through the correspondence of \Levy{} processes and infinitely divisible laws
+stated on the same page. This citation is the node's grounding. Admitted as a Lean axiom by the
+author on 2026-11-13; since review round 3 (2026-11-23) not admitted, and found to need no axiom:
+the proof below derives the statement from the form of the transform in
+Theorem~\ref{thm:cited-A39}(i), and its declaration prints Lean core.
+\textbf{Assignment.} \ledger{A42} carries the statement, with the $\nu$-integrability of
+$x \mapsto Ux\,(\mathbf{1}_E(Ux) - \mathbf{1}_D(x))$, which the formula for $\gamma_U$ presupposes
+and the proof below shows; the typed statement asserts it. Five nodes spend it, for the matrices
+$qI$, $q^nI$, an invertible $G^{-1}$, a rotation, a reflection $-I$ and a coordinate map:
+\ref{lem:family-structure}, \ref{lem:lattice-infinitely-divisible},
+\ref{prop:what-does-not-lift}, \ref{prop:what-does-not-lift-chain}
+and \ref{prop:grid-pyramid-not-isotropic}, the last also reading $\gamma_U$ at $U = -I$, where the
+correction term vanishes. Not carried: anything about the process beyond its law at time $1$.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\mu$ a probability measure
+on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely
+divisible: same; $(A^{\mathrm S}, \nu, \gamma)$ a generating triplet of $\mu$: same (\texttt{HasTriplet} with
+a \texttt{LevyTriplet}, whose fields are $A^{\mathrm S}$ symmetric nonnegative-definite, $\nu(\{0\}) = 0$ and
+$\int\min(|x|^2, 1)\,d\nu < \infty$); $U$ an $n \times d$ matrix: same, any $n$.)}
+\end{theorem}
+
+% CHANGED (2026-11-23, review round 3 batch C, item 2): new proof environment; the statement was
+% an admitted axiom until this round.
+\begin{proof}
+% CHANGED (2026-11-23, review round 3 batch C, register): the frequency on R^n is xi.
+\leanok
+\uses{thm:cited-A39}
+Throughout, $\langle \xi, Ux\rangle = \langle U^{\tp}\xi, x\rangle$ for $x \in \RR^d$ and
+$\xi \in \RR^n$, and $K$ is the operator norm of $U$, so that $|Ux| \le K|x|$. Write
+$\psi_{A^{\mathrm S},\nu,\gamma}(z)$ for the bracket of Theorem~\ref{thm:cited-A39}(i), and
+$g_z(x) = e^{i\langle z,x\rangle} - 1 - i\langle z,x\rangle\mathbf{1}_D(x)$ for its integrand on
+$\RR^d$, with $\mathbf{1}_E$ in place of $\mathbf{1}_D$ on $\RR^n$.
+
+\emph{Infinite divisibility.} Let $k \ge 1$ and let $\mu_k$ be a probability measure with
+$\mu = \mu_k^{*k}$. The transform of $(U_*\mu_k)^{*k}$ at $\xi$ is
+$\widehat{\mu_k}(U^{\tp}\xi)^k = \widehat\mu(U^{\tp}\xi)$, which is the transform of $U_*\mu$ at $\xi$; so
+$U_*\mu = (U_*\mu_k)^{*k}$, and $U_*\mu$ is infinitely divisible.
+
+\emph{The correction is integrable.} Put $c(x) = Ux\,(\mathbf{1}_E(Ux) - \mathbf{1}_D(x))$. It
+vanishes unless exactly one of $|x| \le 1$ and $|Ux| \le 1$ holds. If $|x| > 1 \ge |Ux|$, then
+$|c(x)| = |Ux| \le 1 = \min(|x|^2, 1)$. If $|x| \le 1 < |Ux|$, then $1 < |Ux| \le K|x|$, so
+$|c(x)| \le K|x| \le (K|x|)^3 \le K^3|x|^2 = K^3\min(|x|^2, 1)$. Hence
+$|c(x)| \le (K^3 + 1)\min(|x|^2, 1)$ for every $x$, and $c$ is $\nu$-integrable.
+
+% CHANGED (2026-11-23, review round 3, batch C typesetting): wording.
+% CHANGED (2026-11-23, review round 3, batch C typesetting): wording.
+\emph{The triplet.} The matrix $UA^{\mathrm S}U^{\tp}$ is symmetric. It is nonnegative-definite, as
+$\langle \xi, UA^{\mathrm S}U^{\tp}\xi\rangle = \langle U^{\tp}\xi, A^{\mathrm S}U^{\tp}\xi\rangle$. The measure
+$\nu_U$ has no mass at $0$, and since $\min(|Ux|^2, 1) \le (K^2 + 1)\min(|x|^2, 1)$,
+\[
+  \int \min(|y|^2, 1)\,\nu_U(dy) \le \int \min(|Ux|^2, 1)\,\nu(dx)
+  \le (K^2 + 1)\int \min(|x|^2, 1)\,\nu(dx) < \infty .
+\]
+So $(A^{\mathrm S}_U, \nu_U, \gamma_U)$ is a generating triplet on $\RR^n$ in the sense of
+Theorem~\ref{thm:cited-A39}(i).
+
+\emph{The transform.} Fix $\xi \in \RR^n$. The integrand $e^{i\langle \xi,y\rangle} - 1 - i\langle \xi,y\rangle\mathbf{1}_E(y)$
+vanishes at $y = 0$, so its integral against $\nu_U$ is its integral against the image of $\nu$,
+which is $\int (e^{i\langle \xi,Ux\rangle} - 1 - i\langle \xi,Ux\rangle\mathbf{1}_E(Ux))\,\nu(dx)$. Since
+$\langle \xi, Ux\rangle = \langle U^{\tp}\xi, x\rangle$, the integrand here is
+$g_{U^{\tp}\xi}(x) - i\langle \xi, c(x)\rangle$, a difference of two $\nu$-integrable functions, so the
+integral is $\int g_{U^{\tp}\xi}\,d\nu - i\langle \xi, \int c\,d\nu\rangle$. With
+$\langle \xi, A^{\mathrm S}_U \xi\rangle = \langle U^{\tp}\xi, A^{\mathrm S}U^{\tp}\xi\rangle$ and
+$\langle \gamma_U, \xi\rangle = \langle \gamma, U^{\tp}\xi\rangle + \langle \xi, \int c\,d\nu\rangle$, the
+two terms in $\langle \xi, \int c\,d\nu\rangle$ cancel, and
+\[
+  \psi_{A^{\mathrm S}_U,\nu_U,\gamma_U}(\xi) = \psi_{A^{\mathrm S},\nu,\gamma}(U^{\tp}\xi).
+\]
+The transform of $U_*\mu$ at $\xi$ is $\widehat\mu(U^{\tp}\xi) = \exp\psi_{A^{\mathrm S},\nu,\gamma}(U^{\tp}\xi)$,
+so $(A^{\mathrm S}_U, \nu_U, \gamma_U)$ is a generating triplet of $U_*\mu$, the only one by
+Theorem~\ref{thm:cited-A39}(ii).
+
+Every step is machine-checked. The formal statement, that $U_*\mu$ has this triplet, reads only
+the form of the transform in Theorem~\ref{thm:cited-A39}(i) and no admitted fact. The
+uniqueness in the last sentence is \ledger{A39}(ii).
+\end{proof}
+
+% draft: the citations of [Sato, Prop. 15.5, p. 93] at lines 134, 402 and 457.
+\begin{theorem}[self-decomposable laws are infinitely divisible]
+\label{thm:cited-A43}
+\lean{Pyramids.cited_A43_sd, Pyramids.cited_A43_semi, Pyramids.cited_A43_span}
+\leanok
+\uses{def:self-decomposable, thm:cited-A40}
+If $\mu$ is self-decomposable, then $\mu$ is infinitely divisible and, for every $b > 1$, the
+measure $\varrho_b$ of Definition~\ref{def:self-decomposable} is uniquely determined and infinitely
+divisible. If $\mu$ is semi-selfdecomposable, then $\mu$ is infinitely divisible and $\varrho_b$ is
+uniquely determined. So a self-decomposable law is semi-selfdecomposable with every $b > 1$ as a
+span.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A43}\quad\emph{(Cited from [\sscite{sato1999levy}, Prop.~15.5, p.~93], with the
+sentence after it on the same page for the last clause. Admitted as a Lean axiom by the author on
+2026-11-14, in three parts. That a self-decomposable law is infinitely divisible is already an axiom
+of the affine module's formal development, for the same sentence of the same page
+(\texttt{AffineHemigroup.selfDecomposable\_infinitelyDivisible}). That its residuals are
+infinitely divisible, and that a semi-selfdecomposable law is, are declared as two axioms of this
+module. The two uniqueness clauses are proved by the page's own argument: an infinitely divisible
+transform has no zero (Theorem~\ref{thm:cited-A40}), so $\widehat\varrho_b = \widehat\mu/\widehat\mu(b^{-1}\,\cdot)$,
+and the transform determines the law. The last sentence follows from the first clause. The
+declarations named above are theorems from these. \textbf{Assignment.} \ledger{A43} carries the
+whole statement.
+\ref{prop:what-does-not-lift-chain} spends the last clause and the infinite divisibility;
+\ref{prop:strata-cylinder-coordinates-q-cin}(3) spends the infinite divisibility only; chapter~3
+states the proposition in Section~\ref{sec:pyramid-strata}. Not carried: the
+characterization of semi-selfdecomposability by the \Levy{} measure, which is
+Theorem~\ref{thm:cited-A44}.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\mu$ a probability measure
+on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ self-decomposable:
+same (\texttt{IsSelfDecomposableSato}, Definition~\ref{def:self-decomposable} at Sato's letter),
+in \texttt{cited\_A43\_sd} and \texttt{cited\_A43\_span}; $b > 1$: same; $\varrho_b$ a probability
+measure with the identity of Definition~\ref{def:self-decomposable}: same
+(\texttt{IsSDResidual}); $\mu$ semi-selfdecomposable: same (\texttt{IsSemiSelfDecomposable}, some
+$b > 1$ with an infinitely divisible residual), in \texttt{cited\_A43\_semi}, whose uniqueness is
+required at every span $b$.)}
+\end{theorem}
+
+% draft: the citations of [Sato, Thm. 15.8, p. 94] at lines 134, 402 and 457.
+\begin{theorem}[semi-selfdecomposability by the \Levy{} measure]
+\label{thm:cited-A44}
+\lean{Pyramids.cited_A44}
+% CHANGED (wave 3d, 2026-11-14): proved from A39 and A42 by the page's own argument; statement and
+% the declaration's type unchanged. The entry is not admitted and needs no axiom of its own.
+\leanok
+\uses{def:self-decomposable, thm:cited-A39, thm:cited-A42}
+Fix $b > 1$. Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating
+triplet $(A^{\mathrm S}, \nu, \gamma)$. Then $\mu$ is semi-selfdecomposable with $b$ as a span if and only if
+\[
+  D_b\nu \ge \nu ,
+\]
+where $(D_b\nu)(B) = \nu(b^{-1}B)$ is the image of $\nu$ under $x \mapsto bx$. Semi-selfdecomposability
+imposes no restriction on $A^{\mathrm S}$ and $\gamma$.
+% CHANGED (fourth blind pass, 2026-11-15): the derivation from A39 and A42 moves out of the
+% annotation into the proof below, completed (the sum of two triplets, the absolute continuity and
+% the difference measure).
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A44}\quad\emph{(Cited from [\sscite{sato1999levy}, Thm.~15.8, p.~94], formula
+(15.6), where the image is written $T_b\nu$ and defined at (13.8), p.~75. This citation is the
+node's grounding. Not admitted, and found to need no axiom of its own: the proof below derives
+the statement from Theorem~\ref{thm:cited-A39} and Theorem~\ref{thm:cited-A42} by the argument of Sato's proof.
+\textbf{Assignment.} \ledger{A44} carries the
+equivalence and its last sentence. \ref{prop:lindeberg-stratum-one}(3) spends the equivalence
+and \ref{prop:stratum-one-example} spends it. Not carried: the
+equivalent form (15.7) on the shells $\{b^n < |x| \le b^{n+1}\}$, which no node reads.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $b > 1$: same; $\mu$ a
+probability measure on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$
+infinitely divisible: same; $(A^{\mathrm S}, \nu, \gamma)$ a generating triplet of $\mu$: same
+(\texttt{HasTriplet} with a \texttt{LevyTriplet}); the inequality $D_b\nu \ge \nu$: same, an
+inequality of measures, that is on every measurable set.)}
+\end{theorem}
+
+% CHANGED (fourth blind pass, 2026-11-15): new proof environment, the derivation formerly sketched
+% in the annotation, with its missing steps written out.
+% CHANGED (the theory paper, 2026-11-16): the closing sentence on checking and cited facts shortened; no step changed.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2): Sato's matrices are
+% written A^S, as in the statement, and the residual varrho_b, as in def:self-decomposable. Renames;
+% no step changed.
+\begin{proof}
+\leanok
+\uses{def:self-decomposable, thm:cited-A39, thm:cited-A42}
+For a generating triplet $(A^{\mathrm S}, \nu, \gamma)$ write $\psi_{A^{\mathrm S},\nu,\gamma}(z)$ for the bracket of
+Theorem~\ref{thm:cited-A39}(i), so that the law with this triplet has the transform
+$\exp\psi_{A^{\mathrm S},\nu,\gamma}$. If $(A^{\mathrm S}_1, \nu_1, \gamma_1)$ and
+$(A^{\mathrm S}_2, \nu_2, \gamma_2)$ are triplets, so is
+$(A^{\mathrm S}_1 + A^{\mathrm S}_2, \nu_1 + \nu_2, \gamma_1 + \gamma_2)$: the sum of the matrices is symmetric and
+nonnegative-definite, and $\nu_1 + \nu_2$ has no mass at $0$ and integrates $\min(|x|^2, 1)$. The
+integrand of the bracket is integrable for $\nu_1$ and for $\nu_2$, so its integral against
+$\nu_1 + \nu_2$ is the sum of the two integrals, and
+\[
+  \psi_{A^{\mathrm S}_1 + A^{\mathrm S}_2,\,\nu_1 + \nu_2,\,\gamma_1 + \gamma_2}
+  = \psi_{A^{\mathrm S}_1,\nu_1,\gamma_1} + \psi_{A^{\mathrm S}_2,\nu_2,\gamma_2}.
+\]
+
+Let $\mu_b$ be the image of $\mu$ under $x \mapsto b^{-1}x$, so that
+$\widehat\mu_b(z) = \widehat\mu(b^{-1}z)$. By Theorem~\ref{thm:cited-A42} with $n = d$ and $U = b^{-1}I$,
+the law $\mu_b$ is infinitely divisible with a triplet $(b^{-2}A^{\mathrm S}, \nu_b, \gamma')$, where $\nu_b$
+is the image of $\nu$ under $x \mapsto b^{-1}x$ (the restriction to $\RR^d \setminus \{0\}$ changes
+nothing, as $\nu(\{0\}) = 0$) and $\gamma' \in \RR^d$. Since $\nu_b(B) = \nu(bB)$ and
+$(D_b\nu)(B) = \nu(b^{-1}B)$, the inequality $D_b\nu \ge \nu$ on all Borel sets is the inequality
+$\nu \ge \nu_b$, read at the set $bB$.
+
+Let $\mu$ be semi-selfdecomposable with span $b$. By Definition~\ref{def:self-decomposable} its
+residual $\varrho_b$ is infinitely divisible, so it has a triplet
+$(A^{\mathrm S}_\varrho, \nu_\varrho, \gamma_\varrho)$ by
+Theorem~\ref{thm:cited-A39}(i). Then
+$\widehat\mu = \widehat\mu_b\,\widehat\varrho_b = \exp(\psi_{b^{-2}A^{\mathrm S},\nu_b,\gamma'} +
+\psi_{A^{\mathrm S}_\varrho,\nu_\varrho,\gamma_\varrho})$, and by the first paragraph this is the transform given by the
+summed triplet $(b^{-2}A^{\mathrm S} + A^{\mathrm S}_\varrho, \nu_b + \nu_\varrho, \gamma' + \gamma_\varrho)$. By
+Theorem~\ref{thm:cited-A39}(ii) the summed triplet is $(A^{\mathrm S}, \nu, \gamma)$. So
+$\nu = \nu_b + \nu_\varrho \ge \nu_b$, which is $D_b\nu \ge \nu$.
+
+Conversely, let $\nu_b \le \nu$. The measure $\nu$ is $\sigma$-finite: it is finite on
+$\{|x| > 1\}$ and on each shell $\{1/(n+1) < |x| \le 1/n\}$, $n \ge 1$, by the integrability of
+$\min(|x|^2, 1)$, and $\nu(\{0\}) = 0$. From $\nu_b \le \nu$, every $\nu$-null set is
+$\nu_b$-null, so by the Radon--Nikodym theorem $\nu_b = f\nu$ for a measurable $f \ge 0$, and
+$f \le 1$ $\nu$-almost everywhere, again because $\nu_b \le \nu$. Put $\nu_\varrho := (1 - f)\nu$.
+Then $\nu_b + \nu_\varrho = \nu$ and $\nu_\varrho \le \nu$, so $\nu_\varrho$ has no mass at $0$ and
+integrates $\min(|x|^2, 1)$. The matrix
+$(1 - b^{-2})A^{\mathrm S}$ is symmetric and nonnegative-definite because $b > 1$. By
+Theorem~\ref{thm:cited-A39}(iii) there is an infinitely divisible law $\varrho_b$ with the triplet
+$((1 - b^{-2})A^{\mathrm S}, \nu_\varrho, \gamma - \gamma')$. By the first paragraph
+$\widehat\mu(b^{-1}z)\,\widehat\varrho_b(z) = \exp\psi_{A^{\mathrm S},\nu_b + \nu_\varrho,\gamma}(z) =
+\widehat\mu(z)$, so $\mu$ is semi-selfdecomposable with span $b$ and residual $\varrho_b$.
+
+The criterion involves $\nu$ alone, which is the last sentence of the statement. Every step is
+machine-checked, and the cited facts are \ledger{A39}(i)--(iii) and \ledger{A42}.
+\end{proof}
+
+% draft: the citations of [Sato, Thm. 15.10 and Cor. 15.11, p. 95] at lines 152, 158, 436 and 500.
+% CHANGED: narrowed to Thm. 15.10; Cor. 15.11, the line case, is named in the annotation (no node
+% spends it: thm:lattice-line says so). The draft's consequences, that the Levy measure gives
+% countable sets and spheres about 0 mass 0, are the spending nodes' one-line steps
+% (VERBATIM-Sato.md, A45).
+\begin{theorem}[the polar form of a self-decomposable law]
+\label{thm:cited-A45}
+\lean{Pyramids.cited_A45}
+\leanok
+\uses{def:self-decomposable, thm:cited-A39}
+Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$, and let $S = \{\xi \in \RR^d : |\xi| = 1\}$. Then $\mu$ is self-decomposable if
+and only if
+\[
+  \nu(B) = \int_S\lambda(d\xi)\int_0^\infty\mathbf{1}_B(r\xi)\,k_\xi(r)\,\frac{dr}{r}
+\]
+for every Borel set $B$, with a finite measure $\lambda$ on $S$ and a nonnegative function
+$k_\xi(r)$, measurable in $\xi \in S$ and nonincreasing in $r > 0$. Self-decomposability imposes no
+restriction on $A^{\mathrm S}$ and $\gamma$.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A45}\quad\emph{(Cited from [\sscite{sato1999levy}, Thm.~15.10, p.~95], formula
+(15.8); Sato's ``decreasing'' is meant in the weak sense. Admitted as a Lean axiom by the author on
+2026-11-14. The theorem is already an axiom of the affine module's formal development, for the same
+page (\texttt{AffineHemigroup.sato\_polar\_criterion}); the declaration named above is that axiom,
+and this module declares none of its own for the entry. \textbf{Assignment.} \ledger{A45} carries the statement.
+\ref{prop:stratum-two-example} and \ref{prop:ladder-knot-kernel}(4) spend the ``only if''. Not
+carried: the consequences that such a $\nu$ gives every countable set and every sphere about $0$
+mass $0$ (for each $\xi$ the set of $r$ concerned is countable or a point, hence $dr/r$-null), which
+the spending nodes prove; and the case $d = 1$ written with a density, Sato's Cor.~15.11 on the same
+page, which no node spends.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $\mu$ a probability measure
+on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely
+divisible: same; $(A^{\mathrm S}, \nu, \gamma)$ a generating triplet of $\mu$: same (\texttt{HasTriplet}); on
+the right side, $\lambda$ a finite measure on $S$: same; $k_\xi(r) \ge 0$: same, for $r > 0$;
+$k_\xi(r)$ measurable in $\xi$: same, for each $r > 0$, the joint measurability being implied;
+$k_\xi$ nonincreasing in $r > 0$: same, read in the weak sense (\texttt{AntitoneOn}).)}
+\end{theorem}
+
+% draft: the citations of [Sato, Cor. 24.4, p. 149] at lines 219, 279, 508 and 815.
+\begin{theorem}[unbounded support]
+\label{thm:cited-A46}
+\lean{Pyramids.cited_A46}
+\leanok
+If $\mu$ is an infinitely divisible probability measure on $\RR^d$ and is not a point mass, then
+the support of $\mu$ is unbounded.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A46}\quad\emph{(Cited from [\sscite{sato1999levy}, Cor.~24.4, p.~149], where a
+point mass is called a $\delta$-distribution. Admitted as a Lean axiom by the author on
+2026-11-13, at the statement typed in the skeleton, where an unbounded support is positive mass
+outside every ball. \textbf{Assignment.} \ledger{A46} carries the statement. \ref{prop:no-bounded-step}
+spends it, and \ref{prop:exact-masks}(1) through that node. Not carried: anything about the shape of the support, Sato's
+Thm.~24.5 and Cor.~24.6, which is Theorem~\ref{thm:cited-A48} in the part used.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\mu$ a probability measure
+on $\RR^d$: same (an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely
+divisible: same; $\mu$ not a point mass: same, $\mu \ne \delta_x$ for every $x$.)}
+\end{theorem}
+
+% draft: the citations of [Sato, Cor. 24.6, p. 149] at lines 279 and 774.
+% CHANGED: narrowed to the "only if", on R as printed; the finiteness of the Levy measure is printed
+% in the proof on the same page, not in the statement, and the drift clause is dropped
+% (VERBATIM-Sato.md, A48).
+% CHANGED (2026-11-23, review round 3 batch C, item 1): the admitted part is the corollary's
+% statement only, A = 0 and the support of nu in Z; the finiteness of nu, until now admitted from
+% the proof on the same page, follows from the support clause and is proved below.
+\begin{theorem}[infinitely divisible laws carried by $\ZZ$]
+\label{thm:cited-A48}
+\lean{Pyramids.cited_A48, Pyramids.cited_A48_finite}
+\leanok
+\uses{thm:cited-A39}
+Let $\mu$ be an infinitely divisible probability measure on $\RR$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$. If the support of $\mu$ is contained in $\ZZ$, then $A^{\mathrm S} = 0$ and the
+support of $\nu$ is contained in $\ZZ$. In particular $\nu(\RR) < \infty$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A48}\quad\emph{(Cited from [\sscite{sato1999levy}, Cor.~24.6, p.~149], its
+``only if'' without the drift clause: the first sentence of the conclusion is what the corollary
+states. Admitted as a Lean axiom by the author on 2026-11-13, at the statement typed in the
+skeleton, where a support contained in $\ZZ$ is a null complement of $\ZZ$; since review round 3
+(2026-11-23) the axiom \texttt{cited\_A48} is that sentence and nothing more. The finiteness of
+$\nu$, which Sato shows in the proof on the same page, is proved below from the support clause.
+\textbf{Assignment.} \ledger{A48} carries the first sentence of the conclusion.
+\ref{lem:lattice-infinitely-divisible}
+spends the node, on the coordinate images of a law carried by a lattice. Not carried: the converse; the
+corollary's condition that the drift lies in $\ZZ$; any version on $\RR^d$, the page being on
+$\RR$; and the finiteness of $\nu$, which is proved.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\mu$ a probability measure
+on $\RR$: same, typed on $\RR^1$ (\texttt{Rd 1}) through $x \mapsto x_0$; $\mu$ infinitely
+divisible: same; $(A^{\mathrm S}, \nu, \gamma)$ a generating triplet of $\mu$: same (\texttt{HasTriplet});
+the support of $\mu$ contained in $\ZZ$: same, as $\mu(\RR \setminus \ZZ) = 0$, equivalent since
+$\ZZ$ is closed.)}
+\end{theorem}
+
+% CHANGED (2026-11-23, review round 3 batch C, item 1): new proof environment, for the finiteness
+% of nu, formerly admitted.
+\begin{proof}
+\leanok
+\uses{thm:cited-A39}
+The first sentence is cited. For the second: $\nu(\{0\}) = 0$ and $\nu$ is carried by $\ZZ$, so it
+is carried by $\ZZ \setminus \{0\}$, where $|x| \ge 1$ and so $\min(|x|^2, 1) = 1$. Hence
+$\nu(\RR) \le \int \min(|x|^2, 1)\,\nu(dx) < \infty$ by Theorem~\ref{thm:cited-A39}(i). Every step
+is machine-checked, and the cited fact is \ledger{A48}, for the first sentence.
+\end{proof}
+
+% draft: the citations of [Sato, Thm. 25.3, p. 159] at lines 285, 496 and 823.
+% CHANGED: the hypothesis "locally bounded" of the page is stated, which the draft omits; the
+% statement is for the law, the page's process read at time 1 (VERBATIM-Sato.md, A49).
+\begin{theorem}[the $g$-moment theorem]
+\label{thm:cited-A49}
+\lean{Pyramids.cited_A49}
+\leanok
+\uses{thm:cited-A39}
+A function $g$ on $\RR^d$ is \emph{submultiplicative} if it is nonnegative and there is a constant
+$a > 0$ with $g(x + y) \le a\,g(x)g(y)$ for all $x, y \in \RR^d$, and \emph{locally bounded} if it is
+bounded on every compact set. Let $g$ be a submultiplicative, locally bounded, measurable function on
+$\RR^d$, and let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with \Levy{} measure
+$\nu$. Then $\int g\,d\mu < \infty$ if and only if $\int_{\{|x| > 1\}}g\,d\nu < \infty$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A49}\quad\emph{(Cited from [\sscite{sato1999levy}, Thm.~25.3, p.~159], with
+Defs.~25.1--25.2 on the same page, printed for a \Levy{} process $\{X_t\}$, finite $g$-moment of
+$X_t$ for every $t > 0$; the page says that finiteness of the $g$-moment ``is not a time dependent
+distributional property'', so it is read at $t = 1$ for the law $P_{X_1} = \mu$. Admitted as a
+Lean axiom by the author on 2026-11-14, at the statement typed in the skeleton, both directions.
+\textbf{Assignment.} \ledger{A49} carries the
+statement. \ref{prop:ladder-knot-kernel}(2) spends it, and \ref{prop:exact-masks} through that node, with
+$g(x) = \log(|x| \vee e)$, which is submultiplicative by Theorem~\ref{thm:cited-A50} and locally bounded,
+being continuous. Not carried: the comparison of $g$ with $\log_+|x|$, which the spending nodes
+make.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $g$ submultiplicative:
+same (\texttt{IsSubmultiplicative}: $g \ge 0$ and some $a > 0$); $g$ locally bounded: same, a bound
+of $|g|$ on every compact set; $g$ measurable: same; $\mu$ a probability measure on $\RR^d$: same
+(an \texttt{IsProbabilityMeasure} instance, every $d$); $\mu$ infinitely divisible: same; $\nu$
+the \Levy{} measure of $\mu$: same, the measure of a triplet with \texttt{HasTriplet}.)}
+\end{theorem}
+
+% draft: the citations of [Sato, Prop. 25.4(iii), p. 159] at lines 285, 496 and 823.
+% CHANGED: narrowed to the one function of the list that the nodes use.
+% CHANGED (fidelity review, 2026-11-15, R66): the status line says that the edge to thm:cited-A49
+% is the definition of "submultiplicative", which that node states, and no ingredient of the proof.
+\begin{theorem}[a logarithmic submultiplicative function]
+\label{thm:cited-A50}
+\lean{Pyramids.cited_A50}
+\leanok
+\uses{thm:cited-A49}
+The function $g(x) = \log(|x| \vee e)$ on $\RR^d$ is submultiplicative.
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A50}\quad\emph{(Cited from [\sscite{sato1999levy}, Prop.~25.4(iii), p.~159],
+where $\log(|x| \vee e)$ is one of the functions listed. Admitted as a Lean axiom by the author on
+2026-11-14, and found to need none: the declaration named above is proved with no cited fact, with
+the constant $a = 2$. Put $u = |x| \vee e$ and $v = |y| \vee e$; both exceed $2$, so
+$|x + y| \le u + v \le uv$ and $e \le uv$, whence $g(x + y) \le \log u + \log v \le 2\log u\log v$,
+both logarithms being at least $1$. The node uses Theorem~\ref{thm:cited-A49} for the definition of a
+submultiplicative function only; the proof reads nothing from it. \textbf{Assignment.} \ledger{A50}
+carries the statement.
+\ref{prop:ladder-knot-kernel}(2) spends it, and \ref{prop:exact-masks} through that node. Not
+carried: the rest of the
+proposition's list and its clauses (i)--(ii); and local boundedness, which the proposition does not
+state and which holds since $g$ is continuous.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): none beyond the dimension,
+every $d$ (\texttt{IsSubmultiplicative}: $g \ge 0$ and some $a > 0$ with
+$g(x + y) \le a\,g(x)\,g(y)$, proved with $a = 2$).)}
+\end{theorem}
+
+\subsection{Bernstein functions}
+\label{subsec:cited-bernstein}
+
+A function $f : (0,\infty) \to \RR$ is \emph{completely monotone} if it is smooth
+and $(-1)^nf^{(n)} \ge 0$ for every $n \ge 0$. A \emph{Bernstein function} is a
+function $f \ge 0$ on $(0,\infty)$ whose derivative is completely monotone. These are exactly the
+functions
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,\mu(dt), \qquad a, b \ge 0,
+  \quad \int_{(0,\infty)}\min(1, t)\,\mu(dt) < \infty,
+\]
+and the triplet $(a, b, \mu)$ is determined by $f$ [\sscite{schilling2012bernstein}, Thm.~3.2,
+p.~21]. The measure $\mu$ is the \emph{\Levy{} measure} of $f$.
+
+% draft: the paragraph before Proposition 4.2 (section 4.1), line 561, which defines the complete
+% Bernstein functions in words.
+\begin{definition}[complete Bernstein functions]
+\label{def:complete-bernstein}
+\lean{Pyramids.IsCompletelyMonotone, Pyramids.IsBernsteinFunction, Pyramids.IsCompleteBernstein}\leanok
+A Bernstein function $f$ is a \emph{complete Bernstein function}
+[\sscite{schilling2012bernstein}, Def.~6.1, p.~69] if its \Levy{} measure has a
+completely monotone density $m$ with respect to Lebesgue measure:
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,m(t)\,dt .
+\]
+\statusT\quad\emph{(A definition, [\sscite{schilling2012bernstein}, Def.~6.1, p.~69], formula (6.1),
+which reads the \Levy{} measure in the representation (3.2) of the book's Thm.~3.2, p.~21. It
+asserts nothing and cites no ledger entry.)}
+\end{definition}
+
+% draft: the same paragraph, line 561.
+\begin{definition}[Thorin--Bernstein functions]
+\label{def:thorin-bernstein}
+\lean{Pyramids.IsThorinBernstein}\leanok
+\uses{def:complete-bernstein}
+A Bernstein function $f$ is a \emph{Thorin--Bernstein function}
+[\sscite{schilling2012bernstein}, Def.~8.1, p.~109] if its \Levy{} measure has a density
+$m$ such that $t \mapsto t\,m(t)$ is completely monotone, that is
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,m(t)\,dt,
+\]
+where $a, b \ge 0$, $\int_{(0,\infty)}\min(1, t)\,m(t)\,dt < \infty$ and $t \mapsto t\,m(t)$ is
+completely monotone.
+\statusT\quad\emph{(A definition, [\sscite{schilling2012bernstein}, Def.~8.1, p.~109], formula (8.1).
+The same page observes that $m(t) = t^{-1}\cdot t\,m(t)$ is then completely monotone, so a
+Thorin--Bernstein function is a complete Bernstein function. It asserts nothing and cites no ledger
+entry.)}
+\end{definition}
+
+% draft: the citation of [Schilling-Song-Vondracek, Thm. 1.4, p. 3] at line 588.
+% CHANGED: narrowed to the existence of the measure; its uniqueness and the converse of the page are
+% not used (VERBATIM-literature.md, A55).
+\begin{theorem}[Bernstein's theorem]
+\label{thm:cited-A55}
+\lean{Pyramids.cited_A55}
+\notready
+Let $f : (0,\infty) \to \RR$ be completely monotone. Then there is a measure $\mu$ on $[0,\infty)$
+with
+\[
+  f(\lambda) = \int_{[0,\infty)}e^{-\lambda t}\,\mu(dt) \qquad\text{for every } \lambda > 0 .
+\]
+\statusA\quad\ledger{A55}\quad\emph{(Cited from [\sscite{schilling2012bernstein}, Thm.~1.4, p.~3].
+The measure is positive, a completely monotone function being nonnegative. Its statement is typed in the skeleton
+(\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; admitting it is the author's decision at phase~5. \textbf{Assignment.} \ledger{A55} carries the statement.
+% CHANGED (wave 3b, 2026-11-15): prop:thorin-in-dimension-d(1)-(2) and prop:matern-increments(3)
+% no longer spend A55; they read lem:cm-log-convex, lem:cm-exponential-rate and
+% lem:cm-uncancelled-atom, proved without it. The entry has no spender. The text read:
+% "prop:matern-increments(3) and prop:thorin-in-dimension-d(1)-(2) spend it."
+No node spends it: \ref{prop:thorin-in-dimension-d}(1)--(2) and \ref{prop:matern-increments}(3),
+which read it, are proved from Lemmas~\ref{lem:cm-log-convex}, \ref{lem:cm-exponential-rate} and
+\ref{lem:cm-uncancelled-atom}, without a Laplace representation. Not carried:
+the uniqueness of $\mu$ and the converse, both on the page and neither used.)}
+\end{theorem}
+
+% draft: the paragraph before Proposition 4.2 (section 4.1), line 561: "e^{-f(|omega|^2)} is then
+% the transform of an infinitely divisible law in every dimension, by subordination".
+% CHANGED: the hypothesis f(0+) = 0 is stated; without it the measures have mass e^{-f(0+)} < 1
+% (VERBATIM-literature.md, A57).
+\begin{theorem}[a Bernstein function of $|\omega|^2$]
+\label{thm:cited-A57}
+\lean{Pyramids.cited_A57}
+\notready
+% CHANGED (skeleton review, m6): the value at 0, which f(|omega|^2) reads at omega = 0, is set
+% to f(0+); the page reads it so, as the total mass exp(-t f(0)) of (13.21) (VERBATIM-literature.md, A57).
+Let $f$ be a Bernstein function with $f(0{+}) = 0$, and set $f(0) := f(0{+}) = 0$. Then, for
+every $d \ge 1$, the function
+$\omega \mapsto f(|\omega|^2)$ is continuous and negative definite on $\RR^d$, and
+$e^{-f(|\omega|^2)}$ is the transform of an infinitely divisible probability measure on $\RR^d$.
+\statusA\quad\ledger{A57}\quad\emph{(Cited from [\sscite{schilling2012bernstein}, Thm.~13.14, p.~212],
+the direction proved there by Example~13.13 on the same page: $f(|\xi|^2)$ is continuous and
+negative definite for all $d$, and $e^{-tf(|\xi|^2)}$ is for each $t > 0$ the transform of a
+rotation-invariant measure $\nu^t_d$ of mass $e^{-tf(0)}$, (13.21). With $f(0{+}) = 0$ these are
+probability measures forming a convolution semigroup, so $\nu^1_d = (\nu^{1/n}_d)^{*n}$ is
+infinitely divisible. The mechanism is subordination, [\sscite{sato1999levy}, Thm.~30.1,
+pp.~197--198]: Brownian motion on $\RR^d$ with transform $e^{-|\omega|^2/2}$ at time $1$, run at the
+random time of the subordinator with exponent $u \mapsto f(2u)$, has transform $e^{-f(|\omega|^2)}$
+at time $1$. Its statement is typed in the skeleton (\texttt{PyramidsSkeleton.Ch02CitedFacts}) and is not an axiom; admitting it is the author's decision at phase~5. \textbf{Assignment.}
+\ledger{A57} carries the statement. No node spends it: chapter~4 states it in the paragraph before
+Proposition~\ref{prop:matern-increments}, whose clause (2) writes the laws down directly. Not
+carried: the converse of the theorem, that negative definiteness in every dimension makes $f$ a
+Bernstein function; and the killed case $f(0{+}) > 0$.)}
+\end{theorem}
+
+\subsection{\Polya{} frequency densities}
+\label{subsec:cited-karlin}
+
+% draft: the citation of [Karlin 1968, Ch. 7, Thm. 3.2(a), p. 345, with Prop. 1.4, p. 333] at line
+% 235, as printed in [V-selection v0.1, section 4.3], and the same fact at line 255.
+% CHANGED: the ranges gamma >= 0, delta real, a_j real and Karlin's normalization
+% gamma + sum a_j^2 > 0, which the draft omits, are stated; "analytic on the strip" is the page's
+% "converges absolutely on the strip" (VERBATIM-selection-iso-affine.md and
+% VERBATIM-literature.md, A24).
+% CHANGED (fidelity review, 2026-11-15, R52): the condition gamma + sum a_j^2 > 0 is anchored to the
+% statement of Thm. 3.2(a), p. 345, where it stands; Remark 3.1, p. 346, to which V-selection p. 35
+% attributes it, is about dropping integrability. The statement is unchanged.
+\begin{theorem}[Schoenberg's representation]
+\label{thm:cited-A24}
+\lean{Pyramids.cited_A24}
+\leanok
+% CHANGED (2026-11-15, admitted narrower than the page, ADR-0005): the identity is stated on the
+% imaginary axis, where both spenders read it. It was: "Then there are an open strip
+% alpha < Re s < beta with alpha < 0 < beta, on which L converges absolutely, and numbers ...,
+% such that on the strip L(s) psi(s) = 1, ...".
+Let $\phi$ be a \Polya{} frequency density on $\RR$, and $L(s) := \int_{\RR}e^{-sx}\phi(x)\,dx$ its
+two-sided Laplace transform. Then there are numbers $\gamma \ge 0$, $\delta \in \RR$ and real $a_j$
+with $\sum_j a_j^2 < \infty$ and $\gamma + \sum_j a_j^2 > 0$ such that
+\[
+  L(i\omega)\,\psi(i\omega) = 1 \quad (\omega \in \RR), \qquad
+  \psi(s) = e^{-\gamma s^2 + \delta s}\prod_j(1 + a_j s)\,e^{-a_j s},
+\]
+where $\psi$ is an entire function with $\psi(0) = 1$.
+% CHANGED (fidelity review, 2026-11-15, R26/R50/R69): the status line lists the declarations' hypotheses beside the node's (LINKAGE rule 6).
+% CHANGED (fidelity review, 2026-11-16, R57): the PF hypothesis is "same", not "stronger": Karlin's
+% definition (Ch. 1, pp. 11-12, rendered and read) requires the determinants at every ordered tuple.
+\statusA\quad\ledger{A24}\quad\emph{(Cited from [\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a),
+p.~345], whose statement carries the condition $\gamma + \sum_ja_j^2 > 0$, and the class
+$\mathcal{E}_2^*$ of its display (2.2), p.~336; as printed in
+\prog{V-selection v0.1}{\S~4.3, pp.~34--36}, which reads it at Karlin's letter, in Karlin's sign of
+the transform, and anchors the condition to Remark~3.1, p.~346, which is about dropping
+integrability. The page gives the identity $L\psi = 1$ on an open strip
+$\alpha < \mathrm{Re}\,s < \beta$ containing the imaginary axis, on which $L$ exists
+(Prop.~1.4, p.~333); and only the identity there is stated and
+admitted. Admitted as a Lean axiom by the author on 2026-11-15, at this statement.
+\textbf{Assignment.} \ledger{A24} carries the statement.
+\ref{thm:matern-pyramid-line-noncreation} spends that the reciprocal of $L$ on the imaginary axis
+is the restriction of the entire function $\psi$, and
+\ref{prop:classical-pyramids-approximate-discrete-gaussian} the modulus of $\psi$ there. Not
+carried: the strip and the absolute convergence on it; the converse, that $1/\psi$ is the Laplace transform of a \Polya{}
+frequency density for every such $\psi$; and the claim that a \Polya{} frequency density has an
+absolutely continuous \Levy{} measure, which the selection module does not print (plan id A25) and
+\ref{prop:classical-pyramids-approximate-discrete-gaussian} proves.
+\textbf{Hypotheses} (the node's, each with what its declarations require): $\phi$ a \Polya{} frequency
+density on $\RR$: integrable with integral $1$, same; \Polya{} frequency, same,
+\texttt{IsPolyaFrequencyDensity} requiring $\det[\phi(x_i - y_j)] \ge 0$ at every pair of increasing
+point families, of every order, as Karlin's definition does (\sscite{karlin1968total}, Ch.~1,
+\S1, pp.~11--12: $K(x, y)$ is $\mathrm{TP}_r$ if the determinants (1.2) are nonnegative ``for
+all'' increasing $x_1 < \dots < x_m$, $y_1 < \dots < y_m$, and $f$ is $\mathrm{PF}_r$ if
+$f(x - y)$ is $\mathrm{TP}_r$); every spender obtains $\phi$ from \texttt{cited\_A22\_polya},
+which gives that form.)}
+\end{theorem}
+
+\subsection{The modified Bessel function}
+\label{subsec:cited-bessel}
+
+The modified Bessel function $K_\nu$ is taken to be defined by the integral of
+[\sscite{dlmf2026}, 10.32.9], so the next theorem says that this integral equals the one of
+[\sscite{dlmf2026}, 10.32.10]. The source states the second representation for complex $z$ with
+$|\mathrm{ph}\,z| < \pi/4$; the theorem takes real $z > 0$.
+
+% draft: the citation of [DLMF 10.32.10] at line 541; the evaluations at lines 590 and 602 are
+% proved in lem:bessel-k from 10.32.10 and the definition 10.32.9.
+% CHANGED (2026-11-13, the author's decision): the former clause (2), the further DLMF equations
+% 10.29.3, 10.32.8, 10.39.2, 10.29.1 and 10.30.3 with their Lean axiom cited_A51_evaluations, is
+% dropped, as no node and no proof read it (a safe-direction change; the ledger keeps a row).
+\begin{theorem}[the modified Bessel function $K_\nu$]
+\label{thm:cited-A51}
+\lean{Pyramids.cited_A51_integral}
+\leanok
+% CHANGED (fidelity review, 2026-11-16, R75): the body says that $K_\nu$ is taken as the integral of DLMF 10.32.9, so that the node's content is that 10.32.9 equals 10.32.10.
+% CHANGED (the theory paper's blueprint round, 2026-11-16, review of Section 2, ENVELOPE): stated
+% directly, K_nu defined by 10.32.9 and the equation 10.32.10; the sentence on how the statement is
+% read moves to the prose before the environment. Same content.
+% CHANGED (skeleton review, M2): narrowed to real z > 0, the range the one spender reads; the
+% page's complex sector |ph z| < pi/4 is kept in the annotation as what it prints.
+For real $\nu$ and real $z > 0$ let
+$K_\nu(z) := \int_0^\infty e^{-z\cosh u}\cosh(\nu u)\,du$, the modified Bessel function of the
+second kind of order $\nu$ (DLMF~10.32.9). Then for every real $\nu$ and every real $z > 0$
+\[
+  K_\nu(z) = \tfrac12\bigl(\tfrac12 z\bigr)^{\nu}\int_0^\infty
+  \exp\Bigl(-t - \frac{z^2}{4t}\Bigr)\,\frac{dt}{t^{\nu+1}}
+\]
+(DLMF~10.32.10).
+% CHANGED (fidelity review, 2026-11-16, R71): the status line lists the declaration's hypotheses beside the node's (LINKAGE rule 6).
+\statusA\quad\ledger{A51}\quad\emph{(Cited from [\sscite{dlmf2026}], the NIST Digital Library of
+Mathematical Functions, Version 1.2.8 of 2026-09-15, read online: equation 10.32.10,
+https://dlmf.nist.gov/10.32.E10, which prints no condition on $\nu$ and holds there for complex
+$z$ with $|\mathrm{ph}\,z| < \tfrac14\pi$, of which the statement takes the real half-line.
+Admitted by the author on 2026-11-13. The typed $K_\nu$ is the shared core's, defined at real
+$z > 0$ by the integral $\int_0^\infty e^{-z\cosh u}\cosh(\nu u)\,du$, which is DLMF~10.32.9 on the
+real half-line (its wording is transcribed in the ledger). The statement is proved in Lean from
+that definition, by the substitution $u = c e^{v}$ and a Gaussian bound that makes the integral
+finite, and needs no axiom.
+\textbf{Assignment.} \ledger{A51} carries the formula. \ref{lem:bessel-k} spends it at real
+$z = y > 0$ and $\nu = 0$, $1$ and $d/2$. Not carried: anything about $K_\nu$ at complex argument,
+and the further DLMF equations the draft reads at its lines 590 and 602, which
+\ref{lem:bessel-k} proves.
+\textbf{Hypotheses} (the node's, each with what its declaration requires): $\nu$ real: same, every real
+$\nu$; $z$ real with $z > 0$: same (at $z \le 0$ the definition of $K_\nu$ returns the junk value
+$0$, which is why the hypothesis is required).)}
+\end{theorem}

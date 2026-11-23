@@ -1,0 +1,222 @@
+[
+ {
+  "file": "01-introduction.tex",
+  "line": 190,
+  "key": "maejima1998semi",
+  "locator": "Def.~3.1, p.~19",
+  "form": "cite",
+  "context": "there as diffusion time in \\cite{radmoser2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyram",
+  "id": "C014",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 506,
+  "key": "karlin1968total",
+  "locator": "",
+  "form": "sscite",
+  "context": "A \\emph{\\Polya{} frequency density} is a probability density $\\phi$ on $\\RR$ whose translation kernel $(x, y) \\mapsto \\phi(x - y)$ is totally positive: every determinant $\\det[\\phi(x_i - y_j)]_{i,j \\le n}$ with $x_1 < \\dots < x_n$ and $y_1 < \\dots < y_n$ is nonnegative [\\sscite{karlin1968total}]. Convolution with such a density is \\emph{variation-diminishing}: it does not increase the number of sign changes of a function. This is the property that the counting statements use. The selection module shows that the families of the exponents below have \\Polya{} frequency kernels, and counts what they create from a signal, in its Proposition~4.5(1)--(2), p.~35.",
+  "id": "C057",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 589,
+  "key": "karlin1968total",
+  "locator": "",
+  "form": "sscite",
+  "context": "The proofs read facts from three sources. They are the \\Levy--Khintchine theory of infinitely divisible laws, in the book of Sato [\\sscite{sato1999levy}], Schoenberg's representation of \\Polya{} frequency densities, in Karlin's book [\\sscite{karlin1968total}], and one integral representation of the modified Bessel function $K_\\nu$ [\\sscite{dlmf2026}]. A fourth source, the book of Schilling, Song and Vondra\\v{c}ek on Bernstein functions [\\sscite{schilling2012bernstein}], supplies the terms in which Section~\\ref{ch:matern} describes the steps of the \\Matern{} pyramid. Each fact is stated at its source's letter, or narrower where the proofs use less, and the sentence before it says where. Theorem~\\ref{thm:cited-A50} is proved in the paragraph before it.",
+  "id": "C062",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 590,
+  "key": "dlmf2026",
+  "locator": "",
+  "form": "sscite",
+  "context": "The proofs read facts from three sources. They are the \\Levy--Khintchine theory of infinitely divisible laws, in the book of Sato [\\sscite{sato1999levy}], Schoenberg's representation of \\Polya{} frequency densities, in Karlin's book [\\sscite{karlin1968total}], and one integral representation of the modified Bessel function $K_\\nu$ [\\sscite{dlmf2026}]. A fourth source, the book of Schilling, Song and Vondra\\v{c}ek on Bernstein functions [\\sscite{schilling2012bernstein}], supplies the terms in which Section~\\ref{ch:matern} describes the steps of the \\Matern{} pyramid. Each fact is stated at its source's letter, or narrower where the proofs use less, and the sentence before it says where. Theorem~\\ref{thm:cited-A50} is proved in the paragraph before it.",
+  "id": "C063",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 592,
+  "key": "schilling2012bernstein",
+  "locator": "",
+  "form": "sscite",
+  "context": "The proofs read facts from three sources. They are the \\Levy--Khintchine theory of infinitely divisible laws, in the book of Sato [\\sscite{sato1999levy}], Schoenberg's representation of \\Polya{} frequency densities, in Karlin's book [\\sscite{karlin1968total}], and one integral representation of the modified Bessel function $K_\\nu$ [\\sscite{dlmf2026}]. A fourth source, the book of Schilling, Song and Vondra\\v{c}ek on Bernstein functions [\\sscite{schilling2012bernstein}], supplies the terms in which Section~\\ref{ch:matern} describes the steps of the \\Matern{} pyramid. Each fact is stated at its source's letter, or narrower where the proofs use less, and the sentence before it says where. Theorem~\\ref{thm:cited-A50} is proved in the paragraph before it.",
+  "id": "C064",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 832,
+  "key": "schilling2012bernstein",
+  "locator": "Thm.~3.2,\np.~21",
+  "form": "sscite",
+  "context": "A step of the \\Matern{} pyramid in $\\RR^d$ has a transform $e^{-f(|\\omega|^2)}$, and Section~\\ref{ch:matern} says which class the function $f$ falls in (Proposition~\\ref{prop:matern-increments}). This subsection fixes the three classes it uses. A function $f : (0,\\infty) \\to \\RR$ is \\emph{completely monotone} if it is smooth and $(-1)^nf^{(n)} \\ge 0$ for every $n \\ge 0$. A \\emph{Bernstein function} is a function $f \\ge 0$ on $(0,\\infty)$ whose derivative is completely monotone. These are exactly the functions \\[ f(\\lambda) = a + b\\lambda + \\int_{(0,\\infty)}(1 - e^{-\\lambda t})\\,\\eta(dt), \\qquad a, b \\ge 0, \\quad \\int_{(0,\\infty)}\\min(1, t)\\,\\eta(dt) < \\infty, \\] and the triplet $(a, b, \\eta)$ is determined by $f$ [\\sscite{schilling2012bernstein}, Thm.~3.2, p.~21]. The measure $\\eta$ is the \\emph{\\Levy{} measure} of $f$.",
+  "id": "C077",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 860,
+  "key": "schilling2012bernstein",
+  "locator": "Thm.~1.4, p.~3",
+  "form": "sscite",
+  "context": "A completely monotone function is a Laplace transform, by Bernstein's theorem [\\sscite{schilling2012bernstein}, Thm.~1.4, p.~3].",
+  "id": "C078",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 874,
+  "key": "schilling2012bernstein",
+  "locator": "Thm.~13.14, p.~212",
+  "form": "sscite",
+  "context": "A continuous function $\\psi$ on $\\RR^d$ is \\emph{negative definite} when $e^{-t\\psi}$ is positive definite for every $t > 0$. By [\\sscite{schilling2012bernstein}, Thm.~13.14, p.~212], in the direction proved by Example~13.13 on the same page, a Bernstein function of $|\\omega|^2$ is negative definite. The infinite divisibility of the law comes from subordination: Brownian motion run at the random time of a subordinator, an increasing \\Levy{} process [\\sscite{sato1999levy}, Thm.~30.1, pp.~197--198].",
+  "id": "C079",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 894,
+  "key": "karlin1968total",
+  "locator": "Ch.~7, Thm.~3.2(a),\np.~345",
+  "form": "sscite",
+  "context": "The \\Polya{} frequency densities of Section~\\ref{subsec:cited-released} have reciprocal Laplace transforms of one form, by Schoenberg's theorem [\\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a), p.~345], with the class of entire functions of [\\sscite{karlin1968total}, (2.2), p.~336]. The identity of the next theorem relates the two-sided Laplace transform $L$ of the density to an entire function $\\psi$. Karlin states it on an open strip $\\alpha < \\operatorname{Re}s < \\beta$, $\\alpha < 0 < \\beta$, on which $L$ converges absolutely [\\sscite{karlin1968total}, Prop.~1.4, p.~333]. The next theorem is narrower than the page: it states the identity on the imaginary axis only, which is all the proofs read.",
+  "id": "C081",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 895,
+  "key": "karlin1968total",
+  "locator": "(2.2), p.~336",
+  "form": "sscite",
+  "context": "The \\Polya{} frequency densities of Section~\\ref{subsec:cited-released} have reciprocal Laplace transforms of one form, by Schoenberg's theorem [\\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a), p.~345], with the class of entire functions of [\\sscite{karlin1968total}, (2.2), p.~336]. The identity of the next theorem relates the two-sided Laplace transform $L$ of the density to an entire function $\\psi$. Karlin states it on an open strip $\\alpha < \\operatorname{Re}s < \\beta$, $\\alpha < 0 < \\beta$, on which $L$ converges absolutely [\\sscite{karlin1968total}, Prop.~1.4, p.~333]. The next theorem is narrower than the page: it states the identity on the imaginary axis only, which is all the proofs read.",
+  "id": "C082",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 898,
+  "key": "karlin1968total",
+  "locator": "Prop.~1.4,\np.~333",
+  "form": "sscite",
+  "context": "The \\Polya{} frequency densities of Section~\\ref{subsec:cited-released} have reciprocal Laplace transforms of one form, by Schoenberg's theorem [\\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a), p.~345], with the class of entire functions of [\\sscite{karlin1968total}, (2.2), p.~336]. The identity of the next theorem relates the two-sided Laplace transform $L$ of the density to an entire function $\\psi$. Karlin states it on an open strip $\\alpha < \\operatorname{Re}s < \\beta$, $\\alpha < 0 < \\beta$, on which $L$ converges absolutely [\\sscite{karlin1968total}, Prop.~1.4, p.~333]. The next theorem is narrower than the page: it states the identity on the imaginary axis only, which is all the proofs read.",
+  "id": "C083",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 920,
+  "key": "dlmf2026",
+  "locator": "10.32.9",
+  "form": "sscite",
+  "context": "The paper takes the modified Bessel function $K_\\nu$ to be defined by the integral of [\\sscite{dlmf2026}, 10.32.9], and cites the integral representation [\\sscite{dlmf2026}, 10.32.10] as the next theorem. The source states the representation for complex $z$ with $|\\mathrm{ph}\\,z| < \\pi/4$. The theorem is narrower, at real $z > 0$.",
+  "id": "C084",
+  "group": "E2-probability"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 920,
+  "key": "dlmf2026",
+  "locator": "10.32.10",
+  "form": "sscite",
+  "context": "The paper takes the modified Bessel function $K_\\nu$ to be defined by the integral of [\\sscite{dlmf2026}, 10.32.9], and cites the integral representation [\\sscite{dlmf2026}, 10.32.10] as the next theorem. The source states the representation for complex $z$ with $|\\mathrm{ph}\\,z| < \\pi/4$. The theorem is narrower, at real $z > 0$.",
+  "id": "C085",
+  "group": "E2-probability"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 403,
+  "key": "maejima1998semi",
+  "locator": "Def.~3.1, p.~19",
+  "form": "sscite",
+  "context": "Under one dilation the decomposition is required at the one factor $c = 1/q$ only, and Sato calls the ratio $q$ a \\emph{span}. Maejima and Naito require the remainder, the \\emph{residual}, to be infinitely divisible [\\sscite{maejima1998semi}, Def.~3.1, p.~19]. Theirs is the semi-selfdecomposable class of Definition~\\ref{def:self-decomposable}: $\\widehat\\mu = \\widehat\\mu(q^{-1}\\,\\cdot)\\,\\widehat\\varrho_q$ for some infinitely divisible law $\\varrho_q$. In a pyramid the residual is a dilate of an octave step, and every step is infinitely divisible, so the requirement costs nothing there. Without it the class is wider, and Section~\\ref{sec:pyramid-bounded} shows a law of the wider class, the cubic B-spline, that is the kernel of no family.",
+  "id": "C091",
+  "group": "E2-probability"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1556,
+  "key": "maejima1998semi",
+  "locator": "Rem.~3.1, p.~19",
+  "form": "sscite",
+  "context": "The cubic B-spline shows why Definition~\\ref{def:self-decomposable} requires the residual to be infinitely divisible. With any residual the class is wider. Maejima and Naito give it Lo\\`eve's name, $b$-decomposable, and note that its laws need not be infinitely divisible [\\sscite{maejima1998semi}, Rem.~3.1, p.~19]. The B-spline is $b$-decomposable with $b = 2$. By $D_2\\mu_1 = \\mu_1 * w$ it is the law of $\\tfrac12X + Y$, with $X$ of that law and $Y$ of the law $D_{1/2}w$, independent of $X$. Definition~\\ref{def:self-decomposable} excludes it. The B-spline has bounded support and is not a point mass, so it is not infinitely divisible (Proposition~\\ref{prop:no-bounded-step}), while a semi-selfdecomposable law is (Theorem~\\ref{thm:cited-A43}). Section~\\ref{sec:price-masks} reads the same example on a grid, after Proposition~\\ref{prop:exact-masks}.",
+  "id": "C109",
+  "group": "E2-probability"
+ },
+ {
+  "file": "04-line.tex",
+  "line": 190,
+  "key": "maejima1998semi",
+  "locator": "",
+  "form": "sscite",
+  "context": "Semi-selfdecomposability is meant in the sense of Maejima and Naito [\\sscite{maejima1998semi}] (Definition~\\ref{def:self-decomposable}). On the line a symmetric law $\\mu$ is semi-selfdecomposable with span $q > 1$ when $\\widehat\\mu(\\omega) = \\widehat\\mu(\\omega/q)\\,\\widehat\\varrho_q(\\omega)$ for some infinitely divisible law $\\varrho_q$, the residual (Definition~\\ref{def:self-decomposable} at $d = 1$). Sato's criteria for semi-selfdecomposability are recalled in Section~\\ref{sec:pyramid-strata}, and folded data give a short test. For a symmetric law with folded data $(a, \\varpi)$ the criterion $T_q\\nu \\ge \\nu$ of Theorem~\\ref{thm:cited-A44} reads $T_q\\varpi \\ge \\varpi$. This holds because folding commutes with $T_q$ and a symmetric measure is determined by its fold.",
+  "id": "C110",
+  "group": "E2-probability"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 81,
+  "key": "stein1970singular",
+  "locator": "Ch.~V, \\S 3.1, (26) and Prop.~2, p.~132",
+  "form": "sscite",
+  "context": "The octave step is the law $L_r$ with transform $(1 + r^2|\\omega|^2)^{-1}$, at $r = ct$. The literature knows it under several names, and they all denote this one law. Its density is $r^{-d}G_2(x/r)$, with $G_2$ the Bessel potential of order $2$, the kernel of $(I - \\Delta)^{-1}$ [\\sscite{stein1970singular}, Ch.~V, \\S 3.1, (26) and Prop.~2, p.~132], read in this paper's convention for the transform. So $L_r$ is the Green's function of $I - r^2\\Delta$. It is also the \\Matern{} law of index $1$ at range $r$. The laws with transform $(1 + r^2|\\omega|^2)^{-\\gamma}$ are named after the \\Matern{} covariances of spatial statistics [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)], and for $\\gamma > d/2$ their densities are those covariances (Section~\\ref{ch:price}). Finally, $L_r$ is the kernel of \\prog{iso v0.1}{Prop.~3.12(2), p.~16} at scale $\\sqrt2\\,r$. The paper writes $L",
+  "id": "C118",
+  "group": "E2-probability"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 243,
+  "key": "dlmf2026",
+  "locator": "",
+  "form": "sscite",
+  "context": "In the plane the profile is a modified Bessel function [\\sscite{dlmf2026}], $b_2(y) = 2yK_1(y)$. The next lemma gives this form in every dimension. It also proves the facts on $K_0$ that two later proofs use: the limit profile in the plane, and the value of the density at its centre (Propositions~\\ref{prop:thorin-in-dimension-d} and~\\ref{prop:matern-generator-octave}).",
+  "id": "C122",
+  "group": "E2-probability"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 941,
+  "key": "bondesson1992generalized",
+  "locator": "\\S 3.1, p.~30",
+  "form": "sscite",
+  "context": "One structure does carry to every dimension and every $q$. It is the mixing law of $V_t$ in Theorem~\\ref{thm:matern-pyramid}(1). A \\emph{generalized gamma convolution} is a weak limit of finite convolutions of gamma laws [\\sscite{bondesson1992generalized}, \\S 3.1, p.~30]. The variable $V_t = \\sum_ic^2q^{-2i}t^2X_i$ is an almost surely convergent sum of independent exponential variables, so its law is one. The kernel $\\mu_t$ is the Gaussian mixed over that law, in every dimension. No class property of $\\mu_t$ itself in $\\RR^d$ is claimed.",
+  "id": "C133",
+  "group": "E2-probability"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 194,
+  "key": "maejima1999semi",
+  "locator": "Thm.~7, p.~361",
+  "form": "sscite",
+  "context": "For laws the bijection is a known construction. Maejima and Sato build the semi-selfsimilar additive processes from paths of laws over one period with these conditions [\\sscite{maejima1999semi}, Thm.~7, p.~361]. What this section adds is the reading in the scale-space axioms and what follows from it.",
+  "id": "C158",
+  "group": "E2-probability"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 1182,
+  "key": "kallenberg2021foundations",
+  "locator": "Thm.~9.27, p.~200",
+  "form": "sscite",
+  "context": "\\begin{proof} Where $\\pi_r$ is absolutely continuous with respect to $\\eta$, $\\mathrm{KL}(\\pi_r \\,\\|\\, \\eta) = \\int f(d\\pi_r/d\\eta)\\,d\\eta$ with $f(x) = x\\log x + 1 - x \\ge 0$. By [\\sscite{kallenberg2021foundations}, Thm.~9.27, p.~200], applied to the probability kernel $r \\mapsto \\tfrac12(\\pi_r \\otimes \\delta_1 + \\eta \\otimes \\delta_0)$ from $\\RR$ to $\\RR \\times \\{0, 1\\}$, the density $g(r, \\theta)$ of $\\pi_r$ with respect to $\\pi_r + \\eta$ has a version with values in $[0, 1]$, jointly measurable in $(r, \\theta)$. As $\\eta = (1 - g)(\\pi_r + \\eta)$ puts no mass on $\\{g = 1\\}$, the function $p := g/(1 - g)$ on $\\{g < 1\\}$, $p := 0$ on $\\{g = 1\\}$, is a density of the absolutely continuous part of $\\pi_r$ with respect to $\\eta$, jointly measurable in $(r, \\theta)$. Then $\\pi_r$ is absolutely continuous with respect to $\\eta$ iff $\\int p(r, \\theta)\\,\\eta(d\\theta) = 1$, the total mass of $\\",
+  "id": "C163",
+  "group": "E2-probability"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2643,
+  "key": "karlin1968total",
+  "locator": "Ch.~7, Thm.~3.2(a),\np.~345",
+  "form": "sscite",
+  "context": "\\emph{A \\Polya{} frequency density.} Suppose $\\mu_t$ had a \\Polya{} frequency density $\\varphi$, with two-sided Laplace transform $\\mathcal{L}(p) = \\int e^{-px}\\varphi(x)\\,dx$. Schoenberg's representation (Theorem~\\ref{thm:cited-A24}; [\\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a), p.~345], printed in \\prog{V-selection v0.1}{\\S~4.3, pp.~34--35}) gives $\\gamma \\ge 0$ and real $\\delta$, $a_j$ with $\\sum_ja_j^2 < \\infty$ such that $\\mathcal{L}(i\\omega)\\,\\psi(i\\omega) = 1$ for every real $\\omega$, with $\\psi(p) = e^{-\\gamma p^2 + \\delta p}\\prod_j(1 + a_jp)\\,e^{-a_jp}$. On the imaginary axis $\\mathcal{L}(i\\omega) = \\widehat\\mu_t(-\\omega) = e^{-\\Psi_t(\\omega)}$, a positive number, while $|(1 + ia\\omega)e^{-ia\\omega}| = (1 + a^2\\omega^2)^{1/2}$ and $|e^{\\gamma\\omega^2 + i\\delta\\omega}| = e^{\\gamma\\omega^2}$. Taking moduli, \\[ \\Psi_t(\\omega) = \\gamma\\omega^2 + \\tfrac12\\sum_j\\log\\bigl(1 + a_j^2\\",
+  "id": "C185",
+  "group": "E2-probability"
+ }
+]

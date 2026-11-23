@@ -1,0 +1,58 @@
+% The macros of the theory paper and its supplement. The blueprint's (blueprint/src/macros.tex)
+% are kept by name, so that a statement shared with the blueprint compiles here unchanged and
+% `linkage check` compares the same source text; three of them print differently here:
+%   \prog{<module> v0.1}{<number>}  a citation of the released module, by its printed number;
+%   \ledger{A<n>}                   the cited fact's own statement in section 2.2, by number;
+%   \sscite{<key>}                  \cite.
+% The leanblueprint metadata (\lean, \uses, \leanok, \notready) is not transcribed; the commands
+% are defined empty so that a statement copied with them would still build.
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Cin}{\operatorname{Cin}}   % the entire cosine integral, as in the cone module
+\newcommand{\Levy}{L\'evy}              % the name, accented through one macro
+\newcommand{\Matern}{Mat\'ern}          % the same device for the Matern family
+\newcommand{\Polya}{P\'olya}            % and for Polya frequency functions
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\Orth}{\mathrm{O}}          % the orthogonal group O(d)
+\newcommand{\tp}{\mathsf{T}}            % transpose, written A^{\tp}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\PD}{\mathrm{PD}}           % positive definite d x d matrices
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Geom}{\mathrm{Geom}}       % the geometric law
+
+\providecommand{\lean}[1]{}
+\providecommand{\leanok}{}
+\providecommand{\uses}[1]{}
+\providecommand{\notready}{}
+\providecommand{\proves}[1]{}
+\providecommand{\notes}[1]{}
+\providecommand{\statedin}[1]{}
+\providecommand{\restates}[1]{}
+
+% The blueprint writes every citation as [\sscite{key}] or [\sscite{key}, <locator>], so \sscite
+% prints the bare number and the brackets are the text's.
+\newcommand{\sscite}[1]{\citenum{#1}}
+
+% The released modules of the programme, by the first argument of \prog as the blueprint writes
+% it; the citekeys are the library's (hub constellation.json; paper/references.bib).
+\makeatletter
+\@namedef{progkey@V-line v0.1}{fagerstrom2026spatial}
+\@namedef{progkey@V-cone v0.1}{fagerstrom2026cone}
+\@namedef{progkey@V-selection v0.1}{fagerstrom2026selection}
+\@namedef{progkey@iso v0.1}{fagerstrom2026isotropic}
+\@namedef{progkey@affine v0.1}{fagerstrom2026affine}
+\newcommand{\prog@key}[1]{\@ifundefined{progkey@#1}{\PackageError{macros}{No citation for the
+  programme label #1}{}}{}\edef\prog@thekey{\csname progkey@#1\endcsname}}
+\newcommand{\prog@cite}[2]{\cite[#2]{#1}}
+\DeclareRobustCommand{\prog}[2]{\prog@key{#1}\expandafter\prog@cite\expandafter{\prog@thekey}{#2}}
+\DeclareRobustCommand{\progpaper}[1]{\prog@key{#1}\expandafter\cite\expandafter{\prog@thekey}}
+\makeatother
+
+% A ledger entry is printed as its statement in section 2.2 (the node thm:cited-A<n>). The \ref is
+% reached through \csname so that `linkage paper`, which reads \ref{...} arguments as labels, does
+% not take the macro parameter for one.
+\newcommand{\ledger}[1]{Theorem~\csname ref\endcsname{thm:cited-#1}}

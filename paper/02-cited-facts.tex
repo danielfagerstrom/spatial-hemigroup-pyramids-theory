@@ -1,0 +1,1104 @@
+% Transcribed from blueprint/src/parts/02-cited-facts.tex.
+\section{What is cited}
+\label{ch:cited}
+
+This paper rests on five releases of the author's earlier work, cited at the printed number and
+page. The line paper \progpaper{V-line v0.1} states the axioms on the line and classifies the
+families that satisfy them. Two companion papers were released with it. The first, its
+\emph{cone module} \progpaper{V-cone v0.1}, describes these families as a convex cone, with their
+generators and their computation on the line. The second, its \emph{selection module}
+\progpaper{V-selection v0.1}, treats locality and the non-creation of extrema. The isotropic
+paper \progpaper{iso v0.1} carries the axioms and the classification to $\RR^d$. The affine paper
+\progpaper{affine v0.1} supplies the frame families, which the supplement uses for the separability
+of the classical kernels.
+
+Section~\ref{sec:cited} states what this paper takes from these releases: the axioms, the two
+classifications and the other statements that the proofs use.
+Section~\ref{sec:cited-literature} states the facts of the literature: the \Levy--Khintchine
+theory of infinitely divisible laws, Bernstein functions, \Polya{} frequency densities and one
+integral of a Bessel function. Each fact of these theories that a proof takes as given is a
+numbered theorem, its source and page
+are named just before it, and a proof that uses it refers to it. Standard measure theory and
+probability, such as \Levy{}'s continuity theorem, Steinhaus's theorem and the Radon--Nikodym
+theorem, are used without a number.
+Theorems~\ref{thm:cited-A30}, \ref{thm:cited-A13}, \ref{thm:cited-A19} and~\ref{thm:cited-A20}
+orient the reader, and the remarks of Section~\ref{sec:line-theory} and the supplement compare
+with the last three.
+
+\subsection{The released modules: axioms, classifications and notation}
+\label{sec:cited}
+
+\subsubsection{The axioms on the line}
+\label{subsec:cited-line}
+
+A scale space keeps a record of a signal at every scale $t \ge 0$, the signal itself at $t = 0$,
+and an operator $\Phi_{s,t}$ takes the record at scale $s$ to the record at the coarser scale $t$.
+The cascade (A6) requires that two such steps compose to one. It replaces the semigroup law
+$\Phi_{t+s} = \Phi_t\Phi_s$ of the classical theory, which ties the scale to a fixed additive
+parametrization, and a family with (A6) is a \emph{hemigroup}. Covariance (A8) requires that a dilation
+of the signal only relabel the scales, and (ND) excludes the identity.
+
+% shared with blueprint def:cascade-measurement-family
+\begin{definition}[symmetric cascade measurement families]
+\label{def:cascade-measurement-family}
+
+A \emph{symmetric cascade measurement family} is a family of linear operators
+$\Phi_{s,t} : L^1(\RR) \to L^1(\RR)$, $0 \le s \le t < \infty$, such that
+\begin{itemize}
+\item[(A1)] each $\Phi_{s,t}$ is a bounded operator on $L^1(\RR)$;
+\item[(A2)] $\Phi_{s,t}$ commutes with every translation $f \mapsto f(\cdot - a)$, $a \in \RR$;
+\item[(A3)] $\Phi_{s,t}$ commutes with the reflection $f \mapsto f(-\,\cdot)$;
+\item[(A4)] $\Phi_{s,t}$ maps nonnegative functions to nonnegative functions;
+\item[(A5)] $\int\Phi_{s,t}f = \int f$ for every nonnegative $f \in L^1(\RR)$;
+\item[(A6)] $\Phi_{t,t} = \Id$, and $\Phi_{s,t}\Phi_{r,s} = \Phi_{r,t}$ for all $r \le s \le t$
+(the cascade);
+\item[(A7)] for every $f \in L^1(\RR)$ the map $(s,t) \mapsto \Phi_{s,t}f$ is continuous from
+$\{0 \le s \le t\}$ to $L^1(\RR)$;
+\item[(A8)] there is a family $(S_\lambda)_{\lambda > 0}$ of increasing bijections of $[0,\infty)$
+with $\mathcal{D}_\lambda\Phi_{s,t} = \Phi_{S_\lambda s, S_\lambda t}\mathcal{D}_\lambda$ for all
+$0 \le s \le t$ and all $\lambda > 0$, where $(\mathcal{D}_\lambda f)(x) := \lambda^{-1}f(x/\lambda)$
+(scale covariance);
+\item[(ND)] $\Phi_{s,t} \ne \Id$ whenever $s < t$ (nondegeneracy).
+\end{itemize}
+\end{definition}
+
+The first consequence of the axioms is that each operator is a convolution
+\prog{V-line v0.1}{Lemma~4.1, pp.~22--23}.
+
+% shared with blueprint thm:cited-A1
+\begin{theorem}[each operator is a convolution]
+\label{thm:cited-A1}
+
+Let $\Phi_{s,t}$, $0 \le s \le t$, be linear operators on $L^1(\RR)$ with (A1), (A2), (A4) and
+(A5) of Definition~\ref{def:cascade-measurement-family}. Then for each pair $0 \le s \le t$ there
+is a unique probability measure $\mu_{s,t}$ on $\RR$ with
+\[
+  \Phi_{s,t}f = \mu_{s,t} * f, \qquad f \in L^1(\RR);
+\]
+under (A3) it is symmetric, invariant under $x \mapsto -x$. Conversely, every symmetric
+probability measure on $\RR$ defines, by convolution, an operator with (A1)--(A5).
+\end{theorem}
+
+\begin{proof}
+Existence and uniqueness are \prog{V-line v0.1}{Lemma~4.1, p.~22}, with the proof printed there
+and proved again in the formal development:
+under (A1), (A2), (A4) and (A5) each $\Phi_{s,t}$ is the convolution with exactly one probability
+measure $\mu_{s,t}$, the equation $\Phi_{s,t}f = \mu_{s,t} * f$ holding in $L^1(\RR)$, that is,
+almost everywhere.
+
+For the symmetry, write $f^-(x) := f(-x)$ and $\mu^-$ for the image of $\mu = \mu_{s,t}$
+under $x \mapsto -x$. The change of variables $y \mapsto -y$ gives
+$\mu^- * f = (\mu * f^-)^-$ for every $f \in L^1(\RR)$. By (A3),
+$\Phi_{s,t}f^- = (\Phi_{s,t}f)^-$, so $\mu^- * f = (\Phi_{s,t}f^-)^- =
+\Phi_{s,t}f = \mu * f$ for every $f$. A probability measure is determined by its convolution
+operator on $L^1(\RR)$: with $g(x) := (2\pi)^{-1/2}e^{-x^2/2}$, the transform of $\mu * g$ is
+$\widehat\mu\,\widehat g$, and $\widehat g$ has no zero. So $\mu^- = \mu$.
+
+For the converse let $\mu$ be a symmetric probability measure on $\RR$. The map
+$f \mapsto \mu * f$ is linear, and $\|\mu * f\|_1 \le \|f\|_1$ by Tonelli's theorem, so it is a
+bounded operator on $L^1(\RR)$, which is (A1). Since
+$(\mu * f(\cdot - a))(x) = \int f(x - a - y)\,\mu(dy) = (\mu * f)(x - a)$, it commutes with
+translation, which is (A2). Since $\mu^- = \mu$, the identity of the previous paragraph reads
+$\mu * f^- = (\mu * f)^-$, which is (A3). If $f \ge 0$ almost everywhere, then
+$\mu * f \ge 0$ almost everywhere, which is (A4), and Fubini's theorem gives
+$\int \mu * f = \mu(\RR)\int f = \int f$, which is (A5).
+
+Every step is machine-checked, the released lemma's included, and no fact of the literature is
+cited.
+\end{proof}
+
+Under (A1)--(A7) the transform of the kernel is $\widehat\mu_{s,t} = e^{-g_{s,t}}$ with
+\[
+  g_{s,t}(\omega) = a(s,t)\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\varpi_{s,t}(dx),
+  \quad a(s,t) \ge 0, \quad \int_{(0,\infty)}\min(1, x^2)\,\varpi_{s,t}(dx) < \infty
+\]
+\prog{V-line v0.1}{Thm.~5.2, p.~26}. So every \emph{step} $\mu_{s,t}$ is a
+symmetric \emph{infinitely divisible} law: for every $n$ it is the $n$-fold convolution power of
+some law. The exponent of a step has a Gaussian part
+$a(s,t)\omega^2$ and a jump part, and $\varpi_{s,t}$, its \emph{\Levy{} measure} folded onto
+$(0,\infty)$, counts the jumps by their length. The pair $(a, \varpi)$ of such an exponent is
+determined by the function \prog{V-line v0.1}{Prop.~2.3(3), p.~9}. The proof reads the
+\Levy--Khintchine representation, Theorem~\ref{thm:cited-A39} of
+Section~\ref{sec:cited-literature}.
+
+% shared with blueprint thm:cited-A9
+\begin{theorem}[the folded \Levy--Khintchine pair is unique]
+\label{thm:cited-A9}
+
+Let $a, a' \ge 0$, and let $\nu$ and $\nu'$ be measures on $(0,\infty)$ with
+$\int_{(0,\infty)}\min(1, x^2)\,\nu(dx) < \infty$ and
+$\int_{(0,\infty)}\min(1, x^2)\,\nu'(dx) < \infty$. If
+\[
+  a\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)
+  = a'\,\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu'(dx)
+  \qquad\text{for every } \omega \in \RR,
+\]
+then $a = a'$ and $\nu = \nu'$.
+\end{theorem}
+
+\begin{proof}
+For a pair $(a, \nu)$ as in the statement let $\tilde\nu$ be the symmetric measure on $\RR$ with
+$\tilde\nu(\{0\}) = 0$ and $\tilde\nu(B) = \tfrac12\nu(B \cap (0,\infty)) +
+\tfrac12\nu(-B \cap (0,\infty))$. Then $\int\min(x^2, 1)\,\tilde\nu(dx) =
+\int_{(0,\infty)}\min(x^2, 1)\,\nu(dx) < \infty$, so $(2a, \tilde\nu, 0)$ is a generating triplet
+on $\RR$. In its \Levy--Khintchine bracket the imaginary part of the integrand,
+$\sin\omega x - \omega x\mathbf 1_{|x| \le 1}$, is odd and $\tilde\nu$-integrable, so it integrates
+to $0$. The real part $\cos\omega x - 1$ is even, so its $\tilde\nu$-integral is
+$-\int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)$. With the Gaussian term
+$-\tfrac12\cdot 2a\,\omega^2$ the bracket is $-\psi(\omega)$, where $\psi$ is the function of the
+pair, $\psi(\omega) = a\omega^2 + \int_{(0,\infty)}(1 - \cos\omega x)\,\nu(dx)$.
+
+By Theorem~\ref{thm:cited-A39}(iii) there is an infinitely divisible law $\mu$ on $\RR$ with the triplet
+$(2a, \tilde\nu, 0)$, so $\widehat\mu = e^{-\psi}$. By hypothesis the pair $(a', \nu')$ has the
+same function $\psi$. So by the first paragraph the triplet $(2a', \tilde\nu', 0)$ also represents
+$\widehat\mu$ by the formula of Theorem~\ref{thm:cited-A39}(i). By Theorem~\ref{thm:cited-A39}(ii) the two triplets
+are equal: $a = a'$ and $\tilde\nu = \tilde\nu'$. On $(0,\infty)$ the measure $\tilde\nu$ is
+$\tfrac12\nu$, so $\nu = 2\tilde\nu|_{(0,\infty)} = 2\tilde\nu'|_{(0,\infty)} = \nu'$.
+
+Every step is machine-checked, and the cited fact is \ledger{A39}(ii)--(iii), at $d = 1$.
+\end{proof}
+
+The full axioms produce a classical class of laws. By the cascade the kernel $\mu_{0,t}$ is the
+kernel $\mu_{0,s}$ at a finer scale convolved with the step $\mu_{s,t}$. By covariance
+$\mu_{0,s}$ is a dilate of $\mu_{0,t}$. So each kernel is a shrunken copy of itself convolved with a
+law, which is the property the next definition names [\sscite{sato1999levy}, Def.~15.1, p.~90].
+
+% shared with blueprint def:self-decomposable
+\begin{definition}[self-decomposable and semi-selfdecomposable laws]
+\label{def:self-decomposable}
+
+Let $\mu$ be a probability measure on $\RR^d$. It is \emph{self-decomposable} if, for every
+$b > 1$, there is a probability measure $\varrho_b$ on $\RR^d$ such that
+\[
+  \widehat\mu(z) = \widehat\mu(b^{-1}z)\,\widehat\varrho_b(z), \qquad z \in \RR^d.
+\]
+It is \emph{semi-selfdecomposable} if there are some $b > 1$ and some infinitely divisible
+probability measure $\varrho_b$ with the same identity. Then $b$ is called a \emph{span} of $\mu$, and
+$\varrho_b$ its \emph{residual}.
+\end{definition}
+
+With $c := b^{-1} \in (0,1)$ the identity reads
+$\widehat\mu(\omega) = \widehat\mu(c\omega)\,\widehat\varrho_b(\omega)$: $\mu$ is the law of
+$cX + Y$ with $X \sim \mu$ and $Y \sim \varrho_b$ independent. The exponents of the
+symmetric self-decomposable laws on the line are those of the form
+\begin{equation}
+\label{eq:admissible-exponent}
+  F(\omega) = a\,\omega^2 + \int_0^\infty(1 - \cos\omega x)\,\frac{k(x)}{x}\,dx
+\end{equation}
+with $a \ge 0$, $k : (0,\infty) \to [0,\infty)$ nonincreasing and
+$\int_0^\infty\min(1, x^2)\,k(x)\,x^{-1}\,dx < \infty$ \prog{V-line v0.1}{Prop.~2.13, p.~13}, the
+integrability being that of a \Levy{} measure. The classification of the line is the main theorem
+of the line paper \prog{V-line v0.1}{Thm.~7.3, p.~37}.
+
+% shared with blueprint thm:cited-A4
+\begin{theorem}[the classification on the line]
+\label{thm:cited-A4}
+
+A family $(\Phi_{s,t})_{0 \le s \le t}$ of linear operators on $L^1(\RR)$ satisfies (A1)--(A8)
+and (ND) of Definition~\ref{def:cascade-measurement-family} if and only if there are an increasing
+bijection $\chi$ of $[0,\infty)$, the \emph{gauge}, and a function $F \not\equiv 0$ of the form
+\[
+  F(\omega) = a\,\omega^2 + \int_0^\infty(1 - \cos\omega x)\,\frac{k(x)}{x}\,dx,
+\]
+with $a \ge 0$, $k \ge 0$ nonincreasing and
+$\int_0^\infty\min(1, x^2)\,k(x)\,x^{-1}\,dx < \infty$, such that $\Phi_{s,t}f = \mu_{s,t} * f$ with
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)\omega) - F(\chi(s)\omega)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR.
+\]
+Conversely, for every such pair $(\chi, F)$ there are probability measures $\mu_{s,t}$ with
+these transforms, and the operators $f \mapsto \mu_{s,t} * f$ satisfy (A1)--(A8) and (ND).
+The pair $(\chi, F)$ is unique once $\chi(1) = 1$.
+\end{theorem}
+
+In the \emph{canonical gauge} $\chi = \mathrm{id}$ the kernel at scale $t$ has transform
+$e^{-F(t\omega)}$, and the family is the \emph{similarity family} of $F$. The functions $F$ of the
+form (\ref{eq:admissible-exponent}) are the \emph{admissible exponents}, and $(a, k)$ their
+\emph{data}. They form a convex cone \prog{V-cone v0.1}{Lemma~2.7, p.~12}. The Gaussian is the
+exponent with $k = 0$. The \Matern{} exponent $\gamma\log(1 + \omega^2)$ of index $\gamma$ has
+$a = 0$ and $k(x) = 2\gamma e^{-x}$.
+
+\subsubsection{The axioms in $\RR^d$}
+\label{subsec:cited-d}
+
+The isotropic paper carries the axioms from the line to $\RR^d$, with rotation invariance in place
+of symmetry, and classifies the families that satisfy them. This subsection states both, since
+Section~\ref{ch:pyramid} weakens the first and compares its strata with the second. Fix $d \ge 1$.
+For a measure $\mu$ on $\RR^d$ write
+$\widehat\mu(\omega) = \int e^{i\langle\omega, x\rangle}\,\mu(dx)$, and for a linear map $A$ of
+$\RR^d$ write $A_*\mu$ for the image of $\mu$ under $x \mapsto Ax$.
+
+% shared with blueprint def:isotropic-cascade-family
+\begin{definition}[isotropic cascade families]
+\label{def:isotropic-cascade-family}
+
+Let $d \ge 1$. An \emph{isotropic cascade family in dimension $d$} is a family
+$(\mu_{s,t})_{0 \le s \le t}$ of probability measures on $\RR^d$ such that
+\begin{itemize}
+\item[(I1)] $\mu_{t,t} = \delta_0$, and $\mu_{r,t} = \mu_{s,t} * \mu_{r,s}$ whenever
+$r \le s \le t$ (cascade);
+\item[(I2)] for every $\omega \in \RR^d$ the map $(s,t) \mapsto \widehat\mu_{s,t}(\omega)$ is
+continuous on $\{0 \le s \le t\}$ (continuity);
+\item[(I3)] $Q_*\mu_{s,t} = \mu_{s,t}$ for every $Q \in \Orth(d)$ and every pair (rotation
+invariance);
+\item[(I4)] there is a family $(S_\lambda)_{\lambda > 0}$ of increasing bijections of
+$[0,\infty)$ with $(\lambda I)_*\mu_{s,t} = \mu_{S_\lambda s, S_\lambda t}$ for every $\lambda > 0$
+and every pair (dilation covariance);
+\item[(ND)] $\mu_{s,t} \ne \delta_0$ whenever $s < t$ (nondegeneracy).
+\end{itemize}
+\end{definition}
+
+The axioms are stated on the kernels. The isotropic paper also states them on operators on
+$L^1(\RR^d)$, as (A1)--(A8) and (ND) with the rotations in place of the reflection
+\prog{iso v0.1}{Def.~3.1, pp.~10--11}. The two definitions describe the same families, by the
+next theorem \prog{iso v0.1}{Lemma~3.3, pp.~11--12}.
+
+% shared with blueprint thm:cited-A30
+\begin{theorem}[operators and kernels in dimension $d$]
+\label{thm:cited-A30}
+
+Let $d \ge 1$, and for a probability measure $\mu$ on $\RR^d$ and $f \in L^1(\RR^d)$ write
+$(\mu * f)(x) := \int f(x - y)\,\mu(dy)$.
+\begin{enumerate}
+\item Let $\Phi$ be a linear operator on $L^1(\RR^d)$ that is bounded, commutes with every
+translation $f \mapsto f(\cdot - a)$, $a \in \RR^d$, maps nonnegative functions to nonnegative
+functions, and has $\int\Phi f = \int f$ for every nonnegative $f$. Then there is a unique
+probability measure $\mu$ on $\RR^d$ with $\Phi f = \mu * f$ for every $f \in L^1(\RR^d)$.
+Conversely, for every probability measure $\mu$ on $\RR^d$ the operator $f \mapsto \mu * f$ has
+these four properties.
+\item Let $\mu_n$ and $\mu$ be probability measures on $\RR^d$. Then
+$\widehat\mu_n(\xi) \to \widehat\mu(\xi)$ for every $\xi \in \RR^d$ if and only if
+$\mu_n * f \to \mu * f$ in $L^1(\RR^d)$ for every $f \in L^1(\RR^d)$.
+\end{enumerate}
+\end{theorem}
+
+So (I1) is the cascade (A6), (I2) the continuity (A7) and (I4) the covariance (A8), with the same
+bijections. (I3) is the rotation invariance, which in $\RR^d$ takes the place of the reflection
+(A3). Let $\mathcal{A}_d$ be the set of admissible $F$ for
+which $\omega \mapsto F(|\omega|)$, $\omega \in \RR^d$, is the exponent of a self-decomposable law
+on $\RR^d$. Then $\mathcal{A}_1$ is the whole cone of admissible exponents and
+$\mathcal{A}_{d+1} \subseteq \mathcal{A}_d$ \prog{iso v0.1}{Prop.~2.6, p.~8}. The classification
+in $\RR^d$ is the main theorem of the isotropic paper \prog{iso v0.1}{Thm.~3.6, p.~13}.
+
+% shared with blueprint thm:cited-A31
+\begin{theorem}[the classification in $\RR^d$]
+\label{thm:cited-A31}
+
+Let $d \ge 1$, and let $\mathcal{A}_d$ be the set of admissible exponents $F$ (of the form
+(\ref{eq:admissible-exponent})) for which $\omega \mapsto F(|\omega|)$ is the exponent of a
+self-decomposable law on $\RR^d$. A family $(\mu_{s,t})_{0 \le s \le t}$ of probability measures
+on $\RR^d$ is an isotropic cascade family in dimension $d$ if and only if there are a gauge
+$\chi$, an increasing bijection of $[0,\infty)$, and an $F \in \mathcal{A}_d$ with
+$F \not\equiv 0$ such that
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR^d.
+\]
+The pair is unique against any second such pair $(\chi', F')$ with $F' \in \mathcal{A}_d$, up to
+$(\chi, F) \mapsto (c\chi, F(c^{-1}\,\cdot))$ with $c > 0$, so it is unique once $\chi(1) = 1$.
+\end{theorem}
+
+Its proof reduces an isotropic family to its marginals on a line \prog{iso v0.1}{\S~3.2, p.~12},
+a reduction that Section~\ref{sec:pyramid-reduction} takes up under one dilation. Every admissible
+pair is realized \prog{iso v0.1}{Lem.~3.8, p.~14}.
+
+% shared with blueprint thm:cited-A34
+\begin{theorem}[every pair is realized]
+\label{thm:cited-A34}
+
+Let $d \ge 1$, let $\chi$ be a gauge and let $F \in \mathcal{A}_d$ with $F \not\equiv 0$. Then
+there is an isotropic cascade family $(\mu_{s,t})_{0 \le s \le t}$ in dimension $d$ with
+\[
+  \widehat\mu_{s,t}(\omega) = \exp\bigl(-[F(\chi(t)|\omega|) - F(\chi(s)|\omega|)]\bigr),
+  \qquad 0 \le s \le t,\ \omega \in \RR^d.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $\mu$ be the self-decomposable law on $\RR^d$ with $\widehat\mu(\omega) = e^{-F(|\omega|)}$,
+which $F \in \mathcal{A}_d$ provides. For $0 < c < 1$ it has a residual $\varrho_c$, a probability
+measure with $\widehat\mu(\omega) = \widehat\mu(c\omega)\,\widehat\varrho_c(\omega)$; put
+$\varrho_0 := \mu$ and $\varrho_1 := \delta_0$. Since $\widehat\mu$ has no zero and $F(0) = 0$,
+\[
+  \widehat\varrho_c(\omega) = \exp\bigl(-[F(|\omega|) - F(c|\omega|)]\bigr), \qquad 0 \le c \le 1 .
+\]
+A gauge has $\chi(0) = 0$ and $\chi(t) > 0$ for $t > 0$. For $0 \le s \le t$ with $t > 0$ let
+$\mu_{s,t}$ be the image of $\varrho_{\chi(s)/\chi(t)}$ under $x \mapsto \chi(t)x$, and let
+$\mu_{0,0} := \delta_0$. The transform of $\mu_{s,t}$ at $\omega$ is that of $\varrho_{\chi(s)/\chi(t)}$
+at $\chi(t)\omega$, which is the display.
+
+The display gives the axioms of Definition~\ref{def:isotropic-cascade-family}. (I1): the exponents
+of $\mu_{s,t}$ and $\mu_{r,s}$ add up to that of $\mu_{r,t}$, and a law is determined by its
+transform. (I2): $F$ and $\chi$ are continuous. (I3): the transform depends on $\omega$ only through
+$|\omega|$. (I4): with $S_\lambda := \chi^{-1}(\lambda\chi(\cdot))$, an increasing bijection of
+$[0,\infty)$, the transform of $(\lambda I)_*\mu_{s,t}$ at $\omega$ is the display at
+$(S_\lambda s, S_\lambda t)$. (ND): if $\mu_{s,t} = \delta_0$ with $s < t$, then $F(cr) = F(r)$ for
+every $r \ge 0$, with $c := \chi(s)/\chi(t) < 1$; iterating, $F(r) = F(c^nr) \to F(0) = 0$, against
+$F \not\equiv 0$.
+
+Every step is machine-checked, in the affine paper's formal development, with no cited fact.
+\end{proof}
+
+Section~\ref{ch:pyramid} keeps (I1), (I2) and (ND), treats the rotation invariance (I3) as an
+optional property, and requires (I4) at one dilation (Definition~\ref{def:family-dimension-d}). The class $\mathcal{A}_d$
+has a polar description, by the \Levy{} measures of its laws \prog{iso v0.1}{Prop.~3.11(1)--(2),
+pp.~15--16}. In the next definition the Gaussian coefficient $a_0$ enters the exponent as
+$\tfrac12 a_0|\xi|^2$, in Sato's normalization. At $d = 1$ it is twice the $a$ of
+(\ref{eq:admissible-exponent}) (Theorem~\ref{thm:cited-A35}(2)).
+
+% shared with blueprint def:isotropic-origin-data
+\begin{definition}[isotropic origin data]
+\label{def:isotropic-origin-data}
+
+Let $d \ge 1$, write $\sigma_{d-1}$ for the surface measure of the unit sphere
+$S^{d-1} \subset \RR^d$ and $|S^{d-1}| := \sigma_{d-1}(S^{d-1})$. An \emph{isotropic origin datum
+in dimension $d$} is a pair $(a_0, k_d)$ with $a_0 \ge 0$ and $k_d : (0,\infty) \to [0,\infty)$
+nonincreasing, subject to
+\[
+  \int_0^1 k_d(r)\,r\,dr < \infty \qquad\text{and}\qquad \int_1^\infty k_d(r)\,\frac{dr}{r} < \infty .
+\]
+Its \emph{\Levy{} measure} is the rotation-invariant measure $\nu_d$ on $\RR^d \setminus \{0\}$
+with radial density $f_d(r) = k_d(r)\bigl(|S^{d-1}|\,r^d\bigr)^{-1}$, so that
+\[
+  \int_{\RR^d} g\,d\nu_d = \frac{1}{|S^{d-1}|}\int_{S^{d-1}}\sigma_{d-1}(d\eta)
+  \int_0^\infty g(r\eta)\,k_d(r)\,\frac{dr}{r}
+\]
+for every nonnegative Borel $g$ vanishing at the origin. Its \emph{exponent} is
+\[
+  F_d(\xi) = \tfrac12 a_0|\xi|^2 + \int_{\RR^d}\bigl(1 - \cos\langle\xi, x\rangle\bigr)\,\nu_d(dx),
+  \qquad \xi \in \RR^d,
+\]
+and its \emph{law} is the symmetric infinitely divisible law $\mu$ on $\RR^d$ with
+$\widehat\mu = e^{-F_d}$. The function $k_d$ is the datum's \emph{polar profile}.
+\end{definition}
+
+% shared with blueprint thm:cited-A35
+\begin{theorem}[the polar form of $\mathcal{A}_d$]
+\label{thm:cited-A35}
+
+Let $d \ge 1$ and $F : [0,\infty) \to [0,\infty)$.
+\begin{enumerate}
+\item $\xi \mapsto F(|\xi|)$ is the exponent of a self-decomposable law on $\RR^d$ if and only if
+it is the exponent $F_d$ of an isotropic origin datum $(a_0, k_d)$ in dimension $d$
+(Definition~\ref{def:isotropic-origin-data}):
+\[
+  F(|\xi|) = \tfrac12 a_0|\xi|^2 + \int_{\RR^d}\bigl(1 - \cos\langle\xi, x\rangle\bigr)\,
+  \frac{k_d(|x|)}{|S^{d-1}|\,|x|^d}\,dx, \qquad \xi \in \RR^d.
+\]
+The datum is then unique, $k_d$ up to modification on a Lebesgue-null set.
+\item If this holds, $F$ is admissible, of the form (\ref{eq:admissible-exponent}) with Gaussian
+coefficient $a = \tfrac12 a_0'$ and profile $k = k_1$ for its datum $(a_0', k_1)$ in dimension $1$. So
+$\mathcal{A}_d$ is the set of $F$ for which $F(|\cdot|)$ is the exponent of an isotropic origin
+datum in dimension $d$.
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{The generator form}
+\label{subsec:cited-generator}
+
+The scale space of an admissible exponent solves an evolution equation in the scale. Let $F$ be
+admissible with data $(a, k)$, put $\kappa^{\mathrm C} := -dk$, a measure on $(0,\infty)$, and let
+$u(t,\cdot) = \mu_{0,t} * f$ be the scale space of a Schwartz function $f \in \mathcal{S}(\RR)$ in
+the canonical gauge. Then $\partial_t u = \mathcal{H}_t u$ with
+\begin{equation}
+\label{eq:generator-form}
+  \mathcal{H}_t g(x) = 2at\,g''(x) + \frac1t\int_{(0,\infty)}\delta^2_{tv}g(x)\,
+  \kappa^{\mathrm C}(dv), \qquad
+  \delta^2_h g(x) := \tfrac12\bigl(g(x - h) + g(x + h)\bigr) - g(x)
+\end{equation}
+\prog{V-cone v0.1}{Prop.~6.2, display (6.2), p.~56}. Write
+$\Cin(z) := \int_0^z(1 - \cos v)\,dv/v$, the entire cosine integral. The \emph{Cin ray of step
+$\tau$} is the exponent $\Cin(\tau\omega)$, which is (\ref{eq:admissible-exponent}) with $a = 0$ and
+the profile $k = \mathbf{1}_{(0,\tau)}$ \prog{V-cone v0.1}{Lemma~3.1(1), p.~13}. Its generator is a
+single symmetric second difference \prog{V-cone v0.1}{Prop.~6.4(5), p.~58}.
+
+% shared with blueprint thm:cited-A13
+\begin{theorem}[the generator of a Cin ray]
+\label{thm:cited-A13}
+
+Let $\tau > 0$, and let $F$ be the admissible exponent with data $(0, \mathbf{1}_{(0,\tau)})$, the
+Cin ray of step $\tau$. In the canonical gauge its generator is a single symmetric second
+difference: for $f \in \mathcal{S}(\RR)$ the scale space $u(t,\cdot) = \mu_{0,t} * f$ satisfies,
+for every $t > 0$,
+\[
+  \partial_t u(t,\cdot) = \frac1t\,\delta^2_{t\tau}u(t,\cdot), \qquad
+  \delta^2_h g(x) = \tfrac12\bigl(g(x - h) + g(x + h)\bigr) - g(x).
+\]
+\end{theorem}
+
+So (\ref{eq:generator-form}) writes every admissible evolution as a Gaussian term, with the weight
+$a$, plus a positive superposition of these \emph{atomic generators}, with the weight
+$\kappa^{\mathrm C}$. The same weights, with $\kappa^{\mathrm C}$ written $\varpi$ below, give $F$
+itself, and the Gaussian ray and the Cin rays are the extreme rays of the cone of admissible
+exponents \prog{V-cone v0.1}{Prop.~3.3, pp.~15--16}.
+
+% shared with blueprint thm:cited-A15
+\begin{theorem}[the Choquet structure of the admissible cone]
+\label{thm:cited-A15}
+
+The superposition map $(a, \varpi) \mapsto F$,
+\[
+  F(\omega) = a\omega^2 + \int_{(0,\infty)}\Cin(\tau\omega)\,\varpi(d\tau), \qquad \omega \in \RR,
+\]
+is a bijection from the pairs $(a, \varpi)$, $a \ge 0$ and $\varpi$ a positive Borel measure on
+$(0,\infty)$ with $\int\min\bigl(\tau^2, 1 + \log_+\tau\bigr)\,\varpi(d\tau) < \infty$, onto the
+admissible exponents. Its inverse takes the exponent with data $(a, k)$ to $(a, \varpi)$ with
+$\varpi = -dk$, that is $k(x) = \varpi((x,\infty))$ for almost every $x > 0$. Consequently the
+extreme rays of the cone of admissible exponents are the Gaussian ray $\omega \mapsto \omega^2$
+and the Cin rays $\omega \mapsto \Cin(\tau\omega)$, $\tau > 0$, and every admissible exponent is a
+unique superposition of Cin rays and the Gaussian term $a\omega^2$.
+\end{theorem}
+
+\subsubsection{Other statements of the released modules}
+\label{subsec:cited-released}
+
+The paper and the supplement also cite the following statements of the released modules. The list
+is an index: each is restated, with what it says, where it is used.
+\begin{itemize}
+\item \prog{V-line v0.1}{Remark~6.7, pp.~32--33}: the gauge freedom of the scale coordinate.
+\item \prog{V-cone v0.1}{Prop.~3.3, pp.~15--16}: Theorem~\ref{thm:cited-A15}.
+\item \prog{V-cone v0.1}{\S~4, p.~24}: the subordination bridge, which reads a family as Brownian
+motion run at a random time.
+\item \prog{V-cone v0.1}{Prop.~5.7, p.~48}: the symmetric Thorin subclass.
+\item \prog{V-cone v0.1}{Prop.~6.4(4)--(5), p.~58}: the generator of a Thorin family as a mixture of
+differences of Laplace kernels, and that of a Cin ray as one symmetric second difference.
+\item \prog{V-selection v0.1}{Thm.~4.2, pp.~30--31}: non-enhancement at global extrema for every family,
+at local extrema on the Gaussian ray only; and its Cor.~4.4, p.~33: off the Gaussian ray the scale
+space enhances a local maximum.
+\item \prog{V-selection v0.1}{\S~4.3, pp.~34--35, and Prop.~4.5, p.~35}: the \Polya{} frequency
+members and their counts, restated below as Theorems~\ref{thm:cited-A22} and~\ref{thm:cited-A23}.
+\item \prog{V-selection v0.1}{Thm.~4.10, p.~43}: scale-monotone non-creation characterizes the
+Gaussian.
+\item \prog{V-selection v0.1}{Remark~4.15, pp.~50--51}: four readings of non-creation, and the
+nested classes of families they select.
+\item \prog{V-selection v0.1}{Prop.~5.6, p.~60}: the Helmholtz identity.
+\item \prog{V-selection v0.1}{\S~6, p.~69}: diffusion creates extrema in the plane.
+\item \prog{iso v0.1}{Prop.~3.12, pp.~16--17}: the subordination bridge in $\RR^d$; the
+\Matern{}, stable and Student-$t$ kernels.
+\item \prog{iso v0.1}{Prop.~3.22, p.~27}: the polar profile one dimension down;
+$\mathcal{A}_{d+1} \subsetneq \mathcal{A}_d$ for every $d$.
+\item \prog{affine v0.1}{Prop.~F.1, p.~93}: the frame families.
+\end{itemize}
+The cone module computes the \Matern{} family on the line by forward--backward first-order sections
+in its Proposition~7.2, pp.~60--61, and interpolates the pyramid of a rational step in its
+Proposition~7.5(2), p.~65.
+
+% shared with blueprint thm:cited-A19
+\begin{theorem}[the \Matern{} cascade by first-order sections]
+\label{thm:cited-A19}
+
+Let $\gamma \ge 1$ be an integer, and consider the \Matern{} family on the line in the canonical
+gauge, $e^{-F(t\omega)} = (1 + t^2\omega^2)^{-\gamma}$. For $t > 0$ let $e^\pm_t$ be
+the one-sided exponential kernels $t^{-1}e^{-|x|/t}$ carried by $\pm(0,\infty)$, and
+$L_t$ the Laplace kernel $(2t)^{-1}e^{-|x|/t}$. Let $0 < t_k < t_{k+1}$ be adjacent knots
+and $r := t_k/t_{k+1} \in (0,1)$. Then the increment has transform
+\[
+  \widehat\mu_{t_k, t_{k+1}}(\omega) = \Bigl(\frac{1 + t_k^2\omega^2}{1 + t_{k+1}^2\omega^2}\Bigr)^{\gamma},
+\]
+and it is a cascade of $\gamma$ identical causal first-order sections and $\gamma$ identical
+anticausal ones. Each causal section is the convolution with
+$r\,\delta_0 + (1 - r)\,e^+_{t_{k+1}}$, a mixture of no displacement and a one-sided
+exponential displacement, with the one-state realization
+\[
+  w' = \frac{y - w}{t_{k+1}}, \qquad v = r\,y + (1 - r)\,w,
+\]
+run forward in $x$ (input $y$, state $w$, output $v$, the prime the derivative in $x$), the
+solution $w$ being the one in $L^1$, with $w(-\infty) = 0$. Each anticausal
+section is its mirror image, run backward. For $\gamma = 1$ the two-sided increment is
+\[
+  r^2\delta_0 + r(1 - r)\bigl(e^+_{t_{k+1}} + e^-_{t_{k+1}}\bigr)
+  + (1 - r)^2\,L_{t_{k+1}} .
+\]
+\end{theorem}
+
+% shared with blueprint thm:cited-A20
+\begin{theorem}[rational increments and the pyramid they interpolate]
+\label{thm:cited-A20}
+
+Let $R$ be a symmetric rational function that is the transform of an infinitely divisible law on
+$\RR$, with folded \Levy{} profile $k_R$. Then for each $q > 1$ there is exactly one function $F$
+that is continuous with $F(0) = 0$ and satisfies $F(q\omega) - F(\omega) = -\log R(\omega)$,
+namely
+\[
+  e^{-F(\omega)} = \prod_{m \ge 1}R(q^{-m}\omega), \qquad\text{with folded profile}\qquad
+  k(x) = \sum_{m \ge 1}k_R(q^m x);
+\]
+it is admissible exactly when this $k$ has a nonincreasing version ($k_R$, and with it $k$, being
+fixed only up to a null set), in particular whenever $k_R$ is nonincreasing. The
+\Matern{} pyramid is the case $R(\omega) = (1 + \omega^2)^{-1}$.
+\end{theorem}
+
+A \emph{\Polya{} frequency density} is a probability density $\phi$ on $\RR$ whose translation
+kernel $(x, y) \mapsto \phi(x - y)$ is totally positive: every determinant
+$\det[\phi(x_i - y_j)]_{i,j \le n}$ with $x_1 < \dots < x_n$ and $y_1 < \dots < y_n$ is
+nonnegative [\sscite{karlin1968total}, Ch.~7, \S 1, p.~332]. Convolution with such a density is
+\emph{variation-diminishing}: it does not increase the number of sign changes of a function. This
+is the property that the counting statements use. The selection module shows that the families of
+the exponents below have \Polya{} frequency kernels, and counts what they create from a signal, in
+its Proposition~4.5(1)--(2), p.~35. Both facts of the next theorem are classical. A density with
+the transform $e^{-F}$, for $F$ of the form below, is a \Polya{} frequency density by Schoenberg's
+theorem [\sscite{karlin1968total}, Ch.~7, (1.6), p.~335, and Thm.~3.2(a), p.~345], with the numbers
+$\pm1/\theta_i$ in the product. A \Polya{} frequency kernel is variation-diminishing
+[\sscite{karlin1968total}, Ch.~5, Thm.~3.1, p.~233]. Karlin states it for bounded Borel inputs,
+with the input's sign changes counted in the essential sense and the output's pointwise. The
+selection module extends it to integrable inputs and to the essential count for the output
+\prog{V-selection v0.1}{Prop.~4.5, p.~35}. The
+theorem restates the selection module's proposition, which is the statement the formal development
+takes as an axiom.
+
+% shared with blueprint thm:cited-A22
+\begin{theorem}[the \Polya{} frequency members]
+\label{thm:cited-A22}
+
+For a function $g$ on $\RR$ write $S^-(g)$ for the number of sign changes of $g$, in the essential
+sense.
+Let $F \not\equiv 0$ be an admissible exponent of the form
+\[
+  F(\omega) = a\,\omega^2 + \sum_i\log\Bigl(1 + \frac{\omega^2}{\theta_i^2}\Bigr), \qquad
+  a \ge 0,\quad \theta_i > 0,\quad \sum_i\theta_i^{-2} < \infty,
+\]
+over countably many $\theta_i$. Then the similarity family of $F$, with kernels
+$\widehat\mu_{0,t} = e^{-F(t\,\cdot)}$, has \Polya{} frequency kernels, so that convolution with
+$\mu_{0,t}$ is variation-diminishing: $S^-(\mu_{0,t} * g) \le S^-(g)$ for every $t > 0$ and every
+integrable or bounded $g$.
+\end{theorem}
+
+% shared with blueprint thm:cited-A23
+\begin{theorem}[the counting clause]
+\label{thm:cited-A23}
+
+For a family as in Theorem~\ref{thm:cited-A22} and $f$ the primitive of an integrable $f'$, the
+scale space $u(t,\cdot) = \mu_{0,t} * f$ has, at every scale $t > 0$, no more crossings of any
+value $c$ than the signal and no more changes of monotonicity:
+\[
+  S^-\bigl(u(t,\cdot) - c\bigr) \le S^-(f - c) \quad (c \in \RR), \qquad
+  S^-\bigl(\partial_x u(t,\cdot)\bigr) \le S^-(f').
+\]
+\end{theorem}
+
+\begin{proof}
+The primitive $f = C + \int_0^x f'$ is bounded by $|C| + \|f'\|_1$ and continuous, so
+$f - c$ is a bounded measurable test function and $\mu_{0,t} * f - c = \mu_{0,t} * (f - c)$ at
+every point. By Fubini's theorem on $[0, x] \times \mu_{0,t}$,
+$u(t, x) = u(t, 0) + \int_0^x (\mu_{0,t} * f')(z)\,dz$ at every $x$, with $\mu_{0,t} * f'$ integrable;
+by the Lebesgue differentiation theorem $\partial_x u(t,\cdot) = \mu_{0,t} * f'$ almost everywhere,
+and $S^-$, a count in the essential sense, does not see the null set. The variation-diminishing
+clause of Theorem~\ref{thm:cited-A22}, applied to the bounded $f - c$ and to the integrable $f'$,
+gives the two inequalities.
+\end{proof}
+
+\subsubsection{Notation}
+\label{subsec:cited-notation}
+
+This paper writes the law with transform $(1 + r^2|\omega|^2)^{-\gamma}$ as the \Matern{} law
+\emph{of index $\gamma$ at range $r$}. The isotropic paper's \Matern{} kernel of index $\gamma$ at
+scale $t$ has transform $(1 + t^2|\omega|^2/2)^{-\gamma}$ \prog{iso v0.1}{Prop.~3.12(2), p.~16},
+so it is the law at range $t/\sqrt2$. The cone module's \Matern{} kernel at scale $t$ has transform
+$(1 + t^2\omega^2)^{-\gamma}$ \prog{V-cone v0.1}{Prop.~5.2(2), p.~43}, the law at range $t$.
+
+The transform $\widehat\mu$ and the image $A_*\mu$ are those of Section~\ref{subsec:cited-d}. The
+dilation of measures is $D_c := (cI)_*$ for $c > 0$, so that
+$\widehat{D_c\mu}(\omega) = \widehat\mu(c\omega)$. On the line it is written $T_c$, as in
+[\sscite{sato1999levy}, (13.8), p.~75]: $(T_c\mu)(B) = \mu(c^{-1}B)$ for Borel sets $B \subseteq \RR$. The same
+notation is used for a measure on $(0,\infty)$, such as a folded \Levy{} measure, since
+$x \mapsto cx$ maps $(0,\infty)$ onto itself. The dilation of functions $\mathcal{D}_\lambda$ is the
+one of (A8), mass-preserving. The ratio of a pyramid is $q > 1$, and $\ell := \log q$.
+
+The Gaussian part has two normalizations. The paper's \Levy{} data of a
+law on $\RR^d$ are a Gaussian part $A$ and a \Levy{} measure $\nu$
+(Lemma~\ref{lem:symmetric-levy-khintchine}). The Gaussian part enters the exponent as
+$\langle\omega, A\omega\rangle$, so at $d = 1$ it is the $a$ of (\ref{eq:admissible-exponent}). Sato's Gaussian covariance matrix, which enters as
+$\tfrac12\langle z, A^{\mathrm S}z\rangle$ in the theorems of Section~\ref{subsec:cited-sato}, is
+written $A^{\mathrm S}$, so $A^{\mathrm S} = 2A$. The Gaussian coefficient $a_0$ of an isotropic
+origin datum (Definition~\ref{def:isotropic-origin-data}) is in Sato's normalization,
+$A^{\mathrm S} = a_0I$. On the line the folded \Levy{} measure is written $\varpi$
+and the measure of (\ref{eq:generator-form}) $\kappa^{\mathrm C}$, the two related by
+$\varpi(dx) = k(x)\,dx/x$ with $k(x) = \kappa^{\mathrm C}((x,\infty))$. The generator of a family
+is $\mathcal{H}_t$, and $\mathcal{A}_d$ is the class of exponents admitted in dimension $d$. The
+knots, the knot kernels and the ladder of a pyramid are defined after
+Lemma~\ref{lem:family-dilations}.
+
+The \Levy{} data have a reading as operators. A symmetric infinitely divisible law with exponent
+$\Psi(\omega) = \langle\omega, A\omega\rangle + \int(1 - \cos\langle\omega, x\rangle)\,\nu(dx)$ is
+the time-one law of the convolution semigroup with generator
+\[
+  g \mapsto \nabla\cdot(A\nabla g) + \int \Big(\tfrac12\big(g(\cdot + x) + g(\cdot - x)\big) - g\Big)\,\nu(dx).
+\]
+The Gaussian part is a diffusion. The \Levy{} measure weights the symmetric second differences of
+span $x$, so $\nu$ says how much smoothing acts at each displacement. The probabilistic word for this
+is a jump of size $x$, and the paper uses it.
+
+Two families carry the name \Matern{}. The law $L$ is the kernel of the one and the octave step of
+the other. The \Matern{} family of index $1$ has the kernel $L_t$ at the scale $t$, the \Matern{}
+law of index $1$ at range $t$. Its octave step has the transform
+$(1 + t^2|\omega|^2)/(1 + q^2t^2|\omega|^2)$ (Proposition~\ref{prop:principle-other-readings}(1)),
+so it is the mixture $q^{-2}\delta_0 + (1 - q^{-2})L_{qt}$, by the identity of
+Proposition~\ref{prop:recursion-helmholtz}(1), which holds in every dimension.
+The \Matern{} pyramid of Section~\ref{ch:matern} has the octave step $L_{ct}$, one Bessel potential,
+and its kernel at the scale $t$ is the convolution of the steps $L_{ctq^{-i}}$, $i \ge 1$, below
+it. Both families are covariant under every dilation.
+
+One example puts the normalizations side by side. On the line, take the Gaussian law of variance
+$s^2$ convolved with the compound Poisson law of jumps $\pm x$, each at rate $\lambda$. Its exponent
+is $\tfrac12 s^2\omega^2 + 2\lambda(1 - \cos\omega x)$. The paper's data are $A = a = s^2/2$ and
+$\nu = \lambda(\delta_x + \delta_{-x})$. Sato's are $A^{\mathrm S} = s^2$ and the same $\nu$. The
+folded \Levy{} measure is $\varpi = 2\lambda\delta_x$. In $\RR^d$ the radial counterpart has the
+Gaussian part $\tfrac12 s^2 I$ and $\nu = 2\lambda\sigma_x$, with $\sigma_x$ the uniform law on the
+sphere of radius $x$, which is the line's $\nu$ at $d = 1$. Its exponent is
+$\tfrac12 s^2|\omega|^2 + 2\lambda(1 - \Omega_d(x|\omega|))$, with
+$\Omega_d(r) := \int\cos(r\eta_1)\,\sigma_1(d\eta)$. An isotropic origin datum with this Gaussian part
+has $a_0 = s^2$. Its \Levy{} measure has a density, which $2\lambda\sigma_x$ lacks.
+
+Some letters carry more than one meaning, each fixed where it is introduced.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.74\textwidth}}
+\toprule
+Symbol & Meanings \\
+\midrule
+$D_c$ & the dilation of measures, written $T_c$ on the line \\
+$\mathcal{D}_\lambda$ & the dilation of functions, mass-preserving (A8) \\
+$D$, $E$ & balls in the statements of Section~\ref{subsec:cited-sato} \\
+$D^k$ & a derivative of order $k$ (Section~\ref{ch:matern}) \\
+$D_h$, $D_5$, $D_9$ & the symbols of the discrete Laplacians, not dilations
+(Section~\ref{sec:discrete-helmholtz}) \\
+$L_r$ & the \Matern{} law of index $1$ at range $r$; the operator $f \mapsto L_r * f$; on the line
+also its density \\
+$\sigma_{d-1}$ & the surface measure of the unit sphere, not normalized (Definition~\ref{def:isotropic-origin-data}) \\
+$\sigma_r$ & the uniform probability law on the sphere of radius $r$ (Section~\ref{ch:pyramid});
+at $d = 2$, $\sigma_1$ is this law at $r = 1$, not the surface measure \\
+$\sigma$ & the step of a random walk on a lattice; the symbol $\sigma_t$ of the generator
+(Proposition~\ref{prop:matern-generator-octave}), which the supplement writes $h_t$ on the line
+(Theorem~\ref{thm:matern-pyramid-line}(3)); in the supplement, a measure on a cylinder \\
+$\sigma_n$ & coefficients in the proof of Proposition~\ref{prop:sampled-laplace-exact} \\
+$\mu$ & with indices, a kernel or a step; alone, in Sections~S2.2 and~S2.3 of the supplement, a
+step measure \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The facts of the literature}
+\label{sec:cited-literature}
+
+The proofs read facts from three sources. They are the \Levy--Khintchine theory of infinitely
+divisible laws, in the book of Sato [\sscite{sato1999levy}], Schoenberg's representation of
+\Polya{} frequency densities, in Karlin's book [\sscite{karlin1968total}], and one integral
+representation of the modified Bessel function $K_\nu$ [\sscite{dlmf2026}]. A fourth source,
+the book of Schilling, Song and Vondra\v{c}ek on Bernstein functions
+[\sscite{schilling2012bernstein}], supplies the terms in which Section~\ref{ch:matern} describes the
+steps of the \Matern{} pyramid. Each fact is stated at its source's letter, or narrower where the
+proofs use less, and the sentence before it says where. Theorem~\ref{thm:cited-A50} is proved in
+the paragraph before it.
+
+\subsubsection{Infinitely divisible laws}
+\label{subsec:cited-sato}
+
+A probability measure $\mu$ on $\RR^d$ is infinitely divisible, as on the line, if for every $n$ it
+is the $n$-fold convolution power of some probability measure. Write $D := \{x \in \RR^d : |x| \le 1\}$
+for the closed unit ball. Sato's Gaussian covariance matrix is written $A^{\mathrm S}$, twice the
+paper's Gaussian part (Section~\ref{subsec:cited-notation}). The first theorem is the
+\Levy--Khintchine representation [\sscite{sato1999levy}, Thm.~8.1(i)--(iii), pp.~37--38], with the
+names of [\sscite{sato1999levy}, Def.~8.2, p.~38].
+
+% shared with blueprint thm:cited-A39
+\begin{theorem}[the \Levy--Khintchine representation]
+\label{thm:cited-A39}
+
+\begin{enumerate}
+\item[(i)] If $\mu$ is an infinitely divisible probability measure on $\RR^d$, then
+\[
+  \widehat\mu(z) = \exp\Bigl[-\tfrac12\langle z, A^{\mathrm S}z\rangle + i\langle\gamma, z\rangle
+  + \int_{\RR^d}\bigl(e^{i\langle z, x\rangle} - 1 - i\langle z, x\rangle\mathbf{1}_D(x)\bigr)\,
+  \nu(dx)\Bigr], \qquad z \in \RR^d,
+\]
+where $A^{\mathrm S}$ is a symmetric nonnegative-definite $d \times d$ matrix, $\gamma \in \RR^d$, and $\nu$
+is a measure on $\RR^d$ with $\nu(\{0\}) = 0$ and $\int_{\RR^d}\min(|x|^2, 1)\,\nu(dx) < \infty$.
+\item[(ii)] The representation of $\widehat\mu$ in (i) by $A^{\mathrm S}$, $\nu$ and $\gamma$ is unique.
+\item[(iii)] Conversely, for every symmetric nonnegative-definite $d \times d$ matrix $A^{\mathrm S}$, every
+measure $\nu$ with $\nu(\{0\}) = 0$ and $\int\min(|x|^2, 1)\,\nu(dx) < \infty$, and every
+$\gamma \in \RR^d$, there is an infinitely divisible probability measure $\mu$ whose transform is
+given by the formula of (i).
+\end{enumerate}
+The triple $(A^{\mathrm S}, \nu, \gamma)$ is the \emph{generating triplet} of $\mu$, $A^{\mathrm S}$ its
+\emph{Gaussian covariance matrix} and $\nu$ its \emph{\Levy{} measure}.
+\end{theorem}
+
+The transform of an infinitely divisible law has no zero [\sscite{sato1999levy}, Lemma~7.5,
+p.~32].
+
+% shared with blueprint thm:cited-A40
+\begin{theorem}[the transform has no zero]
+\label{thm:cited-A40}
+
+If $\mu$ is an infinitely divisible probability measure on $\RR^d$, then $\widehat\mu(z) \ne 0$ for
+every $z \in \RR^d$.
+\end{theorem}
+
+Limits of row sums of a null array are infinitely divisible, by Khintchine's theorem
+[\sscite{sato1999levy}, Thm.~9.3, p.~47], with the null array of Definition~9.2 on the same page.
+
+% shared with blueprint thm:cited-A41
+\begin{theorem}[Khintchine's theorem]
+\label{thm:cited-A41}
+
+Let $\{Z_{nk} : k = 1, \dots, r_n;\ n = 1, 2, \dots\}$ be random variables on $\RR^d$ such that, for
+each $n$, $Z_{n1}, \dots, Z_{nr_n}$ are independent, and, for every $\varepsilon > 0$,
+\[
+  \lim_{n \to \infty}\ \max_{1 \le k \le r_n}\Pr\bigl[|Z_{nk}| > \varepsilon\bigr] = 0
+\]
+(a \emph{null array}), and let $S_n := \sum_{k=1}^{r_n}Z_{nk}$ be its row sums. If, for some
+$b_n \in \RR^d$, the law of $S_n - b_n$ converges to a probability measure $\mu$, then $\mu$ is
+infinitely divisible.
+\end{theorem}
+
+The triplet of a linear image is [\sscite{sato1999levy}, Prop.~11.10, p.~65], printed there for a
+\Levy{} process and read here for its law at time $1$. It follows from the form of the transform in
+Theorem~\ref{thm:cited-A39}(i) by the change of variables $y = Ux$.
+
+% shared with blueprint thm:cited-A42
+\begin{theorem}[the linear image of an infinitely divisible law]
+\label{thm:cited-A42}
+
+Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$, and let $U$ be an $n \times d$ matrix. Then the image $U_*\mu$ of $\mu$ under
+$x \mapsto Ux$ is infinitely divisible on $\RR^n$, with generating triplet
+\[
+  A^{\mathrm S}_U = UA^{\mathrm S}U^{\tp}, \qquad \nu_U = \bigl[\nu U^{-1}\bigr]_{\RR^n \setminus \{0\}}, \qquad
+  \gamma_U = U\gamma + \int Ux\,\bigl(\mathbf{1}_E(Ux) - \mathbf{1}_D(x)\bigr)\,\nu(dx),
+\]
+where $(\nu U^{-1})(B) = \nu(\{x : Ux \in B\})$, $[\,\cdot\,]_{\RR^n \setminus \{0\}}$ is the
+restriction to $\RR^n \setminus \{0\}$, and $D$ and $E$ are the closed unit balls of $\RR^d$ and
+$\RR^n$.
+\end{theorem}
+
+\begin{proof}
+Throughout, $\langle \xi, Ux\rangle = \langle U^{\tp}\xi, x\rangle$ for $x \in \RR^d$ and
+$\xi \in \RR^n$, and $K$ is the operator norm of $U$, so that $|Ux| \le K|x|$. Write
+$\psi_{A^{\mathrm S},\nu,\gamma}(z)$ for the bracket of Theorem~\ref{thm:cited-A39}(i), and
+$g_z(x) = e^{i\langle z,x\rangle} - 1 - i\langle z,x\rangle\mathbf{1}_D(x)$ for its integrand on
+$\RR^d$, with $\mathbf{1}_E$ in place of $\mathbf{1}_D$ on $\RR^n$.
+
+\emph{Infinite divisibility.} Let $k \ge 1$ and let $\mu_k$ be a probability measure with
+$\mu = \mu_k^{*k}$. The transform of $(U_*\mu_k)^{*k}$ at $\xi$ is
+$\widehat{\mu_k}(U^{\tp}\xi)^k = \widehat\mu(U^{\tp}\xi)$, which is the transform of $U_*\mu$ at $\xi$; so
+$U_*\mu = (U_*\mu_k)^{*k}$, and $U_*\mu$ is infinitely divisible.
+
+\emph{The correction is integrable.} Put $c(x) = Ux\,(\mathbf{1}_E(Ux) - \mathbf{1}_D(x))$. It
+vanishes unless exactly one of $|x| \le 1$ and $|Ux| \le 1$ holds. If $|x| > 1 \ge |Ux|$, then
+$|c(x)| = |Ux| \le 1 = \min(|x|^2, 1)$. If $|x| \le 1 < |Ux|$, then $1 < |Ux| \le K|x|$, so
+$|c(x)| \le K|x| \le (K|x|)^3 \le K^3|x|^2 = K^3\min(|x|^2, 1)$. Hence
+$|c(x)| \le (K^3 + 1)\min(|x|^2, 1)$ for every $x$, and $c$ is $\nu$-integrable.
+
+\emph{The triplet.} The matrix $UA^{\mathrm S}U^{\tp}$ is symmetric. It is nonnegative-definite, as
+$\langle \xi, UA^{\mathrm S}U^{\tp}\xi\rangle = \langle U^{\tp}\xi, A^{\mathrm S}U^{\tp}\xi\rangle$. The measure
+$\nu_U$ has no mass at $0$, and since $\min(|Ux|^2, 1) \le (K^2 + 1)\min(|x|^2, 1)$,
+\[
+  \int \min(|y|^2, 1)\,\nu_U(dy) \le \int \min(|Ux|^2, 1)\,\nu(dx)
+  \le (K^2 + 1)\int \min(|x|^2, 1)\,\nu(dx) < \infty .
+\]
+So $(A^{\mathrm S}_U, \nu_U, \gamma_U)$ is a generating triplet on $\RR^n$ in the sense of
+Theorem~\ref{thm:cited-A39}(i).
+
+\emph{The transform.} Fix $\xi \in \RR^n$. The integrand $e^{i\langle \xi,y\rangle} - 1 - i\langle \xi,y\rangle\mathbf{1}_E(y)$
+vanishes at $y = 0$, so its integral against $\nu_U$ is its integral against the image of $\nu$,
+which is $\int (e^{i\langle \xi,Ux\rangle} - 1 - i\langle \xi,Ux\rangle\mathbf{1}_E(Ux))\,\nu(dx)$. Since
+$\langle \xi, Ux\rangle = \langle U^{\tp}\xi, x\rangle$, the integrand here is
+$g_{U^{\tp}\xi}(x) - i\langle \xi, c(x)\rangle$, a difference of two $\nu$-integrable functions, so the
+integral is $\int g_{U^{\tp}\xi}\,d\nu - i\langle \xi, \int c\,d\nu\rangle$. With
+$\langle \xi, A^{\mathrm S}_U \xi\rangle = \langle U^{\tp}\xi, A^{\mathrm S}U^{\tp}\xi\rangle$ and
+$\langle \gamma_U, \xi\rangle = \langle \gamma, U^{\tp}\xi\rangle + \langle \xi, \int c\,d\nu\rangle$, the
+two terms in $\langle \xi, \int c\,d\nu\rangle$ cancel, and
+\[
+  \psi_{A^{\mathrm S}_U,\nu_U,\gamma_U}(\xi) = \psi_{A^{\mathrm S},\nu,\gamma}(U^{\tp}\xi).
+\]
+The transform of $U_*\mu$ at $\xi$ is $\widehat\mu(U^{\tp}\xi) = \exp\psi_{A^{\mathrm S},\nu,\gamma}(U^{\tp}\xi)$,
+so $(A^{\mathrm S}_U, \nu_U, \gamma_U)$ is a generating triplet of $U_*\mu$, the only one by
+Theorem~\ref{thm:cited-A39}(ii).
+
+Every step is machine-checked. The formal statement, that $U_*\mu$ has this triplet, reads only
+the form of the transform in Theorem~\ref{thm:cited-A39}(i) and no admitted fact. The
+uniqueness in the last sentence is \ledger{A39}(ii).
+\end{proof}
+
+The next two theorems are [\sscite{sato1999levy}, Prop.~15.5, p.~93], with the sentence after it,
+and [\sscite{sato1999levy}, Thm.~15.8, p.~94].
+
+% shared with blueprint thm:cited-A43
+\begin{theorem}[self-decomposable laws are infinitely divisible]
+\label{thm:cited-A43}
+
+If $\mu$ is self-decomposable, then $\mu$ is infinitely divisible and, for every $b > 1$, the
+measure $\varrho_b$ of Definition~\ref{def:self-decomposable} is uniquely determined and infinitely
+divisible. If $\mu$ is semi-selfdecomposable, then $\mu$ is infinitely divisible and $\varrho_b$ is
+uniquely determined. So a self-decomposable law is semi-selfdecomposable with every $b > 1$ as a
+span.
+\end{theorem}
+
+% shared with blueprint thm:cited-A44
+\begin{theorem}[semi-selfdecomposability by the \Levy{} measure]
+\label{thm:cited-A44}
+
+Fix $b > 1$. Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating
+triplet $(A^{\mathrm S}, \nu, \gamma)$. Then $\mu$ is semi-selfdecomposable with $b$ as a span if and only if
+\[
+  D_b\nu \ge \nu ,
+\]
+where $(D_b\nu)(B) = \nu(b^{-1}B)$ is the image of $\nu$ under $x \mapsto bx$. Semi-selfdecomposability
+imposes no restriction on $A^{\mathrm S}$ and $\gamma$.
+\end{theorem}
+
+\begin{proof}
+For a generating triplet $(A^{\mathrm S}, \nu, \gamma)$ write $\psi_{A^{\mathrm S},\nu,\gamma}(z)$ for the bracket of
+Theorem~\ref{thm:cited-A39}(i), so that the law with this triplet has the transform
+$\exp\psi_{A^{\mathrm S},\nu,\gamma}$. If $(A^{\mathrm S}_1, \nu_1, \gamma_1)$ and
+$(A^{\mathrm S}_2, \nu_2, \gamma_2)$ are triplets, so is
+$(A^{\mathrm S}_1 + A^{\mathrm S}_2, \nu_1 + \nu_2, \gamma_1 + \gamma_2)$: the sum of the matrices is symmetric and
+nonnegative-definite, and $\nu_1 + \nu_2$ has no mass at $0$ and integrates $\min(|x|^2, 1)$. The
+integrand of the bracket is integrable for $\nu_1$ and for $\nu_2$, so its integral against
+$\nu_1 + \nu_2$ is the sum of the two integrals, and
+\[
+  \psi_{A^{\mathrm S}_1 + A^{\mathrm S}_2,\,\nu_1 + \nu_2,\,\gamma_1 + \gamma_2}
+  = \psi_{A^{\mathrm S}_1,\nu_1,\gamma_1} + \psi_{A^{\mathrm S}_2,\nu_2,\gamma_2}.
+\]
+
+Let $\mu_b$ be the image of $\mu$ under $x \mapsto b^{-1}x$, so that
+$\widehat\mu_b(z) = \widehat\mu(b^{-1}z)$. By Theorem~\ref{thm:cited-A42} with $n = d$ and $U = b^{-1}I$,
+the law $\mu_b$ is infinitely divisible with a triplet $(b^{-2}A^{\mathrm S}, \nu_b, \gamma')$, where $\nu_b$
+is the image of $\nu$ under $x \mapsto b^{-1}x$ (the restriction to $\RR^d \setminus \{0\}$ changes
+nothing, as $\nu(\{0\}) = 0$) and $\gamma' \in \RR^d$. Since $\nu_b(B) = \nu(bB)$ and
+$(D_b\nu)(B) = \nu(b^{-1}B)$, the inequality $D_b\nu \ge \nu$ on all Borel sets is the inequality
+$\nu \ge \nu_b$, read at the set $bB$.
+
+Let $\mu$ be semi-selfdecomposable with span $b$. By Definition~\ref{def:self-decomposable} its
+residual $\varrho_b$ is infinitely divisible, so it has a triplet
+$(A^{\mathrm S}_\varrho, \nu_\varrho, \gamma_\varrho)$ by
+Theorem~\ref{thm:cited-A39}(i). Then
+$\widehat\mu = \widehat\mu_b\,\widehat\varrho_b = \exp(\psi_{b^{-2}A^{\mathrm S},\nu_b,\gamma'} +
+\psi_{A^{\mathrm S}_\varrho,\nu_\varrho,\gamma_\varrho})$, and by the first paragraph this is the transform given by the
+summed triplet $(b^{-2}A^{\mathrm S} + A^{\mathrm S}_\varrho, \nu_b + \nu_\varrho, \gamma' + \gamma_\varrho)$. By
+Theorem~\ref{thm:cited-A39}(ii) the summed triplet is $(A^{\mathrm S}, \nu, \gamma)$. So
+$\nu = \nu_b + \nu_\varrho \ge \nu_b$, which is $D_b\nu \ge \nu$.
+
+Conversely, let $\nu_b \le \nu$. The measure $\nu$ is $\sigma$-finite: it is finite on
+$\{|x| > 1\}$ and on each shell $\{1/(n+1) < |x| \le 1/n\}$, $n \ge 1$, by the integrability of
+$\min(|x|^2, 1)$, and $\nu(\{0\}) = 0$. From $\nu_b \le \nu$, every $\nu$-null set is
+$\nu_b$-null, so by the Radon--Nikodym theorem $\nu_b = f\nu$ for a measurable $f \ge 0$, and
+$f \le 1$ $\nu$-almost everywhere, again because $\nu_b \le \nu$. Put $\nu_\varrho := (1 - f)\nu$.
+Then $\nu_b + \nu_\varrho = \nu$ and $\nu_\varrho \le \nu$, so $\nu_\varrho$ has no mass at $0$ and
+integrates $\min(|x|^2, 1)$. The matrix
+$(1 - b^{-2})A^{\mathrm S}$ is symmetric and nonnegative-definite because $b > 1$. By
+Theorem~\ref{thm:cited-A39}(iii) there is an infinitely divisible law $\varrho_b$ with the triplet
+$((1 - b^{-2})A^{\mathrm S}, \nu_\varrho, \gamma - \gamma')$. By the first paragraph
+$\widehat\mu(b^{-1}z)\,\widehat\varrho_b(z) = \exp\psi_{A^{\mathrm S},\nu_b + \nu_\varrho,\gamma}(z) =
+\widehat\mu(z)$, so $\mu$ is semi-selfdecomposable with span $b$ and residual $\varrho_b$.
+
+The criterion involves $\nu$ alone, which is the last sentence of the statement. Every step is
+machine-checked, and the cited facts are \ledger{A39}(i)--(iii) and \ledger{A42}.
+\end{proof}
+
+The polar form of a self-decomposable law is [\sscite{sato1999levy}, Thm.~15.10, p.~95].
+
+% shared with blueprint thm:cited-A45
+\begin{theorem}[the polar form of a self-decomposable law]
+\label{thm:cited-A45}
+
+Let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$, and let $S = \{\xi \in \RR^d : |\xi| = 1\}$. Then $\mu$ is self-decomposable if
+and only if
+\[
+  \nu(B) = \int_S\lambda(d\xi)\int_0^\infty\mathbf{1}_B(r\xi)\,k_\xi(r)\,\frac{dr}{r}
+\]
+for every Borel set $B$, with a finite measure $\lambda$ on $S$ and a nonnegative function
+$k_\xi(r)$, measurable in $\xi \in S$ and nonincreasing in $r > 0$. Self-decomposability imposes no
+restriction on $A^{\mathrm S}$ and $\gamma$.
+\end{theorem}
+
+The next two theorems are on the support, [\sscite{sato1999levy}, Cor.~24.4, p.~149] and the
+``only if'' of [\sscite{sato1999levy}, Cor.~24.6, p.~149]. The finiteness of $\nu$ in the second
+follows from the support of $\nu$, as the proof below shows.
+
+% shared with blueprint thm:cited-A46
+\begin{theorem}[unbounded support]
+\label{thm:cited-A46}
+
+If $\mu$ is an infinitely divisible probability measure on $\RR^d$ and is not a point mass, then
+the support of $\mu$ is unbounded.
+\end{theorem}
+
+% shared with blueprint thm:cited-A48
+\begin{theorem}[infinitely divisible laws carried by $\ZZ$]
+\label{thm:cited-A48}
+
+Let $\mu$ be an infinitely divisible probability measure on $\RR$ with generating triplet
+$(A^{\mathrm S}, \nu, \gamma)$. If the support of $\mu$ is contained in $\ZZ$, then $A^{\mathrm S} = 0$ and the
+support of $\nu$ is contained in $\ZZ$. In particular $\nu(\RR) < \infty$.
+\end{theorem}
+
+\begin{proof}
+The first sentence is cited. For the second: $\nu(\{0\}) = 0$ and $\nu$ is carried by $\ZZ$, so it
+is carried by $\ZZ \setminus \{0\}$, where $|x| \ge 1$ and so $\min(|x|^2, 1) = 1$. Hence
+$\nu(\RR) \le \int \min(|x|^2, 1)\,\nu(dx) < \infty$ by Theorem~\ref{thm:cited-A39}(i). Every step
+is machine-checked, and the cited fact is \ledger{A48}, for the first sentence.
+\end{proof}
+
+Moments are read from the \Levy{} measure by the $g$-moment theorem [\sscite{sato1999levy},
+Thm.~25.3, p.~159], with Definitions~25.1--25.2 on the same page. It is printed there for a
+\Levy{} process and read here for its law at time $1$.
+
+% shared with blueprint thm:cited-A49
+\begin{theorem}[the $g$-moment theorem]
+\label{thm:cited-A49}
+
+A function $g$ on $\RR^d$ is \emph{submultiplicative} if it is nonnegative and there is a constant
+$a > 0$ with $g(x + y) \le a\,g(x)g(y)$ for all $x, y \in \RR^d$, and \emph{locally bounded} if it is
+bounded on every compact set. Let $g$ be a submultiplicative, locally bounded, measurable function on
+$\RR^d$, and let $\mu$ be an infinitely divisible probability measure on $\RR^d$ with \Levy{} measure
+$\nu$. Then $\int g\,d\mu < \infty$ if and only if $\int_{\{|x| > 1\}}g\,d\nu < \infty$.
+\end{theorem}
+
+The logarithmic moments of the grid pyramids use one function of Sato's list
+[\sscite{sato1999levy}, Prop.~25.4(iii), p.~159], and the paper proves that it is
+submultiplicative, with the constant $2$. For $g(x) = \log(|x| \vee e)$ and $u, v \ge e$ one has
+$u + v \le uv$, so $|x + y| \vee e \le (|x| \vee e)(|y| \vee e)$. Hence
+$g(x + y) \le g(x) + g(y) \le 2g(x)g(y)$, both values being at least $1$.
+
+% shared with blueprint thm:cited-A50
+\begin{theorem}[a logarithmic submultiplicative function]
+\label{thm:cited-A50}
+
+The function $g(x) = \log(|x| \vee e)$ on $\RR^d$ is submultiplicative.
+\end{theorem}
+
+\subsubsection{Bernstein functions}
+\label{subsec:cited-bernstein}
+
+A step of the \Matern{} pyramid in $\RR^d$ has a transform $e^{-f(|\omega|^2)}$, and
+Section~\ref{ch:matern} says which class the function $f$ falls in
+(Proposition~\ref{prop:matern-increments}). This subsection fixes the three classes it uses. A
+function $f : (0,\infty) \to \RR$ is \emph{completely monotone} if it is smooth
+and $(-1)^nf^{(n)} \ge 0$ for every $n \ge 0$. A \emph{Bernstein function} is a
+function $f \ge 0$ on $(0,\infty)$ whose derivative is completely monotone. These are exactly the
+functions
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,\eta(dt), \qquad a, b \ge 0,
+  \quad \int_{(0,\infty)}\min(1, t)\,\eta(dt) < \infty,
+\]
+and the triplet $(a, b, \eta)$ is determined by $f$ [\sscite{schilling2012bernstein}, Thm.~3.2,
+p.~21]. The measure $\eta$ is the \emph{\Levy{} measure} of $f$.
+
+% shared with blueprint def:complete-bernstein
+\begin{definition}[complete Bernstein functions]
+\label{def:complete-bernstein}
+
+A Bernstein function $f$ is a \emph{complete Bernstein function}
+[\sscite{schilling2012bernstein}, Def.~6.1, p.~69] if its \Levy{} measure has a
+completely monotone density $m$ with respect to Lebesgue measure:
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,m(t)\,dt .
+\]
+\end{definition}
+
+% shared with blueprint def:thorin-bernstein
+\begin{definition}[Thorin--Bernstein functions]
+\label{def:thorin-bernstein}
+
+A Bernstein function $f$ is a \emph{Thorin--Bernstein function}
+[\sscite{schilling2012bernstein}, Def.~8.1, p.~109] if its \Levy{} measure has a density
+$m$ such that $t \mapsto t\,m(t)$ is completely monotone, that is
+\[
+  f(\lambda) = a + b\lambda + \int_{(0,\infty)}(1 - e^{-\lambda t})\,m(t)\,dt,
+\]
+where $a, b \ge 0$, $\int_{(0,\infty)}\min(1, t)\,m(t)\,dt < \infty$ and $t \mapsto t\,m(t)$ is
+completely monotone.
+\end{definition}
+
+A completely monotone function is a Laplace transform, by Bernstein's theorem
+[\sscite{schilling2012bernstein}, Thm.~1.4, p.~3].
+
+% shared with blueprint thm:cited-A55
+\begin{theorem}[Bernstein's theorem]
+\label{thm:cited-A55}
+
+Let $f : (0,\infty) \to \RR$ be completely monotone. Then there is a measure $\mu$ on $[0,\infty)$
+with
+\[
+  f(\lambda) = \int_{[0,\infty)}e^{-\lambda t}\,\mu(dt) \qquad\text{for every } \lambda > 0 .
+\]
+\end{theorem}
+
+A continuous function $\psi$ on $\RR^d$ is \emph{negative definite} when $e^{-t\psi}$ is positive
+definite for every $t > 0$. By [\sscite{schilling2012bernstein}, Thm.~13.14, p.~212], in the
+direction proved by Example~13.13 on the same page, a Bernstein function of $|\omega|^2$ is negative
+definite. The infinite divisibility of the law comes from subordination: Brownian motion run at the
+random time of a subordinator, an increasing \Levy{} process [\sscite{sato1999levy}, Thm.~30.1,
+pp.~197--198].
+
+% shared with blueprint thm:cited-A57
+\begin{theorem}[a Bernstein function of $|\omega|^2$]
+\label{thm:cited-A57}
+
+Let $f$ be a Bernstein function with $f(0{+}) = 0$, and set $f(0) := f(0{+}) = 0$. Then, for
+every $d \ge 1$, the function
+$\omega \mapsto f(|\omega|^2)$ is continuous and negative definite on $\RR^d$, and
+$e^{-f(|\omega|^2)}$ is the transform of an infinitely divisible probability measure on $\RR^d$.
+\end{theorem}
+
+\subsubsection{\Polya{} frequency densities}
+\label{subsec:cited-karlin}
+
+The \Polya{} frequency densities of Section~\ref{subsec:cited-released} have reciprocal Laplace
+transforms of one form, by Schoenberg's theorem [\sscite{karlin1968total}, Ch.~7, Thm.~3.2(a),
+p.~345], with the class of entire functions of [\sscite{karlin1968total}, (2.2), p.~336]. The
+identity of the next theorem relates the two-sided Laplace transform $L$ of the density to an
+entire function $\psi$. Karlin states it on an open strip $\alpha < \operatorname{Re}s < \beta$
+that contains the imaginary axis, on which $L$ exists [\sscite{karlin1968total}, Prop.~1.4,
+p.~333]. The next theorem is narrower than the page: it states the identity on the imaginary axis
+only, which is all the proofs read.
+
+% shared with blueprint thm:cited-A24
+\begin{theorem}[Schoenberg's representation]
+\label{thm:cited-A24}
+
+Let $\phi$ be a \Polya{} frequency density on $\RR$, and $L(s) := \int_{\RR}e^{-sx}\phi(x)\,dx$ its
+two-sided Laplace transform. Then there are numbers $\gamma \ge 0$, $\delta \in \RR$ and real $a_j$
+with $\sum_j a_j^2 < \infty$ and $\gamma + \sum_j a_j^2 > 0$ such that
+\[
+  L(i\omega)\,\psi(i\omega) = 1 \quad (\omega \in \RR), \qquad
+  \psi(s) = e^{-\gamma s^2 + \delta s}\prod_j(1 + a_j s)\,e^{-a_j s},
+\]
+where $\psi$ is an entire function with $\psi(0) = 1$.
+\end{theorem}
+
+For a symmetric density the identity takes a real form, a consequence drawn here and not part of the
+citation. The transform $L(i\omega) = \widehat\phi(\omega)$ is then real, nowhere $0$ by the identity, and
+equal to $1$ at $0$, so it is positive. Taking moduli, with $|e^{i\delta\omega}| = 1$ and
+$|(1 + ia_j\omega)e^{-ia_j\omega}| = (1 + a_j^2\omega^2)^{1/2}$, gives
+\[
+  -\log\widehat\phi(\omega) = \gamma\omega^2 + \tfrac12\sum_j\log(1 + a_j^2\omega^2) .
+\]
+The proof of
+Proposition~\ref{prop:classical-pyramids-approximate-discrete-gaussian} in the supplement reads the
+theorem this way.
+
+\subsubsection{The modified Bessel function}
+\label{subsec:cited-bessel}
+
+The paper takes the modified Bessel function $K_\nu$ to be given by the integral of
+[\sscite{dlmf2026}, 10.32.9], and cites the integral representation [\sscite{dlmf2026}, 10.32.10]
+as the next theorem. The source states the representation for complex $z$ with
+$|\mathrm{ph}\,z| < \pi/4$. The theorem is narrower, at real $z > 0$.
+
+% shared with blueprint thm:cited-A51
+\begin{theorem}[the modified Bessel function $K_\nu$]
+\label{thm:cited-A51}
+
+For real $\nu$ and real $z > 0$ let
+$K_\nu(z) := \int_0^\infty e^{-z\cosh u}\cosh(\nu u)\,du$, the modified Bessel function of the
+second kind of order $\nu$ (DLMF~10.32.9). Then for every real $\nu$ and every real $z > 0$
+\[
+  K_\nu(z) = \tfrac12\bigl(\tfrac12 z\bigr)^{\nu}\int_0^\infty
+  \exp\Bigl(-t - \frac{z^2}{4t}\Bigr)\,\frac{dt}{t^{\nu+1}}
+\]
+(DLMF~10.32.10).
+\end{theorem}

@@ -1,0 +1,50 @@
+% The theory paper of Paper VI of the hemigroup programme (slug `pyramids`, module `pyramids`,
+% tag v0.1; adr/0007): blueprint chapters 2-5. Its supplement (supplement.tex) prints Appendix A
+% of the blueprint, the discrete stratum on the line. The computation paper is ../paper-b/.
+%
+% One file per section; every statement shared with the blueprint stands under a
+% `% shared with blueprint <label>` marker, with the paper's \label equal to the blueprint's, so
+% that `linkage check` reports it `verbatim`. Statements are transcribed from the blueprint, never
+% from draft/. Section 1.1 owns the trust base.
+%
+% The paper and the supplement refer to each other through xr-hyper, so each is built after the
+% other: latexmk -pdf main.tex supplement.tex, then once more (README.md). The \date line is the
+% one `linkage release` reads; supplement.tex has a copy of it.
+%
+% Voice and register: article-kit docs/WRITING.md. LaTeX is written with the file tools, never
+% through shell heredocs.
+\documentclass[11pt]{article}
+\newcommand{\pyrexternal}{supplement}
+\input{preamble}
+
+\title{Spatial scale space from hemigroup axioms:\\
+the theory of image pyramids}
+\author{Daniel Fagerstr\"om}
+% The release pyramids-v0.1 (records/pyramids/RELEASE-prep-pyramids-v0.1.md): the date, the version
+% and the version DOI. The draft line, restored at the first edit after the release:
+% \date{Working draft --- not yet released}
+\date{November 23, 2026 (v0.1)\\[3pt] {\normalsize \href{https://doi.org/10.5281/zenodo.24480183}{doi:10.5281/zenodo.24480183}}}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+
+\input{01-introduction}
+\input{02-cited-facts}
+\input{03-pyramid}
+\input{04-line}
+\input{05-matern}
+\input{06-price}
+\input{07-discussion}
+
+\appendix
+\input{appendix-verification}
+
+\input{ai-statement}
+\input{declarations}
+
+\bibliographystyle{plainurl}
+\bibliography{references}
+
+\end{document}

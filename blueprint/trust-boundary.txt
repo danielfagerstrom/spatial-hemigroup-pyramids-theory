@@ -1,0 +1,161 @@
+# The trust boundary: the analytic interfaces a headline theorem may depend on.
+#
+# `#print axioms` on this article's proved theorems must reduce to Lean core plus exactly
+# these. CI reads this file via `linkage axioms`, which refuses any name that no AXIOMS.md
+# entry mentions in a `**Lean:**` segment -- so the boundary cannot be widened without a
+# reviewed ledger entry behind it.
+#
+# Adding a line here widens the project's trust base and is a review decision, not a fix.
+#
+# =======================================================================================
+# WHAT THIS MODULE ADMITS: fourteen names, for eight of the sixteen ledger entries the author
+# admitted (the other eight need no name of their own; A42 has needed none since review round 3,
+# batch C, 2026-11-23, when Pyramids.cited_A42 was proved), by the decisions of 2026-11-13,
+# 2026-11-14 and 2026-11-15. The author admitted A39, A40, A41, A42, A46, A48 and A51 as Lean
+# axioms on 2026-11-13, A31, A34, A35, A43, A45, A49 and A50 on 2026-11-14, and A22 and A24 on
+# 2026-11-15 (adr/0005-a22-and-a24-admitted.md), and nothing else. Each admitted entry has its page-image transcription in
+# blueprint/AXIOMS-verbatim.md and a **Lean:** line in blueprint/AXIOMS.md naming what it
+# admits; its interface node thm:cited-A<N> is \leanok on the declarations of
+# Formalization/Pyramids/Cited/A<N>.lean.
+#
+# Where an admitted entry is already an axiom of the affine export (AffineHemigroup @ v0.1,
+# which this development requires), it is not declared a second time: the interface node's
+# declarations are proved from the export's axiom, and that axiom is listed below by its own
+# name, grounded in this article's entry for the same theorem of Sato (the same pages, with
+# their own transcription here). The export's other six axioms are not admitted, so no
+# `include AffineHemigroup` line is written; a proof here that reached one of them would fail
+# the guard.
+#
+#   A39 (Sato Thm. 8.1)  -> the export's levy_khintchine_exists, _unique, _converse (its A3).
+#   A40 (Sato Lem. 7.5)  -> no name of its own: Pyramids.cited_A40 is proved from
+#                           levy_khintchine_exists (the transform is an exponential).
+#   A41 (Sato Thm. 9.3)  -> the export's khintchine_null_array (its A6); Pyramids.cited_A41 is
+#                           proved from it (the law of an independent sum is a convolution;
+#                           an empty row is given a point mass at 0).
+#   A46 (Sato Cor. 24.4), A48 (Sato Cor. 24.6) -> declared here; A48 as the corollary's
+#                           statement only (A = 0, nu carried by Z), the finiteness of nu proved
+#                           (Pyramids.cited_A48_finite) since review round 3, batch C.
+#   A42 (Sato Prop. 11.10) -> no name, and proved (review round 3, batch C, 2026-11-23):
+#                           Pyramids.cited_A42 prints Lean core (the change of variables y = Ux
+#                           in the formula of A39(i), whose definition it reads, not its axioms).
+#   A51 (DLMF)           -> no name: Pyramids.cited_A51_integral is proved from the definition
+#                           of besselK (DLMF 10.32.9) with no axiom. The node's former clause
+#                           (2), the axiom cited_A51_evaluations, was dropped the same day by
+#                           the author's decision, as nothing read it.
+#   A1 (V-line Lem. 4.1) -> no name, and not admitted but proved: regraded [T] by the author on 2026-11-14;
+#                           Pyramids.cited_A1_* are proved from the shared core with no axiom.
+#   A31 (iso Thm. 3.6), A34 (iso Lem. 3.8), A35 (iso Prop. 3.11(1)-(2)) -> no name of their
+#                           own: Pyramids.cited_A31*, cited_A34, cited_A35_* are the export's
+#                           theorems isotropic_classification(_unique), isotropic_realisation,
+#                           polar_reading(_unique, _admissible), classA_iff_originDatum, which
+#                           reach A39's names, sato_polar_criterion and
+#                           selfDecomposable_infinitelyDivisible, or nothing (A34, whose node
+#                           thm:cited-A34 was regraded [T] in wave 2g on 2026-11-14).
+#   A43 (Sato Prop. 15.5) -> its first clause is the export's
+#                           selfDecomposable_infinitelyDivisible (its A4); the infinite
+#                           divisibility of a residual and of a semi-selfdecomposable law are
+#                           declared here; both uniqueness clauses and the last sentence are
+#                           proved (Pyramids.cited_A43_sd, _semi, _span are theorems).
+#   A45 (Sato Thm. 15.10) -> the export's sato_polar_criterion (its A2); Pyramids.cited_A45 is
+#                           that axiom.
+#   A49 (Sato Thm. 25.3)  -> declared here.
+#   A50 (Sato Prop. 25.4(iii)) -> no name: Pyramids.cited_A50 is proved, Lean core.
+#
+#   A9 (V-line Prop. 2.3(3)) -> no name, and not admitted but proved (wave 3d, 2026-11-14):
+#                           Pyramids.cited_A9 is the affine export's line_levy_unique, which
+#                           reaches A39's levy_khintchine_unique and _converse only.
+#   A4 (V-line Thm. 7.3) -> no name, and not admitted but proved (wave 3d, 2026-11-14):
+#                           Pyramids.cited_A4, _exists, _unique reach A39's
+#                           levy_khintchine_unique and _converse only (the shared core's analysis
+#                           and uniqueness; its construction replayed with a law from A39(iii) in
+#                           place of Bochner's theorem).
+#   A44 (Sato Thm. 15.8) -> no name, and not admitted but proved (wave 3d, 2026-11-14):
+#                           Pyramids.cited_A44 reaches A39's three names only
+#                           (the page's own argument: the triplet of the image under x -> x/b,
+#                           and the triplets of a convolution add).
+#
+#   A22 (V-selection Prop. 4.5(1)) -> declared here: cited_A22_polya at the skeleton's
+#                           statement, cited_A22_variation with F not identically zero added
+#                           (the page's range: an admissible family).
+#   A24 (Karlin Ch. 7, Thm. 3.2(a)) -> declared here, narrower than the page: the identity
+#                           L(s) psi(s) = 1 on the imaginary axis s = i omega only, the strip
+#                           and its absolute convergence dropped; both spenders read it there.
+#
+# The other seven entries (A13, A19, A20, A23, A30, A55, A57) are the
+# trust base of the proofs in print only. They are
+# typed with sorry in Formalization/PyramidsSkeleton/Ch02CitedFacts.lean and enter no Lean
+# proof.
+#
+# =======================================================================================
+# THE STEPS THE CITED PAGES DO NOT CARRY. Each is proved in the node that takes it, or is
+# a reading recorded in the entry; none is an admitted fact.
+#
+# A1  -- the translation of (A6), (A7), (ND) into (I1), (I2), (ND): lem:line-axioms-kernels.
+# A4  -- the folded Levy measure k(v/t) dv/v of a marginal (not printed; plan id A5):
+#        thm:lattice-line, from A4 and A9 with v = tx.
+# A9  -- the identification of the pair from equality of the exponents is the clause read for
+#        two pairs; the existence half and its class ND_s are not used.
+# A19 -- the rung from scale zero, t_k = 0 (the page's clause has 0 < t_k/t_{k+1} < 1); no
+#        node spends the entry.
+# A22 -- the case F identically zero (kernels delta_0), which the page's "admissible family"
+#        excludes: proved in Pyramids.Cited.A23 where it is read.
+# A23 -- not admitted: proved from cited_A22_variation (the page's derivation, p. 39).
+# A24 -- "analytic on the strip" is the page's "converges absolutely"; that a Polya frequency
+#        density has an absolutely continuous Levy measure (plan id A25) is proved in
+#        prop:classical-pyramids-approximate-discrete-gaussian.
+# A39 -- the symmetric reductions (gamma = 0 and the cosine form; a real or radial transform
+#        gives a symmetric or rotation-invariant law) and the factor 2 between Sato's Gaussian
+#        matrix and this paper's: one line in each spending node.
+# A40 -- "real" and "positive" for a symmetric law: the spending nodes.
+# A41 -- the construction of the null array from (I1) and (I2), and the independent
+#        realization of the factor laws: the spending nodes. The passage from random
+#        variables to laws, and from rows with r_n = 0 to the export's nonempty rows, is
+#        proved in Pyramids.Cited.A41.
+# A42, A49 -- printed for a Levy process, read for its law at time 1 (Sato, p. 65; p. 159).
+# A45 -- the null sets (countable sets, spheres about 0) of a self-decomposable Levy measure:
+#        prop:stratum-two-example, prop:ladder-knot-kernel.
+# A48 -- the finiteness of nu is printed in the proof of Cor. 24.6, not in its statement: proved
+#        from the support clause (Pyramids.isFiniteMeasure_levy_of_int), not admitted.
+# A49 -- local boundedness of log(|x| v e), by continuity (not printed in Prop. 25.4).
+# A51 -- the equations at real z > 0, where DLMF prints them for complex z; the identification
+#        of the shared core's besselK with DLMF's K_nu is DLMF 10.32.9, its definition.
+# A57 -- infinite divisibility from the convolution semigroup of (13.21) at f(0+) = 0; the
+#        subordinator of exponent f(2u) in Sato's Thm. 30.1. No node spends the entry.
+#
+# =======================================================================================
+# THE ADMITTED NAMES.
+
+# A39 -- Sato, Thm. 8.1(i)-(iii), pp. 37-38: the affine export's axioms (its ledger A3).
+AffineHemigroup.levy_khintchine_exists
+AffineHemigroup.levy_khintchine_unique
+AffineHemigroup.levy_khintchine_converse
+
+# A41 -- Sato, Thm. 9.3, p. 47: the affine export's axiom (its ledger A6).
+AffineHemigroup.khintchine_null_array
+
+# A46 -- Sato, Cor. 24.4, p. 149.
+Pyramids.cited_A46
+
+# A48 -- Sato, Cor. 24.6, p. 149.
+Pyramids.cited_A48
+
+# A43 -- Sato, Prop. 15.5, p. 93: the first clause is the affine export's axiom (its ledger A4);
+# the infinite divisibility of the residual of a self-decomposable law and of a
+# semi-selfdecomposable law are declared here.
+AffineHemigroup.selfDecomposable_infinitelyDivisible
+Pyramids.cited_A43_residual_infinitelyDivisible
+Pyramids.cited_A43_semi_infinitelyDivisible
+
+# A45 -- Sato, Thm. 15.10, p. 95: the affine export's axiom (its ledger A2).
+AffineHemigroup.sato_polar_criterion
+
+# A49 -- Sato, Thm. 25.3, p. 159.
+Pyramids.cited_A49
+
+# A22 -- V-selection v0.1, Prop. 4.5(1), p. 35, the "if" (admitted 2026-11-15, ADR-0005).
+Pyramids.cited_A22_variation
+Pyramids.cited_A22_polya
+
+# A24 -- Karlin, Total Positivity I, Ch. 7, Thm. 3.2(a), p. 345, on the imaginary axis
+# (admitted 2026-11-15, ADR-0005).
+Pyramids.cited_A24

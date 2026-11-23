@@ -1,0 +1,1748 @@
+[
+ {
+  "id": "C001",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 8,
+  "key": "burt1981fast",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C002",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 8,
+  "key": "burt1983laplacian",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C003",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 10,
+  "key": "burt1983laplacian",
+  "form": "cite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C004",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 11,
+  "key": "meer1987frequency",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C005",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 12,
+  "key": "burt1981fast",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C006",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 19,
+  "key": "lindeberg1990scalespace",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C007",
+  "group": "C-line-cone-affine",
+  "file": "01-introduction.tex",
+  "line": 26,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~7.3, p.~37"
+ },
+ {
+  "id": "C008",
+  "group": "A-isotropic",
+  "file": "01-introduction.tex",
+  "line": 27,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C009",
+  "group": "B-selection",
+  "file": "01-introduction.tex",
+  "line": 46,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S4"
+ },
+ {
+  "id": "C010",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 185,
+  "key": "hanke1998nonstationary",
+  "form": "cite",
+  "locator": "pp.~38--39"
+ },
+ {
+  "id": "C011",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 186,
+  "key": "radmoser2000scale",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C012",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 186,
+  "key": "farbman2008edge",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C013",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 188,
+  "key": "burt1981fast",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C014",
+  "group": "E2-probability",
+  "file": "01-introduction.tex",
+  "line": 190,
+  "key": "maejima1998semi",
+  "form": "cite",
+  "locator": "Def.~3.1, p.~19"
+ },
+ {
+  "id": "C015",
+  "group": "D-sato",
+  "file": "01-introduction.tex",
+  "line": 190,
+  "key": "sato1999levy",
+  "form": "cite",
+  "locator": "Def.~15.1, p.~90"
+ },
+ {
+  "id": "C016",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 191,
+  "key": "mallat1989theory",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C017",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 193,
+  "key": "lindeberg1990scalespace",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C018",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 195,
+  "key": "whittle1954stationary",
+  "form": "sscite",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)"
+ },
+ {
+  "id": "C019",
+  "group": "E1-imaging",
+  "file": "01-introduction.tex",
+  "line": 195,
+  "key": "lindgren2011explicit",
+  "form": "sscite-bare",
+  "locator": ""
+ },
+ {
+  "id": "C020",
+  "group": "C-line-cone-affine",
+  "file": "01-introduction.tex",
+  "line": 245,
+  "key": "fagerstrom2026spatial",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C021",
+  "group": "C-line-cone-affine",
+  "file": "01-introduction.tex",
+  "line": 250,
+  "key": "fagerstrom2026affine",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C022",
+  "group": "D-sato",
+  "file": "01-introduction.tex",
+  "line": 257,
+  "key": "sato1999levy",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C023",
+  "group": "B-selection",
+  "file": "01-introduction.tex",
+  "line": 264,
+  "key": "fagerstrom2026selection",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C024",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 6,
+  "key": "fagerstrom2026spatial",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C025",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 8,
+  "key": "fagerstrom2026cone",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C026",
+  "group": "B-selection",
+  "file": "02-cited-facts.tex",
+  "line": 10,
+  "key": "fagerstrom2026selection",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C027",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 11,
+  "key": "fagerstrom2026isotropic",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C028",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 12,
+  "key": "fagerstrom2026affine",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C029",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 64,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Lemma~4.1, pp.~22--23"
+ },
+ {
+  "id": "C030",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 81,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Lemma~4.1, p.~22"
+ },
+ {
+  "id": "C031",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 113,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~5.2, p.~26"
+ },
+ {
+  "id": "C032",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 118,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Prop.~2.3(3), p.~9"
+ },
+ {
+  "id": "C033",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 162,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Def.~15.1, p.~90"
+ },
+ {
+  "id": "C034",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 187,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Prop.~2.13, p.~13"
+ },
+ {
+  "id": "C035",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 189,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~7.3, p.~37"
+ },
+ {
+  "id": "C036",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 215,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Lemma~2.7, p.~12"
+ },
+ {
+  "id": "C037",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 251,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Def.~3.1, pp.~10--11"
+ },
+ {
+  "id": "C038",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 252,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Lemma~3.3(1)--(2), p.~11"
+ },
+ {
+  "id": "C039",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 278,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~2.6, p.~8"
+ },
+ {
+  "id": "C040",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 279,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C041",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 299,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "\\S~3.2, p.~12"
+ },
+ {
+  "id": "C042",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 301,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Lem.~3.8, p.~14"
+ },
+ {
+  "id": "C043",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 342,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.11(1)--(2),\npp.~15--16"
+ },
+ {
+  "id": "C044",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 407,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~6.2, display (6.2), p.~56"
+ },
+ {
+  "id": "C045",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 410,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Lemma~3.1(1), p.~13"
+ },
+ {
+  "id": "C046",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 411,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~6.4(5), p.~58"
+ },
+ {
+  "id": "C047",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 437,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Remark~6.7, pp.~32--33"
+ },
+ {
+  "id": "C048",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 438,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "\\S~4, p.~24"
+ },
+ {
+  "id": "C049",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 440,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~5.7, p.~48"
+ },
+ {
+  "id": "C050",
+  "group": "B-selection",
+  "file": "02-cited-facts.tex",
+  "line": 441,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.2, p.~30"
+ },
+ {
+  "id": "C051",
+  "group": "B-selection",
+  "file": "02-cited-facts.tex",
+  "line": 444,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.10, p.~43"
+ },
+ {
+  "id": "C052",
+  "group": "B-selection",
+  "file": "02-cited-facts.tex",
+  "line": 446,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~5.6, p.~60"
+ },
+ {
+  "id": "C053",
+  "group": "B-selection",
+  "file": "02-cited-facts.tex",
+  "line": 447,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S~6, p.~67"
+ },
+ {
+  "id": "C054",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 448,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.12, pp.~16--17"
+ },
+ {
+  "id": "C055",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 450,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.22, p.~27"
+ },
+ {
+  "id": "C056",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 452,
+  "key": "fagerstrom2026affine",
+  "form": "prog",
+  "locator": "Prop.~F.1, p.~93"
+ },
+ {
+  "id": "C057",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 506,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C058",
+  "group": "A-isotropic",
+  "file": "02-cited-facts.tex",
+  "line": 558,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.12(2), p.~16"
+ },
+ {
+  "id": "C059",
+  "group": "C-line-cone-affine",
+  "file": "02-cited-facts.tex",
+  "line": 560,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~5.2(2), p.~43"
+ },
+ {
+  "id": "C060",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 565,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C061",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 588,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C062",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 589,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C063",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 590,
+  "key": "dlmf2026",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C064",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 592,
+  "key": "schilling2012bernstein",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C065",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 604,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1(i)--(iii), pp.~37--38"
+ },
+ {
+  "id": "C066",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 605,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Def.~8.2, p.~38"
+ },
+ {
+  "id": "C067",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 630,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Lemma~7.5,\np.~32"
+ },
+ {
+  "id": "C068",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 642,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~9.3, p.~47"
+ },
+ {
+  "id": "C069",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 658,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~11.10, p.~65"
+ },
+ {
+  "id": "C070",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 677,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~15.5, p.~93"
+ },
+ {
+  "id": "C071",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 678,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~15.8, p.~94"
+ },
+ {
+  "id": "C072",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 753,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~15.10, p.~95"
+ },
+ {
+  "id": "C073",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 770,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Cor.~24.4, p.~149"
+ },
+ {
+  "id": "C074",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 771,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Cor.~24.6, p.~149"
+ },
+ {
+  "id": "C075",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 791,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~25.3, p.~159"
+ },
+ {
+  "id": "C076",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 806,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~25.4(iii), p.~159"
+ },
+ {
+  "id": "C077",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 832,
+  "key": "schilling2012bernstein",
+  "form": "sscite",
+  "locator": "Thm.~3.2,\np.~21"
+ },
+ {
+  "id": "C078",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 860,
+  "key": "schilling2012bernstein",
+  "form": "sscite",
+  "locator": "Thm.~1.4, p.~3"
+ },
+ {
+  "id": "C079",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 874,
+  "key": "schilling2012bernstein",
+  "form": "sscite",
+  "locator": "Thm.~13.14, p.~212"
+ },
+ {
+  "id": "C080",
+  "group": "D-sato",
+  "file": "02-cited-facts.tex",
+  "line": 877,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~30.1,\npp.~197--198"
+ },
+ {
+  "id": "C081",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 894,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": "Ch.~7, Thm.~3.2(a),\np.~345"
+ },
+ {
+  "id": "C082",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 895,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": "(2.2), p.~336"
+ },
+ {
+  "id": "C083",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 898,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": "Prop.~1.4,\np.~333"
+ },
+ {
+  "id": "C084",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 920,
+  "key": "dlmf2026",
+  "form": "sscite",
+  "locator": "10.32.9"
+ },
+ {
+  "id": "C085",
+  "group": "E2-probability",
+  "file": "02-cited-facts.tex",
+  "line": 920,
+  "key": "dlmf2026",
+  "form": "sscite",
+  "locator": "10.32.10"
+ },
+ {
+  "id": "C086",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 88,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Def.~3.2, p.~11"
+ },
+ {
+  "id": "C087",
+  "group": "D-sato",
+  "file": "03-pyramid.tex",
+  "line": 209,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1, pp.~37--38"
+ },
+ {
+  "id": "C088",
+  "group": "D-sato",
+  "file": "03-pyramid.tex",
+  "line": 393,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Def.~15.1, p.~90"
+ },
+ {
+  "id": "C089",
+  "group": "C-line-cone-affine",
+  "file": "03-pyramid.tex",
+  "line": 397,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~7.3, p.~37"
+ },
+ {
+  "id": "C090",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 398,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C091",
+  "group": "E2-probability",
+  "file": "03-pyramid.tex",
+  "line": 403,
+  "key": "maejima1998semi",
+  "form": "sscite",
+  "locator": "Def.~3.1, p.~19"
+ },
+ {
+  "id": "C092",
+  "group": "D-sato",
+  "file": "03-pyramid.tex",
+  "line": 412,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~15.5, p.~93"
+ },
+ {
+  "id": "C093",
+  "group": "D-sato",
+  "file": "03-pyramid.tex",
+  "line": 416,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~15.8,\np.~94"
+ },
+ {
+  "id": "C094",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 605,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C095",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 712,
+  "key": "lindeberg1990scalespace",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C096",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 812,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "\\S~3.2, p.~12"
+ },
+ {
+  "id": "C097",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 855,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C098",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 962,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~2.6, p.~8"
+ },
+ {
+  "id": "C099",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 963,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.22(2), p.~27"
+ },
+ {
+  "id": "C100",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1114,
+  "key": "burt1981fast",
+  "form": "sscite",
+  "locator": "(2)--(4), pp.~21--23"
+ },
+ {
+  "id": "C101",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1116,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C102",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1119,
+  "key": "burt1981fast",
+  "form": "sscite",
+  "locator": "Obs.~1, p.~24, and (5), p.~25"
+ },
+ {
+  "id": "C103",
+  "group": "D-sato",
+  "file": "03-pyramid.tex",
+  "line": 1261,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~25.4(iii),\np.~159"
+ },
+ {
+  "id": "C104",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 1334,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.11(1)--(2), pp.~15--16"
+ },
+ {
+  "id": "C105",
+  "group": "A-isotropic",
+  "file": "03-pyramid.tex",
+  "line": 1354,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Lem.~3.8, p.~14"
+ },
+ {
+  "id": "C106",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1459,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C107",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1461,
+  "key": "burt1981fast",
+  "form": "sscite",
+  "locator": "p.~24"
+ },
+ {
+  "id": "C108",
+  "group": "E1-imaging",
+  "file": "03-pyramid.tex",
+  "line": 1492,
+  "key": "burt1981fast",
+  "form": "sscite",
+  "locator": "Obs.~1, p.~24"
+ },
+ {
+  "id": "C109",
+  "group": "E2-probability",
+  "file": "03-pyramid.tex",
+  "line": 1556,
+  "key": "maejima1998semi",
+  "form": "sscite",
+  "locator": "Rem.~3.1, p.~19"
+ },
+ {
+  "id": "C110",
+  "group": "E2-probability",
+  "file": "04-line.tex",
+  "line": 190,
+  "key": "maejima1998semi",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C111",
+  "group": "E1-imaging",
+  "file": "04-line.tex",
+  "line": 208,
+  "key": "lindeberg1990scalespace",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C112",
+  "group": "C-line-cone-affine",
+  "file": "04-line.tex",
+  "line": 271,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~7.5(2), p.~65"
+ },
+ {
+  "id": "C113",
+  "group": "E1-imaging",
+  "file": "04-line.tex",
+  "line": 533,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C114",
+  "group": "C-line-cone-affine",
+  "file": "04-line.tex",
+  "line": 570,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~7.2, p.~60"
+ },
+ {
+  "id": "C115",
+  "group": "E1-imaging",
+  "file": "04-line.tex",
+  "line": 992,
+  "key": "lindeberg1990scalespace",
+  "form": "sscite",
+  "locator": "Prop.~12 and the sentence after it"
+ },
+ {
+  "id": "C116",
+  "group": "C-line-cone-affine",
+  "file": "04-line.tex",
+  "line": 1020,
+  "key": "fagerstrom2026cone",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C117",
+  "group": "C-line-cone-affine",
+  "file": "04-line.tex",
+  "line": 1023,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Lemma~3.1(1), p.~13"
+ },
+ {
+  "id": "C118",
+  "group": "E2-probability",
+  "file": "05-matern.tex",
+  "line": 81,
+  "key": "stein1970singular",
+  "form": "sscite",
+  "locator": "Ch.~V, \\S 3.1, (26) and Prop.~2, p.~132"
+ },
+ {
+  "id": "C119",
+  "group": "E1-imaging",
+  "file": "05-matern.tex",
+  "line": 85,
+  "key": "whittle1954stationary",
+  "form": "sscite",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)"
+ },
+ {
+  "id": "C120",
+  "group": "E1-imaging",
+  "file": "05-matern.tex",
+  "line": 85,
+  "key": "lindgren2011explicit",
+  "form": "sscite-bare",
+  "locator": ""
+ },
+ {
+  "id": "C121",
+  "group": "A-isotropic",
+  "file": "05-matern.tex",
+  "line": 87,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.12(2), p.~16"
+ },
+ {
+  "id": "C122",
+  "group": "E2-probability",
+  "file": "05-matern.tex",
+  "line": 243,
+  "key": "dlmf2026",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C123",
+  "group": "A-isotropic",
+  "file": "05-matern.tex",
+  "line": 380,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.11(1)--(2), p.~15"
+ },
+ {
+  "id": "C124",
+  "group": "A-isotropic",
+  "file": "05-matern.tex",
+  "line": 382,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Lem.~3.8, p.~14"
+ },
+ {
+  "id": "C125",
+  "group": "A-isotropic",
+  "file": "05-matern.tex",
+  "line": 437,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C126",
+  "group": "B-selection",
+  "file": "05-matern.tex",
+  "line": 474,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~4.5(2), p.~35"
+ },
+ {
+  "id": "C127",
+  "group": "A-isotropic",
+  "file": "05-matern.tex",
+  "line": 568,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Prop.~3.11(1)--(2), p.~15"
+ },
+ {
+  "id": "C128",
+  "group": "C-line-cone-affine",
+  "file": "05-matern.tex",
+  "line": 610,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "\\S 4"
+ },
+ {
+  "id": "C129",
+  "group": "E1-imaging",
+  "file": "05-matern.tex",
+  "line": 616,
+  "key": "lindeberg2016time",
+  "form": "sscite",
+  "locator": "Sect.~5, (38), p.~62"
+ },
+ {
+  "id": "C130",
+  "group": "E1-imaging",
+  "file": "05-matern.tex",
+  "line": 617,
+  "key": "lindeberg2016time",
+  "form": "sscite",
+  "locator": "Sect.~6.2, p.~64"
+ },
+ {
+  "id": "C131",
+  "group": "D-sato",
+  "file": "05-matern.tex",
+  "line": 815,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1(ii), p.~38"
+ },
+ {
+  "id": "C132",
+  "group": "D-sato",
+  "file": "05-matern.tex",
+  "line": 829,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1(iii), p.~38"
+ },
+ {
+  "id": "C133",
+  "group": "E2-probability",
+  "file": "05-matern.tex",
+  "line": 941,
+  "key": "bondesson1992generalized",
+  "form": "sscite",
+  "locator": "\\S 3.1, p.~30"
+ },
+ {
+  "id": "C134",
+  "group": "B-selection",
+  "file": "05-matern.tex",
+  "line": 1138,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~5.6(1), p.~60"
+ },
+ {
+  "id": "C135",
+  "group": "E1-imaging",
+  "file": "05-matern.tex",
+  "line": 1141,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~535"
+ },
+ {
+  "id": "C136",
+  "group": "B-selection",
+  "file": "05-matern.tex",
+  "line": 1211,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S 6"
+ },
+ {
+  "id": "C137",
+  "group": "B-selection",
+  "file": "05-matern.tex",
+  "line": 1535,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.2(3), p.~30"
+ },
+ {
+  "id": "C138",
+  "group": "B-selection",
+  "file": "05-matern.tex",
+  "line": 1544,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.2(3) and Cor.~4.4, pp.~30, 33"
+ },
+ {
+  "id": "C139",
+  "group": "A-isotropic",
+  "file": "06-price.tex",
+  "line": 205,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Def.~3.2, p.~11"
+ },
+ {
+  "id": "C140",
+  "group": "E1-imaging",
+  "file": "06-price.tex",
+  "line": 431,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C141",
+  "group": "E1-imaging",
+  "file": "06-price.tex",
+  "line": 1460,
+  "key": "whittle1954stationary",
+  "form": "sscite",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)"
+ },
+ {
+  "id": "C142",
+  "group": "E1-imaging",
+  "file": "06-price.tex",
+  "line": 1460,
+  "key": "lindgren2011explicit",
+  "form": "sscite-bare",
+  "locator": ""
+ },
+ {
+  "id": "C143",
+  "group": "E1-imaging",
+  "file": "06-price.tex",
+  "line": 1484,
+  "key": "collatz1960numerical",
+  "form": "sscite",
+  "locator": "Ch.~V \\S 2.5, p.~386"
+ },
+ {
+  "id": "C144",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 7,
+  "key": "burt1983laplacian",
+  "form": "cite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C145",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 7,
+  "key": "meer1987frequency",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C146",
+  "group": "A-isotropic",
+  "file": "07-discussion.tex",
+  "line": 36,
+  "key": "fagerstrom2026isotropic",
+  "form": "prog",
+  "locator": "Thm.~3.6, p.~13"
+ },
+ {
+  "id": "C147",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 37,
+  "key": "lindeberg1990scalespace",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C148",
+  "group": "B-selection",
+  "file": "07-discussion.tex",
+  "line": 41,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S4"
+ },
+ {
+  "id": "C149",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 48,
+  "key": "burt1983laplacian",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C150",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 52,
+  "key": "hanke1998nonstationary",
+  "form": "cite",
+  "locator": "pp.~38--39"
+ },
+ {
+  "id": "C151",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 72,
+  "key": "burt1983laplacian",
+  "form": "cite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C152",
+  "group": "B-selection",
+  "file": "07-discussion.tex",
+  "line": 88,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S4"
+ },
+ {
+  "id": "C153",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 102,
+  "key": "kovacevic1992nonseparable",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C154",
+  "group": "E1-imaging",
+  "file": "07-discussion.tex",
+  "line": 103,
+  "key": "watson1989hexagonal",
+  "form": "cite",
+  "locator": ""
+ },
+ {
+  "id": "C155",
+  "group": "C-line-cone-affine",
+  "file": "appendix-verification.tex",
+  "line": 22,
+  "key": "fagerstrom2026spatial",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C156",
+  "group": "C-line-cone-affine",
+  "file": "appendix-verification.tex",
+  "line": 23,
+  "key": "fagerstrom2026affine",
+  "form": "progpaper",
+  "locator": ""
+ },
+ {
+  "id": "C157",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 131,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Remark~6.7, pp.~32--33"
+ },
+ {
+  "id": "C158",
+  "group": "E2-probability",
+  "file": "supp-line.tex",
+  "line": 194,
+  "key": "maejima1999semi",
+  "form": "sscite",
+  "locator": "Thm.~7, p.~361"
+ },
+ {
+  "id": "C159",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 240,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~7.3, p.~37"
+ },
+ {
+  "id": "C160",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 682,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~6.4(5), p.~58"
+ },
+ {
+  "id": "C161",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 849,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~3.3, pp.~15--16"
+ },
+ {
+  "id": "C162",
+  "group": "D-sato",
+  "file": "supp-line.tex",
+  "line": 994,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Prop.~15.5, p.~93"
+ },
+ {
+  "id": "C163",
+  "group": "E2-probability",
+  "file": "supp-line.tex",
+  "line": 1182,
+  "key": "kallenberg2021foundations",
+  "form": "sscite",
+  "locator": "Thm.~9.27, p.~200"
+ },
+ {
+  "id": "C164",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2098,
+  "key": "burt1981fast",
+  "form": "sscite",
+  "locator": "pp.~23--24"
+ },
+ {
+  "id": "C165",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2109,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C166",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 2111,
+  "key": "fagerstrom2026affine",
+  "form": "prog",
+  "locator": "Prop.~F.1, p.~93"
+ },
+ {
+  "id": "C167",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2113,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": "p.~533"
+ },
+ {
+  "id": "C168",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 2244,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Thm.~7.3, p.~37"
+ },
+ {
+  "id": "C169",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 2349,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~5.7, (5.1), p.~48"
+ },
+ {
+  "id": "C170",
+  "group": "C-line-cone-affine",
+  "file": "supp-line.tex",
+  "line": 2350,
+  "key": "fagerstrom2026cone",
+  "form": "prog",
+  "locator": "Prop.~6.4(4), p.~58"
+ },
+ {
+  "id": "C171",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2353,
+  "key": "burt1983laplacian",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C172",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2362,
+  "key": "lindeberg2016time",
+  "form": "sscite",
+  "locator": "Sect.~5, (38), p.~62"
+ },
+ {
+  "id": "C173",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2363,
+  "key": "lindeberg2016time",
+  "form": "sscite",
+  "locator": "Sect.~6.2, p.~64"
+ },
+ {
+  "id": "C174",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2383,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~4.5(1), p.~35"
+ },
+ {
+  "id": "C175",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2420,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Remark~4.15"
+ },
+ {
+  "id": "C176",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2421,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.2(2), p.~30"
+ },
+ {
+  "id": "C177",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2423,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~4.5, p.~35"
+ },
+ {
+  "id": "C178",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2424,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.2(3), Cor.~4.4"
+ },
+ {
+  "id": "C179",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2425,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Thm.~4.10, p.~43"
+ },
+ {
+  "id": "C180",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2486,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~4.5(1), p.~35"
+ },
+ {
+  "id": "C181",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2493,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Prop.~4.5(2), p.~35"
+ },
+ {
+  "id": "C182",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2506,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S~6, p.~67"
+ },
+ {
+  "id": "C183",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2616,
+  "key": "lindeberg1990scalespace",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C184",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2617,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "Remark~4.15"
+ },
+ {
+  "id": "C185",
+  "group": "E2-probability",
+  "file": "supp-line.tex",
+  "line": 2643,
+  "key": "karlin1968total",
+  "form": "sscite",
+  "locator": "Ch.~7, Thm.~3.2(a),\np.~345"
+ },
+ {
+  "id": "C186",
+  "group": "B-selection",
+  "file": "supp-line.tex",
+  "line": 2644,
+  "key": "fagerstrom2026selection",
+  "form": "prog",
+  "locator": "\\S~4.3, pp.~34--35"
+ },
+ {
+  "id": "C187",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2669,
+  "key": "mallat1989theory",
+  "form": "sscite",
+  "locator": "(2)--(8), p.~676"
+ },
+ {
+  "id": "C188",
+  "group": "E1-imaging",
+  "file": "supp-line.tex",
+  "line": 2684,
+  "key": "meer1987frequency",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C189",
+  "group": "D-sato",
+  "file": "supp-strata.tex",
+  "line": 47,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1(iii),\npp.~37--38"
+ },
+ {
+  "id": "C190",
+  "group": "D-sato",
+  "file": "supp-strata.tex",
+  "line": 49,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~8.1(ii),\np.~38"
+ },
+ {
+  "id": "C191",
+  "group": "C-line-cone-affine",
+  "file": "supp-strata.tex",
+  "line": 226,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Prop.~2.3(3), p.~9"
+ },
+ {
+  "id": "C192",
+  "group": "C-line-cone-affine",
+  "file": "supp-strata.tex",
+  "line": 257,
+  "key": "fagerstrom2026spatial",
+  "form": "prog",
+  "locator": "Prop.~2.3(3), p.~9"
+ },
+ {
+  "id": "C193",
+  "group": "E1-imaging",
+  "file": "supp-strata.tex",
+  "line": 298,
+  "key": "lindeberg1990scalespace",
+  "form": "sscite",
+  "locator": ""
+ },
+ {
+  "id": "C194",
+  "group": "D-sato",
+  "file": "supp-strata.tex",
+  "line": 347,
+  "key": "sato1999levy",
+  "form": "sscite",
+  "locator": "Thm.~15.8, p.~94"
+ }
+]

@@ -1,0 +1,45 @@
+% The preamble of the two roots of the theory paper (main.tex, supplement.tex), on the model of
+% the isotropic paper's (spatial-hemigroup-affine, paper-iso/preamble.tex). A root that defines
+% \pyrexternal as the name of the other document reads that document's labels through xr-hyper,
+% which is loaded before hyperref; the option nocite keeps the other document's bibliography
+% numbers out, so that each has its own list of references.
+\usepackage[a4paper,margin=1in]{geometry}
+\setlength{\emergencystretch}{1.5em}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{S}[1]{>{\footnotesize\raggedright\arraybackslash}p{#1}}
+\setlength{\LTcapwidth}{\textwidth}
+\usepackage{graphicx}
+\usepackage{tikz}
+% The figures are drawn by scripts/make_figures_theory.py into figures/ (theory-*.png).
+\graphicspath{{../figures/}}
+% natbib in numeric mode, for \citenum: the blueprint writes a citation with its locator as
+% [\sscite{key}, Thm.~x, p.~y], so \sscite prints the bare number (macros.tex).
+\usepackage[numbers]{natbib}
+\ifdefined\pyrexternal\usepackage{xr-hyper}\fi
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Spatial Scale Space from Hemigroup Axioms: The Theory of Image Pyramids},
+  pdfauthor={Daniel Fagerstr\"om},
+}
+
+\input{macros}
+% The other document is imported after macros.tex: its .aux carries titles written in the
+% paper's macros (\Levy), which xr expands as it reads them.
+\ifdefined\pyrexternal\externaldocument[][nocite]{\pyrexternal}\fi
+\numberwithin{equation}{section}
+
+% The blueprint numbers its four statement environments on one counter; so does the paper.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}

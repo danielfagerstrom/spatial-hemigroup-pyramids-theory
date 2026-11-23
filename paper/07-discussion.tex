@@ -1,0 +1,185 @@
+% Section 7: the theory half of the draft's section 8 (notes/PLAN-article-structure.md, "The
+% outlines"). The computation half is the computation paper's; nothing here cites it.
+\section{Discussion}
+\label{sec:discussion}
+
+A pyramid applies one small mask at every level, and the classical criteria judge that mask on its
+own \cite[p.~533]{burt1983laplacian}, \cite{meer1987frequency}. This paper judged it by another
+standard. Covariance under one ratio $q$ requires the mask to be the step between two levels of a family
+of kernels continuous in scale. With the input read as the image at the scale $1$, the levels of the
+pyramid are then the image smoothed by the steps of that family from the scale $1$. The questions are which masks have such a family, and how much of it the mask fixes.
+
+The new standard rules out every finite mask. A law of bounded support other than a point mass is
+the step of no family: the cascade and continuity in scale exclude it
+(Proposition~\ref{prop:no-bounded-step}). In its place
+comes a criterion on the weights. A symmetric probability mask other than a point mass is the step of an exact
+grid pyramid if and only if it is infinitely divisible with a logarithmic moment
+(Proposition~\ref{prop:exact-masks}). For laws the sufficiency is the theorem of Maejima and Ueda
+\cite[Thm.~3.3, p.~353]{maejima2009stochastic}, and the necessity of infinite divisibility comes from
+continuity in scale. On a lattice such a mask has unbounded support
+(Proposition~\ref{prop:exact-masks}(1)). It also has a positive transform, so at an integer ratio
+it never has Burt's equal contribution, which requires zeros of the transform
+(Section~\ref{subsec:grid-pyramids-line}). A pyramid that truncates its mask is therefore not
+exact, and an
+exact one must apply its mask without truncation. On the line a recursion does this. The sampled
+Laplace mask is applied by one forward and one backward recursion
+(Proposition~\ref{prop:sampled-laplace-exact}(2)). In every dimension the resolvent masks of the
+discrete Helmholtz operators are exact as well (Proposition~\ref{prop:resolvent-masks-exact}).
+
+The mask of an exact pyramid fixes the kernels at its levels. Label the scales so that the
+dilation by $q$ maps the scale $t$ to $qt$. The kernel at a level is then the limit of the step
+convolved with its dilates toward finer scales (Proposition~\ref{prop:ladder-knot-kernel}). This
+is the equivalent weighting function of Burt and Adelson run downward in scale. For these steps its
+limit exists and is the kernel. Between the levels a symmetric family is determined by its ladder,
+up to a relabelling, exactly when the data of the step, its Gaussian part and \Levy{} measure, span
+an extreme ray of the cone of such data (Proposition~\ref{prop:ladder-knot-kernel}(2)).
+
+The strata place the pyramids among the families of scale space. The dilations under which a
+symmetric family is covariant form $\{1\}$, some $q^{\ZZ}$, or all of $(0,\infty)$
+(Lemma~\ref{lem:family-dilations}(2)). So covariance under the powers of one ratio is the only case
+between none and every dilation. For isotropic families each stratum is strictly larger than the
+next (Theorem~\ref{thm:lattice-strata-strict}). The pyramids of stratum~2 therefore form a wider
+class than the fully covariant families that the isotropic paper classifies
+\prog{iso v0.1}{Thm.~3.6, p.~13}. Lindeberg's scale space for discrete signals
+\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2
+(Proposition~\ref{prop:lindeberg-stratum-one} of the supplement). It is no pyramid in this sense.
+
+Stratum~2 holds many families, so a designer still needs a reason to choose one. On the line the
+count of local extrema selects among the fully covariant families \prog{V-selection v0.1}{\S4}.
+In stratum~2 the rung-to-rung count holds on the ladders of a class
+(Proposition~\ref{prop:ladder-non-creation-line}) and selects none of them. In the plane a bound on
+the value at a local maximum takes its place. Among the isotropic families covariant under $q$, the
+\Matern{} pyramid is, up to the gauge, the one whose every octave stage has the implicit-Euler
+maximum principle (Theorem~\ref{thm:selection-stratum-two}(2)). The family selected is covariant
+under every dilation, although only $q$ was required. Among symmetric rotation-invariant laws the
+principle holds exactly for the Bessel potentials (Proposition~\ref{prop:stage-lemma}(3)), so it
+rejects the Gaussian stages that classical non-enhancement selects on the line
+\prog{V-selection v0.1}{Thm.~4.2(3), p.~31}. It is required of the octave stages only. A stage of
+the \Matern{} pyramid has it only across a factor $q$ (Theorem~\ref{thm:selection-stratum-two}(3)),
+and no symmetric family has it at every stage
+(Proposition~\ref{prop:principle-other-readings}(2)). So each ratio $q$ selects its own fully
+covariant family. Its octave step is one Helmholtz
+resolvent, the law $L_{ct}$ (Theorem~\ref{thm:matern-pyramid}). The difference of the levels $t$
+and $qt$ is $-c^2t^2$ times the Laplacian of the coarser one
+(Proposition~\ref{prop:laplacian-pyramid}). So for this family the level difference of the
+Laplacian pyramid of Burt and Adelson \cite[p.~535]{burt1983laplacian}, taken on the continuum before any
+decimation, is a Laplacian.
+
+Sequences of implicit heat steps with geometrically growing step sizes occur in nonstationary
+iterated Tikhonov regularization \cite[pp.~38--39]{hanke1998nonstationary}. The decimation between
+them was not found in that literature. Nor was a covariant family through them, unique up to the
+gauge under the implicit-Euler principle. The line does not decide which isotropic families exist
+in $\RR^d$ either. An isotropic family is fixed by its marginal (Lemma~\ref{lem:reduction-keeps-stratum}), but the
+isotropic classes of one ratio shrink strictly with the dimension
+(Proposition~\ref{prop:what-does-not-lift-chain}). Which families of the line extend to $\RR^d$
+depends on $d$.
+
+Computing on a lattice has a price. In $\RR^d$, $d \ge 2$, no kernel at a positive scale of an
+exact grid pyramid whose mask is carried by a lattice is rotation invariant
+(Proposition~\ref{prop:grid-pyramid-not-isotropic}(2)). Exact here is sense (iii) of
+Definition~\ref{def:exact-senses}. The frame \Matern{} pyramid on the grid is exact and not
+isotropic (Proposition~\ref{prop:grid-pyramid-not-isotropic}(3)). The \Matern{} pyramid is
+isotropic, and its octave steps $L_{ct}$ have densities, so it carries the ladder of no mask on a
+lattice. The obstruction rests on continuity in scale as much as on the lattice. Some symmetric
+probability mask of infinite support on $\ZZ^d$, whose transform vanishes outside a small ball in
+each period, has a rotation-invariant solution of the knot relation
+(Proposition~\ref{prop:band-limited-refinable-mask}). Its dilates, applied at the knots, make an
+isotropic two-parameter system of laws that is discontinuous at the knots. The mask is not
+infinitely divisible, so no family continuous in scale carries it. The steerable pyramid uses
+strictly band-limited low-pass filters, to prevent aliasing \cite[p.~445]{simoncelli1995steerable}.
+
+\subsection{What the results do not say}
+
+\emph{The families are positive and continuous in scale.} Every kernel here is a
+probability law, so a mask with a negative weight is outside every statement. Burt's five-tap
+generating kernel with central weight $a > 1/2$, which has negative outer weights, is one
+\cite[pp.~533--534]{burt1983laplacian}. Symmetry is required where a result says so. In
+Section~\ref{ch:price} it is required of the mask and not of the family that carries its ladder
+(Definition~\ref{def:exact-grid-pyramid}), and the statements there are made for an arbitrary such
+family.
+Rotation invariance is required where a result says isotropic.
+Proposition~\ref{prop:no-bounded-step} requires neither. The cascade together with continuity in
+scale excludes the finite masks (Proposition~\ref{prop:no-bounded-step}). Without continuity the knot relation $D_q\mu_1 = \mu_1 * w$ alone
+has solutions for a finite mask, such as the cubic B-spline for the binomial mask
+(Proposition~\ref{prop:binomial-knot-relation}). In transforms the knot relation reads
+$\widehat{\mu_1}(q\omega) = \widehat{w}(\omega)\widehat{\mu_1}(\omega)$. At $q = 2$ this is the
+refinement equation of stationary subdivision, there with a mask of sum $2^d$
+\cite[Ch.~6, p.~107]{cavaretta1991stationary}. The same equation defines the scaling functions of
+wavelet theory \cite[p.~5]{cavaretta1991stationary}.
+
+\emph{The selection does not count extrema.} In the plane the number of local maxima of a record is not
+monotone in scale for any candidate treated here: it can rise at every rung of the \Matern{} and
+frame \Matern{} pyramids and of the Gaussian ladder, for an input that depends on the rung
+(Proposition~\ref{prop:creation-plane}).
+Theorem~\ref{thm:selection-stratum-two} selects by a bound on the value of the output at a local
+maximum. The counting statements that select on the line \prog{V-selection v0.1}{\S4} are not
+offered as properties of a pyramid in the plane.
+
+\emph{Exact means sense (iii).} ``Exact'' in Proposition~\ref{prop:grid-pyramid-not-isotropic} is
+sense (iii) of Definition~\ref{def:exact-senses}: a family continuous in scale and covariant under
+$q$ carries the ladder.
+Whether a subsample of a grid family is again a member on the coarser grid, sense (ii), is a
+different question. The paper answers it for one family only, on the line: the subsample of a
+sampled Laplace kernel is proportional to the sampled Laplace kernel of the same range on the
+coarser grid (Proposition~\ref{prop:sampled-laplace-exact}(2)). The range is that of the continuum
+kernel sampled. The parameter of the discrete Helmholtz kernel with the same samples depends on
+the spacing $h$. In $d \ge 2$ it is left to further
+work.
+
+\emph{The ratio is a scalar.} Outside
+Proposition~\ref{prop:expanding-grid-pyramid-not-isotropic}, every dilation in the theory is
+$x \mapsto qx$ on a lattice, the hexagonal lattice included. Some pyramids dilate by a map that also rotates the lattice: Crowley's
+resampling by $\sqrt2$ \cite[\S 3.3.2, p.~32]{crowley1981representation}, the quincunx filter banks,
+whose dilation matrix squares to $2I$ \cite[(2), p.~534]{kovacevic1992nonseparable}, and the
+hexagonal pyramid of seven-point cells \cite[pp.~97, 99]{watson1989hexagonal}. For them only the
+obstruction to isotropy is carried over
+(Proposition~\ref{prop:expanding-grid-pyramid-not-isotropic}). Their families, strata and selection
+are not treated.
+
+\emph{The cost of computing in the plane is not treated.} The cost of a level in the plane, and the
+distance of a decimated computation there from the continuum, are left to further work. On the
+line the sampled Laplace family is an exact cascade on the grid, computed by one forward and one
+backward first-order recursion (Propositions~\ref{prop:recursion-helmholtz}
+and~\ref{prop:sampled-laplace-exact}). For an integer $q \ge 2$, the \Matern{} pyramid computed by
+it with decimation agrees with the samples of the continuum steps at the first level and at no
+later one, for every spacing (Proposition~\ref{prop:sampled-laplace-exact}(2)). The discrete
+Helmholtz family on $h\ZZ^d$ is an exact cascade on the grid as well
+(Proposition~\ref{prop:discrete-helmholtz}), but no recursion that computes it in the plane is
+given here.
+% TODO(module computation): cite the computation paper when released.
+
+\subsection{Four questions the results answer}
+
+Each main result leaves a question next to it: whether the creation of extrema can be placed at a
+chosen rung, whether the principle survives decimation, whether a rotating dilation escapes the
+obstruction, and whether a finite mask can keep isotropy by giving up exactness. Each has a short
+answer from a statement of the paper.
+\begin{enumerate}
+\item \emph{Can the Gaussian ladder create extrema at a chosen rung?} Yes. For every $q > 1$ and
+every $\tau > 0$, some positive input has a Gaussian record with one local maximum at the variance
+$\tau$ and at least two at $q^2\tau$ (Proposition~\ref{prop:creation-plane}(5)).
+\item \emph{Does the implicit-Euler principle survive decimation?} Read pointwise, no. The principle
+holds for every octave stage of the \Matern{} pyramid on the continuum
+(Theorem~\ref{thm:selection-stratum-two}(2)). On $h\ZZ^d$ the $(2d+1)$-point resolvent has it on
+the axis neighbours (Proposition~\ref{prop:stage-lemma}(2)), and in $d \ge 2$ the frame mask has it
+on no finite symmetric neighbourhood (Proposition~\ref{prop:grid-frame-step-not-selected}). After
+decimation by an integer $q \ge 2$, one finitely supported input gives a decimated output with a
+strict maximum over its axis neighbours on $qh\ZZ^d$, at a point where it exceeds the input
+(Proposition~\ref{prop:principle-after-decimation}). There the inequality of the principle fails.
+The principle concerns one smoothing step on one grid. Across a decimation the two arrays compared
+are related by no convolution, since the decimated output depends on the input at the discarded
+points. For the $(2d+1)$-point resolvent, at a point of the coarse grid that is also a maximum
+over its axis neighbours on the fine grid, the inequality still holds, by
+Proposition~\ref{prop:stage-lemma}(2).
+\item \emph{Can a dilation that rotates the lattice give an isotropic exact grid pyramid?} No. In
+$d \ge 2$ no exact grid pyramid whose dilation is an invertible linear map $M$ is isotropic
+(Proposition~\ref{prop:expanding-grid-pyramid-not-isotropic}). This covers the similarities
+$x \mapsto cRx$, $c > 1$ and $R \in \Orth(d)$, of the quincunx and hexagonal pyramids.
+\item \emph{Can a finite mask have a rotation-invariant refinable law?} No. In $d \ge 2$ a
+rotation-invariant law that satisfies the knot relation with a probability mask that has an
+exponential moment, as every finite mask has, is $\delta_0$, and so is the mask. The same holds for a
+finitely supported complex measure in place of the mask
+(Proposition~\ref{prop:no-isotropic-refinable-finite-mask}). A mask of infinite support can: the
+band-limited mask of Proposition~\ref{prop:band-limited-refinable-mask} has a rotation-invariant
+refinable law, and its grid pyramid is not exact.
+\end{enumerate}

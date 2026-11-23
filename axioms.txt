@@ -1,0 +1,1493 @@
+'Pyramids.recursion_line_transforms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_line_passes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_line_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_grid_transform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_grid_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_grid_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.recursion_grid_passes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_cascade' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_symbol' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.discrete_helmholtz_increment_translation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.no_first_order_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.first_order_factorization_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.subsampling_line_index_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.subsampling_sampled_laplace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cosine_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.nine_point_symbol' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.isotropicFamily_isSymmetricFamily' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.reduction_keeps_stratum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.equivalent_weights_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.equivalent_weights_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_profile_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_profile_1_green' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_profile_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_profile_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_profile_3_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.ae_eq_of_gridCoeff_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.hasSum_gridCoeff_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.hasSum_sq_gridCoeff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.exists_gridCoeff_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.hasSum_gridCoeff_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.gridCoeff_tsum_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.gridMultiplierCLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.laplace_atoms_admissible_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.laplace_atoms_admissible_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.nine_point_family_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.nine_point_family_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.nine_point_family_2_invariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A39_exists' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A39_unique' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A39_converse' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A40' depends on axioms: [propext, AffineHemigroup.levy_khintchine_exists, Classical.choice, Quot.sound]
+'Pyramids.cited_A41' depends on axioms: [propext, AffineHemigroup.khintchine_null_array, Classical.choice, Quot.sound]
+'Pyramids.cited_A42' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A46' depends on axioms: [propext, Classical.choice, Pyramids.cited_A46, Quot.sound]
+'Pyramids.cited_A48' depends on axioms: [propext, Classical.choice, Pyramids.cited_A48, Quot.sound]
+'Pyramids.isFiniteMeasure_levy_of_int' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A48_finite' depends on axioms: [propext, Classical.choice, Pyramids.cited_A48, Quot.sound]
+'Pyramids.cited_A51_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.symmetric_levy_khintchine' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_structure_id' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_structure_exists' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_structure_data' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_structure_monotone' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_structure_isotropic' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_infinitely_divisible' depends on axioms: [propext, Classical.choice, Pyramids.cited_A48, Quot.sound]
+'Pyramids.no_bounded_step' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.what_does_not_lift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.what_does_not_lift_atom' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.bessel_k_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_k_1_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_k_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bessel_k_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_exponent_data_1' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.line_exponent_data_1_converse' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.line_exponent_data_1_unique' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.line_exponent_data_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_exponent_data_3' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_dilations_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_dilations_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_dilations_3_exists' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.family_dilations_3_relabel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.family_dilations_3_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.family_dilations_4' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_levy' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_levy_semi' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_levy_determined' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.synthesis' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.no_lattice_kernel' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.gauge_group_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.gauge_group_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.gauge_group_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.gauge_group_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_1_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_1_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_2_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.line_axioms_kernels_qcov' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A1_repr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A1_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A1_converse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.closed_subgroups_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.closed_subgroups_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_line' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_line_semi' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_covariance_line_annulus' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_parametrization_map' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_parametrization_recover' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_parametrization_injective' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_parametrization_surjective' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.classical_kernels_no_exact_cascade' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.classical_kernels_no_exact_cascade_masks' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.classical_kernels_no_exact_cascade_burt' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.classical_kernels_no_exact_cascade_pyramid' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.cited_A31' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A31_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A34' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A35_reading' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A35_unique' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A35_admissible' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A35_classA' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A43_sd' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Pyramids.cited_A43_residual_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.cited_A43_semi' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Pyramids.cited_A43_semi_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.cited_A43_span' depends on axioms: [propext,
+ Classical.choice,
+ Pyramids.cited_A43_residual_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.cited_A45' depends on axioms: [propext, AffineHemigroup.sato_polar_criterion, Classical.choice, Quot.sound]
+'Pyramids.cited_A49' depends on axioms: [propext, Classical.choice, Pyramids.cited_A49, Quot.sound]
+'Pyramids.cited_A50' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stratum_two_example_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stratum_two_example' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_1_converse' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.step_field_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.step_field_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.step_field_2_knots' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.no_lattice_kernel_line_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.no_lattice_kernel_line_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.what_does_not_lift_chain_1' depends on axioms: [propext,
+ Classical.choice,
+ Pyramids.cited_A43_residual_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.what_does_not_lift_chain_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.what_does_not_lift_chain_strict' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A43_semi_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.qcin_1_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.qcin_1_repr' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.qcin_1_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.qcin_1_rays' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.qcin_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.qcin_2_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.qcin_3' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A43_semi_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.classical_pyramids_approximate_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.classical_pyramids_approximate_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.classical_pyramids_approximate_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.classical_pyramids_approximate_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.classical_pyramids_approximate_5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.surface_measure_family' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.surface_measure_unique' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.surface_measure_pair' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.surface_measure_injective' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.surface_measure_exponent' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.surface_measure_integrable_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_exponent_ladder_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_exponent_ladder_1_determines' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_exponent_ladder_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.knot_exponent_ladder_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_moments' depends on axioms: [propext, Classical.choice, Pyramids.cited_A49, Quot.sound]
+'Pyramids.ladder_knot_kernel_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_not_unique' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_split' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_split_rot' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_unique_iff' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_2_unique_iff_rot' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.ladder_knot_kernel_4a' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_4c' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_4b_equation' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_4b_classA' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_knot_kernel_4b_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_1_action' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_1_orbits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_2_bij' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_2_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_2_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_3_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_4_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.knot_atom_cascades_4_families' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.ladder_not_every_frequency' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.phase_disintegration_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.extreme_rays_random_walks_5_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_1_integrability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_1_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_1_both' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.strata_cylinder_1_then' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_1_jump' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.strata_cylinder_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.haar_smearing_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.phase_entropy_selection_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.phase_entropy_selection_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.phase_entropy_selection_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.phase_entropy_selection_4' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A9' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A4' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A4_exists' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.cited_A4_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A44' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.stratum_one_example_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stratum_one_example' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_phase_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.annulus_phase_1_converse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.annulus_phase_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.annulus_phase_3' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_strict_imp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.lattice_strata_strict' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_strata_strict_canonical' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_1_converse' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_3_then' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lindeberg_stratum_one_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.lindeberg_stratum_one_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.lindeberg_stratum_one_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_gaussian_pyramid_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_gaussian_pyramid_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.discrete_gaussian_pyramid_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_strict_imp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.lattice_line_strict_lower' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_strict_upper' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.lattice_line_strict' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2_knot' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2_carrier' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2_no_kernel' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2_not_every' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_2_coupling' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_3_general' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_4' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_4_binomial' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.grid_pyramids_id_4_bounded' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.matern_pyramid_line_display' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_1' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_line_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_line_2_direct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_4_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_4_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_4_laws' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_bound_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_bound_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.ladder_bound_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.sampled_laplace_exact_sample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_periodization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_1_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_1_hemigroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_1_recursion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_1_powers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_2_array' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_2_restriction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_2_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_2_later' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.sampled_laplace_exact_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.phase_entropy_modulated_selection' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.phase_entropy_modulated_selection_converse' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.phase_entropy_modulated_selection_iff' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.min_one_sq_le_avg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.lintegral_min_one_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.SymLevyPair_a_le_exponent_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.levy_integrable_of_cos_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.eq_smul_dirac_of_zero_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.eq_smul_dirac_prod_of_zero_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.exists_step_gauss' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.gauss_eq_zero_of_noGaussianStep' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.measurable_klDiv_kernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.map_haarPhase_prod_mul_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.measurable_measure_Ioc_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.appearance_entropy_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.appearance_entropy_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.appearance_entropy_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.appearance_entropy_3_unique' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.appearance_entropy_4' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.phase_entropy_scale_unit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.modulated_selection_strict' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.knot_kernel_data' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramid_not_isotropic_union' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.grid_pyramid_not_isotropic_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramid_not_isotropic_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.grid_pyramid_not_isotropic_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramid_singular_kernels_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.grid_pyramid_singular_kernels_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_exists,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.exact_masks_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.exact_masks_1_poisson' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.exact_masks_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.binomial_knot_relation' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.binomial_knot_relation_tensor' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.no_isotropic_refinable_mask_exp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.no_isotropic_refinable_signed_finite_mask' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.no_isotropic_refinable_finite_mask' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.grid_frame_step_not_selected_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.grid_frame_step_not_selected_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.resolvent_masks_exact_1' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.resolvent_masks_exact_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.resolvent_masks_exact_3' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.resolvent_masks_exact_4_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.resolvent_masks_exact_4_nine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.resolvent_masks_exact_4_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.cited_A22_variation' depends on axioms: [propext, Classical.choice, Pyramids.cited_A22_variation, Quot.sound]
+'Pyramids.cited_A22_polya' depends on axioms: [propext, Classical.choice, Pyramids.cited_A22_polya, Quot.sound]
+'Pyramids.cited_A24' depends on axioms: [propext, Classical.choice, Pyramids.cited_A24, Quot.sound]
+'Pyramids.cited_A23' depends on axioms: [propext, Classical.choice, Pyramids.cited_A22_variation, Quot.sound]
+'Pyramids.line_and_arrays_1' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Pyramids.cited_A49,
+ Quot.sound]
+'Pyramids.line_and_arrays_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_line_noncreation' depends on axioms: [propext,
+ Classical.choice,
+ Pyramids.cited_A22_polya,
+ Pyramids.cited_A24,
+ Quot.sound]
+'Pyramids.discrete_gaussian_neither' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A24,
+ Quot.sound]
+'Pyramids.ladder_non_creation_line' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Pyramids.cited_A22_polya,
+ Pyramids.cited_A22_variation,
+ Quot.sound]
+'Pyramids.ladder_non_creation_line_matern' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_1_admissible' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_1_exists' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_1_family' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_1_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_2_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_2_family' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_3_marginal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_3_polya' depends on axioms: [propext,
+ Classical.choice,
+ Pyramids.cited_A22_polya,
+ Pyramids.cited_A24,
+ Quot.sound]
+'Pyramids.matern_pyramid_3_counts' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Pyramids.cited_A22_polya,
+ Pyramids.cited_A22_variation,
+ Quot.sound]
+'Pyramids.matern_pyramid_4_series' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.maternStep_sub_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.eLpNorm_maternStep_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.isW21_schwartz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.IsW21.mconv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_5_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_5_classA' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_5_multiples' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_5_weak' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_pyramid_5_limit_exists' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_pyramid_5_kernels' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.density_of_radial_charFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.isProjectionDensity_mconvE' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.integrable_moment_matern' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_grid_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_grid_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_grid_3' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.laplacian_pyramid' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_generator_octave_1_terms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_1_symbol' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_1_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_3_plane' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_3_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_generator_octave_3_periodization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stage_lemma_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stage_lemma_1_helmholtz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stage_lemma_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stage_lemma_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.stage_lemma_3_rotation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_1_ladder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_1_free' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.selection_stratum_two_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_2_converse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_4_gaussian' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_4_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_4_axis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.isGauge_extendByZero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.selection_stratum_two_2_converse_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.maternPyramid_gauge_family' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.selection_stratum_two_2_converse_gauge' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.principle_other_readings_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.principle_other_readings_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.principle_after_decimation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_plane_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_plane_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_plane_5' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_plane_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.exists_gauss_record' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.memLp_two_invInt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.frame_matern_pyramid_exists' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.creation_plane_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_plane_3_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.exists_schwartz_record' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.hasTemperateGrowth_logSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.completelyMonotone_sub_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.completelyMonotone_sq_le_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.completelyMonotone_antitoneOn_exp_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.not_isCompletelyMonotone_of_growth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_1_line' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_2_profile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_2_profile_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_2_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.thorin_dimension_2_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.bernstein_density_eqOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.not_isCompletelyMonotone_expDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_2_levy_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_2_poisson' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_3_levy_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_3' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.matern_increments_3_thorin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.matern_increments_3_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.records_creation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.zdLaw_tensorIdx_eq_tensorPow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_grid_masks_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.creation_grid_masks_2' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Quot.sound]
+'Pyramids.creation_grid_masks_3_resolvent' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.creation_grid_masks_3_frame' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A46,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.binomial_records_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.binomial_records_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_lattice_strata_1_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_lattice_strata_1_converse_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_lattice_strata_2_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_lattice_strata_3_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_matern_pyramid_1_family_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_1_family_matern_2_1_2' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_1_mixture_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_matern_pyramid_2_equation_matern' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_matern_pyramid_2_family_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_3_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_3_counts_bump' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_4_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_5_weak_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_matern_pyramid_5_kernels_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selection_stratum_two_1_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selection_stratum_two_1_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_selection_stratum_two_2_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selection_stratum_two_2_converse_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selection_stratum_two_3_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selection_stratum_two_4_laplace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_grid_pyramid_not_isotropic_frame' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_grid_pyramid_not_isotropic_3_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_exact_masks_frame' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Pyramids.cited_A48,
+ Quot.sound]
+'Pyramids.witness_grid_pyramid_not_isotropic_2_span_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_cascadeFamily_heat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_qCovariantLine_oneRatio' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_selfDecomposable_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_originDatum_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_isKnotExponent_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_isKnotLadder_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_isKnotLadder_matern' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_isIsotropicCarrier_gauss_matern' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_stencilFamily_helmKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_maskPowers_rwStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_isExactSubsampleIn_deltaZ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.polarLevyMeasure_zeroProfile' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_ladder_knot_kernel_4b_gauss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_what_does_not_lift_chain_1_limit' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Pyramids.cited_A43_residual_infinitelyDivisible,
+ Quot.sound]
+'Pyramids.witness_cm_uncancelled_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.isInGaugeGroup_wobbleGauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.wobbleGauge_not_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_selection_stratum_two_2_wobble' depends on axioms: [propext,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ AffineHemigroup.selfDecomposable_infinitelyDivisible,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_resolvent_masks_exact_rwStep' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ Classical.choice,
+ Quot.sound]
+'Pyramids.witness_isExactSampleArray_indicator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Pyramids.witness_lattice_strata_2_stratumTwo' depends on axioms: [propext,
+ AffineHemigroup.khintchine_null_array,
+ AffineHemigroup.levy_khintchine_converse,
+ AffineHemigroup.levy_khintchine_exists,
+ AffineHemigroup.levy_khintchine_unique,
+ AffineHemigroup.sato_polar_criterion,
+ Classical.choice,
+ Quot.sound]

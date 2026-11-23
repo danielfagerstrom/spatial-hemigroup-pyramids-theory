@@ -1,0 +1,292 @@
+[
+ {
+  "file": "01-introduction.tex",
+  "line": 190,
+  "key": "sato1999levy",
+  "locator": "Def.~15.1, p.~90",
+  "form": "cite",
+  "context": "2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyramid takes its name from the \\Matern{} cova",
+  "id": "C015",
+  "group": "D-sato"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 257,
+  "key": "sato1999levy",
+  "locator": "",
+  "form": "cite",
+  "context": "The cited facts are the statements of Section~\\ref{sec:cited-literature} and those restated from the author's earlier papers in Section~\\ref{sec:cited}, each stated as a numbered theorem with the page of its source. Ten of them are \\emph{admitted interfaces}: the formal development takes them as axioms, fifteen axioms in all. \\begin{itemize} \\item From Sato \\cite{sato1999levy}: the \\Levy{}--Khintchine representation (\\ledger{A39}, three axioms), Khintchine's theorem on null arrays (\\ledger{A41}), the triplet of a linear image (\\ledger{A42}), the infinite divisibility of self-decomposable and semi-selfdecomposable laws and of their residuals (\\ledger{A43}, three axioms), the polar form of a self-decomposable \\Levy{} measure (\\ledger{A45}), the unbounded support of an infinitely divisible law (\\ledger{A46}), the lattice-carried infinitely divisible laws on the line (\\ledger{A48}), and the ",
+  "id": "C022",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 162,
+  "key": "sato1999levy",
+  "locator": "Def.~15.1, p.~90",
+  "form": "sscite",
+  "context": "The full axioms produce a classical class of laws. By the cascade the kernel $\\mu_{0,t}$ is the kernel $\\mu_{0,s}$ at a finer scale convolved with the step $\\mu_{s,t}$. By covariance $\\mu_{0,s}$ is a dilate of $\\mu_{0,t}$. So each kernel is a shrunken copy of itself convolved with a law, which is the property the next definition names [\\sscite{sato1999levy}, Def.~15.1, p.~90].",
+  "id": "C033",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 565,
+  "key": "sato1999levy",
+  "locator": "",
+  "form": "sscite",
+  "context": "The transform $\\widehat\\mu$ and the image $A_*\\mu$ are those of Section~\\ref{subsec:cited-d}. The dilation of measures is $D_c := (cI)_*$ for $c > 0$, so that $\\widehat{D_c\\mu}(\\omega) = \\widehat\\mu(c\\omega)$. On the line it is written $T_c$, as in [\\sscite{sato1999levy}]: $(T_c\\mu)(B) = \\mu(c^{-1}B)$ for Borel sets $B \\subseteq \\RR$. The same notation is used for a measure on $(0,\\infty)$, such as a folded \\Levy{} measure, since $x \\mapsto cx$ maps $(0,\\infty)$ onto itself. The dilation of functions $\\mathcal{D}_\\lambda$ is the one of (A8), mass-preserving. The ratio of a pyramid is $q > 1$, and $\\ell := \\log q$.",
+  "id": "C060",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 588,
+  "key": "sato1999levy",
+  "locator": "",
+  "form": "sscite",
+  "context": "The proofs read facts from three sources. They are the \\Levy--Khintchine theory of infinitely divisible laws, in the book of Sato [\\sscite{sato1999levy}], Schoenberg's representation of \\Polya{} frequency densities, in Karlin's book [\\sscite{karlin1968total}], and one integral representation of the modified Bessel function $K_\\nu$ [\\sscite{dlmf2026}]. A fourth source, the book of Schilling, Song and Vondra\\v{c}ek on Bernstein functions [\\sscite{schilling2012bernstein}], supplies the terms in which Section~\\ref{ch:matern} describes the steps of the \\Matern{} pyramid. Each fact is stated at its source's letter, or narrower where the proofs use less, and the sentence before it says where. Theorem~\\ref{thm:cited-A50} is proved in the paragraph before it.",
+  "id": "C061",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 604,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1(i)--(iii), pp.~37--38",
+  "form": "sscite",
+  "context": "A probability measure $\\mu$ on $\\RR^d$ is infinitely divisible, as on the line, if for every $n$ it is the $n$-fold convolution power of some probability measure. Write $D := \\{x \\in \\RR^d : |x| \\le 1\\}$ for the closed unit ball. Sato's Gaussian covariance matrix is written $A^{\\mathrm S}$, twice the paper's Gaussian part (Section~\\ref{subsec:cited-notation}). The first theorem is the \\Levy--Khintchine representation [\\sscite{sato1999levy}, Thm.~8.1(i)--(iii), pp.~37--38], with the names of [\\sscite{sato1999levy}, Def.~8.2, p.~38].",
+  "id": "C065",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 605,
+  "key": "sato1999levy",
+  "locator": "Def.~8.2, p.~38",
+  "form": "sscite",
+  "context": "A probability measure $\\mu$ on $\\RR^d$ is infinitely divisible, as on the line, if for every $n$ it is the $n$-fold convolution power of some probability measure. Write $D := \\{x \\in \\RR^d : |x| \\le 1\\}$ for the closed unit ball. Sato's Gaussian covariance matrix is written $A^{\\mathrm S}$, twice the paper's Gaussian part (Section~\\ref{subsec:cited-notation}). The first theorem is the \\Levy--Khintchine representation [\\sscite{sato1999levy}, Thm.~8.1(i)--(iii), pp.~37--38], with the names of [\\sscite{sato1999levy}, Def.~8.2, p.~38].",
+  "id": "C066",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 630,
+  "key": "sato1999levy",
+  "locator": "Lemma~7.5,\np.~32",
+  "form": "sscite",
+  "context": "The transform of an infinitely divisible law has no zero [\\sscite{sato1999levy}, Lemma~7.5, p.~32].",
+  "id": "C067",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 642,
+  "key": "sato1999levy",
+  "locator": "Thm.~9.3, p.~47",
+  "form": "sscite",
+  "context": "Limits of row sums of a null array are infinitely divisible, by Khintchine's theorem [\\sscite{sato1999levy}, Thm.~9.3, p.~47], with the null array of Definition~9.2 on the same page.",
+  "id": "C068",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 658,
+  "key": "sato1999levy",
+  "locator": "Prop.~11.10, p.~65",
+  "form": "sscite",
+  "context": "The triplet of a linear image is [\\sscite{sato1999levy}, Prop.~11.10, p.~65], printed there for a \\Levy{} process and read here for its law at time $1$.",
+  "id": "C069",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 677,
+  "key": "sato1999levy",
+  "locator": "Prop.~15.5, p.~93",
+  "form": "sscite",
+  "context": "The next two theorems are [\\sscite{sato1999levy}, Prop.~15.5, p.~93], with the sentence after it, and [\\sscite{sato1999levy}, Thm.~15.8, p.~94].",
+  "id": "C070",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 678,
+  "key": "sato1999levy",
+  "locator": "Thm.~15.8, p.~94",
+  "form": "sscite",
+  "context": "The next two theorems are [\\sscite{sato1999levy}, Prop.~15.5, p.~93], with the sentence after it, and [\\sscite{sato1999levy}, Thm.~15.8, p.~94].",
+  "id": "C071",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 753,
+  "key": "sato1999levy",
+  "locator": "Thm.~15.10, p.~95",
+  "form": "sscite",
+  "context": "The polar form of a self-decomposable law is [\\sscite{sato1999levy}, Thm.~15.10, p.~95].",
+  "id": "C072",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 770,
+  "key": "sato1999levy",
+  "locator": "Cor.~24.4, p.~149",
+  "form": "sscite",
+  "context": "The next two theorems are on the support, [\\sscite{sato1999levy}, Cor.~24.4, p.~149] and the ``only if'' of [\\sscite{sato1999levy}, Cor.~24.6, p.~149], with the finiteness of $\\nu$ from the proof printed on the same page.",
+  "id": "C073",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 771,
+  "key": "sato1999levy",
+  "locator": "Cor.~24.6, p.~149",
+  "form": "sscite",
+  "context": "The next two theorems are on the support, [\\sscite{sato1999levy}, Cor.~24.4, p.~149] and the ``only if'' of [\\sscite{sato1999levy}, Cor.~24.6, p.~149], with the finiteness of $\\nu$ from the proof printed on the same page.",
+  "id": "C074",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 791,
+  "key": "sato1999levy",
+  "locator": "Thm.~25.3, p.~159",
+  "form": "sscite",
+  "context": "Moments are read from the \\Levy{} measure by the $g$-moment theorem [\\sscite{sato1999levy}, Thm.~25.3, p.~159], with Definitions~25.1--25.2 on the same page.",
+  "id": "C075",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 806,
+  "key": "sato1999levy",
+  "locator": "Prop.~25.4(iii), p.~159",
+  "form": "sscite",
+  "context": "The logarithmic moments of the grid pyramids use one function of Sato's list [\\sscite{sato1999levy}, Prop.~25.4(iii), p.~159], and the paper proves that it is submultiplicative, with the constant $2$. For $g(x) = \\log(|x| \\vee e)$ and $u, v \\ge e$ one has $u + v \\le uv$, so $|x + y| \\vee e \\le (|x| \\vee e)(|y| \\vee e)$. Hence $g(x + y) \\le g(x) + g(y) \\le 2g(x)g(y)$, both values being at least $1$.",
+  "id": "C076",
+  "group": "D-sato"
+ },
+ {
+  "file": "02-cited-facts.tex",
+  "line": 877,
+  "key": "sato1999levy",
+  "locator": "Thm.~30.1,\npp.~197--198",
+  "form": "sscite",
+  "context": "A continuous function $\\psi$ on $\\RR^d$ is \\emph{negative definite} when $e^{-t\\psi}$ is positive definite for every $t > 0$. By [\\sscite{schilling2012bernstein}, Thm.~13.14, p.~212], in the direction proved by Example~13.13 on the same page, a Bernstein function of $|\\omega|^2$ is negative definite. The infinite divisibility of the law comes from subordination: Brownian motion run at the random time of a subordinator, an increasing \\Levy{} process [\\sscite{sato1999levy}, Thm.~30.1, pp.~197--198].",
+  "id": "C080",
+  "group": "D-sato"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 209,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1, pp.~37--38",
+  "form": "sscite",
+  "context": "The pair $(A_t, \\nu_t)$ is the \\emph{\\Levy{} data} of $\\mu_t$, in the normalization of Section~\\ref{subsec:cited-notation}. The \\Levy{} measure is the rate of the jumps of each size and direction [\\sscite{sato1999levy}, Thm.~8.1, pp.~37--38].",
+  "id": "C087",
+  "group": "D-sato"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 393,
+  "key": "sato1999levy",
+  "locator": "Def.~15.1, p.~90",
+  "form": "sscite",
+  "context": "A law is \\emph{self-decomposable} if, for every $0 < c < 1$, it is the law of $cX + Y$ with $X$ of that law and $Y$ independent of $X$ [\\sscite{sato1999levy}, Def.~15.1, p.~90] (Definition~\\ref{def:self-decomposable}). Shrinking the law by any factor and adding independent noise gives it back. These laws are the kernels of scale-space theory. On the line the kernels of the fully covariant families are exactly the symmetric self-decomposable laws \\prog{V-line v0.1}{Thm.~7.3, p.~37}. In $\\RR^d$, with rotation invariance, they are exactly the rotation-invariant self-decomposable laws \\prog{iso v0.1}{Thm.~3.6, p.~13}, whose exponents are the $F(|\\cdot|)$ with $F \\in \\mathcal{A}_d$ (Theorem~\\ref{thm:cited-A35}(2)).",
+  "id": "C088",
+  "group": "D-sato"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 412,
+  "key": "sato1999levy",
+  "locator": "Prop.~15.5, p.~93",
+  "form": "sscite",
+  "context": "A semi-selfdecomposable law $\\mu$ with span $q$ is infinitely divisible, and its residual $\\varrho_q$ is unique [\\sscite{sato1999levy}, Prop.~15.5, p.~93] (Theorem~\\ref{thm:cited-A43}). The same proposition makes a self-decomposable law semi-selfdecomposable for every span. Whether a law is in the class can be read off its \\Levy{} measure. An infinitely divisible law with \\Levy{} measure $\\nu$ is semi-selfdecomposable with span $q$ iff $D_q\\nu \\ge \\nu$, with no condition on its Gaussian part [\\sscite{sato1999levy}, Thm.~15.8, p.~94] (Theorem~\\ref{thm:cited-A44}). In words, dilating the jumps by $q$ must not lose any of them.",
+  "id": "C092",
+  "group": "D-sato"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 416,
+  "key": "sato1999levy",
+  "locator": "Thm.~15.8,\np.~94",
+  "form": "sscite",
+  "context": "A semi-selfdecomposable law $\\mu$ with span $q$ is infinitely divisible, and its residual $\\varrho_q$ is unique [\\sscite{sato1999levy}, Prop.~15.5, p.~93] (Theorem~\\ref{thm:cited-A43}). The same proposition makes a self-decomposable law semi-selfdecomposable for every span. Whether a law is in the class can be read off its \\Levy{} measure. An infinitely divisible law with \\Levy{} measure $\\nu$ is semi-selfdecomposable with span $q$ iff $D_q\\nu \\ge \\nu$, with no condition on its Gaussian part [\\sscite{sato1999levy}, Thm.~15.8, p.~94] (Theorem~\\ref{thm:cited-A44}). In words, dilating the jumps by $q$ must not lose any of them.",
+  "id": "C093",
+  "group": "D-sato"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1261,
+  "key": "sato1999levy",
+  "locator": "Prop.~25.4(iii),\np.~159",
+  "form": "sscite",
+  "context": "The two moments are equivalent by Theorem~\\ref{thm:cited-A49}, read for the law at time $1$ with $\\vartheta(x) = \\log(|x| \\vee e)$, submultiplicative [\\sscite{sato1999levy}, Prop.~25.4(iii), p.~159] and continuous, hence locally bounded. As $\\vartheta - \\log_+|\\cdot|$ is bounded, $\\varrho$ is a probability, $\\nu_\\varrho(\\{|x| > 1\\}) < \\infty$ and $\\log_+|x| = 0$ on $\\{|x| \\le 1\\}$, the two finiteness conditions are those of the statement.",
+  "id": "C103",
+  "group": "D-sato"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 815,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1(ii), p.~38",
+  "form": "sscite",
+  "context": " 1$ the compound Poisson law of $\\nu/n$ has the transform $\\exp\\bigl(-\\tfrac1n\\int(1 - \\cos\\langle\\omega, x\\rangle)\\, \\nu(dx)\\bigr)$, so its $n$-th convolution power has the transform of the law of (2) and is that law, by the uniqueness of the transform. Its transform is the exponential of the exponent of the triplet $(0, \\nu, 0)$, the compensator term integrating to $0$ by symmetry, so $(0, \\nu, 0)$ is a generating triplet. By its uniqueness, [\\sscite{sato1999levy}, Thm.~8.1(ii), p.~38] (\\ledger{A39}), $\\nu$ is the \\Levy{} measure.",
+  "id": "C131",
+  "group": "D-sato"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 829,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1(iii), p.~38",
+  "form": "sscite",
+  "context": " second moment is finite: that of $L_r$ is $r^2$ times that of $L_1$, the law of $\\sqrt{2X}\\,Z$, which is $2E[X]\\,E|Z|^2 < \\infty$; so the $i$-th term has a second moment at most $\\int_{\\sqrt{\\gamma_i}}^{\\sqrt{\\beta_i}}2r\\,dr \\le \\beta_i$ times that of $L_1$, and $\\sum_i\\beta_i < \\infty$. So $\\nu_{s,t}$ is a symmetric \\Levy{} measure, and $(0, \\nu_{s,t}, 0)$ is a generating triplet of $\\mu_{s,t}$, the compensator term vanishing by symmetry. By [\\sscite{sato1999levy}, Thm.~8.1(iii), p.~38] (\\ledger{A39}), an infinitely divisible law has this triplet. It has the transform of $\\mu_{s,t}$, so it is $\\mu_{s,t}$, which is therefore infinitely divisible; its \\Levy{} measure is $\\nu_{s,t}$ by the uniqueness of the triplet, Thm.~8.1(ii) of the same page. This holds in every dimension.",
+  "id": "C132",
+  "group": "D-sato"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 994,
+  "key": "sato1999levy",
+  "locator": "Prop.~15.5, p.~93",
+  "form": "sscite",
+  "context": "ne-exponent-data}(1), $\\psi = -\\log\\widehat\\mu$ for a symmetric infinitely divisible law $\\mu$, and $\\psi - \\psi(q^{-1}\\,\\cdot) = -\\log\\widehat\\varrho$ for a symmetric infinitely divisible law $\\varrho$. Then $\\widehat\\mu = \\widehat\\mu(q^{-1}\\,\\cdot)\\,\\widehat\\varrho$, so $\\mu$ is semi-selfdecomposable of span $q$ with the residual $\\varrho$. Conversely, let $\\mu$ be a symmetric semi-selfdecomposable law of span $q$ with residual $\\varrho$. By [\\sscite{sato1999levy}, Prop.~15.5, p.~93] (Theorem~\\ref{thm:cited-A43}, read on $\\RR^1$, to which $x \\mapsto xe_1$ carries $\\mu$ and its residual), $\\mu$ is infinitely divisible. By Lemma~\\ref{lem:line-exponent-data}(1), $\\widehat\\mu = e^{-\\psi}$ with $\\psi \\in \\mathrm{ND}_s$, and in particular $\\widehat\\mu > 0$. So $\\widehat\\varrho = \\widehat\\mu/\\widehat\\mu(q^{-1}\\,\\cdot) = e^{-(\\psi - \\psi(q^{-1}\\,\\cdot))}$ is real and even. The transform determ",
+  "id": "C162",
+  "group": "D-sato"
+ },
+ {
+  "file": "supp-strata.tex",
+  "line": 47,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1(iii),\npp.~37--38",
+  "form": "sscite",
+  "context": "evy{} measure on $\\RR$. The imaginary part of the integrand, $\\sin\\omega x - \\omega x\\mathbf 1_{|x| \\le 1}$, is odd and $\\nu$-integrable, so its integral vanishes, and \\[ \\int\\bigl(e^{i\\omega x} - 1 - i\\omega x\\mathbf 1_{|x| \\le 1}\\bigr)\\,\\nu(dx) = -\\int(1 - \\cos\\omega x)\\,\\nu(dx). \\] So the law with the triplet $(2a, \\nu, 0)$, $\\nu$ the symmetrization $\\tfrac12(\\varpi + \\varpi(-\\,\\cdot))$ of $\\varpi$, has the exponent $\\psi$. It exists by [\\sscite{sato1999levy}, Thm.~8.1(iii), pp.~37--38]. It is symmetric because its transform $e^{-\\psi}$ is real and even. A symmetric law has a symmetric triplet, by the uniqueness of the triplet [\\sscite{sato1999levy}, Thm.~8.1(ii), p.~38] applied to the law and its reflection, so its exponent is of this form. The law with exponent $\\psi$ is unique because the transform determines the law. The data are unique because the triplet is.",
+  "id": "C189",
+  "group": "D-sato"
+ },
+ {
+  "file": "supp-strata.tex",
+  "line": 49,
+  "key": "sato1999levy",
+  "locator": "Thm.~8.1(ii),\np.~38",
+  "form": "sscite",
+  "context": "x} - 1 - i\\omega x\\mathbf 1_{|x| \\le 1}\\bigr)\\,\\nu(dx) = -\\int(1 - \\cos\\omega x)\\,\\nu(dx). \\] So the law with the triplet $(2a, \\nu, 0)$, $\\nu$ the symmetrization $\\tfrac12(\\varpi + \\varpi(-\\,\\cdot))$ of $\\varpi$, has the exponent $\\psi$. It exists by [\\sscite{sato1999levy}, Thm.~8.1(iii), pp.~37--38]. It is symmetric because its transform $e^{-\\psi}$ is real and even. A symmetric law has a symmetric triplet, by the uniqueness of the triplet [\\sscite{sato1999levy}, Thm.~8.1(ii), p.~38] applied to the law and its reflection, so its exponent is of this form. The law with exponent $\\psi$ is unique because the transform determines the law. The data are unique because the triplet is.",
+  "id": "C190",
+  "group": "D-sato"
+ },
+ {
+  "file": "supp-strata.tex",
+  "line": 347,
+  "key": "sato1999levy",
+  "locator": "Thm.~15.8, p.~94",
+  "form": "sscite",
+  "context": "has the transform $e^{-t(1 - \\cos h|\\omega|)} = \\exp\\int(e^{i\\langle\\omega, x\\rangle} - 1)\\,t\\sigma(dx)$ with $\\sigma := \\tfrac12(\\delta_{he_1} + \\delta_{-he_1})$; since $\\sigma$ is symmetric, $(0, t\\sigma, 0)$ is a generating triplet of $m_t$. The measure $T_q(t\\sigma) = \\tfrac{t}{2}(\\delta_{qhe_1} + \\delta_{-qhe_1})$ gives the sphere $|x| = h$ the mass $0$, and $t\\sigma$ gives it $t > 0$, so $T_q(t\\sigma) \\ge t\\sigma$ fails. By the criterion [\\sscite{sato1999levy}, Thm.~15.8, p.~94] (Theorem~\\ref{thm:cited-A44}, where $D_q = T_q$), $m_t$ is not semi-selfdecomposable with span $q$. Neither is $\\mu_{0,t}$: the image in $\\RR^1$ of an infinitely divisible residual of $\\mu_{0,t}$ at $q$ would be one of $m_t$.",
+  "id": "C194",
+  "group": "D-sato"
+ }
+]

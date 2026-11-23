@@ -1,0 +1,65 @@
+name = "Pyramids"
+version = "0.1.0"
+keywords = ["math", "scale-space"]
+# Both libraries are default targets, so that CI compiles the skeleton too: a skeleton statement
+# that is malformed or names a missing declaration fails the build. The sorry guard scans
+# `Formalization/Pyramids` only.
+defaultTargets = ["Pyramids", "PyramidsSkeleton"]
+
+[leanOptions]
+pp.unicode.fun = true
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+# The files carry the REUSE-style header naming LICENSES/Apache-2.0.txt, which is accurate here; the
+# Mathlib header linter demands the literal "...the file LICENSE." line.
+linter.style.header = false
+
+# The Lean of Paper VI moved here from the affine module's working copy (plan item F, decision 5
+# of `notes/PLAN-article-structure.md`): the files the affine module's public export at `v0.1`
+# leaves out. What they import from the affine module comes from that export, at its tag.
+#
+# Lake builds one revision per package, so every pin below is the export's own: Lean v4.31.0,
+# Mathlib v4.31.0 and ScaleSpaceCore v0.5.0 (the export's `lake-manifest.json` at `v0.1`).
+# A pin bump is a new store entry, never `lake update`, in a checkout whose packages are linked
+# into the shared store (`python $WIKI_VAULT/lake-store.py link <repo>`), and never `lake clean`.
+
+# The affine module's public export, at its release tag. Its Lake root is `Formalization/`; the
+# package is named `AffineHemigroup`, and so is its library, which is why this one is not.
+[[require]]
+name = "AffineHemigroup"
+git = "https://github.com/danielfagerstrom/spatial-hemigroup-scale-space-affine"
+rev = "v0.1"
+subDir = "Formalization"
+
+# The shared core, at the export's pin.
+[[require]]
+name = "ScaleSpaceCore"
+git = "https://github.com/danielfagerstrom/scale-space-lean"
+rev = "v0.5.0"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.31.0"
+
+# The proved library: sorry-free by CI guard. Its declarations live in namespace `Pyramids`; each
+# file opens `AffineHemigroup` for what it reads from the export. Module names are global across
+# the packages of a build, so the moved files take the root `Pyramids` rather than keep
+# `AffineHemigroup`, which the export's library owns.
+[[lean_lib]]
+name = "Pyramids"
+globs = ["Pyramids.*"]
+
+# Stated-but-unproved targets (article-kit PROCESS.md section 4): the Lean type of every
+# `\notready` blueprint node, with `sorry` for the proof. Separate from `Pyramids` on purpose: a
+# declaration MOVES into `Pyramids/` when it is proved, and nothing in `Pyramids/` ever imports
+# this library. Named `PyramidsSkeleton`, not `Skeleton`, because Lean module names are global
+# across the packages of a build and other modules of the programme have a `Skeleton` root. The
+# declarations live in namespace `Pyramids`, so a name does not change when its proof moves it.
+[[lean_lib]]
+name = "PyramidsSkeleton"
+globs = ["PyramidsSkeleton.*"]
+# The skeleton's `sorry`s are its purpose; the sorry guard scans `Formalization/Pyramids`, and
+# `#print axioms` still shows `sorryAx`.
+leanOptions = { warn.sorry = false }

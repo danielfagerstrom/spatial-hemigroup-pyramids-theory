@@ -1,0 +1,512 @@
+[
+ {
+  "file": "01-introduction.tex",
+  "line": 8,
+  "key": "burt1981fast",
+  "locator": "",
+  "form": "cite",
+  "context": "An image pyramid stores an image at a sequence of resolutions. Each level is a smoothed copy of the one before, subsampled by a fixed ratio $q$, usually $2$ \\cite{burt1981fast,burt1983laplacian}. The design literature constrains the generating kernel of one step. Burt and Adelson require it to be separable, normalized, symmetric and of equal contribution \\cite[p.~533]{burt1983laplacian}, and Meer, Baugher and Rosenfeld require it to be good for one decimation \\cite{meer1987frequency}. Burt observed that the equivalent kernels of the levels approach one shape \\cite{burt1981fast}. What the literature does not state is a property of the whole family of kernels: every level looks like every other on its own grid. As an axiom, this is covariance under the dilations by $q^n$, $n \\in \\ZZ$, which leaves every other dilation optional.",
+  "id": "C001",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 8,
+  "key": "burt1983laplacian",
+  "locator": "",
+  "form": "cite",
+  "context": "An image pyramid stores an image at a sequence of resolutions. Each level is a smoothed copy of the one before, subsampled by a fixed ratio $q$, usually $2$ \\cite{burt1981fast,burt1983laplacian}. The design literature constrains the generating kernel of one step. Burt and Adelson require it to be separable, normalized, symmetric and of equal contribution \\cite[p.~533]{burt1983laplacian}, and Meer, Baugher and Rosenfeld require it to be good for one decimation \\cite{meer1987frequency}. Burt observed that the equivalent kernels of the levels approach one shape \\cite{burt1981fast}. What the literature does not state is a property of the whole family of kernels: every level looks like every other on its own grid. As an axiom, this is covariance under the dilations by $q^n$, $n \\in \\ZZ$, which leaves every other dilation optional.",
+  "id": "C002",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 10,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "cite",
+  "context": "An image pyramid stores an image at a sequence of resolutions. Each level is a smoothed copy of the one before, subsampled by a fixed ratio $q$, usually $2$ \\cite{burt1981fast,burt1983laplacian}. The design literature constrains the generating kernel of one step. Burt and Adelson require it to be separable, normalized, symmetric and of equal contribution \\cite[p.~533]{burt1983laplacian}, and Meer, Baugher and Rosenfeld require it to be good for one decimation \\cite{meer1987frequency}. Burt observed that the equivalent kernels of the levels approach one shape \\cite{burt1981fast}. What the literature does not state is a property of the whole family of kernels: every level looks like every other on its own grid. As an axiom, this is covariance under the dilations by $q^n$, $n \\in \\ZZ$, which leaves every other dilation optional.",
+  "id": "C003",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 11,
+  "key": "meer1987frequency",
+  "locator": "",
+  "form": "cite",
+  "context": "An image pyramid stores an image at a sequence of resolutions. Each level is a smoothed copy of the one before, subsampled by a fixed ratio $q$, usually $2$ \\cite{burt1981fast,burt1983laplacian}. The design literature constrains the generating kernel of one step. Burt and Adelson require it to be separable, normalized, symmetric and of equal contribution \\cite[p.~533]{burt1983laplacian}, and Meer, Baugher and Rosenfeld require it to be good for one decimation \\cite{meer1987frequency}. Burt observed that the equivalent kernels of the levels approach one shape \\cite{burt1981fast}. What the literature does not state is a property of the whole family of kernels: every level looks like every other on its own grid. As an axiom, this is covariance under the dilations by $q^n$, $n \\in \\ZZ$, which leaves every other dilation optional.",
+  "id": "C004",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 12,
+  "key": "burt1981fast",
+  "locator": "",
+  "form": "cite",
+  "context": "An image pyramid stores an image at a sequence of resolutions. Each level is a smoothed copy of the one before, subsampled by a fixed ratio $q$, usually $2$ \\cite{burt1981fast,burt1983laplacian}. The design literature constrains the generating kernel of one step. Burt and Adelson require it to be separable, normalized, symmetric and of equal contribution \\cite[p.~533]{burt1983laplacian}, and Meer, Baugher and Rosenfeld require it to be good for one decimation \\cite{meer1987frequency}. Burt observed that the equivalent kernels of the levels approach one shape \\cite{burt1981fast}. What the literature does not state is a property of the whole family of kernels: every level looks like every other on its own grid. As an axiom, this is covariance under the dilations by $q^n$, $n \\in \\ZZ$, which leaves every other dilation optional.",
+  "id": "C005",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 19,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "cite",
+  "context": "Scale-space theory supplies the rest. Its classical axioms require a semigroup of linear smoothings, $\\Phi_{t+s} = \\Phi_t\\Phi_s$, as in Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace}.",
+  "id": "C006",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 185,
+  "key": "hanke1998nonstationary",
+  "locator": "pp.~38--39",
+  "form": "cite",
+  "context": "\\paragraph{Relation to the literature.} Each octave of the \\Matern{} pyramid is one implicit heat step, and the step sizes grow geometrically. Such sequences of implicit steps occur in nonstationary iterated Tikhonov regularization \\cite[pp.~38--39]{hanke1998nonstationary}, read there as diffusion time in \\cite{radmoser2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989th",
+  "id": "C010",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 186,
+  "key": "radmoser2000scale",
+  "locator": "",
+  "form": "cite",
+  "context": "\\paragraph{Relation to the literature.} Each octave of the \\Matern{} pyramid is one implicit heat step, and the step sizes grow geometrically. Such sequences of implicit steps occur in nonstationary iterated Tikhonov regularization \\cite[pp.~38--39]{hanke1998nonstationary}, read there as diffusion time in \\cite{radmoser2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989th",
+  "id": "C011",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 186,
+  "key": "farbman2008edge",
+  "locator": "",
+  "form": "cite",
+  "context": "\\paragraph{Relation to the literature.} Each octave of the \\Matern{} pyramid is one implicit heat step, and the step sizes grow geometrically. Such sequences of implicit steps occur in nonstationary iterated Tikhonov regularization \\cite[pp.~38--39]{hanke1998nonstationary}, read there as diffusion time in \\cite{radmoser2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989th",
+  "id": "C012",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 188,
+  "key": "burt1981fast",
+  "locator": "",
+  "form": "cite",
+  "context": "ur in nonstationary iterated Tikhonov regularization \\cite[pp.~38--39]{hanke1998nonstationary}, read there as diffusion time in \\cite{radmoser2000scale}, and in multiscale edge-preserving decompositions \\cite{farbman2008edge}. Decimation between the implicit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not",
+  "id": "C013",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 191,
+  "key": "mallat1989theory",
+  "locator": "",
+  "form": "cite",
+  "context": "cit steps, a covariant family through them, and its uniqueness up to the gauge under the implicit-Euler principle were not found in that literature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyramid takes its name from the \\Matern{} covariances, whose transforms are powers of the transform of its octave step [\\sscite{whittle1954stationary}; \\sscite",
+  "id": "C016",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 193,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "cite",
+  "context": "rature. Decimation between explicit steps is Burt's \\cite{burt1981fast}. The covariance condition under one ratio is, for laws, semi-selfdecomposability \\cite[Def.~3.1, p.~19]{maejima1998semi}, \\cite[Def.~15.1, p.~90]{sato1999levy}, and the strata are its reading for scale spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyramid takes its name from the \\Matern{} covariances, whose transforms are powers of the transform of its octave step [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)].",
+  "id": "C017",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 195,
+  "key": "whittle1954stationary",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)",
+  "form": "sscite",
+  "context": "le spaces. Multiresolution analysis \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyramid takes its name from the \\Matern{} covariances, whose transforms are powers of the transform of its octave step [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)].",
+  "id": "C018",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "01-introduction.tex",
+  "line": 195,
+  "key": "lindgren2011explicit",
+  "locator": "",
+  "form": "sscite-bare",
+  "context": "is \\cite{mallat1989theory} is the axiomatic dyadic neighbour, by projection rather than smoothing. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2: it is covariant under no dilation (Section~\\ref{sec:line-theory}). The \\Matern{} pyramid takes its name from the \\Matern{} covariances, whose transforms are powers of the transform of its octave step [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)].",
+  "id": "C019",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 712,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "sscite",
+  "context": "At $d = 1$ the sphere of radius $h$ is $\\{-h, h\\}$, and the family is Lindeberg's discrete scale space [\\sscite{lindeberg1990scalespace}]. On $h\\ZZ^d$ Lindeberg's family is not isotropic. It has $\\nu_t$ on the $2d$ axis neighbours, so $D_q\\nu_t \\ge \\nu_t$ fails for every $q > 1$. The last paragraph of the proof above then applies, with Theorem~\\ref{thm:cited-A44} and Lemma~\\ref{lem:discrete-covariance-levy}. So Lindeberg's family is covariant under no dilation either.",
+  "id": "C095",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1114,
+  "key": "burt1981fast",
+  "locator": "(2)--(4), pp.~21--23",
+  "form": "sscite",
+  "context": "Now the ladder. The link to the knot kernels was observed by Burt for the classical pyramids. In Burt's hierarchy the kernel that takes the image to level $l$ is the generating kernel convolved with its dilates up to that level [\\sscite{burt1981fast}, (2)--(4), pp.~21--23]. Burt calls it the \\emph{equivalent kernel}, and Burt and Adelson the \\emph{equivalent weighting function} [\\sscite{burt1983laplacian}, p.~533]. Write it $W_l$, as in Proposition~\\ref{prop:equivalent-weights}. Burt writes $h_l$, and $h$ here is a grid spacing. Burt observed that, rescaled to unit spacing, $2^lW_l(2^lx)$ converges to one shape, which he calls the \\emph{characteristic kernel} [\\sscite{burt1981fast}, Obs.~1, p.~24, and (5), p.~25].",
+  "id": "C100",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1116,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "Now the ladder. The link to the knot kernels was observed by Burt for the classical pyramids. In Burt's hierarchy the kernel that takes the image to level $l$ is the generating kernel convolved with its dilates up to that level [\\sscite{burt1981fast}, (2)--(4), pp.~21--23]. Burt calls it the \\emph{equivalent kernel}, and Burt and Adelson the \\emph{equivalent weighting function} [\\sscite{burt1983laplacian}, p.~533]. Write it $W_l$, as in Proposition~\\ref{prop:equivalent-weights}. Burt writes $h_l$, and $h$ here is a grid spacing. Burt observed that, rescaled to unit spacing, $2^lW_l(2^lx)$ converges to one shape, which he calls the \\emph{characteristic kernel} [\\sscite{burt1981fast}, Obs.~1, p.~24, and (5), p.~25].",
+  "id": "C101",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1119,
+  "key": "burt1981fast",
+  "locator": "Obs.~1, p.~24, and (5), p.~25",
+  "form": "sscite",
+  "context": "Now the ladder. The link to the knot kernels was observed by Burt for the classical pyramids. In Burt's hierarchy the kernel that takes the image to level $l$ is the generating kernel convolved with its dilates up to that level [\\sscite{burt1981fast}, (2)--(4), pp.~21--23]. Burt calls it the \\emph{equivalent kernel}, and Burt and Adelson the \\emph{equivalent weighting function} [\\sscite{burt1983laplacian}, p.~533]. Write it $W_l$, as in Proposition~\\ref{prop:equivalent-weights}. Burt writes $h_l$, and $h$ here is a grid spacing. Burt observed that, rescaled to unit spacing, $2^lW_l(2^lx)$ converges to one shape, which he calls the \\emph{characteristic kernel} [\\sscite{burt1981fast}, Obs.~1, p.~24, and (5), p.~25].",
+  "id": "C102",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1459,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "This last subsection returns to the classical pyramids. They smooth with a finite mask, applied separably [\\sscite{burt1983laplacian}, p.~533]. The mask is a five-tap mask of Burt's family or a B-spline mask. The binomial $\\tfrac1{16}[1,4,6,4,1]$ is in Burt's family [\\sscite{burt1981fast}, p.~24]. No such mask is a step of any family that is continuous in scale, whatever its symmetry or covariance.",
+  "id": "C106",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1461,
+  "key": "burt1981fast",
+  "locator": "p.~24",
+  "form": "sscite",
+  "context": "This last subsection returns to the classical pyramids. They smooth with a finite mask, applied separably [\\sscite{burt1983laplacian}, p.~533]. The mask is a five-tap mask of Burt's family or a B-spline mask. The binomial $\\tfrac1{16}[1,4,6,4,1]$ is in Burt's family [\\sscite{burt1981fast}, p.~24]. No such mask is a step of any family that is continuous in scale, whatever its symmetry or covariance.",
+  "id": "C107",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "03-pyramid.tex",
+  "line": 1492,
+  "key": "burt1981fast",
+  "locator": "Obs.~1, p.~24",
+  "form": "sscite",
+  "context": "Clause (2) of the next proposition shows that the binomial mask has a refinable law, the cubic B-spline. Clause (1) reads Burt's observation that the rescaled equivalent weights approach one shape [\\sscite{burt1981fast}, Obs.~1, p.~24]. The shape is approached and never reached, since no equivalent weight is the $q$-dilate of the one before.",
+  "id": "C108",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "04-line.tex",
+  "line": 208,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "sscite",
+  "context": "The examples of Section~\\ref{sec:pyramid-strata} separate the strata on the line too. At $d = 1$ the uniform law on the sphere of radius $h$ is $\\tfrac12(\\delta_h + \\delta_{-h})$. The family of Proposition~\\ref{prop:stratum-one-example} is then Lindeberg's discrete scale space [\\sscite{lindeberg1990scalespace}], with $\\varpi_t = t\\,\\delta_h$. It is in the first stratum and not in the second. The family of Proposition~\\ref{prop:stratum-two-example} is the \\emph{geometric-jump pyramid}, whose jumps have the lengths $hq^i$, $i \\in \\ZZ$. It is in the second stratum and not in the third. With these witnesses Theorem~\\ref{thm:lattice-strata-strict} separates the strata on the line. No kernel $\\mu_{0,t}$, $t > 0$, of a $q^{\\ZZ}$-covariant family is carried by a lattice $\\xi\\ZZ$ (Proposition~\\ref{prop:no-lattice-kernel}).",
+  "id": "C111",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "04-line.tex",
+  "line": 533,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "The kernel at the knots that clause (2) gives has a classical meaning. It is the equivalent weighting function of Burt and Adelson [\\sscite{burt1983laplacian}, p.~533], run downward in scale: $T_{q^{-1}}w * \\dots * T_{q^{-M}}w$ is the equivalent weight of $M$ levels rescaled to the finest grid. Its limit is carried by no lattice, as Proposition~\\ref{prop:no-lattice-kernel} requires. Between the knots the ladder leaves a choice. The families that carry it differ in how each atom of the mask is switched on across one octave, and Section~\\ref{sec:line-phase-entropy} of the supplement compares them.",
+  "id": "C113",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "04-line.tex",
+  "line": 992,
+  "key": "lindeberg1990scalespace",
+  "locator": "Prop.~12 and the sentence after it",
+  "form": "sscite",
+  "context": "The samples of the Gaussian kernel on a grid, the first family one would try there, do not form a convolution semigroup [\\sscite{lindeberg1990scalespace}, Prop.~12 and the sentence after it]. Renormalized, they need not form a hemigroup either. The script \\texttt{scripts/sampled\\_gaussian\\_increments.py} computes the step between two renormalized sampled Gaussians, as the inverse transform of the ratio of their discrete transfers on a periodic grid of $4096$ points, for four pairs of standard deviations in grid units. Between $0.5$ and $0.6$ the step's least coefficient is $-0.011$, and between $1.0$ and $1.2$ it is $-0.0046$. So at these two pairs the sampled Gaussian family is not a hemigroup on the grid. Between $2.0$ and $2.5$ the least coefficient is $-2.8 \\times 10^{-7}$. Between $0.7$ and $3.0$ it is $-2 \\times 10^{-17}$, which is rounding. The negative coefficients shrink fast as",
+  "id": "C115",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 85,
+  "key": "whittle1954stationary",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)",
+  "form": "sscite",
+  "context": "r^{-d}G_2(x/r)$, with $G_2$ the Bessel potential of order $2$, the kernel of $(I - \\Delta)^{-1}$ [\\sscite{stein1970singular}, Ch.~V, \\S 3.1, (26) and Prop.~2, p.~132], read in this paper's convention for the transform. So $L_r$ is the Green's function of $I - r^2\\Delta$. It is also the \\Matern{} law of index $1$ at range $r$. The laws with transform $(1 + r^2|\\omega|^2)^{-\\gamma}$ are named after the \\Matern{} covariances of spatial statistics [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)], and for $\\gamma > d/2$ their densities are those covariances (Section~\\ref{ch:price}). Finally, $L_r$ is the kernel of \\prog{iso v0.1}{Prop.~3.12(2), p.~16} at scale $\\sqrt2\\,r$. The paper writes $L_r$ for the law, and the Helmholtz resolvent for the operator $f \\mapsto L_r * f$. The name Bessel potential stays in use for $L_r$ where the comparison with the literature needs it.",
+  "id": "C119",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 85,
+  "key": "lindgren2011explicit",
+  "locator": "",
+  "form": "sscite-bare",
+  "context": "essel potential of order $2$, the kernel of $(I - \\Delta)^{-1}$ [\\sscite{stein1970singular}, Ch.~V, \\S 3.1, (26) and Prop.~2, p.~132], read in this paper's convention for the transform. So $L_r$ is the Green's function of $I - r^2\\Delta$. It is also the \\Matern{} law of index $1$ at range $r$. The laws with transform $(1 + r^2|\\omega|^2)^{-\\gamma}$ are named after the \\Matern{} covariances of spatial statistics [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)], and for $\\gamma > d/2$ their densities are those covariances (Section~\\ref{ch:price}). Finally, $L_r$ is the kernel of \\prog{iso v0.1}{Prop.~3.12(2), p.~16} at scale $\\sqrt2\\,r$. The paper writes $L_r$ for the law, and the Helmholtz resolvent for the operator $f \\mapsto L_r * f$. The name Bessel potential stays in use for $L_r$ where the comparison with the literature needs it.",
+  "id": "C120",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 616,
+  "key": "lindeberg2016time",
+  "locator": "Sect.~5, (38), p.~62",
+  "form": "sscite",
+  "context": "The pyramid also has a twin in time, through the \\emph{subordination bridge} of \\prog{V-cone v0.1}{\\S 4}. The bridge substitutes $\\sigma = r^2/2$. It reads a function of the frequency $r$ as a function of the Laplace variable $\\sigma$ of a subordinator, an increasing \\Levy{} process used as a random clock. Then $F_q(r) = \\sum_{i \\ge 1}\\log(1 + 2c^2q^{-2i}\\sigma)$. This is the exponent, in the Laplace variable $\\sigma$, of Lindeberg's time-causal limit kernel with ratio $q^2$ and constant $2c^2$, a cascade of first-order integrators in time. Lindeberg defines that kernel by an infinite product of first-order factors [\\sscite{lindeberg2016time}, Sect.~5, (38), p.~62] and realizes it by recursive first-order filters [\\sscite{lindeberg2016time}, Sect.~6.2, p.~64]. The ratio and the constant are this paper's reading of his product.",
+  "id": "C129",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 617,
+  "key": "lindeberg2016time",
+  "locator": "Sect.~6.2, p.~64",
+  "form": "sscite",
+  "context": "The pyramid also has a twin in time, through the \\emph{subordination bridge} of \\prog{V-cone v0.1}{\\S 4}. The bridge substitutes $\\sigma = r^2/2$. It reads a function of the frequency $r$ as a function of the Laplace variable $\\sigma$ of a subordinator, an increasing \\Levy{} process used as a random clock. Then $F_q(r) = \\sum_{i \\ge 1}\\log(1 + 2c^2q^{-2i}\\sigma)$. This is the exponent, in the Laplace variable $\\sigma$, of Lindeberg's time-causal limit kernel with ratio $q^2$ and constant $2c^2$, a cascade of first-order integrators in time. Lindeberg defines that kernel by an infinite product of first-order factors [\\sscite{lindeberg2016time}, Sect.~5, (38), p.~62] and realizes it by recursive first-order filters [\\sscite{lindeberg2016time}, Sect.~6.2, p.~64]. The ratio and the constant are this paper's reading of his product.",
+  "id": "C130",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "05-matern.tex",
+  "line": 1141,
+  "key": "burt1983laplacian",
+  "locator": "p.~535",
+  "form": "sscite",
+  "context": "Burt and Adelson's Laplacian pyramid [\\sscite{burt1983laplacian}, p.~535] is a \\emph{difference} of Gaussians, named after the Laplacian it approximates. On the Gaussian pyramid the level difference is $I - e^{\\tau\\Delta}$ applied to the finer level, with $\\tau$ proportional to $(q^2 - 1)t^2$. Formally this is a series in all powers of $\\Delta$. Its first term alone is a Laplacian, and it dominates only as $q \\downarrow 1$. That comparison is heuristic and is not proved here.",
+  "id": "C135",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "06-price.tex",
+  "line": 431,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "Run downward in scale, the product (\\ref{eq:knot-product}) is the equivalent weighting function of Burt and Adelson [\\sscite{burt1983laplacian}, p.~533]. The mask of clause (3) samples the octave step of the frame \\Matern{} pyramid of Section~\\ref{ch:matern}, a product of one Laplace law per axis. Each factor is the sampled Laplace kernel of Proposition~\\ref{prop:sampled-laplace-exact}, renormalized on $h\\ZZ$.",
+  "id": "C140",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "06-price.tex",
+  "line": 1460,
+  "key": "whittle1954stationary",
+  "locator": "; \\sscite{lindgren2011explicit}, (2)",
+  "form": "sscite",
+  "context": "The continuum counterpart of this family is classical. For $\\gamma > d/2$ the continuum kernel with transform $(1 + t^2|\\omega|^2)^{-\\gamma}$ is the \\Matern{} covariance of smoothness $\\gamma - d/2$ [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)], and $\\Lambda_t$ is its grid counterpart. For $\\gamma \\le d/2$ the kernel is unbounded at the origin, so it is no covariance function. This includes the case $\\gamma = 1$, $d = 2$. There the mask applied throughout the plane is the grid counterpart of a kernel with no finite value at the origin.",
+  "id": "C141",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "06-price.tex",
+  "line": 1460,
+  "key": "lindgren2011explicit",
+  "locator": "",
+  "form": "sscite-bare",
+  "context": "The continuum counterpart of this family is classical. For $\\gamma > d/2$ the continuum kernel with transform $(1 + t^2|\\omega|^2)^{-\\gamma}$ is the \\Matern{} covariance of smoothness $\\gamma - d/2$ [\\sscite{whittle1954stationary}; \\sscite{lindgren2011explicit}, (2)], and $\\Lambda_t$ is its grid counterpart. For $\\gamma \\le d/2$ the kernel is unbounded at the origin, so it is no covariance function. This includes the case $\\gamma = 1$, $d = 2$. There the mask applied throughout the plane is the grid counterpart of a kernel with no finite value at the origin.",
+  "id": "C142",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "06-price.tex",
+  "line": 1484,
+  "key": "collatz1960numerical",
+  "locator": "Ch.~V \\S 2.5, p.~386",
+  "form": "sscite",
+  "context": " D_9(\\omega) = |\\omega|^2 - \\frac{h^2}{12}\\bigl(\\omega_1^4 + 2\\omega_1^2\\omega_2^2 + \\omega_2^4\\bigr) + O(h^4) = |\\omega|^2 - \\frac{h^2}{12}|\\omega|^4 + O(h^4) . \\] No direction enters $D_9$ below order $h^4$. Its resolvent is still a mask on a lattice, so its grid pyramid is still not isotropic (Proposition~\\ref{prop:resolvent-masks-exact}(3)). The weights $(-20, 4, 1)/6h^2$ of $\\Delta_9$ are those of the Hermitian, or Mehrstellen, formula of [\\sscite{collatz1960numerical}, Ch.~V \\S 2.5, p.~386], where they appear as the leading part of a relation with correction terms.",
+  "id": "C143",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 7,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "cite",
+  "context": "A pyramid applies one small mask at every level, and the classical criteria judge that mask on its own \\cite[p.~533]{burt1983laplacian}, \\cite{meer1987frequency}. This paper judged it by another standard. Covariance under one ratio $q$ requires the mask to be the step between two levels of a family of kernels continuous in scale. The levels of the pyramid are then the image smoothed by kernels of that family. The questions are which masks have such a family, and how much of it the mask fixes.",
+  "id": "C144",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 7,
+  "key": "meer1987frequency",
+  "locator": "",
+  "form": "cite",
+  "context": "A pyramid applies one small mask at every level, and the classical criteria judge that mask on its own \\cite[p.~533]{burt1983laplacian}, \\cite{meer1987frequency}. This paper judged it by another standard. Covariance under one ratio $q$ requires the mask to be the step between two levels of a family of kernels continuous in scale. The levels of the pyramid are then the image smoothed by kernels of that family. The questions are which masks have such a family, and how much of it the mask fixes.",
+  "id": "C145",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 37,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "cite",
+  "context": "The strata place the pyramids among the families of scale space. The dilations under which a symmetric family is covariant form $\\{1\\}$, some $q^{\\ZZ}$, or all of $(0,\\infty)$ (Lemma~\\ref{lem:family-dilations}(2)). So covariance under the powers of one ratio is the only case between none and every dilation. For isotropic families each stratum is strictly larger than the next (Theorem~\\ref{thm:lattice-strata-strict}). The pyramids of stratum~2 therefore form a wider class than the fully covariant families that the isotropic paper classifies \\prog{iso v0.1}{Thm.~3.6, p.~13}. Lindeberg's scale space for discrete signals \\cite{lindeberg1990scalespace} lies in stratum~1 and not in stratum~2 (Proposition~\\ref{prop:lindeberg-stratum-one} of the supplement). It is no pyramid in this sense.",
+  "id": "C147",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 48,
+  "key": "burt1983laplacian",
+  "locator": "",
+  "form": "cite",
+  "context": "Stratum~2 holds many families, so a designer still needs a reason to choose one. On the line the count of local extrema gives that reason \\prog{V-selection v0.1}{\\S4}. In the plane a bound on the value at a local maximum takes its place. Among the isotropic families covariant under $q$, the \\Matern{} pyramid is, up to the gauge, the one whose every octave stage has the implicit-Euler maximum principle (Theorem~\\ref{thm:selection-stratum-two}(2)). Its octave step is one Helmholtz resolvent, the law $L_{ct}$ (Theorem~\\ref{thm:matern-pyramid}). The difference of the levels $t$ and $qt$ is $-c^2t^2$ times the Laplacian of the coarser one (Proposition~\\ref{prop:laplacian-pyramid}). So for this family the level difference of the Laplacian pyramid of Burt and Adelson \\cite{burt1983laplacian}, taken on the continuum before any decimation, is a Laplacian.",
+  "id": "C149",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 52,
+  "key": "hanke1998nonstationary",
+  "locator": "pp.~38--39",
+  "form": "cite",
+  "context": "Sequences of implicit heat steps with geometrically growing step sizes occur in nonstationary iterated Tikhonov regularization \\cite[pp.~38--39]{hanke1998nonstationary}. The decimation between them was not found in that literature. Nor was a covariant family through them, unique up to the gauge under the implicit-Euler principle. The selection cannot be read off the line either. The isotropic classes of one ratio shrink strictly with the dimension (Proposition~\\ref{prop:what-does-not-lift-chain}), so the classification on the line does not carry to $\\RR^d$ through marginals.",
+  "id": "C150",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 72,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "cite",
+  "context": "\\emph{The families are positive, symmetric and continuous in scale.} Every kernel here is a probability law, so a mask with a negative weight is outside every statement. Burt's five-tap generating kernel with central weight $a > 1/2$, which has negative outer weights, is one \\cite[p.~533]{burt1983laplacian}. Symmetry is required of every family studied, and rotation invariance where a result says isotropic. Proposition~\\ref{prop:no-bounded-step} requires neither. Continuity in scale is the hypothesis that excludes the finite masks (Proposition~\\ref{prop:no-bounded-step}). Without it the knot relation $D_q\\mu_1 = \\mu_1 * w$ alone has solutions for a finite mask, such as the cubic B-spline for the binomial mask (Proposition~\\ref{prop:binomial-knot-relation}). In transforms the knot relation reads $\\widehat{\\mu_1}(q\\omega) = \\widehat{w}(\\omega)\\widehat{\\mu_1}(\\omega)$, the refinement equati",
+  "id": "C151",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 102,
+  "key": "kovacevic1992nonseparable",
+  "locator": "",
+  "form": "cite",
+  "context": "\\emph{The ratio is a scalar.} Every dilation here is $x \\mapsto qx$ on a lattice, the hexagonal lattice included. Pyramids whose dilation also rotates the lattice are not treated: the quincunx pyramid \\cite{kovacevic1992nonseparable} and the hexagonal pyramid of seven-point cells \\cite{watson1989hexagonal}.",
+  "id": "C153",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "07-discussion.tex",
+  "line": 103,
+  "key": "watson1989hexagonal",
+  "locator": "",
+  "form": "cite",
+  "context": "\\emph{The ratio is a scalar.} Every dilation here is $x \\mapsto qx$ on a lattice, the hexagonal lattice included. Pyramids whose dilation also rotates the lattice are not treated: the quincunx pyramid \\cite{kovacevic1992nonseparable} and the hexagonal pyramid of seven-point cells \\cite{watson1989hexagonal}.",
+  "id": "C154",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2098,
+  "key": "burt1981fast",
+  "locator": "pp.~23--24",
+  "form": "sscite",
+  "context": "t mass, since the transform of a point mass has modulus $1$ everywhere, while the transform $\\cos^4(h\\omega/2)$ of the binomial mask vanishes at $\\omega = \\pi/h$, and the transform $\\operatorname{sinc}(h\\omega/2)^m$ of the B-spline kernel, $m \\ge 1$, vanishes at $\\omega = 2\\pi/h$. A five-tap mask $(c, b, a, b, c)$ on $h\\ZZ$ of Burt's family satisfies his normalization $a + 2b + 2c = 1$ and his equal contribution at the ratio $2$, $a + 2c = 2b$ [\\sscite{burt1981fast}, pp.~23--24]. Together they give $4b = 1$, so the mask puts mass $\\tfrac14$ at each of the two points $\\pm h$ and is not a point mass. For the other finite masks it is the hypothesis. For the last sentence, the octave step at $n = 0$ is $\\mu_{1,q} = T_1w = w$, which the first sentence excludes.",
+  "id": "C164",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2109,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "Each classical constraint on a mask is a condition at one level. Normalization is (A5) and symmetry is (A3). Burt's equal contribution, that every fine node contributes the same total weight to the coarse level [\\sscite{burt1983laplacian}, p.~533], is the condition that the subsampled convolution preserve unit mass on the grid. Separability is the product structure of the frame families of \\prog{affine v0.1}{Prop.~F.1, p.~93}. None of the four constrains the family across levels. Burt and Adelson observed that an equivalent weighting function resembles the Gaussian [\\sscite{burt1983laplacian}, p.~533]. For the binomial mask Proposition~\\ref{prop:classical-pyramids-approximate}(3) identifies the limit, and it is not Gaussian: the rescaled equivalent weights tend to the cubic B-spline, of excess kurtosis $-\\tfrac3{10}$.",
+  "id": "C165",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2113,
+  "key": "burt1983laplacian",
+  "locator": "p.~533",
+  "form": "sscite",
+  "context": "Each classical constraint on a mask is a condition at one level. Normalization is (A5) and symmetry is (A3). Burt's equal contribution, that every fine node contributes the same total weight to the coarse level [\\sscite{burt1983laplacian}, p.~533], is the condition that the subsampled convolution preserve unit mass on the grid. Separability is the product structure of the frame families of \\prog{affine v0.1}{Prop.~F.1, p.~93}. None of the four constrains the family across levels. Burt and Adelson observed that an equivalent weighting function resembles the Gaussian [\\sscite{burt1983laplacian}, p.~533]. For the binomial mask Proposition~\\ref{prop:classical-pyramids-approximate}(3) identifies the limit, and it is not Gaussian: the rescaled equivalent weights tend to the cubic B-spline, of excess kurtosis $-\\tfrac3{10}$.",
+  "id": "C167",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2353,
+  "key": "burt1983laplacian",
+  "locator": "",
+  "form": "sscite",
+  "context": "1}{Prop.~5.7, (5.1), p.~48}. The generator of a Thorin exponent is a sum of Laplace-kernel differences \\prog{V-cone v0.1}{Prop.~6.4(4), p.~58}, stated there for $a = 0$ and for $g \\in C^2$ with $g$ and $g''$ bounded. Theorem~\\ref{thm:matern-pyramid-line}(3) computes the symbol directly. Since each octave step is $L_{ct}$ (Theorem~\\ref{thm:matern-pyramid-line}(1)), the level differences $u(t) - u(qt) = (I - L_{ct})u(t)$ of its Laplacian pyramid [\\sscite{burt1983laplacian}] are Laplace-kernel differences, the atomic generators of the Thorin class. The Laplacian pyramid of the Gaussian family is, in the same way, a bank of differences of Gaussians.",
+  "id": "C171",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2362,
+  "key": "lindeberg2016time",
+  "locator": "Sect.~5, (38), p.~62",
+  "form": "sscite",
+  "context": "A time-causal family smooths a signal in time using only its past, and its kernels are laws on $[0,\\infty)$ with Laplace exponents $H(s)$. The subordination bridge of Section~\\ref{sec:matern-levels} of the paper turns such an exponent into the spatial exponent $H(\\omega^2/2)$. It carries Lindeberg's time-causal limit kernel of ratio $q^2$ and constant $2c^2$ to the \\Matern{} pyramid. Lindeberg defines that kernel as an infinite product of first-order factors [\\sscite{lindeberg2016time}, Sect.~5, (38), p.~62], from which the ratio and the constant are read, and realizes it by recursive first-order filters [\\sscite{lindeberg2016time}, Sect.~6.2, p.~64]. The limit $F_\\infty$ of $\\ell F_q$ in (\\ref{eq:line-e8}) is the symmetric Thorin exponent with the log-uniform density $d\\theta/\\theta$ above the cutoff $1/c$, and it has no Gaussian part.",
+  "id": "C172",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2363,
+  "key": "lindeberg2016time",
+  "locator": "Sect.~6.2, p.~64",
+  "form": "sscite",
+  "context": "A time-causal family smooths a signal in time using only its past, and its kernels are laws on $[0,\\infty)$ with Laplace exponents $H(s)$. The subordination bridge of Section~\\ref{sec:matern-levels} of the paper turns such an exponent into the spatial exponent $H(\\omega^2/2)$. It carries Lindeberg's time-causal limit kernel of ratio $q^2$ and constant $2c^2$ to the \\Matern{} pyramid. Lindeberg defines that kernel as an infinite product of first-order factors [\\sscite{lindeberg2016time}, Sect.~5, (38), p.~62], from which the ratio and the constant are read, and realizes it by recursive first-order filters [\\sscite{lindeberg2016time}, Sect.~6.2, p.~64]. The limit $F_\\infty$ of $\\ell F_q$ in (\\ref{eq:line-e8}) is the symmetric Thorin exponent with the log-uniform density $d\\theta/\\theta$ above the cutoff $1/c$, and it has no Gaussian part.",
+  "id": "C173",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2616,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "sscite",
+  "context": "Lindeberg's discrete scale space is exact but not a pyramid (Proposition~\\ref{prop:lindeberg-stratum-one}), since its grid is a preferred length. The grid refinement that makes it covariant, the geometric-jump pyramid of Proposition~\\ref{prop:discrete-gaussian-pyramid}, lies in stratum (2) of Theorem~\\ref{thm:lattice-line} and not in stratum (3), and its kernels are no longer lattice laws. Lindeberg characterizes the discrete Gaussian as the unique discrete kernel with non-creation and a semigroup law [\\sscite{lindeberg1990scalespace}]. Without the semigroup law, non-creation leaves a class of kernels in place of one family \\prog{V-selection v0.1}{Remark~4.15}. No non-creation property is claimed here for the geometric-jump pyramid. The next proposition shows that neither of the line's two tools, lattice counting and \\Polya{} frequency, applies to it.",
+  "id": "C183",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2669,
+  "key": "mallat1989theory",
+  "locator": "(2)--(8), p.~676",
+  "form": "sscite",
+  "context": "Multiresolution analysis [\\sscite{mallat1989theory}, (2)--(8), p.~676] is the nearest axiomatic neighbour. Its levels are nested dyadic subspaces and projections onto them, with no positivity, no non-creation and no hemigroup law. The scaling relation of its scaling function $g$, $g = \\sum_kc_k\\,g(2\\,\\cdot - k)$, is the knot relation of Definition~\\ref{def:self-decomposable} without the requirement that the residual be infinitely divisible. A positive mask of finite support can meet the scaling relation: the cubic B-spline $B$ of Proposition~\\ref{prop:classical-pyramids-approximate}(3) has $T_2B = w * B$ with the binomial mask $w$, since $\\bigl(\\sin(h\\omega)/(h\\omega)\\bigr)^4 = \\cos^4(h\\omega/2)\\bigl(\\sin(h\\omega/2)/(h\\omega/2)\\bigr)^4$. What Proposition~\\ref{prop:classical-kernels-no-exact-cascade} denies such a mask is to be a step of a family: it is not infinitely divisible, so no fam",
+  "id": "C187",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-line.tex",
+  "line": 2684,
+  "key": "meer1987frequency",
+  "locator": "",
+  "form": "sscite",
+  "context": "The theory of this section is discrete in scale on continuous space. By the pyramid principle of Proposition~\\ref{prop:no-lattice-kernel-line}(2), sampling a $q^{\\ZZ}$-covariant family at scale $q^nt$ on the grid $q^nh\\ZZ$ stores the same array at every level. The axioms do not fix $h/t$, the sampling density relative to the scale. That is the anti-aliasing trade-off which Meer and coauthors optimize for one decimation [\\sscite{meer1987frequency}]. The sampled Laplace family is an exact cascade on the grid, its subsample is exact in sense (ii) of Definition~\\ref{def:exact-senses}, and the grid pyramid of sampled \\Matern{} levels is exact in sense (i) at its first level and at no later one (Proposition~\\ref{prop:sampled-laplace-exact}). How much a level aliases is measured, for these pyramids, in further work.",
+  "id": "C188",
+  "group": "E1-imaging"
+ },
+ {
+  "file": "supp-strata.tex",
+  "line": 298,
+  "key": "lindeberg1990scalespace",
+  "locator": "",
+  "form": "sscite",
+  "context": "Fix $h > 0$. For $0 \\le s \\le t$ let $\\mu_{s,t}$ be the law on $h\\ZZ$ with $\\mu_{s,t}(\\{hn\\}) = e^{-(t-s)}I_n(t-s)$, $n \\in \\ZZ$, where $I_n(u) = \\sum_{j \\ge 0}(u/2)^{2j+|n|}/\\bigl(j!\\,(j+|n|)!\\bigr)$ is the modified Bessel function of the first kind. These are the kernels of the scale space for discrete signals of [\\sscite{lindeberg1990scalespace}], the semigroup generated on $h\\ZZ$ by half the second difference. \\begin{enumerate} \\item $\\widehat\\mu_{s,t}(\\omega) = e^{-(t-s)(1 - \\cos h\\omega)}$. So $\\mu_{0,t}$ is compound Poisson, with $\\Psi_t(\\omega) = t(1 - \\cos h\\omega)$, $a(t) = 0$ and $\\varpi_t = t\\,\\delta_h$. \\item The operators $\\Phi_{s,t}f := \\mu_{s,t} * f$ satisfy (A1)--(A7) and (ND). \\item For no $q > 1$ and no $t > 0$ is $\\mu_{0,t}$ semi-selfdecomposable with span $q$. So for no $q > 1$ does the family satisfy (A8$|q^{\\ZZ}$): it lies in the first stratum of Theorem~\\ref{thm:l",
+  "id": "C193",
+  "group": "E1-imaging"
+ }
+]
